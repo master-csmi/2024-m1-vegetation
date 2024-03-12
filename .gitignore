@@ -19,3 +19,7 @@
 
 # pdf
 *.pdf
+
+/build
+/html
+/latex
