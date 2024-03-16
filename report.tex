@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 
 \usepackage{amsmath}
 \usepackage{hyperref}
@@ -6,40 +6,65 @@
 
 \begin{document}
 
-
 \begin{titlepage}
     \centering
-    \includegraphics[width=1\textwidth]{images/logo_Uni.png}\par\vspace{1cm}
-    {\scshape\Large Report WP1 - Vegetation \par}
-    \vspace{1cm}
-    {\scshape\large Giulio CARPI LAPI, Pierre-Antoine SENGER\par}
-    \vspace{1cm}
-    {\large \today\par}
-\end{titlepage}
- 
-\tableofcontents % Table of Contents
+    \includegraphics[width=0.5\textwidth]{images/logo_ufr.png}\par\vspace{1cm}
+    \vspace{1.5cm}
+    {\huge\bfseries ExaMA WP1 - Vegetation\par}
+    \vspace{2cm}
+    {\Large Giulio Carpi Lapi, Pierre-Antoine Senger\par}
+    \vfill
+    supervised by\par
+    Pierre Alliez and Vincent Chabannes
 
-\newpage % Start a new page after the TOC
+    \vfill
+
+% Bottom of the page
+    {\large Date: \today\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Abstract}
+The abstract is a brief summary of your entire academic project report.
+It typically provides an overview of the main objectives, methodology,
+results, and conclusions of your research or project.
+The purpose of the abstract is to give readers a quick understanding
+of the key points of your work without having to read the entire document.
+Key elements typically included in an abstract are:
+Objective: A statement of the main purpose or objective of the project.
+Methodology: A brief description of the methods or approaches
+used to conduct the research or project.
+Results: A summary of the main findings or outcomes of the project.
+Conclusion: A brief statement of the implications or significance of the results.
+The abstract is usually placed at the beginning of the report,
+before the introduction, and should be concise, clear, and informative.
+It helps readers decide whether they want to read the full report
+by providing them with a preview of its content.
 
 \section{Introduction}
-
-A team of researchers is currently developing a tool for building a 3D geometric model of an urban area (neighborhood, city, etc.).
-This representation then enables them to create a digital thermal and energy simulation model of an urban area.
-For the moment, they can reconstruct the geometry of buildings and land using information available in online databases such as OpenStreetMap, Mapbox, etc.
-Vegetation (trees in particular) can have a significant influence on the model. We need to create these objects in the 3D model.
-
-\section{Roadmap}
-\begin{itemize}
-	\item 
-\end{itemize}
+A team of researchers is currently developing a tool for building
+a 3D geometric model of an urban area (neighborhood, city, etc.).
+This representation then enables them to create
+a digital thermal and energy simulation model of an urban area.
+For the moment, they can reconstruct the geometry of buildings and land
+using information available in online databases such as OpenStreetMap, Mapbox, etc.
+Vegetation (trees in particular) can have a significant influence on the model.
+We need to create these objects in the 3D model.
 
 
-\newpage
-\section{Appendix}
-\subsection{References}
+\section{Literature Review}
+
+\section{Methodology}
+
+\section{Results}
+
+\section{Conclusion}
+
+\section{References}
 \nocite{*}
-\bibliographystyle{plain} % We choose the "plain" reference style
-\bibliography{references} % Entries are in the refs.bib file
-
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
