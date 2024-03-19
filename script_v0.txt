@@ -1,4 +1,4 @@
-Frame 1 : impact of trees on heat stress in urban areas
+Frame 1 : impact of trees on heat stress in urban areas.
 Frame 2 : visulization in an areal view
 Frame 3 : 3d city model without trees
 Frame 4 : objectives
