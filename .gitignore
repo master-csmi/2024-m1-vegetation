@@ -11,6 +11,7 @@
 *.nav
 *.snm
 *.gz
+*.xml
 
 # Temporary files
 *.swp
