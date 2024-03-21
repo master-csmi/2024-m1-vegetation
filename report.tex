@@ -6,6 +6,8 @@
 \usepackage{float}
 \usepackage{caption}
 
+\setlength{\parskip}{1em}
+
 \begin{document}
 
 \begin{titlepage}
@@ -66,19 +68,6 @@ energy dynamics of urban areas.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/NY_mesh.png}
-    \captionsetup{font={scriptsize}}
-    \caption{3D model of New York City \cite{img:NY}}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/thermographie-aerienne.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Thermal image of a city \cite{img:aerialview}}
-\end{figure}
-\begin{figure}[H]
-    \centering
     \includegraphics[width=0.5\textwidth]{images/heat_street.png}
     \captionsetup{font={scriptsize}}
     \caption{Thermal image of a street in the city. \cite{img:street_thermography}}
@@ -87,9 +76,14 @@ energy dynamics of urban areas.
 In recent years, advancements in computational modeling have facilitated the 
 development of sophisticated tools for simulating the thermal and energy performance 
 of urban environments. These tools rely on 3D geometric models that accurately 
-represent the built environment, including buildings, roads, and terrain. However, 
-the integration of vegetation into these models remains a challenge, despite its 
-recognized importance.
+represent the built environment, including buildings, roads, and terrain.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/thermographie-aerienne.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Thermal image of a city \cite{img:aerialview}}
+\end{figure}
 
 The integration of vegetation into 3D urban models poses several challenges. 
 Obtaining accurate data on the location, size, and species of trees within an 
@@ -113,6 +107,14 @@ accuracy and realism of thermal and energy simulations. The resulting models wil
 provide urban planners, architects, and policymakers with valuable insights into 
 the environmental performance of urban areas, ultimately contributing to the 
 development of more sustainable and resilient cities.
+
+This endeavor forms a segment of a broader initiative that seeks to construct
+mathematical models proficient in simulating the operations of trees within an
+urban setting such as streets or parks. The project addresses pertinent
+questions related to urban green spaces: optimal locations for tree placement,
+the most effective arrangement strategies - whether in clusters or aligned,
+and the identification of the most appropriate methods to generate the coolest
+possible climatic conditions.
 
 The project is supervised by Pierre Alliez
 Senior Researcher at Inria center at Côte d'Azur University
