@@ -16,25 +16,27 @@ This project focuses on the development of a tool for incorporating vegetation i
 == Usage
 === Current usage : Basic use of the CGAL alpha wrapper
 
-Compilation :
+==== Compilation :
 ```bash
 cd build
 cmake --preset <releae|debug> ..
 make
 ```
-Execution :
+==== Execution :
 ```bash
 cd build
 ./run <input_file> <alpha> <offset>
 ```
 The outpult mesh will be saved in  `/build`.
 
-Example :
+==== Example :
 ```bash
 cd build
-./run ../arbres/oranger.off 500
+./run ../data/trees/oranger.off 500
 ```
 
+==== Notes :
+You can visualize the output mesh with **Meshlab** or any other mesh viewer. (note for myself : dont use meshlab on wayland...)
 
 
 == Contributors
