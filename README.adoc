@@ -19,7 +19,7 @@ This project focuses on the development of a tool for incorporating vegetation i
 ==== Compilation :
 ```bash
 cd build
-cmake --preset <releae|debug> ..
+cmake --preset <release|debug> ..
 make
 ```
 ==== Execution :
