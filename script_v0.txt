@@ -1,0 +1,24 @@
+- Frame 1 (COVER)
+
+
+- Frame 2-3 (THERMAL IMAGES) : Urban areas are intricate systems influenced by various factors,
+including vegetation, particularly trees, which play a vital role in
+shaping microclimates, energy consumption, and overall livability.
+
+
+- Frame 4 (NYC MESH) : This project focuses on integrating vegetation, specifically trees,
+into 3D geometric models of urban environments to enhance the accuracy and
+realism of thermal and energy simulations.
+
+
+- Frame 5-6-7-8 (OBJECTIVES) : Leveraging data from sources like OpenStreetMap,
+the project aims to identify tree positions and attributes within urban landscapes
+and generate a library of 3D tree models for integration into terrain meshes.
+
+
+- Frame 9-10-11 (ROADMAP) : the project follows a roadmap with defined milestones
+to deliver versions : - V0 due by March 26, 2024 (today)
+                      - V1 due by April 23, 2024
+                      - v2 due by May 28, 2024
+
+- Frame 12 (REFERENCES) : References
