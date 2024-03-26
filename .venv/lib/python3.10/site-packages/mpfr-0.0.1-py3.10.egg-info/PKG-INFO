@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: mpfr
+Version: 0.0.1
+Summary: Dependency confiuse Attack
+Author: <jayateerthag>
+Author-email: <jayateertha043@gmail.com>
+Description-Content-Type: text/markdown
+
+
+<h1 align="center">This Python package vulnerable to dependency confusion vulnerability</h1>
