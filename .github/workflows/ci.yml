@@ -27,11 +27,11 @@ jobs:
 
       # Create Conda environment
       - name: Create Conda environment
-        run: mamba create --name vegetation python=3.10 -y
+        run: conda create --name vegetation python=3.10 -y
 
       # Activate Conda environment
       - name: Activate Conda environment
-        run: mamba activate vegetation
+        run: conda activate vegetation
 
       # Install dependencies using mamba
       - name: Install dependencies
