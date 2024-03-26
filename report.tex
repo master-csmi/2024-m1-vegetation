@@ -3,6 +3,10 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+
+\setlength{\parskip}{1em}
 
 \begin{document}
 
@@ -27,45 +31,142 @@
 \newpage
 
 \section{Abstract}
-The abstract is a brief summary of your entire academic project report.
-It typically provides an overview of the main objectives, methodology,
-results, and conclusions of your research or project.
-The purpose of the abstract is to give readers a quick understanding
-of the key points of your work without having to read the entire document.
-Key elements typically included in an abstract are:
-Objective: A statement of the main purpose or objective of the project.
-Methodology: A brief description of the methods or approaches
-used to conduct the research or project.
-Results: A summary of the main findings or outcomes of the project.
-Conclusion: A brief statement of the implications or significance of the results.
-The abstract is usually placed at the beginning of the report,
-before the introduction, and should be concise, clear, and informative.
-It helps readers decide whether they want to read the full report
-by providing them with a preview of its content.
+Urban areas are intricate systems influenced by various factors,
+including vegetation, particularly trees, which play a vital role in shaping
+microclimates, energy consumption, and overall livability. This project focuses
+on integrating vegetation, specifically trees, into 3D geometric models of
+urban environments to enhance the accuracy and realism of thermal and energy
+simulations. Leveraging data from sources like OpenStreetMap, the project aims
+to identify tree positions and attributes within urban landscapes and generate
+a library of 3D tree models for integration into terrain meshes. Supervised by
+experts from Inria and the University of Strasbourg, the project follows a
+roadmap with defined milestones to deliver versions V0, V1, and V2 by specified
+deadlines. Through this endeavor, the project seeks to provide valuable
+insights for urban planners, architects, and policymakers, ultimately
+contributing to the development of more sustainable and resilient cities.
+
+For the \textbf{V1} version of the report add:
+
+\begin{itemize}
+    \item Methodology
+    \item Results
+    \item Conclusion
+\end{itemize}
+
+\newpage
 
 \section{Introduction}
-A team of researchers is currently developing a tool for building
-a 3D geometric model of an urban area (neighborhood, city, etc.).
-This representation enables them to create
-a thermal and energy simulation model.
-For the moment, they can reconstruct the geometry of buildings and land
-using information available in online databases such as OpenStreetMap, Mapbox, etc.
-Vegetation (trees in particular) can have a significant impact on the model.
-A tree can influence the temperature of the air, the ground, and the buildings.
-It can also affect the energy consumption of buildings by providing shade or wind protection.
-The goal of this project is to develop a method for adding vegetation to the 3D model.
-The method should be able to create a realistic representation of the vegetation,
-including the shape and size of the trees, their location, and their density.
-The method should also be efficient and scalable to handle large urban areas.
+Urban areas are complex environments where various factors interact to influence 
+microclimates, energy consumption, and overall livability. Among these factors, 
+vegetation, particularly trees, plays a crucial role in shaping the urban landscape 
+and its environmental characteristics. Trees provide shade, mitigate heat, reduce 
+air pollution, and enhance the aesthetic appeal of neighborhoods and cities. Their 
+strategic placement and characteristics can significantly impact the thermal and 
+energy dynamics of urban areas.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/heat_street.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Thermal image of a street in the city. \cite{img:street_thermography}}
+\end{figure}
 
+In recent years, advancements in computational modeling have facilitated the 
+development of sophisticated tools for simulating the thermal and energy performance 
+of urban environments. These tools rely on 3D geometric models that accurately 
+represent the built environment, including buildings, roads, and terrain.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/thermographie-aerienne.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Thermal image of a city \cite{img:aerialview}}
+\end{figure}
+
+The integration of vegetation into 3D urban models poses several challenges. 
+Obtaining accurate data on the location, size, and species of trees within an 
+urban area is non-trivial. Additionally, representing the complex geometry of trees 
+in a scalable and computationally efficient manner is a significant computational 
+challenge. Nevertheless, addressing these challenges is essential for creating 
+realistic and reliable simulations that account for the influence of vegetation on 
+urban microclimates and energy usage.
+
+In this context, this project aims to develop a methodology for integrating 
+vegetation, particularly trees, into 3D geometric models of urban areas. Leveraging 
+data from sources such as the OpenStreetMap database, the project seeks to identify 
+the position and attributes of trees within the urban landscape. Subsequently, a 
+library of 3D tree models will be generated to accurately represent the vegetation 
+in the model. Finally, these tree models will be integrated into the terrain mesh, 
+enabling comprehensive simulations that consider the interactions between buildings, 
+terrain, and vegetation.
+
+By incorporating vegetation into 3D urban models, this project seeks to enhance the 
+accuracy and realism of thermal and energy simulations. The resulting models will 
+provide urban planners, architects, and policymakers with valuable insights into 
+the environmental performance of urban areas, ultimately contributing to the 
+development of more sustainable and resilient cities.
+
+This endeavor forms a segment of a broader initiative that seeks to construct
+mathematical models proficient in simulating the operations of trees within an
+urban setting such as streets or parks. The project addresses pertinent
+questions related to urban green spaces: optimal locations for tree placement,
+the most effective arrangement strategies - whether in clusters or aligned,
+and the identification of the most appropriate methods to generate the coolest
+possible climatic conditions.
+
+The project is supervised by Pierre Alliez
+Senior Researcher at Inria center at Côte d'Azur University
+and by Vincent Chabannes research engeneer at the University of Strasbourg.
+We will have weekly meetings with them to discuss the progress of the project.
+The deadlines we have set are the following:
+\begin{itemize}
+    \item \textbf{V0} : due by March 26, 2024
+    \item \textbf{V1} : due by April 23, 2024
+    \item \textbf{V2 - Final} : due by May 28, 2024
+\end{itemize}
+
+With the help of our supervisors, we have defined the following roadmap:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/roadmap_v0.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap v0}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/roadmap_v1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap v1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/roadmap_v2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap v2}
+\end{figure}
+
+This will help us to keep track of the progress of the project and to make sure
+we are going to deliever the respective versions on time.
+
+\newpage
 \section{Literature Review}
+
+\newpage
 
 \section{Methodology}
 
+\newpage
+
 \section{Results}
 
+\newpage
+
 \section{Conclusion}
+
+\newpage
 
 \section{References}
 \nocite{*}
