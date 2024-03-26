@@ -21,7 +21,7 @@
   \begin{figure}[h] % 'h' option tries to place the figure here
     \centering
     \includegraphics[width=1\textwidth]{images/heat_street.png}
-    \caption{thermal signature of a street } % Caption for referencing
+    \caption{thermal signature of a street\cite{img:street_thermography}} % Caption for referencing
     \label{fig:heat_street} % Label for referencing
   \end{figure}
 \end{frame}
@@ -30,7 +30,7 @@
   \begin{figure}[h] % 'h' option tries to place the figure here
     \centering
     \includegraphics[width=1\textwidth]{images/thermographie-aerienne.jpg}
-    \caption{aerial thermography of a city } % Caption for referencing
+    \caption{aerial thermography of a city\cite{img:aerialview}} % Caption for referencing
     \label{fig:thermographie} % Label for referencing
   \end{figure}
 \end{frame}
@@ -39,8 +39,8 @@
   \begin{figure}[h] % 'h' option tries to place the figure here
     \centering
     \includegraphics[width=1\textwidth]{images/NY_mesh.png}
-    \caption{3D city model of New York } % Caption for referencing
-    \label{} % Label for referencing
+    \caption{3D city model of New York\cite{img:NY} } % Caption for referencing
+    \label{fig:city_model} % Label for referencing
   \end{figure} 
 \end{frame}
 
@@ -49,7 +49,7 @@
   \vspace{0.5cm}
 
   \begin{itemize}
-    \item<2-> Access the OpenStreetMap database to extract metadata:
+    \item<2-> Access the OpenStreetMap\cite{overpass} database to extract metadata:
     \begin{itemize}
       \item<3-> location of trees
       \item<4-> eight of trees
@@ -59,7 +59,7 @@
     \item<7-> Generate a C++ library of 3D tree models
     \begin{itemize}
       \item <8-> based on the metadata
-      \item <9-> using CGAL C++ library
+      \item <9-> using CGAL\cite{cgal} C++ library 
       \item <10-> with different levels of details (LOD)
     \end{itemize}
     \item<11-> Integrate the 3D tree models into the 3D city model
