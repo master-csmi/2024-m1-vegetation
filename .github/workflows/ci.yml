@@ -15,18 +15,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-
       - name: Install conan
         shell: bash
         run: |
           python3 -m venv .venv
           source .venv/bin/activate
-          pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
       - name: Configure CMake
         # Use a bash shell so we can use the same syntax for environment variable
