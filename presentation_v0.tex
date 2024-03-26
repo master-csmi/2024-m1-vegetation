@@ -45,21 +45,21 @@
 \end{frame}
 
 \begin{frame}{Objectives}
-  Main objectives : run \textbf{sun mask} and \textbf{fluid mechanics} simulations \\
+  Main objectives : run \textbf{sun masks} and \textbf{fluid mechanics} simulations using Feel++\cite{feel++} \\
   \vspace{0.5cm}
 
   \begin{itemize}
     \item<2-> Access the OpenStreetMap\cite{overpass} database to extract metadata:
     \begin{itemize}
       \item<3-> location of trees
-      \item<4-> eight of trees
+      \item<4-> height of trees
       \item <5-> type of trees
       \item <6-> etc.
     \end{itemize}
-    \item<7-> Generate a C++ library of 3D tree models
+    \item<7-> Generate a C++ library of 3D tree models:
     \begin{itemize}
       \item <8-> based on the metadata
-      \item <9-> using CGAL\cite{cgal} C++ library 
+      \item <9-> using CGAL\cite{cgal} C++ library (Alpha Wrapper)
       \item <10-> with different levels of details (LOD)
     \end{itemize}
     \item<11-> Integrate the 3D tree models into the 3D city model
