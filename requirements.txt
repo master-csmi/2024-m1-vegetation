@@ -2,4 +2,3 @@ conan == 1.63.0
 cgal
 gmp
 mpfr
-python-dateutil
