@@ -12,15 +12,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Step to verify Python availability
       - name: Check Python version
         run: python3 --version
-
-      # Step to verify Conan installation
-      - name: Check Conan version
-        run: conan --version
 
       # Step to set up Python virtual environment and install dependencies
       - name: Install conan and dependencies
