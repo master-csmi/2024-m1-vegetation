@@ -19,11 +19,12 @@ jobs:
         run: |
           wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
           bash miniforge.sh -b -p $HOME/miniforge3
-          source $HOME/miniforge3/bin/activate
 
       # Create Conda environment
       - name: Create environment
-        run: mamba create --name vegetation python=3.10 -y
+        run: |
+          source $HOME/miniforge3/bin/activate 
+          mamba create --name vegetation python=3.10 -y
 
       # Activate Conda environment
       - name: Activate environment
