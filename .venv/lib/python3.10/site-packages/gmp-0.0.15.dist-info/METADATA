@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: gmp
+Version: 0.0.15
+Summary: A little package for GMP
+Author: Oz Abramovich
+Author-email: oz@abramovich.net
+Keywords: python,first package
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+Requires-Dist: string-color
+
+This is just a little package I made for my GMP teacher.
+
+To print things with style you can use the printing class
+```python
+import gmp
+style = gmp.printing("purple4", "blue")
+print(style.print([1,2,3], ["hello", "world"], ...))
+```
+
+If you feel like rainbow you can use the rainbow class with lolcat!
+```python
+import gmp
+color = gmp.rainbow(False)
+print(color.lolcat("I love rainbows"))
+
+color = gmp.rainbow(True)
+print(color.lolcat("Lolcat is super cool"))
+```
