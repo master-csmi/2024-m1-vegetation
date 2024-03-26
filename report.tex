@@ -155,7 +155,7 @@ This project will be developed in C++.
 For the geometric aspect of tree model and meshing we will use the CGAL library.
 CGAL is an open source software project that provides easy access to efficient
 and reliable geometric algorithms in the form of a C++ library which is used
-in various areas needing geometric computation.
+in various areas needing geometric computation.\cite{cgal}
 
 \begin{figure}[H]
     \vspace{1.5cm}
@@ -164,7 +164,16 @@ in various areas needing geometric computation.
 \end{figure}
 
 Softwares like MeshLab, an open source system for processing and editing 3D
-triangular meshes, will allow us to visualize the 3D models meshing of trees.
+triangular meshes\cite{meshlab}, will allow us to visualize the 3D models trees generated with
+the help of CGAL.
+
+We will be working with different Levels of Detail (LOD) for the 3D models.
+Starting with LOD0, which represents the least detailed version of the model,
+we will progressively complexify the model to LOD1 and LOD2.
+Each level adds complexity to the model, making it more
+resource-intensive to render.
+
+
 
 \begin{figure}[H]
     \vspace{1.5cm}
