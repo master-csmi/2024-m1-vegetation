@@ -21,16 +21,12 @@ jobs:
           bash miniforge.sh -b -p $HOME/miniforge3
           source $HOME/miniforge3/bin/activate
 
-      # Install mamba
-      - name: Install mamba
-        run: conda install mamba -n base -c conda-forge -y
-
       # Create Conda environment
-      - name: Create Conda environment
-        run: conda create --name vegetation python=3.10 -y
+      - name: Create environment
+        run: mamba create --name vegetation python=3.10 -y
 
       # Activate Conda environment
-      - name: Activate Conda environment
+      - name: Activate environment
         run: source $HOME/miniforge3/bin/activate vegetation
 
       # Install dependencies using mamba
