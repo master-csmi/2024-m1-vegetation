@@ -8,42 +8,51 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step to verify Python availability
-      - name: Check Python version
-        run: python3 --version
-
-      # Step to set up Python virtual environment and install dependencies
-      - name: Install conan and dependencies
-        shell: bash
+      # Install Miniconda
+      - name: Install Miniconda
         run: |
-          python3 -m venv .venv
-          source .venv/bin/activate
-          pip3 install --upgrade pip
-          pip3 install -r requirements.txt
+          wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+          bash miniconda.sh -b -p $HOME/miniconda
+          source $HOME/miniconda/etc/profile.d/conda.sh
 
-      # Step to debug virtual environment
+      # Install mamba
+      - name: Install mamba
+        run: conda install mamba -n base -c conda-forge -y
+
+      # Create Conda environment
+      - name: Create Conda environment
+        run: mamba create --name vegetation python=3.10 -y
+
+      # Activate Conda environment
+      - name: Activate Conda environment
+        run: mamba activate vegetation
+
+      # Install dependencies using mamba
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Print Python version for debugging
+      - name: Check Python version
+        run: python --version
+
+      # List directory contents for debugging
       - name: List directory contents
         run: ls -la
 
-      # Step to configure CMake
+      # Configure CMake
       - name: Configure CMake
-        shell: bash
-        run: |
-          source .venv/bin/activate
-          cmake --preset default
+        run: cmake --preset default
 
-      # Step to build the project
+      # Build
       - name: Build
-        shell: bash
         run: cmake --build --preset default
 
-      # Step to run tests
+      # Test
       - name: Test
-        shell: bash
         run: ctest --preset default
