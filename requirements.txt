@@ -1,4 +1,1 @@
-cgal
-eigen3
-gmp
-mpfr
+conan==1.63.0

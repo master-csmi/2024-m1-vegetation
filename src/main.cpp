@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     std::cout.precision(17);
     // Read the input
     const std::string filename =
-        (argc > 1) ? argv[1] : CGAL::data_file_path("arbre1.off");
+        (argc > 1) ? argv[1] : CGAL::data_file_path("data/trees/arbre1.off");
     std::cout << "Reading " << filename << "..." << std::endl;
 
     Mesh mesh;
@@ -59,9 +59,11 @@ int main(int argc, char **argv) {
                                    input_name.length() - 1);
     input_name = input_name.substr(0, input_name.find_last_of("."));
 
+    std::string output_dir = "./output/";
     std::string output_name =
-        input_name + "_" + std::to_string(static_cast<int>(relative_alpha)) +
-        "_" + std::to_string(static_cast<int>(relative_offset)) + ".off";
+        output_dir + input_name + "_" +
+        std::to_string(static_cast<int>(relative_alpha)) + "_" +
+        std::to_string(static_cast<int>(relative_offset)) + ".off";
     std::cout << "Writing to " << output_name << std::endl;
     CGAL::IO::write_polygon_mesh(output_name, wrap,
                                  CGAL::parameters::stream_precision(17));
