@@ -149,5 +149,5 @@
     "format": "cpp",
     "stop_token": "cpp"
   },
-  "asciidoc.antora.enableAntoraSupport": true
+  "asciidoc.antora.enableAntoraSupport": false
 }
