@@ -21,7 +21,7 @@
   \begin{figure}[h] % 'h' option tries to place the figure here
     \centering
     \includegraphics[width=1\textwidth]{images/heat_street.png}
-    \caption{thermal signature of a street \cite{street_thermography}} % Caption for referencing
+    \caption{thermal signature of a street } % Caption for referencing
     \label{fig:heat_street} % Label for referencing
   \end{figure}
 \end{frame}
@@ -30,7 +30,7 @@
   \begin{figure}[h] % 'h' option tries to place the figure here
     \centering
     \includegraphics[width=1\textwidth]{images/thermographie-aerienne.jpg}
-    \caption{aerial thermography of a city \cite{thermography}} % Caption for referencing
+    \caption{aerial thermography of a city } % Caption for referencing
     \label{fig:thermographie} % Label for referencing
   \end{figure}
 \end{frame}
@@ -39,18 +39,30 @@
   \begin{figure}[h] % 'h' option tries to place the figure here
     \centering
     \includegraphics[width=1\textwidth]{images/NY_mesh.png}
-    \caption{3D city model of New York \cite{NY-mesh}} % Caption for referencing
-    \label{fig:3d_city_model} % Label for referencing
-  \end{figure} % This was missing
+    \caption{3D city model of New York } % Caption for referencing
+    \label{} % Label for referencing
+  \end{figure} 
 \end{frame}
 
 \begin{frame}{Objectives}
+  Main objectives : run \textbf{sun mask} and \textbf{fluid mechanics} simulations \\
+  \vspace{0.5cm}
+
   \begin{itemize}
-    \item<1-> Access the OpenStreetMap database to extract metadata \\
-    (location, height, species, etc.)
-    \item<2-> Create a 3D models library of trees
-    \item<3-> Integrate the 3D trees in the 3D city model
-    \item<4-> Run simulations
+    \item<2-> Access the OpenStreetMap database to extract metadata:
+    \begin{itemize}
+      \item<3-> location of trees
+      \item<4-> eight of trees
+      \item <5-> type of trees
+      \item <6-> etc.
+    \end{itemize}
+    \item<7-> Generate a C++ library of 3D tree models
+    \begin{itemize}
+      \item <8-> based on the metadata
+      \item <9-> using CGAL C++ library
+      \item <10-> with different levels of details (LOD)
+    \end{itemize}
+    \item<11-> Integrate the 3D tree models into the 3D city model
   \end{itemize}
 \end{frame}
 
@@ -59,7 +71,7 @@
     \centering
     \includegraphics[width=0.8\textwidth]{images/roadmap_v0.png}
     \caption{Roadmap V0} % Caption for referencing
-    \label{fig:roadmap_v0} % Label for referencing
+    \label{} % Label for referencing
     \end{figure}
 \end{frame}
 
@@ -68,7 +80,7 @@
     \centering
     \includegraphics[width=1\textwidth]{images/roadmap_v1.png}
     \caption{Roadmap V1} % Caption for referencing
-    \label{fig:roadmap_v1} % Label for referencing
+    \label{} % Label for referencing
     \end{figure}
 \end{frame}
 
@@ -77,20 +89,14 @@
     \centering
     \includegraphics[width=1\textwidth]{images/roadmap_v2.png}
     \caption{Roadmap V2} % Caption for referencing
-    \label{fig:roadmap_v2} % Label for referencing
+    \label{} % Label for referencing
     \end{figure}
 \end{frame}
 
 
-
-\begin{frame}{References}
-\begin{thebibliography}{9}
-  \bibitem{NY-mesh} \url{https://github.com/orgs/feelpp/discussions/2188}
-  \bibitem{thermography} \url{https://www.somme.fr/services/appui-aux-collectivites/les-aides-du-departement/fonds-thermographie-aerienne/}
-  \bibitem{street_thermography} \url{https://theconversation.com/dou-vient-le-pouvoir-rafraichissant-des-arbres-en-ville-199906}
-  \bibitem{osm-queries} \url{https://osm-queries.ldodds.com/tutorial}
-  \bibitem{osm-learnoverpass} \url{https://osmlab.github.io/learnoverpass//en/}
-\end{thebibliography}
-\end{frame}
+ 
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
