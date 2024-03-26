@@ -46,11 +46,10 @@ option(ENABLE_TESTING "Enable Test Builds" ON)
 
 
 # Set up some extra Conan dependencies based on our needs before loading Conan
-set(CONAN_EXTRA_REQUIRES "")
-set(CONAN_EXTRA_OPTIONS "")
-
 set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/3.4.0)
 set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} cgal/5.6.1)
+
+set(CONAN_EXTRA_OPTIONS "")
 
 
 
