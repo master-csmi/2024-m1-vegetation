@@ -8,14 +8,22 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-22.04]
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Install conan
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step to verify Python availability
+      - name: Check Python version
+        run: python3 --version
+
+      # Step to verify Conan installation
+      - name: Check Conan version
+        run: conan --version
+
+      # Step to set up Python virtual environment and install dependencies
+      - name: Install conan and dependencies
         shell: bash
         run: |
           python3 -m venv .venv
@@ -23,26 +31,23 @@ jobs:
           pip3 install --upgrade pip
           pip3 install -r requirements.txt
 
+      # Step to debug virtual environment
+      - name: List directory contents
+        run: ls -la
+
+      # Step to configure CMake
       - name: Configure CMake
-        # Use a bash shell so we can use the same syntax for environment variable
-        # access regardless of the host operating system
         shell: bash
-        # Note the current convention is to use the -S and -B options here to specify source
-        # and build directories, but this is only available with CMake 3.13 and higher.
-        # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-        #
-        # We need to source the profile file to make sure conan is in PATH
         run: |
           source .venv/bin/activate
           cmake --preset default
 
+      # Step to build the project
       - name: Build
         shell: bash
-        # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: cmake --build --preset default
 
+      # Step to run tests
       - name: Test
         shell: bash
-        # Execute tests defined by the CMake configuration.
-        # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest --preset default
