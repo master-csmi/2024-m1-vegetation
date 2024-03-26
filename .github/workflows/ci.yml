@@ -31,7 +31,7 @@ jobs:
 
       # Activate Conda environment
       - name: Activate Conda environment
-        run: source $HOME/miniforge3/envs/activate vegetation
+        run: source $HOME/miniforge3/bin/activate vegetation
 
       # Install dependencies using mamba
       - name: Install dependencies
