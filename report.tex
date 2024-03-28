@@ -57,12 +57,18 @@ For the \textbf{V1} version of the report add:
 
 \section{Introduction}
 Urban areas are complex environments where various factors interact to influence 
-microclimates, energy consumption, and overall livability. Among these factors, 
+microclimates and energy consumption. Among these factors, 
 vegetation, particularly trees, plays a crucial role in shaping the urban landscape 
-and its environmental characteristics. Trees provide shade, mitigate heat, reduce 
-air pollution, and enhance the aesthetic appeal of neighborhoods and cities. Their 
-strategic placement and characteristics can significantly impact the thermal and 
-energy dynamics of urban areas.
+and its environmental characteristics. Trees provide shade, mitigate heat and can
+reduce air pollution. Their strategic placement and characteristics can
+significantly impact the thermal and energy dynamics of urban areas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/TreeShade.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Urban trees \cite{img:TreeShade}}
+\end{figure}
 
 \begin{figure}[H]
     \centering
@@ -150,6 +156,60 @@ With the help of our supervisors, we have defined the following roadmap:
 
 This will help us to keep track of the progress of the project and to make sure
 we are going to deliever the respective versions on time.
+
+This project will be developed in C++.
+For the geometric aspect of tree model and meshing we will use the CGAL library.
+CGAL is an open source software project that provides easy access to efficient
+and reliable geometric algorithms in the form of a C++ library which is used
+in various areas needing geometric computation.\cite{cgal}
+
+\begin{figure}[H]
+    \vspace{1.5cm}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/cgal_logo.png}
+\end{figure}
+
+Softwares like MeshLab, an open source system for processing and editing 3D
+triangular meshes\cite{meshlab}, will allow us to visualize the 3D models trees generated with
+the help of CGAL.
+
+We will be working with different Levels of Detail (LOD) for the 3D models.
+Starting with LOD0, which represents the least detailed version of the model,
+we will progressively complexify the model to LOD1 and LOD2.
+Each level adds complexity to the model, making it more
+resource-intensive to render.
+
+
+
+\begin{figure}[H]
+    \vspace{1.5cm}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/LOD0.png}
+    \captionsetup{font={scriptsize}}
+    \caption{LOD0}
+\end{figure}
+
+\begin{figure}[H]
+    \vspace{1.5cm}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/LOD1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{LOD1}
+\end{figure}
+
+\begin{figure}[H]
+    \vspace{1.5cm}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/LOD2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{LOD2}
+\end{figure}
+
+We will be using the Feel++, an open-source C++ library, to calculate the
+shading on buildings. This library is particularly suited for solving
+Partial Differential Equations (PDEs), which are essential in the computation
+of light and shade on 3D objects\cite{feel++}. By leveraging the capabilities of Feel++,
+we can accurately simulate the shading effects on our LOD models of buildings.
 
 \newpage
 \section{Literature Review}
