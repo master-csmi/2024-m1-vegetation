@@ -8,7 +8,6 @@ if( NOT CMAKE_BUILD_TYPE )
         set(CMAKE_BUILD_TYPE Release) 
 endif()
 
-
 find_package(CGAL REQUIRED)
 
 # Enable generation of compile_commands.json
@@ -20,14 +19,10 @@ include_directories(include)
 # making the list of sources files
 file(GLOB_RECURSE SOURCE_FILES src/*)
 
-
 # creating the executable from src/main.cpp
 add_executable(run src/main.cpp)
 target_link_libraries(run CGAL::CGAL)
 # linking the executable with the library
-# linkind the executable with the gmp and mpfr libraries for CGAL
-
-
 
 # Unitary testing
 enable_testing()
@@ -45,3 +40,4 @@ foreach(TEST_FILES ${TEST_FILES})
         add_test(${TEST_NAME} ${TEST_NAME}.out)
         message("       - ${TEST_NAME}")        
 endforeach()
+

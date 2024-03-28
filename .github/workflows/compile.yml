@@ -12,7 +12,7 @@ jobs:
         with:
           root_file: |
             report.tex
-            intro.tex
+            presentation_v0.tex
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
@@ -20,4 +20,4 @@ jobs:
           name: PDF
           path: |
             report.pdf
-            intro.pdf
+            presentation_v0.pdf
