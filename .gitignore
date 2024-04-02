@@ -4,15 +4,25 @@
 *.pdf
 *.snm
 *.gz
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
 
 # Project files
-/build
-/html
-/latex
-/output
+/build/
+/html/
+/latex/
+/output/
 
 # Mesh files
 *.off
 
-# Mac OS
+# Python virtual environment
+.venv/
+
+# macOS
 .DS_Store
