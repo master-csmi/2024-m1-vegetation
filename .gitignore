@@ -4,6 +4,13 @@
 *.pdf
 *.snm
 *.gz
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
 
 # Project files
 /build
@@ -13,3 +20,8 @@
 
 # Mesh files
 *.off
+
+.venv/
+
+#macos
+.DS_Store
