@@ -51,7 +51,8 @@ int main(int argc, char **argv) {
 
     std::cout << "Result: " << num_vertices(wrap) << " vertices, "
               << num_faces(wrap) << " faces" << std::endl;
-    std::cout << "Took " << t.time() << " s." << std::endl;
+    std::cout << "Took " << t.time() << " sec (approx " << std::fixed
+              << std::setprecision(4) << t.time() / 60 << " mins)" << std::endl;
 
     // Save the result
     std::string input_name = std::string(filename);

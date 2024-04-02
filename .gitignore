@@ -6,10 +6,10 @@
 *.gz
 
 # Project files
-build
-html
-latex
-output
+build/
+html/
+latex/
+output/
 
 # Mesh files
 *.off
