@@ -11,8 +11,9 @@ More specifically sun masking and fluid dynamics simulations will be run to dete
 == Installation and Usage
 
 === Environment Setup
+This project configuration uses https://conan.io/[Conan] (version 1.63) for its dependancies.
 
-First, install Miniforge to set up the Mamba environment:
+Here we install Conan in a https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html[Mamba] environment via https://pypi.org/project/pip/[pip] :
 
 ```bash
 # Download Miniforge
