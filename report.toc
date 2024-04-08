@@ -1,7 +1,16 @@
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}%
-\contentsline {section}{\numberline {2}Introduction}{3}{section.2}%
-\contentsline {section}{\numberline {3}Literature Review}{9}{section.3}%
-\contentsline {section}{\numberline {4}Methodology}{10}{section.4}%
-\contentsline {section}{\numberline {5}Results}{11}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion}{12}{section.6}%
-\contentsline {section}{\numberline {7}References}{13}{section.7}%
+\contentsline {subsection}{\numberline {1.1}Main Objectives}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Roadmap}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Introduction}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Challenges}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Structure of the Report}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Data Formats and Structure}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Software and Libraries}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Methodology}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Data Acquisition}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Tree Model Generation}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Model Integration}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Shading Calculations}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Results}{9}{section.4}%
+\contentsline {section}{\numberline {5}Conclusion}{10}{section.5}%
+\contentsline {section}{\numberline {6}References}{11}{section.6}%
