@@ -1,7 +1,0 @@
-\contentsline {section}{\numberline {1}Abstract}{2}{section.1}%
-\contentsline {section}{\numberline {2}Introduction}{3}{section.2}%
-\contentsline {section}{\numberline {3}Literature Review}{9}{section.3}%
-\contentsline {section}{\numberline {4}Methodology}{10}{section.4}%
-\contentsline {section}{\numberline {5}Results}{11}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion}{12}{section.6}%
-\contentsline {section}{\numberline {7}References}{13}{section.7}%
