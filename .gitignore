@@ -13,10 +13,10 @@
 *.toc
 
 # Project files
-/build/
-/html/
-/latex/
-/output/
+build/
+html/
+latex/
+output/
 
 # Mesh files
 *.off
@@ -24,5 +24,5 @@
 # Python virtual environment
 .venv/
 
-# macOS
+# MacOS
 .DS_Store
