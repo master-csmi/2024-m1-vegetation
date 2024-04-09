@@ -10,9 +10,10 @@ More specifically sun masking and fluid dynamics simulations will be run to dete
 
 == Installation and Usage
 
-=== Environment Setup
+=== Set up an environment 
+We provide here two example of environment, Mamba and venv
 
-First, install Miniforge to set up the Mamba environment:
+==== Mamba environment:
 
 ```bash
 # Download Miniforge
@@ -30,7 +31,11 @@ mamba create --name vegetation python=3.10 -y
 # Activate the new environment
 mamba activate vegetation
 ```
-
+==== Or venv environment:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 === Install Required Packages
 
 With the environment set up, install the required packages:
