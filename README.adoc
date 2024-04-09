@@ -2,41 +2,83 @@
 
 == Overview
 
-This project focuses on the development of a tool for incorporating vegetation into 3D urban models. Leveraging data from sources such as OpenStreetMap and Mapbox, our goal is to create a realistic representation of trees within the model. Trees significantly impact air and ground temperatures, as well as building energy consumption through shade and wind protection.
+The goal of this project is to develop a tool that integrates vegetation data into 3D urban models. The tool will allow users to generate realistic representations of trees in urban environments, including their shape, size, location, and density. 
 
-== Features
+This is made in order to run simulations on the impact of vegetation on air and ground temperatures, as well as building energy consumption. 
 
-* Integration of vegetation data into 3D urban models
-* Realistic representation of trees, including shape, size, location, and density
-* Consideration of vegetation's impact on air and ground temperatures, as well as building energy consumption
-* Efficient and scalable method suitable for large urban areas
+More specifically sun masking and fluid dynamics simulations will be run to determine the impact of vegetation on the urban environment using tools such as Feel++.
 
-== Getting Started
+== Installation and Usage
 
-== Usage
-=== Current usage : Basic use of the CGAL alpha wrapper
+=== Set up an environment 
+We provide here two example of environment, Mamba and venv
 
-==== Compilation :
+==== Mamba environment:
+
 ```bash
-cd build
-cmake --preset <release|debug> ..
-make
-```
-==== Execution :
-```bash
-cd build
-./run <input_file> <alpha> <offset>
-```
-The outpult mesh will be saved in  `/build`.
+# Download Miniforge
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
 
-==== Example :
+# Install Miniforge
+bash miniforge.sh -b -p $HOME/miniforge3 
+
+# Activate Miniforge
+source $HOME/miniforge3/bin/activate 
+
+# Create a new Mamba environment
+mamba create --name vegetation python=3.10 -y
+
+# Activate the new environment
+mamba activate vegetation
+```
+==== Or venv environment:
 ```bash
-cd build
-./run ../data/trees/oranger.off 500
+python3 -m venv .venv
+source .venv/bin/activate
+```
+=== Install Required Packages
+
+With the environment set up, install the required packages:
+
+```bash
+pip install -r requirements.txt
 ```
 
-==== Notes :
-You can visualize the output mesh with **Meshlab** or any other mesh viewer. (note for myself : dont use meshlab on wayland...)
+=== Build the Project
+
+Configure and build the project using CMake:
+```bash
+# Configure CMake
+cmake --preset default
+
+# Build the project
+cmake --build --preset default
+
+# Test the build
+ctest --preset default
+```
+
+=== Usage (currently a basic alpha wrapper)
+
+To use the alpha wrapper, run the following command:
+
+```bash
+./build/default/bin/wrap <input_file> <alpha> <offset>
+```
+
+The output mesh will be saved in the `/output`` folder.
+
+=== Example
+
+Here's an example of how to use the alpha wrapper:
+
+```bash
+./build/default/bin/wrap data/trees/oranger.off 10
+```
+
+=== Notes
+
+You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
 
 
 == Contributors
