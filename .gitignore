@@ -1,29 +1,28 @@
-# LaTeX compile files
-*.aux
+# LaTeX compilation files
 *.bbl
+*.nav
+*.pdf
+*.snm
+*.gz
+*.aux
 *.blg
+*.fdb_latexmk
+*.fls
 *.log
 *.out
 *.toc
-*.synctex.gz
-*.fdb_latexmk
-*.fls
-*.nav
-*.snm
-*.gz
-*.xml
 
-# Temporary files
-*.swp
-*.bak
-*~
+# Project files
+build/
+html/
+latex/
+output/
 
-# pdf
-*.pdf
+# Mesh files
+*.off
 
-/build
-/html
-/latex
+# Python virtual environment
+.venv/
 
-# Mac OS
+# MacOS
 .DS_Store

@@ -5,343 +5,207 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{caption}
-\usepackage{listings}
-\usepackage{xcolor}
-
-% Define a new environment for C++ code
-\lstnewenvironment{cpp}
-    {\lstset{
-        language=C++,
-        basicstyle=\small\ttfamily,
-        keywordstyle=\color{blue},
-        commentstyle=\color{green!40!black},
-        stringstyle=\color{orange},
-        numbers=left,
-        numberstyle=\tiny,
-        numbersep=5pt,
-        breaklines=true,
-        showstringspaces=false,
-        backgroundcolor=\color{background},
-        frame=tb,
-        captionpos=b
-    }}
-    {}
-
-% Define a new environment for JSON code
-\lstdefinelanguage{json}{
-    basicstyle=\normalfont\ttfamily,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    stringstyle=\color{stringstyle},
-    keywordstyle=\color{keywordstyle},
-    commentstyle=\color{commentstyle},
-    morestring=[b]",
-    morestring=[d]',
-    morecomment=[l]{//},
-    morecomment=[s]{/*}{*/},
-    morekeywords={false,true,null},
-    literate=
-     *{0}{{{\color{numberstyle}0}}}{1}
-      {1}{{{\color{numberstyle}1}}}{1}
-      {2}{{{\color{numberstyle}2}}}{1}
-      {3}{{{\color{numberstyle}3}}}{1}
-      {4}{{{\color{numberstyle}4}}}{1}
-      {5}{{{\color{numberstyle}5}}}{1}
-      {6}{{{\color{numberstyle}6}}}{1}
-      {7}{{{\color{numberstyle}7}}}{1}
-      {8}{{{\color{numberstyle}8}}}{1}
-      {9}{{{\color{numberstyle}9}}}{1}
-}
-
-\definecolor{numberstyle}{rgb}{0.17, 0.57, 0.68}
-\definecolor{stringstyle}{rgb}{0.5, 0.3, 0.2}
-\definecolor{keywordstyle}{rgb}{0.13, 0.29, 0.53}
-\definecolor{commentstyle}{rgb}{0.25, 0.5, 0.37}
-\definecolor{background}{rgb}{0.9, 0.9, 0.9}
-
 
 \setlength{\parskip}{1em}
 
 \begin{document}
 
 \begin{titlepage}
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/logo_ufr.png}\par\vspace{1cm}
-    \vspace{1.5cm}
-    {\huge\bfseries ExaMA WP1 - Vegetation\par}
-    \vspace{2cm}
-    {\Large Giulio Carpi Lapi, Pierre-Antoine Senger\par}
-    \vfill
-    supervised by\par
-    Pierre Alliez and Vincent Chabannes
+\centering
+\includegraphics[width=0.5\textwidth]{images/logo_ufr.png}\par\vspace{1cm}
+\vspace{1.5cm}
+{\huge\bfseries ExaMA WP1 - Vegetation\par}
+\vspace{2cm}
+{\Large Giulio Carpi Lapi, Pierre-Antoine Senger\par}
+\vfill
+supervised by\par
+Pierre Alliez and Vincent Chabannes
 
-    \vfill
+\vfill
 
 % Bottom of the page
-    {\large Date: \today\par}
+{\large Date: \today\par}
 \end{titlepage}
 
 \tableofcontents
 \newpage
 
 \section{Abstract}
-This report explores the integration of vegetation, particularly trees, into 
-3D geometric models of urban areas to enhance the accuracy of thermal and 
-energy simulations. Leveraging computational modeling advancements, the 
-project aims to develop a methodology utilizing tools like GitHub Actions 
-for Continuous Integration. The methodology involves retrieving vegetation 
-data from OpenStreetMap using the Overpass API and generating 3D models with 
-varying levels of detail using CGAL. Feel++, an open-source C++ library, 
-will be employed to assess tree shading effects on urban energy simulations. 
-Supervised by Pierre Alliez and Vincent Chabannes, the project follows an 
-agile methodology with set deadlines. A GitHub repository, 
-"2024-m1-vegetation," has been established to facilitate collaboration and 
-code review. Roadmaps for project versions ensure timely delivery.
+Urban areas are complex ecosystems influenced by various factors, among which 
+vegetation, especially trees, holds significant importance. Trees play a crucial 
+role in shaping microclimates, reducing energy consumption, and enhancing overall 
+livability\cite{TIR4sTREEt}. This project aims to integrate vegetation, specifically trees, into 3D 
+geometric models of urban environments to improve the accuracy and realism of thermal 
+and energy simulations. Utilizing data from open sources like OpenStreetMap , the project 
+seeks to identify tree positions and attributes within urban landscapes and develop 
+a library of 3D tree models for integration into terrain meshes. The project follows
+ a roadmap with defined milestones to deliver versions V0, V1, and V2 by specified 
+ deadlines. Through this effort, the project aims to provide valuable insights for
+  urban planners, architects, and policymakers, ultimately contributing to the
+   creation of more sustainable and resilient cities.
 
-%For the \textbf{V1} version of the report add:
+\subsection{Main Objectives}
+The primary objective of this project is to integrate vegetation, particularly 
+trees, into 3D urban models to enhance the accuracy of thermal and energy simulations. 
+Additionally, specific objectives include:
+\begin{itemize}
+    \item Extracting tree data from OpenStreetMap
+    \item Generating 3D tree models
+    \item Integrating tree models into terrain meshes
+    \item Simulating shading effects on buildings (Feel++ ray tracing)
+    \item Simulating urban microclimates using fluid mechanics
+    \item Optimizing computational efficiency
+    \item Delivering versions V0, V1, and V2 by specified deadlines
+\end{itemize}
 
-%\begin{itemize}
-%   \item Methodology
-%   \item Results
-%    \item Conclusion
-%\end{itemize}
+\subsection{Roadmap}
+As of v0 (May 2024) our roadmap includes the following milestones and issues:  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap for V0}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap_v1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap for V1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap_v2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap for V2}
+\end{figure}
 
 \newpage
 
 \section{Introduction}
-Urban areas are complex environments where various factors interact to influence 
-microclimates and energy consumption. Among these factors, 
-vegetation, particularly trees, plays a crucial role in shaping the urban landscape 
-and its environmental characteristics. Trees provide shade, mitigate heat and can
-reduce air pollution.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/TreeShade.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Urban trees \cite{img:TreeShade}}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/heat_street.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Thermal image of a street in the city. \cite{img:street_thermography}}
-\end{figure}
-
-In recent years, advancements in computational modeling have facilitated the 
-development of sophisticated tools for simulating the thermal and energy performance 
-of urban environments. These tools rely on 3D geometric models that accurately 
-represent the built environment, including buildings, roads, and terrain.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/thermographie-aerienne.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Thermal image of a city \cite{img:aerialview}}
-\end{figure}
-
-In this context, this project aims to develop a methodology for integrating 
-vegetation, particularly trees, into 3D geometric models of urban areas. This
-will increase the accuracy of thermal and energy simulations of a neibourhood
-or a city.
-
-The vegetation data can be retrieved using the Overpass API for OpenStreetMap.
-\vspace{0.5cm}
+Urban areas are intricate environments influenced by a multitude of factors, with 
+vegetation, notably trees, playing a pivotal role in shaping their microclimates 
+and energy dynamics. Trees provide essential services such as shade, heat 
+mitigation, and pollution reduction, making them indispensable elements in urban 
+landscapes\cite{TIR4sTREEt,img:TreeShade}. As showed in the first image, trees can project different shadows
+on the surrounding depending on the time of the day and the season making it 
+more complex to model their impact on the urban environment. The second image
+shows the significant impact of trees on the urban heat distribution.
 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/OSM_logo.png}
+        \includegraphics[width=\textwidth]{images/TreeShade.png}
         \captionsetup{font={scriptsize}}
-        \caption{OpenStreetMap \cite{openstreetmap}}
-    \end{minipage}
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Overpass API \cite{overpass}}
+        \caption{Example of urban trees providing shade \cite{img:TreeShade}}
     \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/heat_street.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Thermal image depicting urban heat distribution \cite{img:street_thermography}}
+    \end{minipage}
 \end{figure}
 
-\newpage
-Here is an example of a query that retrieves data for all trees within a 50-meter
-radius of the coordinates 48.583194, 7.747951 (Strasbourg city center):
+Computational modeling has advanced significantly, enabling the simulation of thermal 
+and energy performance in urban environments. However, integrating vegetation into 
+these models presents challenges due to the complexity of obtaining accurate tree data 
+and representing their geometry efficiently\cite{AdTree}.
 
-\vspace{0.5cm}
-\begin{cpp}
-// Set the Overpass API endpoint URL
-curl_easy_setopt(curl, CURLOPT_URL, "http://overpass-api.de/api/interpreter");
-// Set the Overpass query
-std::string query = "[out:json];"
-                    "node(around:50,48.583194,7.747951)[\"natural\"=\"tree\"];"
-                    "out;";
-\end{cpp}
-\vspace{0.5cm}
+\subsection{Challenges}
+This project aims to address these challenges by developing a methodology for 
+integrating trees into 3D urban models. Leveraging data from OpenStreetMap, the 
+project will identify tree positions and attributes, generate a library of 3D tree 
+models, and integrate them into terrain meshes for comprehensive simulations while
+ensuring computational efficiency.
 
-We can then store this data in a .json file. Here's an example
-of the outcome for the above query for just one tree:
+\subsection{Structure of the Report}
 
-\vspace{0.5cm}
-\begin{lstlisting}[language=json]
-{
-  "version": 0.6,
-  "generator": "Overpass API 0.7.62.1 084b4234",
-  "osm3s": {
-    "timestamp_osm_base": "2024-03-27T13:32:34Z",
-    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
-  },
-  "elements": [
-{
-  "type": "node",
-  "id": 10162019518,
-  "lat": 48.5831903,
-  "lon": 7.7477189,
-  "tags": {
-    "circumference": "172.788",
-    "diameter_crown": "20",
-    "genus": "Platanus",
-    "height": "18",
-    "natural": "tree",
-    "ref": "16279",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Platanus acerifolia x"
-  }
-}
+The report will be structured as follows:
 
-  ]
-}
-\end{lstlisting}
-\vspace{0.5cm}
+\begin{enumerate}
+    \item \textbf{Abstract}: A concise summary of the project's objectives, methodologies, 
+    and key findings.
+    
+    \item \textbf{Introduction}: An overview of the importance of vegetation in urban areas, 
+    the challenges in integrating it into 3D models, and the objectives of the project.
+    
+    \item \textbf{Methodology}: Detailed explanation of the steps involved in data acquisition, 
+    tree model generation, model integration, and shading calculations.
+    
+    \item \textbf{Results}: Presentation of the outcomes and findings obtained from the 
+    implemented methodology.
+    
+    \item \textbf{Conclusion}: Summary of the project's achievements, implications, and 
+    potential future work.
+    
+    \item \textbf{References}: List of all the sources cited in the report, arranged in 
+    the order of citation.
+\end{enumerate}
 
-From the .json file we can then generate à C++ class called
-Tree for a better management of all the recovered data.
-From this library, we will be able to generate 3D models (meshing)
-of different levels of detail (LOD) thanks to the CGAL library.
+Each section will be elaborated upon in detail to provide a comprehensive understanding 
+of the project's scope, approach, and outcomes.
 
 
-CGAL is an open source software project that provides easy access to efficient
-and reliable geometric algorithms in the form of a C++ library which is used
-in various areas needing geometric computation.\cite{cgal}
+\subsection{Data Formats and Structure}
+Tree data will be sourced from OpenStreetMap and processed into formats suitable for 
+integration into our models, such as .off, .csv, and .json. We aim to ensure watertight 
+triangulation consistent with the Finite Element Method (FEM) for accurate simulations.  
 
-\begin{figure}[H]
-    \vspace{1.5cm}
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/cgal_logo.png}
-\end{figure}
-
-Softwares like MeshLab, an open source system for processing and editing 3D
-triangular meshes\cite{meshlab}, will allow us to visualize the 3D models
-generated with the help of CGAL.
-
-Starting with LOD0, which represents the least detailed version of the model,
-we will progressively complexify it to LOD1 and LOD2.
-Each level adds a layer of complexity, making it more resource-intensive to render.
-
-Here's an example of different LODs for a tree model created
-with CGAL:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/LOD0.png}
-    \captionsetup{font={scriptsize}}
-    \caption{LOD0}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/LOD1.png}
-    \captionsetup{font={scriptsize}}
-    \caption{LOD1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/LOD2.png}
-    \captionsetup{font={scriptsize}}
-    \caption{LOD2}
-\end{figure}
-
-\newpage
-We will utilize Feel++, an open-source C++ library, to assess how tree shading
-impacts urban energy simulations. This library is well-suited for solving
-Partial Differential Equations (PDEs), which are crucial for calculating
-light and shade effects on 3D objects\cite{feel++}.
-
-The project is supervised by Pierre Alliez Senior Researcher at Inria center
-at Côte d'Azur University and by Vincent Chabannes research engeneer at the
-University of Strasbourg. We will have weekly meetings with them to discuss
-the progress of the project. The deadlines we have set are the following:
-
+The .off format\cite{off_format} is a simple format for 3D or 4D objects consisting of: (for 3D objects)
 \begin{itemize}
-    \item \textbf{V0} : due by March 26, 2024
-    \item \textbf{V1} : due by April 23, 2024
-    \item \textbf{V2 - Final} : due by May 28, 2024
+    \item The keyword OFF
+    \item The number of vertices, faces, and edges in order 
+    \item A list of vertices: X, Y, Z coordinates
+    \item A list of faces : number of vertices, vertex indices, in order (optionally, an RGB color)
 \end{itemize}
 
-We've established a GitHub repository named "\textbf{2024-m1-vegetation}" on the 
-Master page to facilitate collaboration, issue tracking, and ongoing code 
-review. Additionally, we'll leverage tools like GitHub Actions for Continuous 
-Integration (CI) to ensure comprehensive testing and efficient deployment of 
-changes.
-
-Adopting the agile methodology for this project, we've outlined the 
-following roadmap:
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/roadmap_v0.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap v0}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/roadmap_v1.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap v1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/roadmap_v2.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap v2}
-\end{figure}
-
-This will help us to keep track of the progress of the project and to make sure
-we are going to deliever the respective versions on time.
-
-This project will be developed in C++.
-
-\newpage
-\section{Literature Review}
+\subsection{Software and Libraries}
+For geometric modeling, we will utilize the CGAL \cite{cgal} library, known for its efficiency and 
+reliability in geometric computation. Shading calculations will be performed using the 
+Feel++ \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs) 
+essential for simulating light and shade on 3D objects.
 
 \newpage
 
 \section{Methodology}
 
+\subsection{Data Acquisition}
+Tree data will be obtained from OpenStreetMap, providing information on tree locations, 
+species, and other attributes. This data will be processed to extract relevant 
+information for model integration.
+
+\subsection{Tree Model Generation}
+Using CGAL Alpha Wrapper \cite{cgal_alpha_wrapper}, 3D tree models will be generated based on the extracted data. Various 
+Levels of Detail (LOD) will be considered to balance model complexity and computational 
+efficiency depending on the application.
+
+\subsection{Model Integration}
+Generated tree models will be integrated into terrain meshes to create comprehensive 
+3D urban models. Watertight triangulation consistent with FEM principles will be ensured 
+for accurate simulations.
+
+\subsection{Shading Calculations}
+Using Feel++ ray tracing, shading effects on buildings will be simulated to account for the presence 
+of trees and their impact on urban microclimates. Execution time considerations will be 
+addressed to optimize computational efficiency.
+
 \newpage
 
 \section{Results}
+
 
 \newpage
 
 \section{Conclusion}
 
+
 \newpage
 
 \section{References}
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{references}
 
 \end{document}
