@@ -1,19 +1,49 @@
+#include "tree.hpp"
 #include <iostream>
-#include "json_helpers.hpp"
+#include <nlohmann/json.hpp>
 
 int main()
 {
-    std::vector<Tree> treeLibrary = createLibraryFromJsonFile("query_result.json");
+    // Test the Tree class and createTreeFromJson function
 
-    // Now you can use the treeLibrary vector to access your tree data
-    for (const auto &tree : treeLibrary)
+    // Sample JSON data representing a tree
+    std::vector<nlohmann::json> treeJsons = {
+        {{"id", 1},
+         {"lat", 37.7749},
+         {"lon", -122.4194},
+         {"genus", "Quercus"},
+         {"species", "rubra"},
+         {"height", 20.5},
+         {"circumference", 120.0},
+         {"diameter_crown", 8.0}},
+        {
+            {"id", 2},
+            {"lat", 37.7749},
+            {"lon", -122.4194},
+            {"genus", "Quercus"},
+            {"species", "rubra"},
+            {"height", 20.5},
+            {"circumference", 120.0},
+            // "diameter_crown" field is missing
+        },
+    };
+
+    // Test each JSON object
+    for (const auto &treeJson : treeJsons)
     {
-        std::cout << "Tree ID: " << tree.id << " Lat, Lon: (" << tree.lat
-                  << ", " << tree.lon << "), Genus: " << tree.genus << ", Species: "
-                  << tree.species << ", Height: " << tree.height << ", Circumference: "
-                  << tree.circumference << ", Diameter_crown: " << tree.diameter_crown
-                  << std::endl;
-    }
+        // Create a tree from JSON
+        Tree tree = createTreeFromJson(treeJson);
 
-    return 0;
+        // Output tree properties
+        std::cout << "Tree ID: " << tree.id << std::endl;
+        std::cout << "Latitude: " << tree.lat << std::endl;
+        std::cout << "Longitude: " << tree.lon << std::endl;
+        std::cout << "Genus: " << tree.genus << std::endl;
+        std::cout << "Species: " << tree.species << std::endl;
+        std::cout << "Height: " << tree.height << std::endl;
+        std::cout << "Circumference: " << tree.circumference << std::endl;
+        std::cout << "Crown Diameter: " << tree.diameter_crown << std::endl;
+
+        return 0;
+    }
 }

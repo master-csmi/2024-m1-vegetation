@@ -1,23 +1,55 @@
 #include "tree.hpp"
 
+// Default constructor
+Tree::Tree() : id(0), lat(0), lon(0), height(0), circumference(0), diameter_crown(0) {}
+
+// Constructor that takes arguments
 Tree::Tree(long id, double lat, double lon, std::string genus, std::string species, double height, double circumference, double diameter_crown)
     : id(id), lat(lat), lon(lon), genus(genus), species(species), height(height), circumference(circumference), diameter_crown(diameter_crown) {}
 
-Tree createTreeFromJson(nlohmann::json treeJson)
+Tree createTreeFromJson(const nlohmann::json &treeJson)
 {
-    long id = treeJson["id"];
-    double lat = treeJson["lat"];
-    double lon = treeJson["lon"];
-    std::string genus = treeJson["tags"]["genus"];
-    std::string species = treeJson["tags"]["species"];
+    Tree tree;
 
-    double height = 0.0, circumference = 0.0, diameter_crown = 0.0;
-    if (treeJson["tags"]["height"].is_string())
-        height = std::stod(treeJson["tags"]["height"].get<std::string>());
-    if (treeJson["tags"]["circumference"].is_string())
-        circumference = std::stod(treeJson["tags"]["circumference"].get<std::string>());
-    if (treeJson["tags"]["diameter_crown"].is_string())
-        diameter_crown = std::stod(treeJson["tags"]["diameter_crown"].get<std::string>());
+    if (!treeJson["id"].is_null())
+    {
+        tree.id = treeJson["id"].get<int>();
+    }
 
-    return Tree(id, lat, lon, genus, species, height, circumference, diameter_crown);
+    if (!treeJson["lat"].is_null())
+    {
+        tree.lat = treeJson["lat"].get<double>();
+    }
+
+    if (!treeJson["lon"].is_null())
+    {
+        tree.lon = treeJson["lon"].get<double>();
+    }
+
+    if (!treeJson["genus"].is_null())
+    {
+        tree.genus = treeJson["genus"].get<std::string>();
+    }
+
+    if (!treeJson["species"].is_null())
+    {
+        tree.species = treeJson["species"].get<std::string>();
+    }
+
+    if (!treeJson["height"].is_null())
+    {
+        tree.height = treeJson["height"].get<double>();
+    }
+
+    if (!treeJson["circumference"].is_null())
+    {
+        tree.circumference = treeJson["circumference"].get<double>();
+    }
+
+    if (!treeJson["diameter_crown"].is_null())
+    {
+        tree.diameter_crown = treeJson["diameter_crown"].get<double>();
+    }
+
+    return tree;
 }
