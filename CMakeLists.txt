@@ -1,8 +1,15 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.22)
 # To compile use : cmake --preset debug /path_to_CMakeLists.txt
 
 # project name
-project(vegetation CXX)
+project(vegetation)
+
+if( NOT CMAKE_BUILD_TYPE )
+        set(CMAKE_BUILD_TYPE Release) 
+endif()
+
+
+find_package(CGAL REQUIRED)
 
 # Enable generation of compile_commands.json
 # set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -10,23 +17,16 @@ project(vegetation CXX)
 # where do get the headers files
 include_directories(include)
 
-
-# Set up some extra Conan dependencies based on our needs before loading Conan
-set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/3.4.0)
-set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} cgal/5.6.1)
-set(CONAN_EXTRA_OPTIONS "")
-
 # making the list of sources files
 file(GLOB_RECURSE SOURCE_FILES src/*)
 
-# creating the library with the sources files
-add_library(${PROJECT_NAME} ${SOURCE_FILES})
 
 # creating the executable from src/main.cpp
 add_executable(run src/main.cpp)
-
+target_link_libraries(run CGAL::CGAL)
 # linking the executable with the library
-target_link_libraries(run ${PROJECT_NAME})
+
+
 
 # Unitary testing
 enable_testing()
@@ -44,12 +44,3 @@ foreach(TEST_FILES ${TEST_FILES})
         add_test(${TEST_NAME} ${TEST_NAME}.out)
         message("       - ${TEST_NAME}")        
 endforeach()
-
-
-
-  
-
-
-
-
-
