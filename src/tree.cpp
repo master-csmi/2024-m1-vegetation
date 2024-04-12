@@ -13,42 +13,45 @@ Tree createTreeFromJson(const nlohmann::json &treeJson)
 
     if (!treeJson["id"].is_null())
     {
-        tree.id = treeJson["id"].get<int>();
+        tree.setId(treeJson["id"].get<int>());
     }
 
     if (!treeJson["lat"].is_null())
     {
-        tree.lat = treeJson["lat"].get<double>();
+        tree.setLat(treeJson["lat"].get<double>());
     }
 
     if (!treeJson["lon"].is_null())
     {
-        tree.lon = treeJson["lon"].get<double>();
+        tree.setLon(treeJson["lon"].get<double>());
     }
 
-    if (!treeJson["genus"].is_null())
+    if (!treeJson["tags"].is_null())
     {
-        tree.genus = treeJson["genus"].get<std::string>();
-    }
+        if (!treeJson["tags"]["genus"].is_null())
+        {
+            tree.setGenus(treeJson["tags"]["genus"].get<std::string>());
+        }
 
-    if (!treeJson["species"].is_null())
-    {
-        tree.species = treeJson["species"].get<std::string>();
-    }
+        if (!treeJson["tags"]["species"].is_null())
+        {
+            tree.setSpecies(treeJson["tags"]["species"].get<std::string>());
+        }
 
-    if (!treeJson["height"].is_null())
-    {
-        tree.height = treeJson["height"].get<double>();
-    }
+        if (!treeJson["tags"]["height"].is_null())
+        {
+            tree.setHeight(treeJson["tags"]["height"].get<double>());
+        }
 
-    if (!treeJson["circumference"].is_null())
-    {
-        tree.circumference = treeJson["circumference"].get<double>();
-    }
+        if (!treeJson["tags"]["circumference"].is_null())
+        {
+            tree.setCircumference(treeJson["tags"]["circumference"].get<double>());
+        }
 
-    if (!treeJson["diameter_crown"].is_null())
-    {
-        tree.diameter_crown = treeJson["diameter_crown"].get<double>();
+        if (!treeJson["tags"]["diameter_crown"].is_null())
+        {
+            tree.setDiameterCrown(treeJson["tags"]["diameter_crown"].get<double>());
+        }
     }
 
     return tree;

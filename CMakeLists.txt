@@ -4,20 +4,11 @@ cmake_minimum_required(VERSION 3.15)
 # Project name
 project(Tree)
 
-# Find CGAL package
+# Find libraries
 find_package(CGAL REQUIRED)
-
-# Find the CURL library
 find_package(CURL REQUIRED)
-
-# Include directories
-include_directories(
-    include
-    /usr/local/Cellar/nlohmann-json/3.11.3/include
-    /usr/local/opt/cgal/include
-    /usr/local/include
-    /usr/local/opt/curl/include
-)
+find_package(CPR REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 # Source files
 file(GLOB_RECURSE SOURCES_FILES src/*.cpp)
@@ -56,10 +47,12 @@ add_library(Tree ${SOURCES_FILES})
 add_executable(run src/main.cpp)
 
 # Link the executable with the curl library
-target_link_libraries(run ${CURL_LIBRARIES})
+target_link_libraries(Tree PUBLIC CURL::libcurl CGAL::CGAL nlohmann_json::nlohmann_json cpr::cpr)
+
+target_include_directories(Tree PUBLIC include)
 
 # Link libraries
-target_link_libraries(run Tree)
+target_link_libraries(run PRIVATE Tree)
 
 # Testing
 include(CTest)
