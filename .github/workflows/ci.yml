@@ -1,57 +1,31 @@
-name: CMake
+name: C/C++ CI
 
-on: [push]
-
-env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: RelWithDebInfo
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
-      # Install Miniforge
-      - name: Install Miniforge
-        run: |
-          wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
-          bash miniforge.sh -b -p $HOME/miniforge3
-
-      # Create Conda environment
-      - name: Create environment
-        run: |
-          source $HOME/miniforge3/bin/activate 
-          mamba create --name vegetation python=3.10 -y
-
-      # Activate Conda environment
-      - name: Activate environment
-        run: source $HOME/miniforge3/bin/activate vegetation
-
-      # Install dependencies using mamba
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libjsoncpp-dev libcgal-dev nlohmann-json3-dev
 
-      # Print Python version for debugging
-      - name: Check Python version
-        run: python --version
-
-      # List directory contents for debugging
-      - name: List directory contents
-        run: ls -la
-
-      # Build
-      - name: Build
+      - name: Configure CMake
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} ..
-          cmake --build . --config ${{ env.BUILD_TYPE }}
+          cmake ..
 
-      # Test
+      - name: Build
+        run: |
+          cd build
+          make
+
       - name: Test
         run: |
           cd build
-          ctest -C ${{ env.BUILD_TYPE }} --output-on-failure
+          ctest --output-on-failure
