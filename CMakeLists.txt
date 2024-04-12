@@ -24,9 +24,6 @@ file(GLOB_RECURSE SOURCE_FILES src/*)
 # creating the executable from src/main.cpp
 add_executable(run src/main.cpp)
 target_link_libraries(run CGAL::CGAL)
-# linking the executable with the library
-
-
 
 # Unitary testing
 enable_testing()
