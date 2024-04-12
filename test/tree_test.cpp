@@ -33,17 +33,16 @@ int main()
     {
         // Create a tree from JSON
         Tree tree = createTreeFromJson(treeJson);
-/*
         // Output tree properties
-        std::cout << "Tree ID: " << tree.id << std::endl;
-        std::cout << "Latitude: " << tree.lat << std::endl;
-        std::cout << "Longitude: " << tree.lon << std::endl;
-        std::cout << "Genus: " << tree.genus << std::endl;
-        std::cout << "Species: " << tree.species << std::endl;
-        std::cout << "Height: " << tree.height << std::endl;
-        std::cout << "Circumference: " << tree.circumference << std::endl;
-        std::cout << "Crown Diameter: " << tree.diameter_crown << std::endl;
-*/
+        std::cout << "Tree ID: " << tree.getId() << std::endl;
+        std::cout << "Latitude: " << tree.getLat() << std::endl;
+        std::cout << "Longitude: " << tree.getLon() << std::endl;
+        std::cout << "Genus: " << tree.getGenus() << std::endl;
+        std::cout << "Species: " << tree.getSpecies() << std::endl;
+        std::cout << "Height: " << tree.getHeight() << std::endl;
+        std::cout << "Circumference: " << tree.getCircumference() << std::endl;
+        std::cout << "Crown Diameter: " << tree.getDiameterCrown() << std::endl;
+
         return 0;
     }
 }
