@@ -19,7 +19,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -DCGAL_DATA_DIR=/usr/local/opt/cgal
+        cmake .. -DCGAL_DATA_DIR=/usr/local/opt/cgal -DCPR_DIR=/usr/local/opt/cpr
         
     - name: Build
       run: |
