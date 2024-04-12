@@ -1,7 +1,5 @@
 #include <Eigen/Core>
 
-#include <catch2/catch_all.hpp>
-
 TEST_CASE("eigen", "[basic]") {
     typedef Eigen::Matrix<float, 3, 3> MyMatrix33f;
     typedef Eigen::Matrix<float, 3, 1> MyVector3f;
