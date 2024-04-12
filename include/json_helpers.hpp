@@ -5,6 +5,6 @@
 #include <vector>
 #include "tree.hpp"
 
-std::vector<Tree> createLibraryFromJsonFile(std::string filename);
+std::vector<Tree> createLibraryFromJson(nlohmann::json const &jsonData);
 
 #endif

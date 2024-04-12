@@ -1,76 +1,40 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <curl/curl.h>
+#include <cpr/cpr.h>
+#include "config.hpp"
+#include "query.hpp"
 #include "tree.hpp"
 #include "json_helpers.hpp"
 
-// Callback function to receive response data
-size_t write_callback(char *ptr, size_t size, size_t nmemb, std::string *data)
+int main(int argc, char **argv)
 {
-    data->append(ptr, size * nmemb);
-    return size * nmemb;
-}
+    Config config("../config.json");
 
-int main()
-{
-    CURL *curl;
-    CURLcode res;
-    std::string response_data;
+    std::cout << "A_lat: " << config.getAlat() << std::endl;
+    std::cout << "A_lon: " << config.getAlon() << std::endl;
+    std::cout << "B_lat: " << config.getBlat() << std::endl;
+    std::cout << "B_lon: " << config.getBlon() << std::endl;
 
-    // Initialize libcurl
-    curl_global_init(CURL_GLOBAL_ALL);
-    curl = curl_easy_init();
-    if (curl)
-    {
-        // Set the Overpass API endpoint URL
-        curl_easy_setopt(curl, CURLOPT_URL, "http://overpass-api.de/api/interpreter");
+    auto query = config.get_query();
 
-        // Set the Overpass query
-        std::string query = "[out:json];"
-                            "node(around:50,48.583194,7.747951)[\"natural\"=\"tree\"];"
-                            "out;";
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, query.c_str());
-
-        // Set callback function to receive response data
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data);
-
-        // Perform the request
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK)
-        {
-            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-        }
-        else
-        {
-            // Save the response data to a file
-            std::ofstream output_file("query_result.json");
-            if (output_file.is_open())
-            {
-                output_file << response_data;
-                output_file.close();
-                std::cout << "Query result saved to query_result.json" << std::endl;
-            }
-            else
-            {
-                std::cerr << "Failed to open output file" << std::endl;
-            }
-        }
-
-        // Cleanup
-        curl_easy_cleanup(curl);
-    }
-    else
-    {
-        std::cerr << "Failed to initialize libcurl" << std::endl;
-    }
-
-    // Cleanup libcurl
-    curl_global_cleanup();
+    //query.perform_query();
+    nlohmann::json jsonData = query.get_query_result();
 
     // Generate tree meshes
-    std::vector<Tree> treeLibrary = createLibraryFromJsonFile("query_result.json");
+    auto treeLibrary = createLibraryFromJson(jsonData);
+
+    for (auto &tree : treeLibrary)
+    {
+        std::cout << "Tree ID: " << tree.getId() << std::endl;
+        std::cout << "Tree Lat: " << tree.getLat() << std::endl;
+        std::cout << "Tree Lon: " << tree.getLon() << std::endl;
+        std::cout << "Tree Genus: " << tree.getGenus() << std::endl;
+        std::cout << "Tree Species: " << tree.getSpecies() << std::endl;
+        std::cout << "Tree Height: " << tree.getHeight() << std::endl;
+        std::cout << "Tree Circumference: " << tree.getCircumference() << std::endl;
+        std::cout << "Tree Diameter Crown: " << tree.getDiameterCrown() << std::endl;
+    }
 
     return 0;
 }

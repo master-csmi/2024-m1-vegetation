@@ -33,7 +33,7 @@ int main()
     {
         // Create a tree from JSON
         Tree tree = createTreeFromJson(treeJson);
-
+/*
         // Output tree properties
         std::cout << "Tree ID: " << tree.id << std::endl;
         std::cout << "Latitude: " << tree.lat << std::endl;
@@ -43,7 +43,7 @@ int main()
         std::cout << "Height: " << tree.height << std::endl;
         std::cout << "Circumference: " << tree.circumference << std::endl;
         std::cout << "Crown Diameter: " << tree.diameter_crown << std::endl;
-
+*/
         return 0;
     }
 }

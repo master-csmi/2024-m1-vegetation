@@ -3,12 +3,8 @@
 #include "tree.hpp"
 #include <nlohmann/json.hpp>
 
-std::vector<Tree> createLibraryFromJsonFile(std::string filename)
+std::vector<Tree> createLibraryFromJson(nlohmann::json const& jsonData)
 {
-    std::ifstream inputFile(filename);
-    nlohmann::json jsonData;
-    inputFile >> jsonData;
-
     std::vector<Tree> treeLibrary;
     for (auto &element : jsonData["elements"])
     {
