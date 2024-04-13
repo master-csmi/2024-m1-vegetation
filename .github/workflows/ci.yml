@@ -36,7 +36,8 @@ jobs:
                 -DMPFR_ROOT="$HOME/miniforge3/envs/vegetation" \
                 -DBOOST_ROOT="$HOME/miniforge3/envs/vegetation" \
                 -DCURL_ROOT="$HOME/miniforge3/envs/vegetation" \
-                -Dcpr_DIR="$HOME/cpr" \
+                -Dcpr_CONFIG="$HOME/cpr/cpr-config.cmake"
+
                 ..
 
       - name: Build
