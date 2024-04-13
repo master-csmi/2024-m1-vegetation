@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Insall miniforge
         run: |
@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          mamba activate vegetation
+          source $HOME/miniforge3/bin/activate vegetation
           mamba install -c conda-forge cgal-cpp nlohmann_json fmt spdlog -y
 
       - name: Cmake
