@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           source $HOME/miniforge3/bin/activate vegetation
-          mamba install -c conda-forge cgal-cpp nlohmann_json fmt spdlog mpfr boost-cpp -y
+          mamba install -c conda-forge cgal-cpp nlohmann_json fmt spdlog mpfr boost-cpp curl -y
 
       - name: Cmake
         run: |
