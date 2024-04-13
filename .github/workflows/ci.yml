@@ -25,8 +25,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_PREFIX_PATH="$HOME/miniforge3/envs/vegetation/lib/cmake/CGAL" -DCMAKE_CXX_FLAGS="-I$HOME/miniforge3/envs/vegetation/include" -DCMAKE_BUILD_TYPE=Release ..
-
+          cmake -DCMAKE_PREFIX_PATH="$HOME/miniforge3/envs/vegetation/lib/cmake/CGAL" -DCMAKE_CXX_FLAGS="-I$HOME/miniforge3/envs/vegetation/include" -DCMAKE_BUILD_TYPE=Release -DMPFR_ROOT="$HOME/miniforge3/envs/vegetation" ..
       - name: Build
         run: |
           cd build
