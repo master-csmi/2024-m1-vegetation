@@ -19,15 +19,13 @@ jobs:
       - name: Install dependencies
         run: |
           source $HOME/miniforge3/bin/activate vegetation
-          mamba install -c conda-forge cgal-cpp fmt spdlog mpfr boost-cpp curl libcgal-dev -y
+          mamba install -c conda-forge cgal-cpp fmt spdlog mpfr boost-cpp curl -y
 
       - name: Cmake
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_PREFIX_PATH="$HOME/miniforge3/envs/vegetation" \
-                -DCMAKE_BUILD_TYPE=Release \
-                ..
+          cmake -DCMAKE_BUILD_TYPE=Release ..
 
       - name: Build
         run: |
