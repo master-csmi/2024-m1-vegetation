@@ -20,6 +20,11 @@ class Query {
     // Perform the Overpass query
     void perform_query();
 
+    std::array<double, 2> getRefPt() const {
+        std::array<double, 2> ref = {min_lat, max_lat};
+        return ref;
+    }
+
     nlohmann::json get_query_result();
 };
 
