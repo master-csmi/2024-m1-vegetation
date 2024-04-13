@@ -4,12 +4,17 @@ cmake_minimum_required(VERSION 3.15)
 # Project name
 project(Vegetation CXX)
 
+# Set build type to Release if not specified
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# Set a variable for all the libraries that are required
 set(requiredlibs)
 
 # Find libraries
 find_package(CGAL REQUIRED)
-if(CGAL AND CGAL_Qt5_FOUND)
-    add_definitions(-DCGAL_USE_BASIC_VIEWER)
+if(CGAL_FOUND)
     set(requiredlibs ${requiredlibs} ${CGAL_3RD_PARTY_LIBRARIES})
 else()
     message(STATUS "This program requires the CGAL library, and will not be compiled.")
@@ -44,11 +49,6 @@ endif()
 # Source files
 file(GLOB_RECURSE SOURCES_FILES src/*.cpp)
 
-# Set build type to Release if not specified
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif()
-
 # Set C++ standard to C++17
 set(CMAKE_CXX_STANDARD 17)
 
@@ -72,18 +72,18 @@ if(CMAKE_BUILD_TYPE MATCHES "RELEASE")
 endif()
 
 # Create library
-add_library(Vegetation ${SOURCES_FILES})
+add_library(Tree ${SOURCES_FILES})
 
 # Create executable
 add_executable(run src/main.cpp)
 
 # Link the executable with the curl library
-target_link_libraries(Vegetation PUBLIC ${requiredlibs})
+target_link_libraries(Tree PUBLIC ${requiredlibs})
 
-target_include_directories(Vegetation PUBLIC include)
+target_include_directories(Tree PUBLIC include)
 
 # Link libraries
-target_link_libraries(run PRIVATE Vegetation ${requiredlibs})
+target_link_libraries(run PRIVATE Tree ${requiredlibs})
 
 # Testing
 include(CTest)
@@ -99,5 +99,5 @@ foreach(test_full_path ${TESTS_FILES})
     get_filename_component(test_name ${test_filename} NAME_WE)
     add_executable(${test_name} ${test_filename})
     add_test(${test_name} ${test_name})
-    target_link_libraries(${test_name} Vegetation) # Fixed library name
+    target_link_libraries(${test_name} Tree) # Fixed library name
 endforeach()
