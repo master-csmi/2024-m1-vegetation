@@ -1,12 +1,11 @@
 #ifndef TREE_HPP
 #define TREE_HPP
 
+#include <json.hpp>
 #include <string>
-#include <nlohmann/json.hpp>
 
-class Tree
-{
-private:
+class Tree {
+  private:
     long id;
     double lat;
     double lon;
@@ -16,12 +15,14 @@ private:
     double circumference;
     double diameter_crown;
 
-public:
+  public:
     // Default constructor
     Tree();
 
     // Constructor that takes arguments
-    Tree(long id, double lat, double lon, std::string genus, std::string species, double height, double circumference, double diameter_crown);
+    Tree(long id, double lat, double lon, std::string genus,
+         std::string species, double height, double circumference,
+         double diameter_crown);
 
     // Getters
     long getId() const { return id; }
@@ -40,8 +41,12 @@ public:
     void setGenus(std::string genus) { this->genus = genus; }
     void setSpecies(std::string species) { this->species = species; }
     void setHeight(double height) { this->height = height; }
-    void setCircumference(double circumference) { this->circumference = circumference; }
-    void setDiameterCrown(double diameter_crown) { this->diameter_crown = diameter_crown; }
+    void setCircumference(double circumference) {
+        this->circumference = circumference;
+    }
+    void setDiameterCrown(double diameter_crown) {
+        this->diameter_crown = diameter_crown;
+    }
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);

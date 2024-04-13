@@ -1,9 +1,8 @@
+#include "json.hpp"
 #include "tree.hpp"
 #include <iostream>
-#include <nlohmann/json.hpp>
 
-int main()
-{
+int main() {
     // Test the Tree class and createTreeFromJson function
 
     // Sample JSON data representing a tree
@@ -29,8 +28,7 @@ int main()
     };
 
     // Test each JSON object
-    for (const auto &treeJson : treeJsons)
-    {
+    for (const auto &treeJson : treeJsons) {
         // Create a tree from JSON
         Tree tree = createTreeFromJson(treeJson);
         // Output tree properties
