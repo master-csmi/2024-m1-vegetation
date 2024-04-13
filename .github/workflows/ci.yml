@@ -22,7 +22,7 @@ jobs:
           mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
           git clone https://github.com/libcpr/cpr.git
           cd cpr && mkdir build && cd build
-          cmake .. -DCURL_ROOT="$HOME/miniforge3/envs/vegetation"
+          cmake .. -DCPR_USE_SYSTEM_CURL=OFF
           cmake --build . --parallel
           sudo cmake --install .
 
