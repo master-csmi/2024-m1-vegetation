@@ -11,11 +11,17 @@ find_package(CGAL REQUIRED)
 if(CGAL AND CGAL_Qt5_FOUND)
     add_definitions(-DCGAL_USE_BASIC_VIEWER)
     set(requiredlibs ${requiredlibs} ${CGAL_3RD_PARTY_LIBRARIES})
+else()
+    message(STATUS "This program requires the CGAL library, and will not be compiled.")
+    return()
 endif()
 
 find_package(CURL REQUIRED)
 if(CURL_FOUND)
     set(requiredlibs ${requiredlibs} ${CURL_LIBRARIES})
+else()
+    message(STATUS "This program requires the CURL library, and will not be compiled.")
+    return()
 endif()
 
 
