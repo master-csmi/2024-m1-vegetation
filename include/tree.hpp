@@ -1,7 +1,7 @@
 #ifndef TREE_HPP
 #define TREE_HPP
 
-#include <json.hpp>
+#include "json.hpp"
 #include <string>
 
 class Tree {
