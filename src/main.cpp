@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 
     auto query = config.get_query();
 
-    // query.perform_query();
+    query.perform_query();
     nlohmann::json jsonData = query.get_query_result();
 
     // Generate tree meshes
