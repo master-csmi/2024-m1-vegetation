@@ -1,19 +1,25 @@
 #ifndef TREE_HPP
 #define TREE_HPP
 
+#include "WGS84toCartesian.hpp"
 #include "json.hpp"
+#include "query.hpp"
 #include <string>
 
+class TreeMesh;
 class Tree {
-  private:
+  protected:
     long id;
     double lat;
     double lon;
     std::string genus;
     std::string species;
+    std::string season;
     double height;
     double circumference;
     double diameter_crown;
+    double x, y;
+    TreeMesh *mesh;
 
   public:
     // Default constructor
@@ -33,6 +39,7 @@ class Tree {
     double getHeight() const { return height; }
     double getCircumference() const { return circumference; }
     double getDiameterCrown() const { return diameter_crown; }
+    std::string getSeason() const { return season; }
 
     // Setters
     void setId(long id) { this->id = id; }
@@ -47,6 +54,15 @@ class Tree {
     void setDiameterCrown(double diameter_crown) {
         this->diameter_crown = diameter_crown;
     }
+    void computeXY(const Query &q) {
+        std::array<double, 2> ref = q.getRefPt();
+        std::array<double, 2> cartesianPosition =
+            wgs84::toCartesian({ref[0], ref[1]} /* reference position */,
+                               {lon, lat} /* position to be converted */);
+        x = cartesianPosition[0];
+        y = cartesianPosition[1];
+    }
+    void setMesh(TreeMesh &m) { this->mesh = &m; }
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);

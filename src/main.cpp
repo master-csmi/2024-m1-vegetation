@@ -1,5 +1,6 @@
 #include "../include/config.hpp"
 #include "../include/json_helpers.hpp"
+#include "../include/mesh.hpp"
 #include "../include/query.hpp"
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
