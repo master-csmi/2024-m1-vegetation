@@ -7,7 +7,6 @@ project(Tree)
 # Find libraries
 find_package(CGAL REQUIRED)
 find_package(CURL REQUIRED)
-find_package(nlohmann_json REQUIRED)
 find_package(MPFR REQUIRED)
 find_package(BOOST REQUIRED)
 
@@ -48,7 +47,7 @@ add_library(Tree ${SOURCES_FILES})
 add_executable(run src/main.cpp)
 
 # Link the executable with the curl library
-target_link_libraries(Tree PUBLIC CURL::libcurl CGAL::CGAL nlohmann_json::nlohmann_json MPFR::MPFR BOOST::boost)
+target_link_libraries(Tree PUBLIC CURL::libcurl CGAL::CGAL MPFR::MPFR BOOST::boost)
 
 target_include_directories(Tree PUBLIC include)
 
