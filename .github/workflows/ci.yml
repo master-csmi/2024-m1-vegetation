@@ -21,6 +21,11 @@ jobs:
           source $HOME/miniforge3/bin/activate vegetation
           mamba install -c conda-forge cgal-cpp nlohmann_json fmt spdlog mpfr boost-cpp curl -y
 
+      - name: Set Environment Variables
+        run: |
+          export CGAL_DIR=$HOME/miniforge3/envs/vegetation/lib/cmake/CGAL
+          export CURL_ROOT=$HOME/miniforge3/envs/vegetation
+
       - name: Cmake
         run: |
           mkdir build
