@@ -14,8 +14,7 @@ This reposirory contains:
 
 === Install Required Packages
 
-This project uses cgal, curl and nlohmann/json libraries.
-Go check them out if you don't have them locally installed.
+This project uses link:https://www.cgal.org[CGAL], link:https://curl.se/[curl] and link:https://github.com/nlohmann/json[nlohmann/json libraries]. Go check them out if you don't have them locally installed.
 
 If you don't want to install them globally on your local machine you can use Miniforge to create a new environment with the required packages:
 
