@@ -24,6 +24,14 @@ else()
     return()
 endif()
 
+find_package(GMP REQUIRED)
+if(GMP_FOUND)
+    set(requiredlibs ${requiredlibs} ${GMP_LIBRARIES})
+else()
+    message(STATUS "This program requires the GMP library, and will not be compiled.")
+    return()
+endif()
+
 
 # Source files
 file(GLOB_RECURSE SOURCES_FILES src/*.cpp)
