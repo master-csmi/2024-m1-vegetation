@@ -25,13 +25,12 @@ jobs:
           cmake .. -DCPR_USE_SYSTEM_CURL=OFF
           cmake --build . --parallel
           sudo cmake --install .
-          find / -name cpr-config.cmake
 
       - name: Cmake
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_PREFIX_PATH="$HOME/miniforge3/envs/vegetation/lib/cmake/CGAL;$HOME/cpr/build" \
+          cmake -DCMAKE_PREFIX_PATH="$HOME/miniforge3/envs/vegetation/lib/cmake/CGAL;/home/runner/work/2024-m1-vegetation/2024-m1-vegetation/cpr/cpr-config.cmake" \
                 -DCMAKE_CXX_FLAGS="-I$HOME/miniforge3/envs/vegetation/include" \
                 -DCMAKE_BUILD_TYPE=Release \
                 -DMPFR_ROOT="$HOME/miniforge3/envs/vegetation" \
