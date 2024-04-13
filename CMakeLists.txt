@@ -24,7 +24,7 @@ endif()
 
 find_package(CURL REQUIRED)
 if(CURL_FOUND)
-    set(requiredlibs ${requiredlibs} ${CURL_LIBRARIES})
+    set(requiredlibs ${requiredlibs} CURL::libcurl)
 else()
     message(STATUS "This program requires the CURL library, and will not be compiled.")
     return()
