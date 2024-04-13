@@ -1,8 +1,8 @@
-#include "config.hpp"
-#include "json_helpers.hpp"
-#include "query.hpp"
-#include "tree.hpp"
-#include <cpr/cpr.h>
+#include "../include/config.hpp"
+#include "../include/json_helpers.hpp"
+#include "../include/query.hpp"
+#include "../include/tree.hpp"
+// #include <cpr/cpr.h>
 #include <fstream>
 #include <iostream>
 #include <string>

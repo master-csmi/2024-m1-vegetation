@@ -1,7 +1,7 @@
 #ifndef QUERY_HPP
 #define QUERY_HPP
 
-#include <json.hpp>
+#include "json.hpp"
 
 class Query {
   private:
