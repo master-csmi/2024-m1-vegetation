@@ -4,29 +4,35 @@ on: [push, pull_request]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libcurl4-openssl-dev libjsoncpp-dev libcgal-dev nlohmann-json3-dev
+      - name: Insall miniforge
+        run: |
+          wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
+          bash miniforge.sh -b -p $HOME/miniforge3
+          source $HOME/miniforge3/bin/activate
+          mamba create --name vegetation python=3.10 -y
 
-    - name: Configure CMake
-      run: |
-        mkdir build
-        cd build
-        cmake .. -DCGAL_DATA_DIR=/usr/local/opt/cgal
-        
-    - name: Build
-      run: |
-        cd build
-        make
+      - name: Install dependencies
+        run: |
+          mamba activate vegetation
+          mamba install -c conda-forge cgal-cpp nlohmann_json fmt spdlog -y
 
-    - name: Test
-      run: |
-        cd build
-        ctest --output-on-failure
+      - name: Cmake
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+
+      - name: Build
+        run: |
+          cd build
+          make
+
+      - name: Test
+        run: |
+          cd build
+          ctest --output-on-failure
