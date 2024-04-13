@@ -20,6 +20,11 @@ jobs:
         run: |
           source $HOME/miniforge3/bin/activate vegetation
           mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
+          git clone https://github.com/libcpr/cpr.git
+          cd cpr && mkdir build && cd build
+          cmake .. -DCPR_USE_SYSTEM_CURL=ON
+          cmake --build . --parallel
+          sudo cmake --install .
 
       - name: Cmake
         run: |

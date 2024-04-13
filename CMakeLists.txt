@@ -9,6 +9,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
+
 # Set a variable for all the libraries that are required
 set(requiredlibs)
 
@@ -42,6 +43,14 @@ if(MPFR_FOUND)
     set(requiredlibs ${requiredlibs} ${MPFR_LIBRARIES})
 else()
     message(STATUS "This program requires the MPFR library, and will not be compiled.")
+    return()
+endif()
+
+find_package(CPR REQUIRED)
+if(CPR_FOUND)
+    set(requiredlibs ${requiredlibs} ${CPR_LIBRARIES})
+else()
+    message(STATUS "This program requires the CPR library, and will not be compiled.")
     return()
 endif()
 
