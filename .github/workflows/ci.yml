@@ -25,6 +25,7 @@ jobs:
           cmake .. -DCPR_USE_SYSTEM_CURL=OFF
           cmake --build . --parallel
           sudo cmake --install .
+          find / -name cpr-config.cmake
 
       - name: Cmake
         run: |
