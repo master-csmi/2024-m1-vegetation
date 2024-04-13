@@ -7,7 +7,6 @@ project(Tree)
 # Find libraries
 find_package(CGAL REQUIRED)
 find_package(CURL REQUIRED)
-# find_package(CPR REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
 # Source files
