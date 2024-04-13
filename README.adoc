@@ -1,18 +1,25 @@
-= Urban Vegetation Modeling Tool
+= ExaMA - Vegetation
 
 == Overview
 
-The goal of this project is to develop a tool that integrates vegetation data into 3D urban models. The tool will allow users to generate realistic representations of trees in urban environments, including their shape, size, location, and density. 
+The goal of this project is to develop a tool that integrates vegetation (trees) into 3D urban models in order to improve the efficiency of thermal simulations.
 
-This is made in order to run simulations on the impact of vegetation on air and ground temperatures, as well as building energy consumption. 
+This reposirory contains:
 
-More specifically sun masking and fluid dynamics simulations will be run to determine the impact of vegetation on the urban environment using tools such as Feel++.
+- include: Header files
+- src: Source files
+- test: Test files
 
 == Installation and Usage
 
-=== Environment Setup
+=== Install Required Packages
 
-First, install Miniforge to set up the Mamba environment:
+This project uses cgal, curl and nlohmann/json libraries.
+Go check them out if you don't have them locally installed.
+
+If you don't want to install them globally on your local machine you can use Miniforge to create a new environment with the required packages:
+
+==== Mamba environment:
 
 ```bash
 # Download Miniforge
@@ -29,6 +36,12 @@ mamba create --name vegetation python=3.10 -y
 
 # Activate the new environment
 mamba activate vegetation
+```
+
+==== Or venv environment:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 === Install Required Packages
