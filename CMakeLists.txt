@@ -32,6 +32,14 @@ else()
     return()
 endif()
 
+find_package(MPFR REQUIRED)
+if(MPFR_FOUND)
+    set(requiredlibs ${requiredlibs} ${MPFR_LIBRARIES})
+else()
+    message(STATUS "This program requires the MPFR library, and will not be compiled.")
+    return()
+endif()
+
 
 # Source files
 file(GLOB_RECURSE SOURCES_FILES src/*.cpp)
