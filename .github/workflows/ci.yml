@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Insall miniforge
+      - name: Install miniforge
         run: |
           wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
           bash miniforge.sh -b -p $HOME/miniforge3
@@ -30,6 +30,7 @@ jobs:
                 -DCMAKE_BUILD_TYPE=Release \
                 -DMPFR_ROOT="$HOME/miniforge3/envs/vegetation" \
                 -DBOOST_ROOT="$HOME/miniforge3/envs/vegetation" \
+                -DCURL_ROOT="$HOME/miniforge3/envs/vegetation" \
                 ..
 
       - name: Build
