@@ -46,13 +46,13 @@ else()
     return()
 endif()
 
-find_package(cpr REQUIRED)
-if(CPR_FOUND)
-    set(requiredlibs ${requiredlibs} ${CPR_LIBRARIES})
-else()
-    message(STATUS "This program requires the CPR library, and will not be compiled.")
-    return()
-endif()
+# find_package(cpr REQUIRED)
+# if(CPR_FOUND)
+#     set(requiredlibs ${requiredlibs} ${CPR_LIBRARIES})
+# else()
+#     message(STATUS "This program requires the CPR library, and will not be compiled.")
+#     return()
+# endif()
 
 
 # Source files
