@@ -46,7 +46,7 @@ else()
     return()
 endif()
 
-find_package(CPR REQUIRED)
+find_package(cpr REQUIRED)
 if(CPR_FOUND)
     set(requiredlibs ${requiredlibs} ${CPR_LIBRARIES})
 else()
