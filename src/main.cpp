@@ -1,5 +1,6 @@
 #include "../include/config.hpp"
 #include "../include/json_helpers.hpp"
+#include "../include/mesh.hpp"
 #include "../include/query.hpp"
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
@@ -34,6 +35,18 @@ int main(int argc, char **argv) {
                   << std::endl;
         std::cout << "Tree Diameter Crown: " << tree.getDiameterCrown()
                   << std::endl;
+    }
+
+    for (auto &tree : treeLibrary) {
+        tree.computeXY(query);
+        // std::cout << "Tree X: " << tree.getX() << std::endl;
+        // std::cout << "Tree Y: " << tree.getY() << std::endl;
+
+        TreeMesh mesh;
+        mesh.setLod(0);
+        mesh.wrap_tree(tree);
+        tree.setMesh(mesh);
+        mesh.dumpMesh(tree);
     }
 
     return 0;
