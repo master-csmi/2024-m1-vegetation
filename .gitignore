@@ -13,6 +13,7 @@
 *.toc
 
 # Project files
+temp/
 build/
 html/
 latex/
@@ -24,5 +25,6 @@ output/
 # Python virtual environment
 .venv/
 
-# MacOS
+# macOS
 .DS_Store
+
