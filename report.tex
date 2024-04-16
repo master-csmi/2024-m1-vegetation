@@ -75,17 +75,20 @@ role in shaping microclimates, reducing energy consumption, and enhancing overal
 livability\cite{TIR4sTREEt}. This project aims to integrate vegetation, specifically trees, into 3D 
 geometric models of urban environments to improve the accuracy and realism of thermal 
 and energy simulations. Utilizing data from open sources like \texttt{OpenStreetMap},
-the project seeks to identify tree positions and attributes within urban landscapes and develop 
-a library of 3D tree models for integration into terrain meshes. The project follows
-a roadmap with defined milestones to deliver versions \texttt{V0}, \texttt{V1},
-and \texttt{V2} by specified  deadlines.
+we identified tree positions and attributes and developped a library of 3D tree
+models for integration into terrain meshes.
+
+The project follows a roadmap with defined milestones to deliver versions
+\texttt{V0}, \texttt{V1}, and \texttt{V2} by specified  deadlines.
 
 \subsection{Main Objectives}
-The primary objective of this project is to integrate vegetation, particularly 
-trees, into 3D urban models to enhance the accuracy of thermal and energy simulations. 
-Additionally, specific objectives include:
+
+The primary objective is to enhance the accuracy of thermal and energy
+simulations of a given area.
+
+Specific objectives include:
 \begin{itemize}
-    \item Extracting tree data from OpenStreetMap
+    \item Extracting tree data from \texttt{OpenStreetMap}
     \item Generating 3D tree models
     \item Integrating tree models into terrain meshes
     \item Simulating shading effects on buildings (Feel++ ray tracing)
@@ -93,31 +96,6 @@ Additionally, specific objectives include:
     \item Optimizing computational efficiency
     \item Delivering versions V0, V1, and V2 by specified deadlines
 \end{itemize}
-
-\subsection{Roadmap}
-As of \textbf{V0} (March 2024) our roadmap includes the following milestones and issues:  
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap for V0}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/roadmap_v1.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap for V1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/roadmap_v2.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap for V2}
-\end{figure}
-
-\newpage
 
 \section{Introduction}
 Urban areas are intricate environments influenced by a multitude of factors, with 
@@ -207,6 +185,35 @@ For geometric modeling, we will utilize the \texttt{CGAL} \cite{cgal} library, k
 reliability in geometric computation. Shading calculations will be performed using the 
 \texttt{Feel++} \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs) 
 essential for simulating light and shade on 3D objects.
+
+\subsection{GitHub Repository}
+We created a GitHub repository to manage the project and facilitate collaboration.
+The repository contains the project's code, documentation, and resources. It will be
+updated regularly to reflect the progress and changes made during the project's
+development.
+
+\subsection{Roadmap}
+As of \texttt{V0} (March 2024) our roadmap includes the following milestones and issues:  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap for V0}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap_v1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap for V1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap_v2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Roadmap for V2}
+\end{figure}
 
 \newpage
 
