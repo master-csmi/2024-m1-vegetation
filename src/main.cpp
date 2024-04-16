@@ -37,5 +37,17 @@ int main(int argc, char **argv) {
                   << std::endl;
     }
 
+    for (auto &tree : treeLibrary) {
+        tree.computeXY(query);
+        // std::cout << "Tree X: " << tree.getX() << std::endl;
+        // std::cout << "Tree Y: " << tree.getY() << std::endl;
+
+        TreeMesh mesh;
+        mesh.setLod(0);
+        mesh.wrap_tree(tree);
+        tree.setMesh(mesh);
+        tree.getMesh().dumpMesh();
+    }
+
     return 0;
 }

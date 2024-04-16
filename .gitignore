@@ -17,6 +17,7 @@
 /html/
 /latex/
 /output/
+temp/
 
 # Mesh files
 *.off
