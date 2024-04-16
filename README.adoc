@@ -18,6 +18,10 @@ This project uses link:https://www.cgal.org[CGAL], link:https://curl.se/[curl] a
 
 If you don't want to install them globally on your local machine you can use Miniforge to create a new environment with the required packages:
 
+=== Set up an environment 
+We provide here two example of environment, Mamba and venv
+
+
 ==== Mamba environment:
 
 ```bash
