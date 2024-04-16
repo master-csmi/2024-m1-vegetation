@@ -89,22 +89,18 @@ simulations of a given area.
 Specific objectives include:
 \begin{itemize}
     \item Extracting tree data from \texttt{OpenStreetMap}
-    \item Generating 3D tree models
-    \item Integrating tree models into terrain meshes
-    \item Simulating shading effects on buildings (Feel++ ray tracing)
-    \item Simulating urban microclimates using fluid mechanics
+    \item Generating 3D tree models.
+    \item Integrating tree models into terrain meshes.
+    \item Simulating how trees influence energy consumption and microclimates.
     \item Optimizing computational efficiency
-    \item Delivering versions V0, V1, and V2 by specified deadlines
+    \item Delivering versions \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified deadlines
 \end{itemize}
 
 \section{Introduction}
 Urban areas are intricate environments influenced by a multitude of factors, with 
 vegetation, notably trees, playing a pivotal role in shaping their microclimates 
-and energy dynamics. Trees provide shade, heat mitigation, and pollution reduction,
-making them indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}. As showed in the first image, trees can project different shadows
-on the surrounding depending on the time of the day and the season making it 
-more complex to model their impact on the urban environment. The second image
-shows the significant impact of trees on the urban heat distribution.
+and energy dynamics. Trees provide shade and heat mitigation making them
+indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}.
 
 \begin{figure}[H]
     \centering
@@ -112,7 +108,7 @@ shows the significant impact of trees on the urban heat distribution.
         \centering
         \includegraphics[width=\textwidth]{images/TreeShade.png}
         \captionsetup{font={scriptsize}}
-        \caption{Example of urban tree providing shade to a buiding \cite{img:TreeShade}.}
+        \caption{Tree providing shade to a buiding \cite{img:TreeShade}.}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
@@ -148,7 +144,7 @@ The report will be structured as follows:
     the challenges in integrating it into 3D models, and the objectives of the project.
     
     \item \textbf{Methodology}: Detailed explanation of the steps involved in data acquisition, 
-    tree model generation, model integration, and shading calculations.
+    tree model generation, model integration and the running of thermal simulations.
     
     \item \textbf{Results}: Presentation of the outcomes and findings obtained from the 
     implemented methodology.
@@ -156,8 +152,7 @@ The report will be structured as follows:
     \item \textbf{Conclusion}: Summary of the project's achievements, implications, and 
     potential future work.
     
-    \item \textbf{References}: List of all the sources cited in the report, arranged in 
-    the order of citation.
+    \item \textbf{References}: List of all the sources cited in the report.
 \end{enumerate}
 
 Each section will be elaborated upon in detail to provide a comprehensive understanding 
@@ -187,13 +182,14 @@ reliability in geometric computation. Shading calculations will be performed usi
 essential for simulating light and shade on 3D objects.
 
 \subsection{GitHub Repository}
-We created a GitHub repository to manage the project and facilitate collaboration.
+We created a \texttt{GitHub} repository to manage the project and facilitate collaboration.
 The repository contains the project's code, documentation, and resources. It will be
 updated regularly to reflect the progress and changes made during the project's
 development.
 
 \subsection{Roadmap}
-As of \texttt{V0} (March 2024) our roadmap includes the following milestones and issues:  
+As of \texttt{V0} (March 2024) the roadmap we defined includes the following
+milestones and issues:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
@@ -240,7 +236,7 @@ city center:
 }
 \end{lstlisting}
 
-The program will then use the \texttt{Overpass API} to query \texttt{OpenStreetMap}
+We will then use the \texttt{Overpass API} to query \texttt{OpenStreetMap}
 for all the available tree data within the specified bounding box.
 The data will be stored in a \textit{.json} file.
 
@@ -267,6 +263,10 @@ Here's an example of the result of the query for one tree:
 }
 \end{lstlisting}
 
+We will especially use the \texttt{position} of the tree (latitude and longitude),
+its \texttt{height}, the \texttt{diameter of its foliage}, and the \texttt{species}
+to generate the 3D tree models.
+
 \subsection{Tree Library}
 
 \subsection{Tree Model Generation}
@@ -280,7 +280,7 @@ Generated tree models will be integrated into terrain meshes to create comprehen
 for accurate simulations.
 
 \subsection{Shading Calculations}
-Using Feel++ ray tracing, shading effects on buildings will be simulated to account for the presence 
+Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence 
 of trees and their impact on urban microclimates. Execution time considerations will be 
 addressed to optimize computational efficiency.
 
