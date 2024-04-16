@@ -40,6 +40,8 @@ class Tree {
     double getCircumference() const { return circumference; }
     double getDiameterCrown() const { return diameter_crown; }
     std::string getSeason() const { return season; }
+    double getX() const { return x; }
+    double getY() const { return y; }
 
     // Setters
     void setId(long id) { this->id = id; }
@@ -63,6 +65,7 @@ class Tree {
         y = cartesianPosition[1];
     }
     void setMesh(TreeMesh &m) { this->mesh = &m; }
+    TreeMesh &getMesh() { return *mesh; }
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);

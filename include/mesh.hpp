@@ -20,26 +20,22 @@ using Mesh = CGAL::Surface_mesh<Point_3>;
 class TreeMesh {
   public:
     void wrap_tree(const Tree &t) {
-        filePath = "data/tree/";
+        std::string filePath = "../data/tree/";
         std::string season = t.getSeason();
         std::string species = t.getSpecies();
 
-        if (season == "summer") {
-            filePath += "summer/";
-        } else if (season == "winter") {
-            filePath += "winter/";
-        } else if (season == "spring") {
-            filePath += "spring/";
-        } else if (season == "autumn") {
-            filePath += "autumn/";
+        if (season == "spring" || season == "summer") {
+            filePath += "leafy/";
         } else {
-            filePath += "autumn/";
+            filePath += "leafless/";
         }
 
-        if (species == "Acer pseudoplatanus") {
-            filePath += "oranger.off";
-        }
+        // if (species == "Acer pseudoplatanus") {
+        //     filePath += "arbre1.off";
+        // }
         // ...
+        filePath += "arbre1.off";
+        filename = "arbre1.off";
 
         double relative_alpha;
         double relative_offset = 600;
@@ -80,13 +76,45 @@ class TreeMesh {
         const double alpha = diag_length / relative_alpha;
         const double offset = diag_length / relative_offset;
 
+        CGAL::Real_timer ti;
+        ti.start();
+
         CGAL::alpha_wrap_3(points, faces, alpha, offset, M_wrap);
+
+        ti.stop();
+
+        // std::cout << "Result: " << num_vertices(M_wrap) << " vertices, "
+        //           << num_faces(M_wrap) << " faces" << std::endl;
+        // std::cout << "Took " << ti.time() << " s." << std::endl;
+    }
+
+    void setLod(int lod) { M_lod = lod; }
+
+    std::string getFilename() const { return filename; }
+    int getLod() const { return M_lod; }
+    Mesh getWrap() const { return M_wrap; }
+
+    void dumpMesh() const {
+
+        std::string output_dir = "../temp/";
+
+        std::string input_name = std::string(filename);
+        input_name = input_name.substr(input_name.find_last_of("/") + 1,
+                                       input_name.length() - 1);
+        input_name = input_name.substr(0, input_name.find_last_of("."));
+
+        std::string output_name = output_dir + input_name + "_" +
+                                  std::to_string(static_cast<int>(M_lod)) +
+                                  "_" + +".off";
+        // std::cout << "Writing to " << output_name << std::endl;
+        CGAL::IO::write_polygon_mesh(output_name, M_wrap,
+                                     CGAL::parameters::stream_precision(17));
     }
 
   private:
     int M_lod;
     Mesh M_wrap;
-    std::string filePath;
+    std::string filename;
 };
 
 #endif
