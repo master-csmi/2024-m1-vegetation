@@ -13,11 +13,11 @@
 *.toc
 
 # Project files
-/build/
-/html/
-/latex/
-/output/
 temp/
+build/
+html/
+latex/
+output/
 
 # Mesh files
 *.off
@@ -27,3 +27,4 @@ temp/
 
 # macOS
 .DS_Store
+
