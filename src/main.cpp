@@ -1,72 +1,40 @@
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
-#include <CGAL/Polygon_mesh_processing/IO/polygon_mesh_io.h>
-#include <CGAL/Polygon_mesh_processing/bbox.h>
-#include <CGAL/Real_timer.h>
-#include <CGAL/Surface_mesh.h>
-#include <CGAL/alpha_wrap_3.h>
+#include "../include/config.hpp"
+#include "../include/json_helpers.hpp"
+#include "../include/query.hpp"
+#include "../include/tree.hpp"
+// #include <cpr/cpr.h>
+#include <fstream>
 #include <iostream>
 #include <string>
 
-namespace AW3 = CGAL::Alpha_wraps_3;
-namespace PMP = CGAL::Polygon_mesh_processing;
-using K = CGAL::Exact_predicates_inexact_constructions_kernel;
-using Point_3 = K::Point_3;
-using Mesh = CGAL::Surface_mesh<Point_3>;
-
 int main(int argc, char **argv) {
-    std::cout.precision(17);
-    // Read the input
-    const std::string filename =
-        (argc > 1) ? argv[1] : CGAL::data_file_path("data/trees/arbre1.off");
-    std::cout << "Reading " << filename << "..." << std::endl;
+    Config config("../config.json");
 
-    Mesh mesh;
-    if (!PMP::IO::read_polygon_mesh(filename, mesh) || is_empty(mesh) ||
-        !is_triangle_mesh(mesh)) {
-        std::cerr << "Invalid input." << std::endl;
-        exit(1);
+    std::cout << "A_lat: " << config.getAlat() << std::endl;
+    std::cout << "A_lon: " << config.getAlon() << std::endl;
+    std::cout << "B_lat: " << config.getBlat() << std::endl;
+    std::cout << "B_lon: " << config.getBlon() << std::endl;
+
+    auto query = config.get_query();
+
+    query.perform_query();
+    nlohmann::json jsonData = query.get_query_result();
+
+    // Generate tree meshes
+    auto treeLibrary = createLibraryFromJson(jsonData);
+
+    for (auto &tree : treeLibrary) {
+        std::cout << "Tree ID: " << tree.getId() << std::endl;
+        std::cout << "Tree Lat: " << tree.getLat() << std::endl;
+        std::cout << "Tree Lon: " << tree.getLon() << std::endl;
+        std::cout << "Tree Genus: " << tree.getGenus() << std::endl;
+        std::cout << "Tree Species: " << tree.getSpecies() << std::endl;
+        std::cout << "Tree Height: " << tree.getHeight() << std::endl;
+        std::cout << "Tree Circumference: " << tree.getCircumference()
+                  << std::endl;
+        std::cout << "Tree Diameter Crown: " << tree.getDiameterCrown()
+                  << std::endl;
     }
-    std::cout << "Input: " << num_vertices(mesh) << " vertices, "
-              << num_faces(mesh) << " faces" << std::endl;
 
-    // Compute the alpha and offset values
-    const double relative_alpha = (argc > 2) ? std::stod(argv[2]) : 20.;
-    const double relative_offset = (argc > 3) ? std::stod(argv[3]) : 600.;
-
-    // Compute the bounding box diagonal length
-    CGAL::Bbox_3 bbox = CGAL::Polygon_mesh_processing::bbox(mesh);
-    const double diag_length =
-        std::sqrt(CGAL::square(bbox.xmax() - bbox.xmin()) +
-                  CGAL::square(bbox.ymax() - bbox.ymin()) +
-                  CGAL::square(bbox.zmax() - bbox.zmin()));
-    const double alpha = diag_length / relative_alpha;
-    const double offset = diag_length / relative_offset;
-
-    // Construct the wrap
-    CGAL::Real_timer t;
-    t.start();
-    Mesh wrap;
-    CGAL::alpha_wrap_3(mesh, alpha, offset, wrap);
-    t.stop();
-
-    std::cout << "Result: " << num_vertices(wrap) << " vertices, "
-              << num_faces(wrap) << " faces" << std::endl;
-    std::cout << "Took " << t.time() << " s." << std::endl;
-
-    // Save the result
-    std::string input_name = std::string(filename);
-    input_name = input_name.substr(input_name.find_last_of("/") + 1,
-                                   input_name.length() - 1);
-    input_name = input_name.substr(0, input_name.find_last_of("."));
-
-    std::string output_dir = "./output/";
-    std::string output_name =
-        output_dir + input_name + "_" +
-        std::to_string(static_cast<int>(relative_alpha)) + "_" +
-        std::to_string(static_cast<int>(relative_offset)) + ".off";
-    std::cout << "Writing to " << output_name << std::endl;
-    CGAL::IO::write_polygon_mesh(output_name, wrap,
-                                 CGAL::parameters::stream_precision(17));
-
-    exit(0);
+    return 0;
 }
