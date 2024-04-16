@@ -4,19 +4,13 @@
 
 The goal of this project is to develop a tool that integrates vegetation (trees) into 3D urban models in order to improve the efficiency of thermal simulations.
 
-This reposirory contains:
-
-- include: Header files
-- src: Source files
-- test: Test files
-
 == Installation and Usage
 
 === Install Required Packages
 
-This project uses link:https://www.cgal.org[CGAL], link:https://curl.se/[curl] and link:https://github.com/nlohmann/json[nlohmann/json libraries]. Go check them out if you don't have them locally installed.
+This project uses link:https://www.cgal.org[CGAL], link:https://curl.se/[curl].
 
-If you don't want to install them globally on your local machine you can use Miniforge to create a new environment with the required packages:
+If you don't want to install dependencies globally on your local machine you can use Miniforge or venv to create a new environment with the required packages:
 
 ==== Mamba environment:
 
@@ -48,42 +42,44 @@ source .venv/bin/activate
 With the environment set up, install the required packages:
 
 ```bash
-pip install -r requirements.txt
+mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
 ```
+
+=== Alternatively you can use a Docker container:
+```bash
+docker build -t 2024m1vegetation:latest
+docker run -it 2024m1vegetation:latest
+```
+
+Note: on VsCode you can use the Remote - Containers extension to reopen the project in a container.
 
 === Build the Project
 
 Configure and build the project using CMake:
 ```bash
-# Configure CMake
-cmake --preset default
+cd build
+# Clean the build directory
+rm -rf *
 
 # Build the project
-cmake --build --preset default
+cmake ..
 
-# Test the build
-ctest --preset default
+# Compile the project
+make
+
+# Run the tests
+make test
 ```
 
-=== Usage (currently a basic alpha wrapper)
-
-To use the alpha wrapper, run the following command:
+=== Usage 
 
 ```bash
-./build/default/bin/wrap <input_file> <alpha> <offset>
+./build/run
 ```
 
-The output mesh will be saved in the `/output`` folder.
+The `config.json` file contains the gps coordinates of the 2 corners of the area to pull data from OpenSTreetMap.
 
-=== Example
-
-Here's an example of how to use the alpha wrapper:
-
-```bash
-./build/default/bin/wrap data/trees/oranger.off 10
-```
-
-=== Notes
+The output mesh will be saved in the `/temp` directory.
 
 You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
 
