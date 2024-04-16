@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
         mesh.setLod(0);
         mesh.wrap_tree(tree);
         tree.setMesh(mesh);
-        tree.getMesh().dumpMesh();
+        mesh.dumpMesh(tree);
     }
 
     return 0;

@@ -34,8 +34,8 @@ class TreeMesh {
         //     filePath += "arbre1.off";
         // }
         // ...
-        filePath += "arbre1.off";
-        filename = "arbre1.off";
+        filePath += "arbre1.stl";
+        filename = "arbre1.stl";
 
         double relative_alpha;
         double relative_offset = 600;
@@ -76,6 +76,12 @@ class TreeMesh {
         const double alpha = diag_length / relative_alpha;
         const double offset = diag_length / relative_offset;
 
+        // scale the points depending on the tree object
+
+        // for (auto &point : points) {
+        //     point = Point_3(point.x(), point.y(), point.z());
+        // }
+
         CGAL::Real_timer ti;
         ti.start();
 
@@ -94,7 +100,7 @@ class TreeMesh {
     int getLod() const { return M_lod; }
     Mesh getWrap() const { return M_wrap; }
 
-    void dumpMesh() const {
+    void dumpMesh(const Tree &t) const {
 
         std::string output_dir = "../temp/";
 
@@ -103,9 +109,11 @@ class TreeMesh {
                                        input_name.length() - 1);
         input_name = input_name.substr(0, input_name.find_last_of("."));
 
-        std::string output_name = output_dir + input_name + "_" +
-                                  std::to_string(static_cast<int>(M_lod)) +
-                                  "_" + +".off";
+        std::string output_name =
+            output_dir + input_name + "_" +
+            std::to_string(static_cast<int>(M_lod)) + "_" +
+            std::to_string(static_cast<int>(t.getX())) + "_" +
+            std::to_string(static_cast<int>(t.getY())) + ".stl";
         // std::cout << "Writing to " << output_name << std::endl;
         CGAL::IO::write_polygon_mesh(output_name, M_wrap,
                                      CGAL::parameters::stream_precision(17));
