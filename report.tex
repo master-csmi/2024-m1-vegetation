@@ -36,13 +36,11 @@ vegetation, especially trees, holds significant importance. Trees play a crucial
 role in shaping microclimates, reducing energy consumption, and enhancing overall 
 livability\cite{TIR4sTREEt}. This project aims to integrate vegetation, specifically trees, into 3D 
 geometric models of urban environments to improve the accuracy and realism of thermal 
-and energy simulations. Utilizing data from open sources like OpenStreetMap , the project 
-seeks to identify tree positions and attributes within urban landscapes and develop 
+and energy simulations. Utilizing data from open sources like \textbf{OpenStreetMap},
+the project seeks to identify tree positions and attributes within urban landscapes and develop 
 a library of 3D tree models for integration into terrain meshes. The project follows
- a roadmap with defined milestones to deliver versions V0, V1, and V2 by specified 
- deadlines. Through this effort, the project aims to provide valuable insights for
-  urban planners, architects, and policymakers, ultimately contributing to the
-   creation of more sustainable and resilient cities.
+a roadmap with defined milestones to deliver versions \textbf{V0}, \textbf{V1},
+and \textbf{V2} by specified  deadlines.
 
 \subsection{Main Objectives}
 The primary objective of this project is to integrate vegetation, particularly 
@@ -59,7 +57,7 @@ Additionally, specific objectives include:
 \end{itemize}
 
 \subsection{Roadmap}
-As of v0 (May 2024) our roadmap includes the following milestones and issues:  
+As of \textbf{V0} (March 2024) our roadmap includes the following milestones and issues:  
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
@@ -86,9 +84,8 @@ As of v0 (May 2024) our roadmap includes the following milestones and issues:
 \section{Introduction}
 Urban areas are intricate environments influenced by a multitude of factors, with 
 vegetation, notably trees, playing a pivotal role in shaping their microclimates 
-and energy dynamics. Trees provide essential services such as shade, heat 
-mitigation, and pollution reduction, making them indispensable elements in urban 
-landscapes\cite{TIR4sTREEt,img:TreeShade}. As showed in the first image, trees can project different shadows
+and energy dynamics. Trees provide shade, heat mitigation, and pollution reduction,
+making them indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}. As showed in the first image, trees can project different shadows
 on the surrounding depending on the time of the day and the season making it 
 more complex to model their impact on the urban environment. The second image
 shows the significant impact of trees on the urban heat distribution.
@@ -99,13 +96,13 @@ shows the significant impact of trees on the urban heat distribution.
         \centering
         \includegraphics[width=\textwidth]{images/TreeShade.png}
         \captionsetup{font={scriptsize}}
-        \caption{Example of urban trees providing shade \cite{img:TreeShade}}
+        \caption{Example of urban tree providing shade to a buiding \cite{img:TreeShade}.}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/heat_street.png}
         \captionsetup{font={scriptsize}}
-        \caption{Thermal image depicting urban heat distribution \cite{img:street_thermography}}
+        \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}.}
     \end{minipage}
 \end{figure}
 
@@ -163,6 +160,8 @@ The .off format\cite{off_format} is a simple format for 3D or 4D objects consist
 \end{itemize}
 
 \subsection{Software and Libraries}
+To source our data, we'll utilize the Overpass API \cite{overpass} alongside
+curl \cite{curl} to access and leverage information from OpenStreetMap.
 For geometric modeling, we will utilize the CGAL \cite{cgal} library, known for its efficiency and 
 reliability in geometric computation. Shading calculations will be performed using the 
 Feel++ \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs) 
@@ -173,6 +172,11 @@ essential for simulating light and shade on 3D objects.
 \section{Methodology}
 
 \subsection{Data Acquisition}
+A config.json file will be available for the user to access any area in the
+world starting from 2 points. The config.json file will be as follows:
+
+    
+
 Tree data will be obtained from OpenStreetMap, providing information on tree locations, 
 species, and other attributes. This data will be processed to extract relevant 
 information for model integration.
