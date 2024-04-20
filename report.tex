@@ -318,7 +318,7 @@ decide the tree's metadata (species, height, leave density, etc.) based on the
 surrounding trees.
 
 To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
-(latitude, longitude) will be converted to Cartesian coordinates (x, y, z) using
+(latitude, longitude) will be converted to Cartesian coordinates (x, y) using
 a Mercator projection. To achieve this we will assume the Earth is a geodesic
 define as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
   library to convert the coordinates.
