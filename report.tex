@@ -137,7 +137,7 @@ indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}.
         \centering
         \includegraphics[width=\textwidth]{images/TreeShade.png}
         \captionsetup{font={scriptsize}}
-        \caption{Tree providing shade to a buiding \cite{img:TreeShade}.}
+        \caption{Tree providing shade to a building \cite{img:TreeShade}.}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
@@ -311,6 +311,38 @@ Each tree model will have a CGAL Mesh wrapper object that will contain the tree'
 mesh and its position in the 3D space. To ensure efficient computation, this 
 mesh object will be created using a predefined LOD tree reference model, it will
 be scaled and translated to match the tree's real life height and position.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod0.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 0.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 1.}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 2.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod3.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 3.}
+    \end{minipage}
+\end{figure}
 
 The case where not enough data is available for a tree will need to be handled
 as well. For example, we could use a k-nearest neighbors algorithm \cite{k-NN} approach to
