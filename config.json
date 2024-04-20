@@ -1,11 +1,12 @@
 {
   "A": {
-    "latitude": 48.583,
-    "longitude": 7.75354
+    "latitude": 48.58792,
+    "longitude": 7.75529
   },
   "B": {
-    "latitude": 48.58228,
-    "longitude": 7.75292
+    "latitude": 48.58657,
+    "longitude": 7.7522
   },
-  "LOD": 2
+  "LOD": 1,
+  "output_name": "republique"
 }

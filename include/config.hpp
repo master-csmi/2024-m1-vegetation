@@ -9,6 +9,7 @@ class Config {
     double A_lat, A_lon;
     double B_lat, B_lon;
     int M_LOD;
+    std::string M_output_name;
 
   public:
     Config(std::string const &filename);
@@ -22,6 +23,7 @@ class Config {
     double Blon() const;
     double LOD() const;
     Query query() const;
+    std::string output_name() const;
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);

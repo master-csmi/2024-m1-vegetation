@@ -77,7 +77,6 @@ void Tree::wrap(int lod) {
     std::vector<Point_3> points;
     std::vector<std::array<int, 3>> faces;
     CGAL::Bbox_3 bbox;
-    Mesh mesh;
 
     // Append LOD to filename
     filename += "arbre1_lod" + std::to_string(lod) + ".stl";
@@ -94,11 +93,11 @@ void Tree::wrap(int lod) {
         bbox += p.bbox();
 
     if (M_height == 0)
-        M_height = 5;
+        M_height = 5; // change to k-nearest neighbors
 
     scaling_factor_double = M_height / (bbox.zmax() - bbox.zmin());
 
-    K::RT scaling_factor(scaling_factor_double);
+    K::RT scaling_factor(scaling_factor_double); // Convert to exact type
 
     // Create affine transformation (translation and scaling)
     CGAL::Aff_transformation_3<K> transformation =
@@ -112,14 +111,14 @@ void Tree::wrap(int lod) {
     }
 
     // Clear existing mesh data
-    mesh.clear();
+    M_wrap.clear();
 
     // Add transformed vertices to the mesh and store their descriptors
     std::map<Point_3, Mesh::Vertex_index> vertex_map;
     for (const auto &p : points) {
-        auto v = mesh.add_vertex(p);
-        vertex_map[p] =
-            v; // Store mapping from original point to vertex descriptor
+        auto v = M_wrap.add_vertex(p);
+        // Store the vertex descriptor for the transformed vertex
+        vertex_map[p] = v;
     }
 
     // Add faces to the mesh
@@ -130,18 +129,16 @@ void Tree::wrap(int lod) {
         Mesh::Vertex_index v2 = vertex_map[points[face[2]]];
 
         // Add the face to the mesh
-        mesh.add_face(v0, v1, v2);
+        M_wrap.add_face(v0, v1, v2);
     }
 
-    // Assign the transformed mesh to M_wrap
-    M_wrap = mesh;
-
     // Compute the bounding box of the transformed mesh
-    bbox = PMP::bbox(mesh);
+    bbox = PMP::bbox(M_wrap);
 
-    std::cout << "height: " << M_height << std::endl;
-    std::cout << "x, y: " << M_x << ", " << M_y << std::endl;
-    std::cout << "New box height: " << bbox.zmax() - bbox.zmin() << std::endl;
+    // std::cout << "\n height: " << M_height << std::endl;
+    // std::cout << "x, y: " << M_x << ", " << M_y << std::endl;
+    // std::cout << "New box height: " << bbox.zmax() - bbox.zmin() <<
+    // std::endl;
 }
 
 std::ostream &operator<<(std::ostream &os, const Tree &tree) {

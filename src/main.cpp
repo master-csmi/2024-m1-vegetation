@@ -4,6 +4,8 @@
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
 #include <CGAL/Polygon_mesh_processing/corefinement.h>
+#include <CGAL/Real_timer.h>
+#include <filesystem>
 #include <iostream>
 #include <string>
 
@@ -21,23 +23,23 @@ int main(int argc, char **argv) {
     // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
 
-    for (auto &tree : treeLibrary) {
-        std::cout << tree << std::endl;
-    }
+    // for (auto &tree : treeLibrary) {
+    //     std::cout << tree << std::endl;
+    // }
 
     // Mesh part
     Mesh finalMesh;
     Mesh currentWrap;
     double ref_lat = config.Alat();
     double ref_lon = config.Alon();
+    std::string output_name = config.output_name();
     int lod = config.LOD();
+    CGAL::Real_timer t;
 
-    int i = 0;
+    std::cout << "Computing the union of the meshes..." << std::endl;
+    t.start();
     for (auto &tree : treeLibrary) {
         tree.computeXY(ref_lat, ref_lon);
-        // std::cout << "Tree X: " << tree.getX() << std::endl;
-        // std::cout << "Tree Y: " << tree.getY() << std::endl;
-
         tree.wrap(lod);
         currentWrap = tree.wrap();
 
@@ -45,19 +47,27 @@ int main(int argc, char **argv) {
         if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
                 finalMesh, currentWrap, finalMesh)) {
             std::cerr << "Corefine_and_compute_union failed." << std::endl;
-            return 1;
+            exit(1);
         }
-
-        // std::string name = "../output/tree" + std::to_string(i) + ".stl";
-        // CGAL::IO::write_STL(name, currentWrap);
-        // ++i;
     }
+    t.stop();
 
-    // Write the resulting mesh to an OFF file
-    std::ofstream output("../output/union.stl");
+    std::string output_folder = "../output/";
+    if (!std::filesystem::exists(output_folder)) {
+        std::filesystem::create_directory(output_folder);
+    }
+    std::string filename =
+        "../output/" + output_name + "_LOD" + std::to_string(lod) + ".stl";
+
+    std::ofstream output(filename);
     CGAL::IO::write_STL(output, finalMesh);
 
-    return 0;
+    std::cout << "Final mesh: " << num_vertices(finalMesh) << " vertices, "
+              << num_faces(finalMesh) << " faces" << std::endl;
+    std::cout << "Took " << t.time() << " s." << std::endl;
+    std::cout << "Final mesh written to " << filename << std::endl;
+
+    exit(0);
 }
 
 // wrapper
