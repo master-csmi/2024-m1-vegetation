@@ -21,7 +21,7 @@ using Mesh = CGAL::Surface_mesh<Point_3>;
 
 class TreeMesh;
 class Tree {
-  protected:
+  private:
     long id;
     double lat;
     double lon;
@@ -78,6 +78,8 @@ class Tree {
         y = cartesianPosition[1];
     }
     void wrap(int lod);
+
+    friend std::ostream &operator<<(std::ostream &os, const Tree &tree);
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);
