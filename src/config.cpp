@@ -19,21 +19,18 @@ Config::Config(std::string const &filename) {
 
 Config::~Config() {}
 
-double Config::getAlat() const { return A_lat; }
-
-double Config::getAlon() const { return A_lon; }
-
-double Config::getBlat() const { return B_lat; }
-
-double Config::getBlon() const { return B_lon; }
-
-double Config::getLOD() const { return M_LOD; }
-
-Query Config::get_query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
+double Config::Alat() const { return A_lat; }
+double Config::Alon() const { return A_lon; }
+double Config::Blat() const { return B_lat; }
+double Config::Blon() const { return B_lon; }
+double Config::LOD() const { return M_LOD; }
+Query Config::query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
 
 std::ostream &operator<<(std::ostream &os, const Config &config) {
-    os << "A lat: " << config.A_lat << ", A lon: " << config.A_lon << std::endl;
-    os << "B lat: " << config.B_lat << ", B lon: " << config.B_lon << std::endl;
-    os << "LOD: " << config.M_LOD << std::endl;
+    os << "A lat: " << config.Alat() << ", A lon: " << config.Alon()
+       << std::endl;
+    os << "B lat: " << config.Blat() << ", B lon: " << config.Blon()
+       << std::endl;
+    os << "LOD: " << config.LOD() << std::endl;
     return os;
 }

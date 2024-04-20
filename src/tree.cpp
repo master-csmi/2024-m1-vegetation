@@ -1,17 +1,19 @@
 #include "../include/tree.hpp"
+#include "../include/WGS84toCartesian.hpp"
 #include <string>
 
 // Default constructor
 Tree::Tree()
-    : id(0), lat(0), lon(0), height(0), circumference(0), diameter_crown(0) {}
+    : M_id(0), M_lat(0), M_lon(0), M_height(0), M_circumference(0),
+      M_diameter_crown(0) {}
 
 // Constructor that takes arguments
 Tree::Tree(long id, double lat, double lon, std::string genus,
            std::string species, double height, double circumference,
            double diameter_crown)
-    : id(id), lat(lat), lon(lon), genus(genus), species(species),
-      height(height), circumference(circumference),
-      diameter_crown(diameter_crown) {}
+    : M_id(id), M_lat(lat), M_lon(lon), M_genus(genus), M_species(species),
+      M_height(height), M_circumference(circumference),
+      M_diameter_crown(diameter_crown) {}
 
 Tree createTreeFromJson(const nlohmann::json &treeJson) {
     Tree tree;
@@ -56,11 +58,16 @@ Tree createTreeFromJson(const nlohmann::json &treeJson) {
     return tree;
 }
 
+void Tree::computeXY(double ref_lat, double ref_lon) {
+    std::array<double, 2> cartesianPosition =
+        wgs84::toCartesian({ref_lat, ref_lon} /* reference position */,
+                           {M_lon, M_lat} /* position to be converted */);
+    M_x = cartesianPosition[0];
+    M_y = cartesianPosition[1];
+}
+
 void Tree::wrap(int lod) {
     std::string filename = "../tree_ref/";
-    std::string season = getSeason();
-    std::string species = getSpecies();
-    double tree_height = getHeight();
     double scaling_factor;
     std::vector<Point_3> points;
     std::vector<std::array<int, 3>> faces;
@@ -82,22 +89,21 @@ void Tree::wrap(int lod) {
         bbox += p.bbox();
 
     // Calculate scaling factor based on tree height
-    if (tree_height == 0) {
-        tree_height = 5; // k nearest would be better
+    if (M_height == 0) {
+        M_height = 5; // k nearest would be better
     }
 
-    scaling_factor = tree_height / (bbox.zmax() - bbox.zmin());
-    std::cout << "x = " << getX() << ", y=" << getY()
-              << ", tree height=" << tree_height;
+    scaling_factor = M_height / (bbox.zmax() - bbox.zmin());
+    std::cout << "x = " << x() << ", y=" << y() << ", tree height=" << M_height;
 
     // Translate mesh to tree coordinates and scale based on tree height
     for (auto &point : points) {
-        point = Point_3((point.x() + getX()), (point.y() + getY()), point.z());
+        point = Point_3(point.x() + x(), point.y() + y(), point.z());
         point = Point_3(point.x() * scaling_factor, point.y() * scaling_factor,
                         point.z() * scaling_factor);
     }
 
-    // Store the modified mesh in M_wrap
+    // Store the modified mesh in M_M_wrap
     M_wrap.clear();
     CGAL::Polygon_mesh_processing::polygon_soup_to_polygon_mesh(points, faces,
                                                                 M_wrap);
@@ -108,13 +114,14 @@ void Tree::wrap(int lod) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Tree &tree) {
-    os << "ID: " << tree.id << std::endl;
-    os << "Lat: " << tree.lat << ", Lon: " << tree.lon << std::endl;
-    os << "Genus: " << tree.genus << ", Species: " << tree.species << std::endl;
-    os << "Season: " << tree.season << std::endl;
-    os << "Height: " << tree.height << ", Circumference: " << tree.circumference
+    os << "ID: " << tree.id() << std::endl;
+    os << "Lat: " << tree.lat() << ", Lon: " << tree.lon() << std::endl;
+    os << "Genus: " << tree.genus() << ", Species: " << tree.species()
        << std::endl;
-    os << "Diameter crown: " << tree.diameter_crown << std::endl;
-    os << "x: " << tree.x << ", y: " << tree.y << std::endl;
+    os << "Season: " << tree.season() << std::endl;
+    os << "Height: " << tree.height()
+       << ", Circumference: " << tree.circumference() << std::endl;
+    os << "Diameter crown: " << tree.diameterCrown() << std::endl;
+    os << "x: " << tree.x() << ", y: " << tree.y() << std::endl;
     return os;
 }

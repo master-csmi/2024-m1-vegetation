@@ -16,14 +16,14 @@ class Config {
     ~Config();
 
     // Getters
-    double getAlat() const;
-    double getAlon() const;
-    double getBlat() const;
-    double getBlon() const;
-    double getLOD() const;
-    Query get_query() const;
-
-    friend std::ostream &operator<<(std::ostream &os, const Config &config);
+    double Alat() const;
+    double Alon() const;
+    double Blat() const;
+    double Blon() const;
+    double LOD() const;
+    Query query() const;
 };
+
+std::ostream &operator<<(std::ostream &os, const Config &config);
 
 #endif

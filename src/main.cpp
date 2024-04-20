@@ -4,7 +4,6 @@
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
 #include <CGAL/Polygon_mesh_processing/corefinement.h>
-#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -14,7 +13,7 @@ int main(int argc, char **argv) {
 
     std::cout << config << std::endl;
 
-    auto query = config.get_query();
+    auto query = config.query();
 
     query.perform_query();
     nlohmann::json jsonData = query.get_query_result();
@@ -29,9 +28,9 @@ int main(int argc, char **argv) {
     // Mesh part
     Mesh finalMesh;
     Mesh currentWrap;
-    double ref_lat = config.getAlat();
-    double ref_lon = config.getAlon();
-    int lod = config.getLOD();
+    double ref_lat = config.Alat();
+    double ref_lon = config.Alon();
+    int lod = config.LOD();
 
     int i = 0;
     for (auto &tree : treeLibrary) {
@@ -40,7 +39,7 @@ int main(int argc, char **argv) {
         // std::cout << "Tree Y: " << tree.getY() << std::endl;
 
         tree.wrap(lod);
-        currentWrap = tree.getWrap();
+        currentWrap = tree.wrap();
 
         // Compute the union of the meshes
         // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
