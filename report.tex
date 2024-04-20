@@ -261,7 +261,9 @@ city center:
     "B": {
         "latitude": 48.587756,
         "longitude": 7.756632
-    }
+    },
+    "LOD": 1,
+    "output_name": "republique"
 }
 \end{lstlisting}
 
@@ -355,6 +357,27 @@ To ensure precise integration into the terrain mesh (especially for large area),
 a Mercator projection\cite{mercator-proj}. To achieve this we will assume the Earth is a geodesic
 defined as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
   library to convert the coordinates.
+
+The union of all the tree meshed need to be computed to create a single mesh
+and avoid collision between the trees.
+
+Here is an example of the tree mesh union of Place de la République in Strasbourg
+using generic trees and LOD 3:
+
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/republic_top.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Top view of Place de la République.}
+\end{figure}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{images/republic.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Side view of Place de la République.}
+\end{figure}
 
 \subsection{Model Integration}
 Generated tree models will be integrated into terrain meshes to create comprehensive 
