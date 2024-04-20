@@ -68,11 +68,18 @@ cmake ..
 
 # Compile the project
 make
+cmake ..
 
+# Compile the project
+make
+
+# Run the tests
+make test
 # Run the tests
 make test
 ```
 
+=== Usage 
 === Usage 
 
 ```bash
