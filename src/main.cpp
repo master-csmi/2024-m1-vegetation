@@ -9,8 +9,7 @@
 #include <string>
 
 int main(int argc, char **argv) {
-    Mesh finalMesh;
-    Mesh currentWrap;
+
     Config config("../config.json");
 
     std::cout << "A_lat: " << config.getAlat() << std::endl;
@@ -39,9 +38,17 @@ int main(int argc, char **argv) {
                   << std::endl;
     }
 
+    // Mesh part
+    ///////////////////////////////////////////////////////////////
+
+    Mesh finalMesh;
+    Mesh currentWrap;
+    double ref_lat = config.getAlat();
+    double ref_lon = config.getAlon();
+
     int i = 0;
     for (auto &tree : treeLibrary) {
-        tree.computeXY(query);
+        tree.computeXY(ref_lat, ref_lon);
         // std::cout << "Tree X: " << tree.getX() << std::endl;
         // std::cout << "Tree Y: " << tree.getY() << std::endl;
 
@@ -61,11 +68,8 @@ int main(int argc, char **argv) {
     }
 
     // Write the resulting mesh to an OFF file
-    std::ofstream output("../output/union.stl");
-    if (!output || !(output << finalMesh)) {
-        std::cerr << "Cannot write output file." << std::endl;
-        return 1;
-    }
+    std::ofstream output("../output/union.off");
+    CGAL::IO::write_OFF(output, finalMesh);
 
     return 0;
 }
@@ -116,6 +120,14 @@ int main(int argc, char **argv) {
 //     CGAL::Real_timer t;
 //     t.start();
 //     Mesh wrap;
+
+//     double scaling_factor = 10 / (bbox.zmax() - bbox.zmin());
+//     for (auto &point : points) {
+//         point = Point_3(point.x() * scaling_factor, point.y() *
+//         scaling_factor,
+//                         point.z() * scaling_factor);
+//     }
+
 //     CGAL::alpha_wrap_3(points, faces, alpha, offset, wrap);
 //     t.stop();
 //     std::cout << "Result: " << num_vertices(wrap) << " vertices, "

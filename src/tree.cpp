@@ -81,10 +81,12 @@ void Tree::wrap(int lod) {
 
     // Calculate scaling factor based on tree height
     double tree_height = getHeight();
+    if (tree_height == 0) {
+        tree_height = 5; // k nearest would be better
+    }
     double scaling_factor = tree_height / (bbox.zmax() - bbox.zmin());
-    // double scaling_factor = 0.1;
-    std::cout << "box height: " << bbox.zmax() - bbox.zmin() << ", x=" << getX()
-              << ", y=" << getY() << std::endl;
+    std::cout << "x = " << getX() << ", y=" << getY()
+              << ", tree height=" << tree_height;
 
     // Translate mesh to tree coordinates and scale based on tree height
     for (auto &point : points) {
@@ -99,5 +101,6 @@ void Tree::wrap(int lod) {
                                                                 M_wrap);
 
     // Optionally, you can update the bounding box if needed
-    // bbox = CGAL::Polygon_mesh_processing::bbox(M_wrap);
+    bbox = CGAL::Polygon_mesh_processing::bbox(M_wrap);
+    std::cout << ", new box height: " << bbox.zmax() - bbox.zmin() << std::endl;
 }

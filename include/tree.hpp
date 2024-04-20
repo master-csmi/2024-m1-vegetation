@@ -70,10 +70,9 @@ class Tree {
     void setDiameterCrown(double diameter_crown) {
         this->diameter_crown = diameter_crown;
     }
-    void computeXY(const Query &q) {
-        std::array<double, 2> ref = q.getRefPt();
+    void computeXY(double ref_lat, double ref_lon) {
         std::array<double, 2> cartesianPosition =
-            wgs84::toCartesian({ref[0], ref[1]} /* reference position */,
+            wgs84::toCartesian({ref_lat, ref_lon} /* reference position */,
                                {lon, lat} /* position to be converted */);
         x = cartesianPosition[0];
         y = cartesianPosition[1];
