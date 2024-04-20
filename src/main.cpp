@@ -12,39 +12,26 @@ int main(int argc, char **argv) {
 
     Config config("../config.json");
 
-    std::cout << "A_lat: " << config.getAlat() << std::endl;
-    std::cout << "A_lon: " << config.getAlon() << std::endl;
-    std::cout << "B_lat: " << config.getBlat() << std::endl;
-    std::cout << "B_lon: " << config.getBlon() << std::endl;
+    std::cout << config << std::endl;
 
     auto query = config.get_query();
 
     query.perform_query();
     nlohmann::json jsonData = query.get_query_result();
 
-    // Generate tree meshes
+    // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
 
     for (auto &tree : treeLibrary) {
-        std::cout << "Tree ID: " << tree.getId() << std::endl;
-        std::cout << "Tree Lat: " << tree.getLat() << std::endl;
-        std::cout << "Tree Lon: " << tree.getLon() << std::endl;
-        std::cout << "Tree Genus: " << tree.getGenus() << std::endl;
-        std::cout << "Tree Species: " << tree.getSpecies() << std::endl;
-        std::cout << "Tree Height: " << tree.getHeight() << std::endl;
-        std::cout << "Tree Circumference: " << tree.getCircumference()
-                  << std::endl;
-        std::cout << "Tree Diameter Crown: " << tree.getDiameterCrown()
-                  << std::endl;
+        std::cout << tree << std::endl;
     }
 
     // Mesh part
-    ///////////////////////////////////////////////////////////////
-
     Mesh finalMesh;
     Mesh currentWrap;
     double ref_lat = config.getAlat();
     double ref_lon = config.getAlon();
+    int lod = config.getLOD();
 
     int i = 0;
     for (auto &tree : treeLibrary) {
@@ -52,27 +39,29 @@ int main(int argc, char **argv) {
         // std::cout << "Tree X: " << tree.getX() << std::endl;
         // std::cout << "Tree Y: " << tree.getY() << std::endl;
 
-        tree.wrap(0);
+        tree.wrap(lod);
         currentWrap = tree.getWrap();
 
         // Compute the union of the meshes
-        if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
-                finalMesh, currentWrap, finalMesh)) {
-            std::cerr << "Corefine_and_compute_union failed." << std::endl;
-            return 1;
-        }
+        // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
+        //         finalMesh, currentWrap, finalMesh)) {
+        //     std::cerr << "Corefine_and_compute_union failed." << std::endl;
+        //     return 1;
+        // }
 
-        // std::string name = "../output/tree" + std::to_string(i) + ".off";
-        // CGAL::IO::write_OFF(name, currentWrap);
-        // i++;
+        std::string name = "../output/tree" + std::to_string(i) + ".off";
+        CGAL::IO::write_OFF(name, currentWrap);
+        ++i;
     }
 
     // Write the resulting mesh to an OFF file
-    std::ofstream output("../output/union.off");
-    CGAL::IO::write_OFF(output, finalMesh);
+    // std::ofstream output("../output/union.off");
+    // CGAL::IO::write_OFF(output, finalMesh);
 
     return 0;
 }
+
+// wrapper
 
 // #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 // #include <CGAL/IO/polygon_soup_io.h>

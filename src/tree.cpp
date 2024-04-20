@@ -60,15 +60,17 @@ void Tree::wrap(int lod) {
     std::string filename = "../tree_ref/";
     std::string season = getSeason();
     std::string species = getSpecies();
+    double tree_height = getHeight();
+    double scaling_factor;
+    std::vector<Point_3> points;
+    std::vector<std::array<int, 3>> faces;
+    std::vector<std::array<int, 3>> edges;
+    CGAL::Bbox_3 bbox;
 
     // Append LOD to filename
     filename += "arbre1_lod" + std::to_string(lod) + ".stl";
 
     CGAL::data_file_path(filename);
-    std::vector<Point_3> points;
-    std::vector<std::array<int, 3>> faces;
-    std::vector<std::array<int, 3>> edges;
-    CGAL::Bbox_3 bbox;
 
     if (!CGAL::IO::read_polygon_soup(filename, points, faces) ||
         faces.empty()) {
@@ -80,11 +82,11 @@ void Tree::wrap(int lod) {
         bbox += p.bbox();
 
     // Calculate scaling factor based on tree height
-    double tree_height = getHeight();
     if (tree_height == 0) {
         tree_height = 5; // k nearest would be better
     }
-    double scaling_factor = tree_height / (bbox.zmax() - bbox.zmin());
+
+    scaling_factor = tree_height / (bbox.zmax() - bbox.zmin());
     std::cout << "x = " << getX() << ", y=" << getY()
               << ", tree height=" << tree_height;
 
@@ -103,4 +105,16 @@ void Tree::wrap(int lod) {
     // Optionally, you can update the bounding box if needed
     bbox = CGAL::Polygon_mesh_processing::bbox(M_wrap);
     std::cout << ", new box height: " << bbox.zmax() - bbox.zmin() << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &os, const Tree &tree) {
+    os << "ID: " << tree.id << std::endl;
+    os << "Lat: " << tree.lat << ", Lon: " << tree.lon << std::endl;
+    os << "Genus: " << tree.genus << ", Species: " << tree.species << std::endl;
+    os << "Season: " << tree.season << std::endl;
+    os << "Height: " << tree.height << ", Circumference: " << tree.circumference
+       << std::endl;
+    os << "Diameter crown: " << tree.diameter_crown << std::endl;
+    os << "x: " << tree.x << ", y: " << tree.y << std::endl;
+    return os;
 }

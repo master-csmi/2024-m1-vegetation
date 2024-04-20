@@ -1,19 +1,18 @@
 #ifndef CONFIG_HPP
 #define CONFIG_HPP
 
-#include <string>
 #include "query.hpp"
+#include <string>
 
-class Config
-{
-private:
+class Config {
+  private:
     double A_lat, A_lon;
     double B_lat, B_lon;
-public:
-    // Constructor
-    Config(std::string const& filename);
+    int M_LOD;
 
-    // Destructor
+  public:
+    Config(std::string const &filename);
+
     ~Config();
 
     // Getters
@@ -21,9 +20,10 @@ public:
     double getAlon() const;
     double getBlat() const;
     double getBlon() const;
-
-    // Get the query
+    double getLOD() const;
     Query get_query() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Config &config);
 };
 
 #endif
