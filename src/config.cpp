@@ -1,6 +1,7 @@
 #include "../include/config.hpp"
 #include "../include/json.hpp"
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 
 Config::Config(std::string const &filename) {
@@ -27,10 +28,10 @@ double Config::LOD() const { return M_LOD; }
 Query Config::query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
 
 std::ostream &operator<<(std::ostream &os, const Config &config) {
-    os << "A lat: " << config.Alat() << ", A lon: " << config.Alon()
-       << std::endl;
-    os << "B lat: " << config.Blat() << ", B lon: " << config.Blon()
-       << std::endl;
+    os << std::setprecision(10) << "A lat: " << config.Alat()
+       << ", A lon: " << config.Alon() << std::endl;
+    os << std::setprecision(10) << "B lat: " << config.Blat()
+       << ", B lon: " << config.Blon() << std::endl;
     os << "LOD: " << config.LOD() << std::endl;
     return os;
 }

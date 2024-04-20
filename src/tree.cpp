@@ -1,6 +1,11 @@
 #include "../include/tree.hpp"
 #include "../include/WGS84toCartesian.hpp"
+#include <CGAL/Aff_transformation_3.h>
 #include <string>
+
+namespace PMP = CGAL::Polygon_mesh_processing;
+typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
+typedef K::Vector_3 Vector_3;
 
 // Default constructor
 Tree::Tree()
@@ -61,56 +66,82 @@ Tree createTreeFromJson(const nlohmann::json &treeJson) {
 void Tree::computeXY(double ref_lat, double ref_lon) {
     std::array<double, 2> cartesianPosition =
         wgs84::toCartesian({ref_lat, ref_lon} /* reference position */,
-                           {M_lon, M_lat} /* position to be converted */);
+                           {M_lat, M_lon} /* position to be converted */);
     M_x = cartesianPosition[0];
     M_y = cartesianPosition[1];
 }
 
 void Tree::wrap(int lod) {
     std::string filename = "../tree_ref/";
-    double scaling_factor;
+    double scaling_factor_double;
     std::vector<Point_3> points;
     std::vector<std::array<int, 3>> faces;
-    std::vector<std::array<int, 3>> edges;
     CGAL::Bbox_3 bbox;
+    Mesh mesh;
 
     // Append LOD to filename
     filename += "arbre1_lod" + std::to_string(lod) + ".stl";
 
     CGAL::data_file_path(filename);
 
-    if (!CGAL::IO::read_polygon_soup(filename, points, faces) ||
-        faces.empty()) {
+    if (!CGAL::IO::read_STL(filename, points, faces)) {
         std::cerr << "Invalid input." << std::endl;
         exit(1);
     }
 
+    // Calculate bounding box from points
     for (const Point_3 &p : points)
         bbox += p.bbox();
 
-    // Calculate scaling factor based on tree height
-    if (M_height == 0) {
-        M_height = 5; // k nearest would be better
+    if (M_height == 0)
+        M_height = 5;
+
+    scaling_factor_double = M_height / (bbox.zmax() - bbox.zmin());
+
+    K::RT scaling_factor(scaling_factor_double);
+
+    // Create affine transformation (translation and scaling)
+    CGAL::Aff_transformation_3<K> transformation =
+        CGAL::Aff_transformation_3<K>(CGAL::TRANSLATION,
+                                      Vector_3(M_x, M_y, 0)) *
+        CGAL::Aff_transformation_3<K>(CGAL::SCALING, scaling_factor);
+
+    // Apply transformation to each point in the mesh
+    for (auto &p : points) {
+        p = transformation.transform(p);
     }
 
-    scaling_factor = M_height / (bbox.zmax() - bbox.zmin());
-    std::cout << "x = " << x() << ", y=" << y() << ", tree height=" << M_height;
+    // Clear existing mesh data
+    mesh.clear();
 
-    // Translate mesh to tree coordinates and scale based on tree height
-    for (auto &point : points) {
-        point = Point_3(point.x() + x(), point.y() + y(), point.z());
-        point = Point_3(point.x() * scaling_factor, point.y() * scaling_factor,
-                        point.z() * scaling_factor);
+    // Add transformed vertices to the mesh and store their descriptors
+    std::map<Point_3, Mesh::Vertex_index> vertex_map;
+    for (const auto &p : points) {
+        auto v = mesh.add_vertex(p);
+        vertex_map[p] =
+            v; // Store mapping from original point to vertex descriptor
     }
 
-    // Store the modified mesh in M_M_wrap
-    M_wrap.clear();
-    CGAL::Polygon_mesh_processing::polygon_soup_to_polygon_mesh(points, faces,
-                                                                M_wrap);
+    // Add faces to the mesh
+    for (const auto &face : faces) {
+        // Retrieve vertex descriptors for the face vertices
+        Mesh::Vertex_index v0 = vertex_map[points[face[0]]];
+        Mesh::Vertex_index v1 = vertex_map[points[face[1]]];
+        Mesh::Vertex_index v2 = vertex_map[points[face[2]]];
 
-    // Optionally, you can update the bounding box if needed
-    bbox = CGAL::Polygon_mesh_processing::bbox(M_wrap);
-    std::cout << ", new box height: " << bbox.zmax() - bbox.zmin() << std::endl;
+        // Add the face to the mesh
+        mesh.add_face(v0, v1, v2);
+    }
+
+    // Assign the transformed mesh to M_wrap
+    M_wrap = mesh;
+
+    // Compute the bounding box of the transformed mesh
+    bbox = PMP::bbox(mesh);
+
+    std::cout << "height: " << M_height << std::endl;
+    std::cout << "x, y: " << M_x << ", " << M_y << std::endl;
+    std::cout << "New box height: " << bbox.zmax() - bbox.zmin() << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &os, const Tree &tree) {

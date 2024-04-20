@@ -1,6 +1,6 @@
-#include "json_helpers.hpp"
-#include "json.hpp"
-#include "tree.hpp"
+#include "../include/json_helpers.hpp"
+#include "../include/json.hpp"
+#include "../include/tree.hpp"
 #include <fstream>
 
 std::vector<Tree> createLibraryFromJson(nlohmann::json const &jsonData) {
