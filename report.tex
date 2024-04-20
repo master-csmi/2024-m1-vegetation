@@ -10,7 +10,7 @@
 
 % Define colors
 \colorlet{punct}{red!60!black}
-\definecolor{background}{HTML}{EEEEEE}
+\definecolor{background}{RGB}{240, 248, 255} % Pale Blue
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
 
@@ -45,6 +45,35 @@
 }
 
 \setlength{\parskip}{1em}
+
+\lstset{frame=single, showstringspaces=false, columns=fixed, basicstyle={\ttfamily}, commentstyle={\it}, numbers=left, tabsize=4}
+
+\definecolor{codebackground}{RGB}{240, 248, 255} % Pale Blue
+\definecolor{codecomment}{RGB}{106,153,85}
+\definecolor{codekeyword}{RGB}{30,30,255}
+\definecolor{codestring}{RGB}{163,21,21}
+\definecolor{codenumber}{RGB}{100,100,100}
+
+\lstdefinestyle{modernstyle}{
+    backgroundcolor=\color{codebackground},
+    commentstyle=\color{codecomment},
+    keywordstyle=\color{codekeyword},
+    numberstyle=\tiny\color{codenumber},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\footnotesize\color{black},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+
+\lstset{style=modernstyle}
 
 \begin{document}
 
@@ -223,7 +252,7 @@ which define a bounding box.
 Here's an example of the \textit{config.json} file for the Strasbourg, France
 city center:
 
-\begin{lstlisting}[language=json,firstnumber=1]
+\begin{lstlisting}[language=json]
 {
     "A": {
         "latitude": 48.578702,
@@ -236,6 +265,10 @@ city center:
 }
 \end{lstlisting}
 
+This configuration file will be updated along the way to include more options
+as needed such as mesh level of detail (LOD), seasons for the density of leaves,
+etc.
+
 We will then use the \texttt{Overpass API} to query \texttt{OpenStreetMap}
 for all the available tree data within the specified bounding box.
 The data will be stored in a \textit{.json} file.
@@ -243,7 +276,7 @@ The data will be stored in a \textit{.json} file.
 \newpage
 Here's an example of the result of the query for one tree:
 
-\begin{lstlisting}[language=json,firstnumber=1]
+\begin{lstlisting}[language=json]
 {
     "type": "node",
     "id": 10161978695,
@@ -273,6 +306,22 @@ to generate the 3D tree models.
 Using CGAL Alpha Wrapper \cite{cgal_alpha_wrapper}, 3D tree models will be generated based on the extracted data. Various 
 Levels of Detail (LOD) will be considered to balance model complexity and computational 
 efficiency depending on the application.
+
+Each tree model will have a CGAL Mesh wrapper object that will contain the tree's
+mesh and its position in the 3D space. To ensure efficient computation, this 
+mesh object will be created using a predefined LOD tree reference model, it will
+be scaled and translated to match the tree's real life height and position.
+
+The case where not enough data is available for a tree will need to be handled
+as well. For example, we could use a k-nearest neighbors algorithm \cite{k-NN} approach to
+decide the tree's metadata (species, height, leave density, etc.) based on the
+surrounding trees.
+
+To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
+(latitude, longitude) will be converted to Cartesian coordinates (x, y, z) using
+a Mercator projection. To achieve this we will assume the Earth is a geodesic
+define as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
+  library to convert the coordinates.
 
 \subsection{Model Integration}
 Generated tree models will be integrated into terrain meshes to create comprehensive 
