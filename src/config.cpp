@@ -13,6 +13,7 @@ Config::Config(std::string const &filename) {
         B_lat = data["B"]["latitude"];
         B_lon = data["B"]["longitude"];
         M_LOD = data["LOD"];
+        M_output_name = data["output_name"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
     }
@@ -26,6 +27,7 @@ double Config::Blat() const { return B_lat; }
 double Config::Blon() const { return B_lon; }
 double Config::LOD() const { return M_LOD; }
 Query Config::query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
+std::string Config::output_name() const { return M_output_name; }
 
 std::ostream &operator<<(std::ostream &os, const Config &config) {
     os << std::setprecision(10) << "A lat: " << config.Alat()
