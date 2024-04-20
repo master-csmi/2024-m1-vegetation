@@ -5,6 +5,7 @@
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/IO/polygon_soup_io.h>
 #include <CGAL/Polygon_mesh_processing/bbox.h>
+#include <CGAL/Polygon_mesh_processing/transform.h>
 #include <CGAL/Real_timer.h>
 #include <CGAL/Surface_mesh.h>
 #include <CGAL/alpha_wrap_3.h>
@@ -69,7 +70,7 @@ class Tree {
 
     void computeXY(double ref_lat, double ref_lon);
     void wrap(int lod);
-};
+}; // namespace CGAL::Polygon_mesh_processing
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);
 std::ostream &operator<<(std::ostream &os, const Tree &tree);

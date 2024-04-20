@@ -42,20 +42,20 @@ int main(int argc, char **argv) {
         currentWrap = tree.wrap();
 
         // Compute the union of the meshes
-        // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
-        //         finalMesh, currentWrap, finalMesh)) {
-        //     std::cerr << "Corefine_and_compute_union failed." << std::endl;
-        //     return 1;
-        // }
+        if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
+                finalMesh, currentWrap, finalMesh)) {
+            std::cerr << "Corefine_and_compute_union failed." << std::endl;
+            return 1;
+        }
 
-        std::string name = "../output/tree" + std::to_string(i) + ".off";
-        CGAL::IO::write_OFF(name, currentWrap);
-        ++i;
+        // std::string name = "../output/tree" + std::to_string(i) + ".stl";
+        // CGAL::IO::write_STL(name, currentWrap);
+        // ++i;
     }
 
     // Write the resulting mesh to an OFF file
-    // std::ofstream output("../output/union.off");
-    // CGAL::IO::write_OFF(output, finalMesh);
+    std::ofstream output("../output/union.stl");
+    CGAL::IO::write_STL(output, finalMesh);
 
     return 0;
 }
@@ -109,6 +109,8 @@ int main(int argc, char **argv) {
 //     t.start();
 //     Mesh wrap;
 
+//     std::cout << "bbox height: " << bbox.zmax() - bbox.zmin() << std::endl;
+
 //     double scaling_factor = 10 / (bbox.zmax() - bbox.zmin());
 //     for (auto &point : points) {
 //         point = Point_3(point.x() * scaling_factor, point.y() *
@@ -128,9 +130,12 @@ int main(int argc, char **argv) {
 //     input_name = input_name.substr(0, input_name.find_last_of("."));
 //     std::string output_name =
 //         input_name + "_" + std::to_string(static_cast<int>(relative_alpha)) +
-//         "_" + std::to_string(static_cast<int>(relative_offset)) + ".stl";
+//         "_" + std::to_string(static_cast<int>(relative_offset)) + ".off";
 //     std::cout << "Writing to " << output_name << std::endl;
 //     CGAL::IO::write_polygon_mesh(output_name, wrap,
 //                                  CGAL::parameters::stream_precision(17));
-//     return EXIT_SUCCESS;
+
+//     bbox = CGAL::Polygon_mesh_processing::bbox(wrap);
+//     std::cout << "New box height: " << bbox.zmax() - bbox.zmin() <<
+//     std::endl; return EXIT_SUCCESS;
 // }
