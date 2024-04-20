@@ -4,7 +4,20 @@
 #include "WGS84toCartesian.hpp"
 #include "json.hpp"
 #include "query.hpp"
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/IO/polygon_soup_io.h>
+#include <CGAL/Polygon_mesh_processing/bbox.h>
+#include <CGAL/Real_timer.h>
+#include <CGAL/Surface_mesh.h>
+#include <CGAL/alpha_wrap_3.h>
+#include <array>
+#include <iostream>
 #include <string>
+#include <vector>
+
+using K = CGAL::Exact_predicates_inexact_constructions_kernel;
+using Point_3 = K::Point_3;
+using Mesh = CGAL::Surface_mesh<Point_3>;
 
 class TreeMesh;
 class Tree {
@@ -19,7 +32,7 @@ class Tree {
     double circumference;
     double diameter_crown;
     double x, y;
-    TreeMesh *mesh;
+    Mesh M_wrap;
 
   public:
     // Default constructor
@@ -42,6 +55,7 @@ class Tree {
     std::string getSeason() const { return season; }
     double getX() const { return x; }
     double getY() const { return y; }
+    Mesh getWrap() const { return M_wrap; }
 
     // Setters
     void setId(long id) { this->id = id; }
@@ -64,8 +78,7 @@ class Tree {
         x = cartesianPosition[0];
         y = cartesianPosition[1];
     }
-    void setMesh(TreeMesh &m) { this->mesh = &m; }
-    TreeMesh &getMesh() { return *mesh; }
+    void wrap(int lod);
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);

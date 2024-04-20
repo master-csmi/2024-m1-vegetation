@@ -1,4 +1,4 @@
-#include "tree.hpp"
+#include "../include/tree.hpp"
 #include <string>
 
 // Default constructor
@@ -54,4 +54,50 @@ Tree createTreeFromJson(const nlohmann::json &treeJson) {
     }
 
     return tree;
+}
+
+void Tree::wrap(int lod) {
+    std::string filename = "../tree_ref/";
+    std::string season = getSeason();
+    std::string species = getSpecies();
+
+    // Append LOD to filename
+    filename += "arbre1_lod" + std::to_string(lod) + ".stl";
+
+    CGAL::data_file_path(filename);
+    std::vector<Point_3> points;
+    std::vector<std::array<int, 3>> faces;
+    std::vector<std::array<int, 3>> edges;
+    CGAL::Bbox_3 bbox;
+
+    if (!CGAL::IO::read_polygon_soup(filename, points, faces) ||
+        faces.empty()) {
+        std::cerr << "Invalid input." << std::endl;
+        exit(1);
+    }
+
+    for (const Point_3 &p : points)
+        bbox += p.bbox();
+
+    // Calculate scaling factor based on tree height
+    double tree_height = getHeight();
+    double scaling_factor = tree_height / (bbox.zmax() - bbox.zmin());
+    // double scaling_factor = 0.1;
+    std::cout << "box height: " << bbox.zmax() - bbox.zmin() << ", x=" << getX()
+              << ", y=" << getY() << std::endl;
+
+    // Translate mesh to tree coordinates and scale based on tree height
+    for (auto &point : points) {
+        point = Point_3((point.x() + getX()), (point.y() + getY()), point.z());
+        point = Point_3(point.x() * scaling_factor, point.y() * scaling_factor,
+                        point.z() * scaling_factor);
+    }
+
+    // Store the modified mesh in M_wrap
+    M_wrap.clear();
+    CGAL::Polygon_mesh_processing::polygon_soup_to_polygon_mesh(points, faces,
+                                                                M_wrap);
+
+    // Optionally, you can update the bounding box if needed
+    // bbox = CGAL::Polygon_mesh_processing::bbox(M_wrap);
 }
