@@ -211,7 +211,7 @@ reliability in geometric computation. Shading calculations will be performed usi
 essential for simulating light and shade on 3D objects.
 
 \subsection{GitHub Repository}
-We created a \texttt{GitHub} repository to manage the project and facilitate collaboration.
+We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub} repository to manage the project and facilitate collaboration.
 The repository contains the project's code, documentation, and resources. It will be
 updated regularly to reflect the progress and changes made during the project's
 development.
@@ -307,7 +307,8 @@ Using CGAL Alpha Wrapper \cite{cgal_alpha_wrapper}, 3D tree models will be gener
 Levels of Detail (LOD) will be considered to balance model complexity and computational 
 efficiency depending on the application.
 
-Each tree model will have a CGAL Mesh wrapper object that will contain the tree's
+Each tree model will have a CGAL \href{https://doc.cgal.org/latest/Surface_mesh/classCGAL_1_1Surface__mesh.html}{Mesh} 
+wrapper object that will contain the tree's
 mesh and its position in the 3D space. To ensure efficient computation, this 
 mesh object will be created using a predefined LOD tree reference model, it will
 be scaled and translated to match the tree's real life height and position.
@@ -351,7 +352,7 @@ surrounding trees.
 
 To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
 (latitude, longitude) will be converted to Cartesian coordinates (x, y) using
-a Mercator projection. To achieve this we will assume the Earth is a geodesic
+a Mercator projection\cite{mercator-proj}. To achieve this we will assume the Earth is a geodesic
 defined as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
   library to convert the coordinates.
 
