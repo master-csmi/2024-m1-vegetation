@@ -153,3 +153,7 @@ std::ostream &operator<<(std::ostream &os, const Tree &tree) {
     os << "x: " << tree.x() << ", y: " << tree.y() << std::endl;
     return os;
 }
+
+bool operator<(const Tree &lhs, const Tree &rhs) {
+    return lhs.height() < rhs.height();
+}

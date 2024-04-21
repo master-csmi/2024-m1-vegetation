@@ -11,6 +11,7 @@ class Config {
     int M_LOD;
     std::string M_output_name;
     int M_query;
+    double M_distKNN;
 
   public:
     Config(std::string const &filename);
@@ -26,6 +27,7 @@ class Config {
     Query query() const;
     std::string output_name() const;
     int query_data() const;
+    double distKNN() const;
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);
