@@ -43,7 +43,8 @@ int main(int argc, char **argv) {
     std::cout << "Computing the union of the meshes..." << std::endl;
     t.start();
     for (auto &tree : treeLibrary) {
-        // if tree.height() ==0 .... knn
+        tree.computeXY(ref_lat, ref_lon);
+
         if (tree.height() == 0) {
             std::cout << "Tree " << tree.id()
                       << " has no height, computing KNN with distance "
@@ -52,7 +53,6 @@ int main(int argc, char **argv) {
             std::cout << ", tree.height=" << tree.height() << std::endl;
         }
 
-        tree.computeXY(ref_lat, ref_lon);
         tree.wrap(lod);
         currentWrap = tree.wrap();
 
