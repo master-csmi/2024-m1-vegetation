@@ -1,4 +1,5 @@
 {
+  "query_data": false,
   "A": {
     "latitude": 48.58792,
     "longitude": 7.75529
@@ -8,6 +9,6 @@
     "longitude": 7.7522
   },
   "LOD": 0,
-  "output_name": "republique",
-  "query_data": false
+  "KNN_dist": 5,
+  "output_name": "republique"
 }

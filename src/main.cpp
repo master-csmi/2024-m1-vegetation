@@ -38,10 +38,20 @@ int main(int argc, char **argv) {
     std::string output_name = config.output_name();
     int lod = config.LOD();
     CGAL::Real_timer t;
+    double distKNN = config.distKNN();
 
     std::cout << "Computing the union of the meshes..." << std::endl;
     t.start();
     for (auto &tree : treeLibrary) {
+        // if tree.height() ==0 .... knn
+        if (tree.height() == 0) {
+            std::cout << "Tree " << tree.id()
+                      << " has no height, computing KNN with distance "
+                      << distKNN;
+            tree.setHeight(treeHeightKNN(distKNN, tree, treeLibrary));
+            std::cout << ", tree.height=" << tree.height() << std::endl;
+        }
+
         tree.computeXY(ref_lat, ref_lon);
         tree.wrap(lod);
         currentWrap = tree.wrap();
