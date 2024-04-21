@@ -12,12 +12,15 @@
 int main(int argc, char **argv) {
 
     Config config("../config.json");
+    int do_query = config.query_data();
 
     std::cout << config << std::endl;
 
     auto query = config.query();
 
-    query.perform_query();
+    if (do_query)
+        query.perform_query();
+
     nlohmann::json jsonData = query.get_query_result();
 
     // Generate tree objects from the JSON data
