@@ -9,6 +9,6 @@
   },
   "query_data": true,
   "LOD": 0,
-  "KNN_dist": 200,
-  "output_name": "grand_ile"
+  "KNN_dist": 20,
+  "output_name": "grande_ile"
 }
