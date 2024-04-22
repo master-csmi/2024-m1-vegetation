@@ -161,33 +161,6 @@ the  project will identify tree positions and attributes, generate a library of 
 models, and integrate them into terrain meshes for comprehensive simulations while
 ensuring computational efficiency.
 
-\subsection{Structure of the Report}
-
-The report will be structured as follows:
-
-\begin{enumerate}
-    \item \textbf{Abstract}: A concise summary of the project's objectives, methodologies, 
-    and key findings.
-    
-    \item \textbf{Introduction}: An overview of the importance of vegetation in urban areas, 
-    the challenges in integrating it into 3D models, and the objectives of the project.
-    
-    \item \textbf{Methodology}: Detailed explanation of the steps involved in data acquisition, 
-    tree model generation, model integration and the running of thermal simulations.
-    
-    \item \textbf{Results}: Presentation of the outcomes and findings obtained from the 
-    implemented methodology.
-    
-    \item \textbf{Conclusion}: Summary of the project's achievements, implications, and 
-    potential future work.
-    
-    \item \textbf{References}: List of all the sources cited in the report.
-\end{enumerate}
-
-Each section will be elaborated upon in detail to provide a comprehensive understanding 
-of the project's scope, approach, and outcomes.
-
-
 \subsection{Data Formats and Structure}
 Tree data will be sourced from \texttt{OpenStreetMap} and processed into formats suitable for 
 integration into our models, such as \texttt{.off}, \texttt{.csv}, and \texttt{.json}.
@@ -205,8 +178,8 @@ The .off format\cite{off_format} is a simple format for 3D or 4D objects consist
 \subsection{Software and Libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
 \texttt{curl} \cite{curl} to access and leverage information from \texttt{OpenStreetMap}.
-For geometric modeling, we will utilize the \texttt{CGAL} \cite{cgal} library, known for its efficiency and 
-reliability in geometric computation. Shading calculations will be performed using the 
+For geometric modeling, we will utilize the \texttt{CGAL} library, known for its efficiency and 
+reliability in geometric computation\cite{cgal}. Shading calculations will be performed using the 
 \texttt{Feel++} \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs) 
 essential for simulating light and shade on 3D objects.
 
@@ -217,8 +190,8 @@ updated regularly to reflect the progress and changes made during the project's
 development.
 
 \subsection{Roadmap}
-As of \texttt{V0} (March 2024) the roadmap we defined includes the following
-milestones and issues:
+The roadmap we defined includes the following milestones and issues:
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
