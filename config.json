@@ -1,14 +1,14 @@
 {
   "A": {
-    "latitude": 48.5864,
-    "longitude": 7.7392
+    "latitude": 48.58868,
+    "longitude": 7.75168
   },
   "B": {
-    "latitude": 48.579,
-    "longitude": 7.7586
+    "latitude": 48.58548,
+    "longitude": 7.75455
   },
-  "query_data": true,
+  "new_query": true,
   "LOD": 0,
   "KNN_dist": 20,
-  "output_name": "grande_ile"
+  "output_name": "republique"
 }

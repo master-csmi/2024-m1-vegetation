@@ -14,7 +14,7 @@ Config::Config(std::string const &filename) {
         B_lon = data["B"]["longitude"];
         M_LOD = data["LOD"];
         M_output_name = data["output_name"];
-        M_query = data["query_data"];
+        M_new_query = data["new_query"];
         M_distKNN = data["KNN_dist"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
@@ -30,7 +30,7 @@ double Config::Blon() const { return B_lon; }
 double Config::LOD() const { return M_LOD; }
 Query Config::query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
 std::string Config::output_name() const { return M_output_name; }
-int Config::query_data() const { return M_query; }
+int Config::new_query() const { return M_new_query; }
 double Config::distKNN() const { return M_distKNN; }
 
 std::ostream &operator<<(std::ostream &os, const Config &config) {
