@@ -9,6 +9,6 @@
   },
   "new_query": true,
   "LOD": 0,
-  "KNN_dist": 20,
+  "KNN_dist": 50,
   "output_name": "republique"
 }
