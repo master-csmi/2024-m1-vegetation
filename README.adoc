@@ -15,7 +15,6 @@ If you don't want to install dependencies globally on your local machine you can
 === Set up an environment 
 We provide here two example of environment, Mamba and venv
 
-
 ==== Mamba environment:
 
 ```bash
@@ -44,14 +43,14 @@ source .venv/bin/activate
 === Install Required Packages
 
 With the environment set up, install the required packages:
-
 ```bash
+
 mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
 ```
 
 === Alternatively you can use a Docker container:
 ```bash
-docker build -t 2024m1vegetation:latest
+docker build -t 2024m1vegetation:latest .
 docker run -it 2024m1vegetation:latest
 ```
 
@@ -61,9 +60,8 @@ Note: on VsCode you can use the Remote - Containers extension to reopen the proj
 
 Configure and build the project using CMake:
 ```bash
+mkdir build
 cd build
-# Clean the build directory
-rm -rf *
 
 # Build the project
 cmake ..
@@ -78,12 +76,14 @@ make test
 === Usage 
 
 ```bash
-./build/run
+cd build
+./run
 ```
 
-The `config.json` file contains the gps coordinates of the 2 corners of the area to pull data from OpenSTreetMap.
+The `config.json` file contains the GPS coordinates of the 2 corners of the area to pull data from OpenSTreetMap as well as the LOD setting (0, 1, 2 or 3) and the output name desired.
 
-The output mesh will be saved in the `/temp` directory.
+The output mesh will be saved in the `/output` directory (which is automatically 
+created if needed).
 
 You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
 

@@ -1,9 +1,9 @@
-#include "config.hpp"
-#include "json.hpp"
+#include "../include/config.hpp"
+#include "../include/json.hpp"
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 
-// Constructor definition
 Config::Config(std::string const &filename) {
     std::ifstream ifile(filename);
     if (ifile) {
@@ -12,22 +12,32 @@ Config::Config(std::string const &filename) {
         A_lon = data["A"]["longitude"];
         B_lat = data["B"]["latitude"];
         B_lon = data["B"]["longitude"];
+        M_LOD = data["LOD"];
+        M_output_name = data["output_name"];
+        M_new_query = data["new_query"];
+        M_distKNN = data["KNN_dist"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
     }
 }
 
-// Destructor definition
 Config::~Config() {}
 
-// Getters definition
-double Config::getAlat() const { return A_lat; }
+double Config::Alat() const { return A_lat; }
+double Config::Alon() const { return A_lon; }
+double Config::Blat() const { return B_lat; }
+double Config::Blon() const { return B_lon; }
+double Config::LOD() const { return M_LOD; }
+Query Config::query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
+std::string Config::output_name() const { return M_output_name; }
+int Config::new_query() const { return M_new_query; }
+double Config::distKNN() const { return M_distKNN; }
 
-double Config::getAlon() const { return A_lon; }
-
-double Config::getBlat() const { return B_lat; }
-
-double Config::getBlon() const { return B_lon; }
-
-// Get the query
-Query Config::get_query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
+std::ostream &operator<<(std::ostream &os, const Config &config) {
+    os << std::setprecision(10) << "A lat: " << config.Alat()
+       << ", A lon: " << config.Alon() << std::endl;
+    os << std::setprecision(10) << "B lat: " << config.Blat()
+       << ", B lon: " << config.Blon() << std::endl;
+    os << "LOD: " << config.LOD() << std::endl;
+    return os;
+}
