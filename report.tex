@@ -97,7 +97,7 @@ Pierre Alliez and Vincent Chabannes
 \tableofcontents
 \newpage
 
-\section{Abstract}
+\section{Introduction}
 Urban areas are complex ecosystems influenced by various factors, among which 
 vegetation, especially trees, holds significant importance. Trees play a crucial 
 role in shaping microclimates, reducing energy consumption, and enhancing overall 
@@ -124,12 +124,6 @@ Specific objectives include:
     \item Optimizing computational efficiency
     \item Delivering versions \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified deadlines
 \end{itemize}
-
-\section{Introduction}
-Urban areas are intricate environments influenced by a multitude of factors, with 
-vegetation, notably trees, playing a pivotal role in shaping their microclimates 
-and energy dynamics. Trees provide shade and heat mitigation making them
-indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}.
 
 \begin{figure}[H]
     \centering
@@ -183,7 +177,7 @@ endfacet
 ....
 endsolid name
 \end{lstlisting}
-But for efficiency we will use the stl format in its \textbf{binary mode}.
+But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
 \subsection{Software and Libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
 \texttt{curl} \cite{curl} to access and leverage information from \texttt{OpenStreetMap}.
@@ -255,7 +249,7 @@ Where :
 \begin{itemize}
     \item \texttt{A(lat, lon)} represent the top left corner of the box representing the area in OpenStreetMap.
     \item \texttt{B(lat, lon)} represent its bottom right corner.
-    \item \texttt{new\_query} is a boolean instruction if data need to be retrieved again or using current one (if they exist).
+    \item \texttt{new\_query} is a boolean instruction if data need to be retrieved again or using current one (if it exists).
     \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
     \item \texttt{KNN\_dist} is the distance in meter to use to compute the height of the tree when it's missing.
     \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
@@ -383,7 +377,13 @@ Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulate
 of trees and their impact on urban microclimates. Execution time considerations will be 
 addressed to optimize computational efficiency.
 
-\newpage
+\section{Implementation}
+
+%  data acquisition
+%  tree library
+%  tree model generation
+%  model integration
+%  shading calculations
 
 \section{Results}
 
