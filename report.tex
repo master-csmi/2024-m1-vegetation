@@ -167,10 +167,10 @@ integration into our models, such as \texttt{.stl}, \texttt{.csv}, and \texttt{.
 We aim to ensure watertight triangulation consistent with the Finite Element Method
 (FEM) for accurate simulations.  
 
-The stl format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
+The \texttt{stl} format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
 software. It represents 3D models as a collection of triangular facets, making it
 suitable for our geometric modeling purposes.
-The ASCII versions is defined as :
+The \texttt{ASCII} versions is defined as :
 \begin{lstlisting}
 solid name
 facet normal ni nj nk
@@ -236,18 +236,30 @@ city center:
 
 \begin{lstlisting}[language=json]
 {
-    "A": {
-        "latitude": 48.578702,
-        "longitude": 7.739103
-    },
-    "B": {
-        "latitude": 48.587756,
-        "longitude": 7.756632
-    },
-    "LOD": 1,
-    "output_name": "republique"
+  "A": {
+    "latitude": 48.58868,
+    "longitude": 7.75168
+  },
+  "B": {
+    "latitude": 48.58548,
+    "longitude": 7.75455
+  },
+  "new_query": true,
+  "LOD": 0,
+  "KNN_dist": 50,
+  "output_name": "republique"
 }
 \end{lstlisting}
+
+Where :
+\begin{itemize}
+    \item \texttt{A(lat, lon)} represent the top left corner of the box representing the area in OpenStreetMap.
+    \item \texttt{B(lat, lon)} represent its bottom right corner.
+    \item \texttt{new\_query} is a boolean instruction if data need to be retrieved again or using current one (if they exist).
+    \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
+    \item \texttt{KNN\_dist} is the distance in meter to use to compute the height of the tree when it's missing.
+    \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
+\end{itemize}
 
 This configuration file will be updated along the way to include more options
 as needed such as mesh level of detail (LOD), seasons for the density of leaves,
