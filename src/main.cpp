@@ -12,7 +12,7 @@
 int main(int argc, char **argv) {
 
     Config config("../config.json");
-    int do_query = config.query_data();
+    bool do_query = config.new_query();
 
     std::cout << config << std::endl;
 

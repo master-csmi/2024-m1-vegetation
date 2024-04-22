@@ -10,7 +10,7 @@ class Config {
     double B_lat, B_lon;
     int M_LOD;
     std::string M_output_name;
-    int M_query;
+    bool M_new_query;
     double M_distKNN;
 
   public:
@@ -26,7 +26,7 @@ class Config {
     double LOD() const;
     Query query() const;
     std::string output_name() const;
-    int query_data() const;
+    int new_query() const;
     double distKNN() const;
 };
 
