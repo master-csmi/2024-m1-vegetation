@@ -13,18 +13,14 @@
 *.toc
 
 # Project files
-temp/
 build/
 html/
 latex/
 output/
-
-# Mesh files
-*.off
+temp/
 
 # Python virtual environment
 .venv/
 
 # macOS
 .DS_Store
-

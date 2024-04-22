@@ -1,10 +1,13 @@
 #ifndef JSON_HELPERS_HPP
 #define JSON_HELPERS_HPP
 
-#include <string>
+#include "json.hpp"
 #include <vector>
-#include "tree.hpp"
+
+class Tree;
 
 std::vector<Tree> createLibraryFromJson(nlohmann::json const &jsonData);
+double treeHeightKNN(double dist, Tree &t,
+                     std::vector<Tree> const &treeLibrary);
 
 #endif

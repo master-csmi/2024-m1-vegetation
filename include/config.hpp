@@ -1,29 +1,35 @@
 #ifndef CONFIG_HPP
 #define CONFIG_HPP
 
-#include <string>
 #include "query.hpp"
+#include <string>
 
-class Config
-{
-private:
+class Config {
+  private:
     double A_lat, A_lon;
     double B_lat, B_lon;
-public:
-    // Constructor
-    Config(std::string const& filename);
+    int M_LOD;
+    std::string M_output_name;
+    bool M_new_query;
+    double M_distKNN;
 
-    // Destructor
+  public:
+    Config(std::string const &filename);
+
     ~Config();
 
     // Getters
-    double getAlat() const;
-    double getAlon() const;
-    double getBlat() const;
-    double getBlon() const;
-
-    // Get the query
-    Query get_query() const;
+    double Alat() const;
+    double Alon() const;
+    double Blat() const;
+    double Blon() const;
+    double LOD() const;
+    Query query() const;
+    std::string output_name() const;
+    int new_query() const;
+    double distKNN() const;
 };
+
+std::ostream &operator<<(std::ostream &os, const Config &config);
 
 #endif
