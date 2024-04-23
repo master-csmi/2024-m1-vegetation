@@ -155,6 +155,13 @@ the  project will identify tree positions and attributes, generate a library of 
 models, and integrate them into terrain meshes for comprehensive simulations while
 ensuring computational efficiency.
 
+One of the main challenges is to developp a way to represent different density
+of leaves for each season. To streamline things, we've opted to combine spring
+and summer into one period and fall and winter into another, giving us just two
+seasons. The first boasts dense foliage, while the second experiences sparse leaf coverage.
+This could be done by adding multiple textures to the tree mesh and changing
+the texture based on the season.
+
 \subsection{Data Formats and Structure}
 Tree data will be sourced from \texttt{OpenStreetMap} and processed into formats suitable for
 integration into our models, such as \texttt{.stl}, \texttt{.csv}, and \texttt{.json}.
@@ -347,7 +354,9 @@ as well. For example, we could use a k-nearest neighbors algorithm \cite{k-NN} a
 decide the tree's metadata (species, height, leave density, etc.) based on the
 surrounding trees.
 
-To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
+\subsection{Model Integration}
+Generated tree models will be integrated into terrain meshes to create comprehensive
+3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
 (latitude, longitude) will be converted to Cartesian coordinates (x, y) using
 a Mercator projection\cite{mercator-proj}. To achieve this we will assume the Earth is a geodesic
 defined as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
@@ -375,15 +384,6 @@ using generic trees and LOD1:
         \captionsetup{font={scriptsize}}
         \caption{Side view of Place de la République.}
 \end{figure}
-
-As trees are changing with the seasons, we will need to find a way to represent
-different density of leaves for each season. This could be done by adding multiple
-textures to the tree mesh and changing the texture based on the season.
-
-\subsection{Model Integration}
-Generated tree models will be integrated into terrain meshes to create comprehensive
-3D urban models. Watertight triangulation consistent with FEM principles will be ensured
-for accurate simulations.
 
 \subsection{Shading Calculations}
 Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
