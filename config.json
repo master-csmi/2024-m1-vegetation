@@ -8,7 +8,7 @@
     "longitude": 7.75455
   },
   "new_query": true,
-  "LOD": 0,
+  "LOD": 1,
   "KNN_dist": 50,
   "output_name": "republique"
 }

@@ -10,7 +10,7 @@
 
 % Define colors
 \colorlet{punct}{red!60!black}
-\definecolor{background}{HTML}{EEEEEE}
+\definecolor{background}{RGB}{240, 248, 255} % Pale Blue
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
 
@@ -46,6 +46,35 @@
 
 \setlength{\parskip}{1em}
 
+\lstset{frame=single, showstringspaces=false, columns=fixed, basicstyle={\ttfamily}, commentstyle={\it}, numbers=left, tabsize=4}
+
+\definecolor{codebackground}{RGB}{240, 248, 255} % Pale Blue
+\definecolor{codecomment}{RGB}{106,153,85}
+\definecolor{codekeyword}{RGB}{30,30,255}
+\definecolor{codestring}{RGB}{163,21,21}
+\definecolor{codenumber}{RGB}{100,100,100}
+
+\lstdefinestyle{modernstyle}{
+    backgroundcolor=\color{codebackground},
+    commentstyle=\color{codecomment},
+    keywordstyle=\color{codekeyword},
+    numberstyle=\tiny\color{codenumber},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\footnotesize\color{black},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+
+\lstset{style=modernstyle}
+
 \begin{document}
 
 \begin{titlepage}
@@ -68,14 +97,14 @@ Pierre Alliez and Vincent Chabannes
 \tableofcontents
 \newpage
 
-\section{Abstract}
-Urban areas are complex ecosystems influenced by various factors, among which 
-vegetation, especially trees, holds significant importance. Trees play a crucial 
-role in shaping microclimates, reducing energy consumption, and enhancing overall 
-livability\cite{TIR4sTREEt}. This project aims to integrate vegetation, specifically trees, into 3D 
-geometric models of urban environments to improve the accuracy and realism of thermal 
+\section{Introduction}
+Urban areas are complex ecosystems influenced by various factors, among which
+vegetation, especially trees, holds significant importance. Trees play a crucial
+role in shaping microclimates, reducing energy consumption, and enhancing overall
+livability\cite{TIR4sTREEt}. This project aims to integrate vegetation, specifically trees, into 3D
+geometric models of urban environments to improve the accuracy and realism of thermal
 and energy simulations. Utilizing data from open sources like \texttt{OpenStreetMap},
-we identified tree positions and attributes and developped a library of 3D tree
+we identified tree positions and attributes and developed a library of 3D tree
 models for integration into terrain meshes.
 
 The project follows a roadmap with defined milestones to deliver versions
@@ -96,19 +125,13 @@ Specific objectives include:
     \item Delivering versions \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified deadlines
 \end{itemize}
 
-\section{Introduction}
-Urban areas are intricate environments influenced by a multitude of factors, with 
-vegetation, notably trees, playing a pivotal role in shaping their microclimates 
-and energy dynamics. Trees provide shade and heat mitigation making them
-indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}.
-
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/TreeShade.png}
         \captionsetup{font={scriptsize}}
-        \caption{Tree providing shade to a buiding \cite{img:TreeShade}.}
+        \caption{Tree providing shade to a building \cite{img:TreeShade}.}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
@@ -118,78 +141,67 @@ indispensable elements in urban landscapes\cite{TIR4sTREEt,img:TreeShade}.
     \end{minipage}
 \end{figure}
 
-Computational modeling has advanced significantly, enabling the simulation of thermal 
-and energy performance in urban environments. However, integrating vegetation into 
-these models presents challenges due to the complexity of obtaining accurate tree data 
+Computational modeling has advanced significantly, enabling the simulation of thermal
+and energy performance in urban environments. However, integrating vegetation into
+these models presents challenges due to the complexity of obtaining accurate tree data
 and representing their geometry efficiently\cite{AdTree}.
 
 \newpage
 
 \subsection{Challenges}
-This project aims to address these challenges by developing a methodology for 
+This project aims to address these challenges by developing a methodology for
 integrating trees into 3D urban models. Leveraging data from \texttt{OpenStreetMap},
-the  project will identify tree positions and attributes, generate a library of 3D tree 
+the  project will identify tree positions and attributes, generate a library of 3D tree
 models, and integrate them into terrain meshes for comprehensive simulations while
 ensuring computational efficiency.
 
-\subsection{Structure of the Report}
-
-The report will be structured as follows:
-
-\begin{enumerate}
-    \item \textbf{Abstract}: A concise summary of the project's objectives, methodologies, 
-    and key findings.
-    
-    \item \textbf{Introduction}: An overview of the importance of vegetation in urban areas, 
-    the challenges in integrating it into 3D models, and the objectives of the project.
-    
-    \item \textbf{Methodology}: Detailed explanation of the steps involved in data acquisition, 
-    tree model generation, model integration and the running of thermal simulations.
-    
-    \item \textbf{Results}: Presentation of the outcomes and findings obtained from the 
-    implemented methodology.
-    
-    \item \textbf{Conclusion}: Summary of the project's achievements, implications, and 
-    potential future work.
-    
-    \item \textbf{References}: List of all the sources cited in the report.
-\end{enumerate}
-
-Each section will be elaborated upon in detail to provide a comprehensive understanding 
-of the project's scope, approach, and outcomes.
-
+One of the main challenges is to developp a way to represent different density
+of leaves for each season. To streamline things, we've opted to combine spring
+and summer into one period and fall and winter into another, giving us just two
+seasons. The first boasts dense foliage, while the second experiences sparse leaf coverage.
+This could be done by adding multiple textures to the tree mesh and changing
+the texture based on the season.
 
 \subsection{Data Formats and Structure}
-Tree data will be sourced from \texttt{OpenStreetMap} and processed into formats suitable for 
-integration into our models, such as \texttt{.off}, \texttt{.csv}, and \texttt{.json}.
+Tree data will be sourced from \texttt{OpenStreetMap} and processed into formats suitable for
+integration into our models, such as \texttt{.stl}, \texttt{.csv}, and \texttt{.json}.
 We aim to ensure watertight triangulation consistent with the Finite Element Method
-(FEM) for accurate simulations.  
+(FEM) for accurate simulations.
 
-The .off format\cite{off_format} is a simple format for 3D or 4D objects consisting of: (for 3D objects)
-\begin{itemize}
-    \item The keyword OFF
-    \item The number of vertices, faces, and edges in order 
-    \item A list of vertices: X, Y, Z coordinates
-    \item A list of faces : number of vertices, vertex indices, in order (optionally, an RGB color)
-\end{itemize}
-
+The \texttt{stl} format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
+software. It represents 3D models as a collection of triangular facets, making it
+suitable for our geometric modeling purposes.
+The \texttt{ASCII} versions is defined as :
+\begin{lstlisting}
+solid name
+facet normal ni nj nk
+    outer loop
+        vertex v1x v1y v1z
+        vertex v2x v2y v2z
+        vertex v3x v3y v3z
+    endloop
+endfacet
+....
+endsolid name
+\end{lstlisting}
+But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
 \subsection{Software and Libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
 \texttt{curl} \cite{curl} to access and leverage information from \texttt{OpenStreetMap}.
-For geometric modeling, we will utilize the \texttt{CGAL} \cite{cgal} library, known for its efficiency and 
-reliability in geometric computation. Shading calculations will be performed using the 
-\texttt{Feel++} \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs) 
+For geometric modeling, we will utilize the \texttt{CGAL} library, known for its efficiency and
+reliability in geometric computation\cite{cgal}. Shading calculations will be performed using the
+\texttt{Feel++} \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs)
 essential for simulating light and shade on 3D objects.
 
 \subsection{GitHub Repository}
-We created a \texttt{GitHub} repository to manage the project and facilitate collaboration.
+We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub} repository to manage the project and facilitate collaboration.
 The repository contains the project's code, documentation, and resources. It will be
 updated regularly to reflect the progress and changes made during the project's
 development.
 
 \subsection{Roadmap}
-As of \texttt{V0} (March 2024) the roadmap we defined includes the following
-milestones and issues:
+The roadmap we defined includes the following milestones and issues:
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
@@ -223,18 +235,36 @@ which define a bounding box.
 Here's an example of the \textit{config.json} file for the Strasbourg, France
 city center:
 
-\begin{lstlisting}[language=json,firstnumber=1]
+\begin{lstlisting}[language=json]
 {
-    "A": {
-        "latitude": 48.578702,
-        "longitude": 7.739103
-    },
-    "B": {
-        "latitude": 48.587756,
-        "longitude": 7.756632
-    }
+  "A": {
+    "latitude": 48.58868,
+    "longitude": 7.75168
+  },
+  "B": {
+    "latitude": 48.58548,
+    "longitude": 7.75455
+  },
+  "new_query": true,
+  "LOD": 1,
+  "KNN_dist": 50,
+  "output_name": "republique"
 }
 \end{lstlisting}
+
+Where :
+\begin{itemize}
+    \item \texttt{A(lat, lon)} represent the top left corner of the box representing the area in OpenStreetMap.
+    \item \texttt{B(lat, lon)} represent its bottom right corner.
+    \item \texttt{new\_query} is a boolean instruction if data need to be retrieved again or using current one (if it exists).
+    \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
+    \item \texttt{KNN\_dist} is the distance in meter to use to compute the height of the tree when it's missing.
+    \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
+\end{itemize}
+
+This configuration file will be updated along the way to include more options
+as needed such as mesh level of detail (LOD), seasons for the density of leaves,
+etc.
 
 We will then use the \texttt{Overpass API} to query \texttt{OpenStreetMap}
 for all the available tree data within the specified bounding box.
@@ -243,7 +273,7 @@ The data will be stored in a \textit{.json} file.
 \newpage
 Here's an example of the result of the query for one tree:
 
-\begin{lstlisting}[language=json,firstnumber=1]
+\begin{lstlisting}[language=json]
 {
     "type": "node",
     "id": 10161978695,
@@ -270,21 +300,198 @@ to generate the 3D tree models.
 \subsection{Tree Library}
 
 \subsection{Tree Model Generation}
-Using CGAL Alpha Wrapper \cite{cgal_alpha_wrapper}, 3D tree models will be generated based on the extracted data. Various 
-Levels of Detail (LOD) will be considered to balance model complexity and computational 
-efficiency depending on the application.
+Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
+reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid computing
+a new mesh for each tree.
+The wrapping algorithm  works by
+approximating 3D objects by constructing a
+conservative approximation that strictly encloses the input, ensuring it is watertight, 
+intersection-free, orientable, and 2-manifold, and iteratively removing eligible 
+triangles from a Delaunay triangulation while refining the mesh, it prevents 
+the creation of inner structures within the output and allows users to control 
+the level of detail and complexity through user-defined parameters \texttt{alpha} 
+(smaller the alpha, the finer the detail in the final result) and \texttt{offset} 
+(how far away the vertices of the resulting mesh are from the original input geometry).
+
+   Those reference meshes will be used to generate the tree models for each tree
+    in the data. The tree models will be generated by scaling the reference mesh
+    to match the tree's height and position in the 3D space.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod0.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 0.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 1.}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 2.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/lod3.png}
+        \captionsetup{font={scriptsize}}
+        \caption{A reference mesh tree for LOD 3.}
+    \end{minipage}
+\end{figure}
+
+The case where not enough data is available for a tree will need to be handled
+as well. For example, we could use a k-nearest neighbors algorithm \cite{k-NN} approach to
+decide the tree's metadata (species, height, leave density, etc.) based on the
+surrounding trees.
 
 \subsection{Model Integration}
-Generated tree models will be integrated into terrain meshes to create comprehensive 
-3D urban models. Watertight triangulation consistent with FEM principles will be ensured 
-for accurate simulations.
+Generated tree models will be integrated into terrain meshes to create comprehensive
+3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
+(latitude, longitude) will be converted to Cartesian coordinates (x, y) using
+a Mercator projection\cite{mercator-proj}. To achieve this we will assume the Earth is a geodesic
+defined as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
+  library to convert the coordinates.
+
+The union of all the tree meshed need to be computed to create a single mesh
+and avoid collision between the trees.
+
+Here is an example of the tree mesh union of Place de la République in Strasbourg
+using generic trees and LOD1:
+
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/mesh_vs_overpass.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Top view of Place de la République, on the left the mesh generated from the data,
+        on the right the overpass data.}
+
+\end{figure}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{images/republic_side.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Side view of Place de la République.}
+\end{figure}
 
 \subsection{Shading Calculations}
-Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence 
-of trees and their impact on urban microclimates. Execution time considerations will be 
+Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
+of trees and their impact on urban microclimates. Execution time considerations will be
 addressed to optimize computational efficiency.
 
-\newpage
+\section{Implementation}
+
+\subsection{Class Query}
+%  data acquisition
+%  tree library
+%  tree model generation
+\begin{lstlisting}[language=C++]
+#include "json.hpp"
+
+class Query {
+  private:
+    double min_lat;
+    double max_lat;
+    double min_lon;
+    double max_lon;
+
+  public:
+    // Constructor
+    Query(double Alat, double Alon, double Blat, double Blon);
+
+    // Destructor
+    ~Query();
+
+    // Perform the Overpass query
+    void perform_query();
+
+    nlohmann::json get_query_result();
+};
+\end{lstlisting}
+\subsection{Class Tree}
+\begin{lstlisting}[language=C++]
+using K = CGAL::Exact_predicates_inexact_constructions_kernel;
+using Point_3 = K::Point_3;
+using Mesh = CGAL::Surface_mesh<Point_3>;
+
+class Tree {
+  private:
+    long M_id;
+    double M_lat;
+    double M_lon;
+    std::string M_genus;
+    std::string M_species;
+    std::string M_season;
+    double M_height;
+    double M_circumference;
+    double M_diameter_crown;
+    double M_x, M_y;
+    Mesh M_wrap;
+
+  public:
+    // Default constructor
+    Tree();
+
+    // Constructor that takes arguments
+    Tree(long id, double lat, double lon, std::string genus,
+         std::string species, double height, double circumference,
+         double diameter_crown);
+
+    // Getters
+    long id() const { return M_id; }
+    double lat() const { return M_lat; }
+    double lon() const { return M_lon; }
+    std::string genus() const { return M_genus; }
+    std::string species() const { return M_species; }
+    double height() const { return M_height; }
+    double circumference() const { return M_circumference; }
+    double diameterCrown() const { return M_diameter_crown; }
+    std::string season() const { return M_season; }
+    double x() const { return M_x; }
+    double y() const { return M_y; }
+    Mesh wrap() const { return M_wrap; }
+
+    // Setters
+    void setId(long id) { M_id = id; }
+    void setLat(double lat) { M_lat = lat; }
+    void setLon(double lon) { M_lon = lon; }
+    void setGenus(std::string genus) { M_genus = genus; }
+    void setSpecies(std::string species) { M_species = species; }
+    void setHeight(double height) { M_height = height; }
+    void setCircumference(double circumference) {
+        M_circumference = circumference;
+    }
+    void setDiameterCrown(double diameter_crown) {
+        M_diameter_crown = diameter_crown;
+    }
+    void setSeason(std::string season) { M_season = season; }
+
+    void computeXY(double ref_lat, double ref_lon);
+    void wrap(int lod);
+};
+
+Tree createTreeFromJson(const nlohmann::json &treeJson);
+std::ostream &operator<<(std::ostream &os, const Tree &tree);
+bool operator<(const Tree &lhs, const Tree &rhs);
+\end{lstlisting}
+
+
+Each tree model has a CGAL \href{https://doc.cgal.org/latest/Surface_mesh/classCGAL_1_1Surface__mesh.html}{Mesh}
+wrapper object that will contain the tree's
+mesh and its position in the 3D space.
+%  model integration
+%  shading calculations
 
 \section{Results}
 
