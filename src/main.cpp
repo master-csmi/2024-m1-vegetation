@@ -26,10 +26,6 @@ int main(int argc, char **argv) {
     // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
 
-    // for (auto &tree : treeLibrary) {
-    //     std::cout << tree << std::endl;
-    // }
-
     // Mesh part
     Mesh finalMesh;
     Mesh currentWrap;
@@ -44,14 +40,14 @@ int main(int argc, char **argv) {
     t.start();
     for (auto &tree : treeLibrary) {
         tree.computeXY(ref_lat, ref_lon);
-        std::cout << tree << std::endl;
+        // std::cout << tree << std::endl;
 
         if (tree.height() == 0) {
             std::cout << "Tree " << tree.id()
                       << " has no height, computing KNN with distance "
-                      << distKNN;
-            tree.setHeight(treeHeightKNN((int)distKNN, tree, treeLibrary));
-            std::cout << ", tree.height=" << tree.height() << std::endl;
+                      << distKNN << "..." << std::endl;
+            tree.setHeight(treeHeightKNN(distKNN, tree, treeLibrary));
+            std::cout << "new tree.height=" << tree.height() << std::endl;
         }
 
         tree.wrap(lod);
