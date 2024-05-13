@@ -31,7 +31,7 @@ double Config::LOD() const { return M_LOD; }
 Query Config::query() const { return Query(A_lat, A_lon, B_lat, B_lon); }
 std::string Config::output_name() const { return M_output_name; }
 int Config::new_query() const { return M_new_query; }
-double Config::distKNN() const { return M_distKNN; }
+int Config::distKNN() const { return M_distKNN; }
 
 std::ostream &operator<<(std::ostream &os, const Config &config) {
     os << std::setprecision(10) << "A lat: " << config.Alat()

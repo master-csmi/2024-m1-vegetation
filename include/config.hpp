@@ -27,7 +27,7 @@ class Config {
     Query query() const;
     std::string output_name() const;
     int new_query() const;
-    double distKNN() const;
+    int distKNN() const;
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);
