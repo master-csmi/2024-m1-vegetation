@@ -28,8 +28,9 @@ double treeHeightKNN(int k, Tree &t, std::vector<Tree> const &treeLibrary) {
 
     // Check if we have at least k trees
     if (distances.size() < k) {
-        std::cerr << "Not enough trees with non-zero height." << std::endl;
-        return -1;
+        std::cerr << "Not enough trees with non-zero height, exiting"
+                  << std::endl;
+        exit(1);
     }
 
     // Compute the average height of the k nearest trees
