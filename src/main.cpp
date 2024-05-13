@@ -44,12 +44,13 @@ int main(int argc, char **argv) {
     t.start();
     for (auto &tree : treeLibrary) {
         tree.computeXY(ref_lat, ref_lon);
+        std::cout << tree << std::endl;
 
         if (tree.height() == 0) {
             std::cout << "Tree " << tree.id()
                       << " has no height, computing KNN with distance "
                       << distKNN;
-            tree.setHeight(treeHeightKNN(distKNN, tree, treeLibrary));
+            tree.setHeight(treeHeightKNN((int)distKNN, tree, treeLibrary));
             std::cout << ", tree.height=" << tree.height() << std::endl;
         }
 

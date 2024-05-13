@@ -7,7 +7,6 @@
 class Tree;
 
 std::vector<Tree> createLibraryFromJson(nlohmann::json const &jsonData);
-double treeHeightKNN(double dist, Tree &t,
-                     std::vector<Tree> const &treeLibrary);
+double treeHeightKNN(int k, Tree &t, std::vector<Tree> const &treeLibrary);
 
 #endif
