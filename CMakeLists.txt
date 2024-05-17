@@ -46,6 +46,20 @@ else()
     return()
 endif()
 
+# find_package(Feel++
+#   PATHS
+#   $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules
+#   /usr/share/feelpp/feel/cmake/modules
+#   /usr/share/feelpp/cmake/modules
+#   /usr/local/share/feelpp/feel/cmake/modules
+#   REQUIRED)
+# if(Feel++_FOUND)
+#     set(requiredlibs ${requiredlibs} ${Feel++_LIBRARIES})
+# else()
+#     message(STATUS "This program requires the Feel++ library, and will not be compiled.")
+#     return()
+# endif()
+
 # find_package(cpr REQUIRED)
 # if(CPR_FOUND)
 #     set(requiredlibs ${requiredlibs} ${CPR_LIBRARIES})
@@ -85,14 +99,15 @@ add_library(Tree ${SOURCES_FILES})
 
 # Create executable
 add_executable(run src/main.cpp)
+add_executable(wrap src/wrapper.cpp)
 
-# Link the executable with the curl library
+
 target_link_libraries(Tree PUBLIC ${requiredlibs})
-
 target_include_directories(Tree PUBLIC include)
 
 # Link libraries
 target_link_libraries(run PRIVATE Tree ${requiredlibs})
+target_link_libraries(wrap PRIVATE Tree ${requiredlibs})
 
 # Testing
 include(CTest)
