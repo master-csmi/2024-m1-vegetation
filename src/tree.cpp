@@ -88,22 +88,35 @@ void Tree::wrap(int lod) {
         exit(1);
     }
 
+    // Calculate centroid of the tree
+    double centroid_x = 0, centroid_y = 0, centroid_z = 0;
+    for (const Point_3 &p : points) {
+        centroid_x += p.x();
+        centroid_y += p.y();
+        centroid_z += p.z();
+    }
+    centroid_x /= points.size();
+    centroid_y /= points.size();
+    centroid_z /= points.size();
+    Point_3 centroid(centroid_x, centroid_y, centroid_z);
+
     // Calculate bounding box from points
     for (const Point_3 &p : points)
         bbox += p.bbox();
-
-    if (M_height == 0)
-        M_height = 5; // change to k-nearest neighbors
 
     scaling_factor_double = M_height / (bbox.zmax() - bbox.zmin());
 
     K::RT scaling_factor(scaling_factor_double); // Convert to exact type
 
-    // Create affine transformation (translation and scaling)
+    // Create affine transformation (scaling and translation)
     CGAL::Aff_transformation_3<K> transformation =
-        CGAL::Aff_transformation_3<K>(CGAL::TRANSLATION,
-                                      Vector_3(M_x, M_y, 0)) *
-        CGAL::Aff_transformation_3<K>(CGAL::SCALING, scaling_factor);
+        CGAL::Aff_transformation_3<K>(
+            CGAL::TRANSLATION,
+            Vector_3(M_x - centroid.x(), M_y - centroid.y(), 0)) *
+        CGAL::Aff_transformation_3<K>(CGAL::SCALING, scaling_factor) *
+        CGAL::Aff_transformation_3<K>(
+            CGAL::TRANSLATION,
+            Vector_3(centroid.x() - M_x, centroid.y() - M_y, 0));
 
     // Apply transformation to each point in the mesh
     for (auto &p : points) {

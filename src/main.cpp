@@ -14,15 +14,27 @@
 int main(int argc, char **argv) {
 
     Config config("../config.json");
+    double ref_lat = config.Alat();
+    double ref_lon = config.Alon();
+    double delta = 0.5;
 
     std::cout << config << std::endl;
 
+    std::array<double, 2> B_cart = wgs84::toCartesian(
+        {ref_lat, ref_lon} /* reference position */,
+        {config.Blat(), config.Blon()} /* position to be converted */);
+
+    double Bx = B_cart[0];
+    double By = B_cart[1];
+    double area = Bx * By; // A is (0, 0) : origin
+
     // Increase the bounding box
-    double delta = 0.5;
-    config.setAlat(config.Alat() + delta);
-    config.setAlon(config.Alon() - delta);
-    config.setBlat(config.Blat() - delta);
-    config.setBlon(config.Blon() + delta);
+    if (area < 100'000) {
+        config.setAlat(config.Alat() + delta);
+        config.setAlon(config.Alon() - delta);
+        config.setBlat(config.Blat() - delta);
+        config.setBlon(config.Blon() + delta);
+    }
 
     auto query = config.query();
 
@@ -63,15 +75,17 @@ int main(int argc, char **argv) {
         defaultHeights[entry.first] = entry.second.averageHeight();
     }
 
-    // Reset bounding box to original values and recompute query
-    config.setAlat(config.Alat() - delta);
-    config.setAlon(config.Alon() + delta);
-    config.setBlat(config.Blat() + delta);
-    config.setBlon(config.Blon() - delta);
+    if (area < 100'000) {
+        // Reset bounding box to original values and recompute query
+        config.setAlat(config.Alat() - delta);
+        config.setAlon(config.Alon() + delta);
+        config.setBlat(config.Blat() + delta);
+        config.setBlon(config.Blon() - delta);
 
-    query = config.query();
-    query.perform_query();
-    jsonData = query.get_query_result();
+        query = config.query();
+        query.perform_query();
+        jsonData = query.get_query_result();
+    }
 
     // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
@@ -79,8 +93,6 @@ int main(int argc, char **argv) {
     // Mesh part
     Mesh finalMesh;
     Mesh currentWrap;
-    double ref_lat = config.Alat();
-    double ref_lon = config.Alon();
     std::string output_name = config.output_name();
     int lod = config.LOD();
     CGAL::Real_timer t;
@@ -92,6 +104,7 @@ int main(int argc, char **argv) {
     t.start();
     for (auto &tree : treeLibrary) {
         tree.computeXY(ref_lat, ref_lon);
+
         // std::cout << tree << std::endl;
 
         if (tree.height() == 0) {
@@ -135,13 +148,6 @@ int main(int argc, char **argv) {
     std::cout << "Final mesh written to " << filename << std::endl;
 
     // Metrics
-    std::array<double, 2> B_cart = wgs84::toCartesian(
-        {ref_lat, ref_lon} /* reference position */,
-        {config.Blat(), config.Blon()} /* position to be converted */);
-
-    double Bx = B_cart[0];
-    double By = B_cart[1];
-    double area = Bx * By; // A is (0, 0) : origin
 
     std::string metrics_filename = "../output/" + output_name + "_metrics_LOD" +
                                    std::to_string(lod) + ".txt";
