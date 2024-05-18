@@ -1,13 +1,13 @@
 {
   "A": {
-    "latitude": 48.58959,
-    "longitude": 7.75579
+    "latitude": 48.59083,
+    "longitude": 7.75737
   },
   "B": {
-    "latitude": 48.59175,
-    "longitude": 7.76064
+    "latitude": 48.59116,
+    "longitude": 7.75915
   },
   "LOD": 0,
-  "default_height": 5,
+  "default_height": 10,
   "output_name": "contades"
 }
