@@ -10,8 +10,7 @@ class Config {
     double B_lat, B_lon;
     int M_LOD;
     std::string M_output_name;
-    bool M_new_query;
-    double M_distKNN;
+    double M_default_height;
 
   public:
     Config(std::string const &filename);
@@ -26,8 +25,7 @@ class Config {
     double LOD() const;
     Query query() const;
     std::string output_name() const;
-    int new_query() const;
-    double distKNN() const;
+    double default_height() const { return M_default_height; }
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);

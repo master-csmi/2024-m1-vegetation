@@ -79,7 +79,7 @@ void Tree::wrap(int lod) {
     CGAL::Bbox_3 bbox;
 
     // Append LOD to filename
-    filename += "arbre1_lod" + std::to_string(lod) + ".stl";
+    filename += "Platanus_lod" + std::to_string(lod) + ".stl";
 
     CGAL::data_file_path(filename);
 
