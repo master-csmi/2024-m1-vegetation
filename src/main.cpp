@@ -17,31 +17,34 @@ int main(int argc, char **argv) {
     std::string bbox = config.bbox();
     double ref_lat = config.bbox_coords()[0];
     double ref_lon = config.bbox_coords()[1];
-    double delta = 0.5;
+    std::map<std::string, GenusHeight> genusHeights;
+    std::array<double, 2> B_cart;
+    double Bx, By, area, height;
+    nlohmann::json jsonData;
+    std::map<std::string, double> defaultHeights;
+    std::string genus;
 
     std::cout << config << std::endl;
 
     // Compute the area of the bounding box
-    std::array<double, 2> B_cart = wgs84::toCartesian(
+    B_cart = wgs84::toCartesian(
         {ref_lat, ref_lon} /* reference position */,
         {config.bbox_coords()[2],
          config.bbox_coords()[3]} /* position to be converted */);
 
-    double Bx = B_cart[0];
-    double By = B_cart[1];
-    double area = Bx * By; // A is (0, 0) : origin
+    Bx = B_cart[0];
+    By = B_cart[1];
+    area = Bx * By; // A is (0, 0) : origin
 
     // Perform the Overpass query
     perform_query(bbox);
-    nlohmann::json jsonData = get_query_result();
+    jsonData = get_query_result();
 
     // Compute average height for each genus
-    std::map<std::string, GenusHeight> genusHeights;
-
     for (const auto &tree : jsonData["elements"]) {
         if (tree.contains("tags") && tree["tags"].contains("genus")) {
-            std::string genus = tree["tags"]["genus"].get<std::string>();
-            double height = 0;
+            genus = tree["tags"]["genus"].get<std::string>();
+            height = 0;
             if (tree["tags"].contains("height")) {
                 try {
                     height =
@@ -53,20 +56,15 @@ int main(int argc, char **argv) {
                     continue;
                 }
             }
-
             if (genusHeights.find(genus) == genusHeights.end()) {
                 genusHeights[genus] = GenusHeight();
                 genusHeights[genus].genus = genus;
             }
-
             genusHeights[genus].addHeight(height);
         }
     }
-
-    std::map<std::string, double> defaultHeights;
-    for (const auto &entry : genusHeights) {
+    for (const auto &entry : genusHeights)
         defaultHeights[entry.first] = entry.second.averageHeight();
-    }
 
     // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
@@ -75,11 +73,13 @@ int main(int argc, char **argv) {
     Mesh finalMesh;
     Mesh currentWrap;
     std::string output_name = config.output_name();
+    std::string output_folder, filename, metrics_filename;
     int lod = config.LOD();
     CGAL::Real_timer t;
     double defaultHeight = config.default_height();
     int nNoHeight = 0;
     int nNoGenus = 0;
+    double h;
 
     std::cout << "Computing the union of tree meshes ..." << std::endl;
     t.start();
@@ -95,8 +95,6 @@ int main(int argc, char **argv) {
 
         if (tree.height() == 0) {
             ++nNoHeight;
-            double h;
-
             if (defaultHeights.find(tree.genus()) != defaultHeights.end()) {
                 h = defaultHeights[tree.genus()];
             } else {
@@ -117,11 +115,12 @@ int main(int argc, char **argv) {
     }
     t.stop();
 
-    std::string output_folder = "../output/";
+    // Final mesh export
+    output_folder = "../output/";
     if (!std::filesystem::exists(output_folder)) {
         std::filesystem::create_directory(output_folder);
     }
-    std::string filename =
+    filename =
         "../output/" + output_name + "_LOD" + std::to_string(lod) + ".stl";
 
     std::ofstream output(filename);
@@ -132,10 +131,9 @@ int main(int argc, char **argv) {
     std::cout << "Took " << t.time() << " s." << std::endl;
     std::cout << "Final mesh written to " << filename << std::endl;
 
-    // Metrics
-
-    std::string metrics_filename = "../output/" + output_name + "_metrics_LOD" +
-                                   std::to_string(lod) + ".txt";
+    // Metrics export
+    metrics_filename = "../output/" + output_name + "_metrics_LOD" +
+                       std::to_string(lod) + ".txt";
 
     std::ofstream metrics(metrics_filename);
     metrics << "Area: " << area << " meters" << std::endl;
