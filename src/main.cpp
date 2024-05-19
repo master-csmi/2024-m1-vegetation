@@ -145,5 +145,7 @@ int main(int argc, char **argv) {
     metrics << "Time: " << t.time() << " seconds" << std::endl;
     metrics.close();
 
+    std::cout << "Metrics available at " << metrics_filename << std::endl;
+
     exit(0);
 }
