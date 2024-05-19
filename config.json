@@ -1,14 +1,13 @@
 {
   "A": {
-    "latitude": 48.58677,
-    "longitude": 7.75244
+    "latitude": 48.59083,
+    "longitude": 7.75737
   },
   "B": {
-    "latitude": 48.58769,
-    "longitude": 7.75542
+    "latitude": 48.59116,
+    "longitude": 7.75915
   },
-  "new_query": true,
-  "LOD": 1,
-  "KNN_dist": 50,
-  "output_name": "republique"
+  "LOD": 0,
+  "default_height": 10,
+  "output_name": "contades"
 }
