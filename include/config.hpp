@@ -26,6 +26,11 @@ class Config {
     Query query() const;
     std::string output_name() const;
     double default_height() const { return M_default_height; }
+
+    void setAlat(double Alat) { A_lat = Alat; }
+    void setAlon(double Alon) { A_lon = Alon; }
+    void setBlat(double Blat) { B_lat = Blat; }
+    void setBlon(double Blon) { B_lon = Blon; }
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);
