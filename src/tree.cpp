@@ -78,8 +78,55 @@ void Tree::wrap(int lod) {
     std::vector<std::array<int, 3>> faces;
     CGAL::Bbox_3 bbox;
 
-    // Append LOD to filename
-    filename += "Platanus_lod" + std::to_string(lod) + ".stl";
+    std::vector<std::string> known_tree = {
+        "Abies",   "Acer",      "Aesculus",    "Catalpa",  "Cedrus",
+        "Ginkgo",  "Gleditsia", "Liquidambar", "Magnolia", "Platanus",
+        "Quercus", "Taxus",     "Tilia"};
+    std::vector<std::string> conifer = {"Chaemacyparis", "Cupressus",
+                                        "Juniperus",     "Larix",
+                                        "Picea",         "Pinus",
+                                        "Pseudotsuga",   "Chamaecyparis",
+                                        "Calocedrus"};    // -> Cedrus
+    std::vector<std::string> hetre = {"Fadus"};           // -> Acer
+    std::vector<std::string> tulipier = {"Liriodendron"}; // -> Liquidambar
+    std::vector<std::string> broad_leef = {"Corylus", "Quercus", "Carya",
+                                           "Fagus"}; // -> Aesculus
+
+    if (std::find(known_tree.begin(), known_tree.end(), M_genus) !=
+        known_tree.end()) {
+        filename += M_genus;
+    } else if (std::find(conifer.begin(), conifer.end(), M_genus) !=
+               conifer.end()) {
+        filename += "Cedrus";
+    } else if (std::find(hetre.begin(), hetre.end(), M_genus) != hetre.end()) {
+        filename += "Acer";
+    } else if (std::find(tulipier.begin(), tulipier.end(), M_genus) !=
+               tulipier.end()) {
+        filename += "Liquidambar";
+    } else if (std::find(broad_leef.begin(), broad_leef.end(), M_genus) !=
+               broad_leef.end()) {
+        filename += "Aesculus";
+    } else {
+        std::cerr << "Unknown genus: " << M_genus << std::endl;
+        exit(1);
+    }
+    switch (lod) {
+    case 0:
+        filename += "_0_600.stl";
+        break;
+    case 1:
+        filename += "_20_600.stl";
+        break;
+    case 2:
+        filename += "_50_600.stl";
+        break;
+    case 3:
+        filename += "_100_600.stl";
+        break;
+    default:
+        std::cerr << "Invalid LOD." << std::endl;
+        exit(1);
+    }
 
     CGAL::data_file_path(filename);
 

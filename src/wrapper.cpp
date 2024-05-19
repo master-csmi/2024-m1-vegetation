@@ -44,15 +44,6 @@ int main(int argc, char **argv) {
     CGAL::Real_timer t;
     t.start();
     Mesh wrap;
-
-    std::cout << "bbox height: " << bbox.zmax() - bbox.zmin() << std::endl;
-
-    double scaling_factor = 10 / (bbox.zmax() - bbox.zmin());
-    for (auto &point : points) {
-        point = Point_3(point.x() * scaling_factor, point.y() * scaling_factor,
-                        point.z() * scaling_factor);
-    }
-
     CGAL::alpha_wrap_3(points, faces, alpha, offset, wrap);
     t.stop();
     std::cout << "Result: " << num_vertices(wrap) << " vertices, "
@@ -69,8 +60,5 @@ int main(int argc, char **argv) {
     std::cout << "Writing to " << output_name << std::endl;
     CGAL::IO::write_polygon_mesh(output_name, wrap,
                                  CGAL::parameters::stream_precision(17));
-
-    bbox = CGAL::Polygon_mesh_processing::bbox(wrap);
-    std::cout << "New box height: " << bbox.zmax() - bbox.zmin() << std::endl;
     return EXIT_SUCCESS;
 }

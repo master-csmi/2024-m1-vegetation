@@ -237,28 +237,28 @@ city center:
 
 \begin{lstlisting}[language=json]
 {
-  "A": {
-    "latitude": 48.58868,
-    "longitude": 7.75168
+"A": {
+    "latitude": 48.5868,
+    "longitude": 7.75259
   },
   "B": {
-    "latitude": 48.58548,
-    "longitude": 7.75455
+    "latitude": 48.58762,
+    "longitude": 7.75549
   },
-  "new_query": true,
-  "LOD": 1,
-  "KNN_dist": 50,
+  "LOD": 3,
+  "default_height": 10,
+  "default_genus": "Platanus",
   "output_name": "republique"
 }
 \end{lstlisting}
 
 Where :
 \begin{itemize}
-    \item \texttt{A(lat, lon)} represent the top left corner of the box representing the area in OpenStreetMap.
-    \item \texttt{B(lat, lon)} represent its bottom right corner.
-    \item \texttt{new\_query} is a boolean instruction if data need to be retrieved again or using current one (if it exists).
+    \item \texttt{A(lat, lon)} represent the bottom right corner of the bounding box representing the area to retrieve data from.
+    \item \texttt{B(lat, lon)} represent its top right corner.
     \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
-    \item \texttt{KNN\_dist} is the distance in meter to use to compute the height of the tree when it's missing.
+    \item \texttt{default\_height} is the default height of the trees if not specified in the data.
+    \item \texttt{default\_genus} is the default genus of the trees if not specified in the data.
     \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
 \end{itemize}
 

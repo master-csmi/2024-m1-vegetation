@@ -14,6 +14,7 @@ Config::Config(std::string const &filename) {
         B_lon = data["B"]["longitude"];
         M_LOD = data["LOD"];
         M_output_name = data["output_name"];
+        M_default_genus = data["default_genus"];
         M_default_height = data["default_height"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
