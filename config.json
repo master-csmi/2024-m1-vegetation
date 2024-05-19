@@ -1,13 +1,14 @@
 {
   "A": {
-    "latitude": 48.59083,
-    "longitude": 7.75737
+    "latitude": 48.5868,
+    "longitude": 7.75259
   },
   "B": {
-    "latitude": 48.59116,
-    "longitude": 7.75915
+    "latitude": 48.58762,
+    "longitude": 7.75549
   },
-  "LOD": 0,
+  "LOD": 3,
   "default_height": 10,
-  "output_name": "contades"
+  "default_genus": "Platanus",
+  "output_name": "republique"
 }

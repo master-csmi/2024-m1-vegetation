@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     double area = Bx * By; // A is (0, 0) : origin
 
     // Increase the bounding box
-    if (area < 100'000) {
+    if (area < 500 * 500) {
         config.setAlat(config.Alat() + delta);
         config.setAlon(config.Alon() - delta);
         config.setBlat(config.Blat() - delta);
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
         defaultHeights[entry.first] = entry.second.averageHeight();
     }
 
-    if (area < 100'000) {
+    if (area < 500 * 500) {
         // Reset bounding box to original values and recompute query
         config.setAlat(config.Alat() - delta);
         config.setAlon(config.Alon() + delta);
@@ -107,15 +107,21 @@ int main(int argc, char **argv) {
 
         // std::cout << tree << std::endl;
 
+        if (tree.genus() == "") {
+            ++nNoGenus;
+            tree.setGenus(config.default_genus());
+        }
+
         if (tree.height() == 0) {
             ++nNoHeight;
             double h;
-            if (tree.genus() == "") {
-                ++nNoGenus;
-                h = defaultHeight;
-            } else {
-                h = defaultHeights[tree.genus()];
-            }
+
+            // if (defaultHeights.find(tree.genus()) != defaultHeights.end()) {
+            //     h = defaultHeights[tree.genus()];
+
+            // } else {
+            h = defaultHeight;
+            // }
 
             tree.setHeight(h);
         }
@@ -153,13 +159,13 @@ int main(int argc, char **argv) {
                                    std::to_string(lod) + ".txt";
 
     std::ofstream metrics(metrics_filename);
-    metrics << "Area: " << area << " m^2" << std::endl;
+    metrics << "Area: " << area << " meters" << std::endl;
     metrics << "Total number of trees: " << treeLibrary.size() << std::endl;
     metrics << "Number of tree which had no height: " << nNoHeight << std::endl;
     metrics << "Number of tree which had no genus: " << nNoGenus << std::endl;
     metrics << "Number of vertices: " << num_vertices(finalMesh) << std::endl;
     metrics << "Number of faces: " << num_faces(finalMesh) << std::endl;
-    metrics << "Time: " << t.time() << " s." << std::endl;
+    metrics << "Time: " << t.time() << " seconds" << std::endl;
     metrics.close();
 
     exit(0);

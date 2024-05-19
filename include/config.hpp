@@ -10,6 +10,7 @@ class Config {
     double B_lat, B_lon;
     int M_LOD;
     std::string M_output_name;
+    std::string M_default_genus;
     double M_default_height;
 
   public:
@@ -25,6 +26,7 @@ class Config {
     double LOD() const;
     Query query() const;
     std::string output_name() const;
+    std::string default_genus() const { return M_default_genus; }
     double default_height() const { return M_default_height; }
 
     void setAlat(double Alat) { A_lat = Alat; }
