@@ -14,33 +14,26 @@
 int main(int argc, char **argv) {
 
     Config config("../config.json");
-    double ref_lat = config.Alat();
-    double ref_lon = config.Alon();
+    std::string bbox = config.bbox();
+    double ref_lat = config.bbox_coords()[0];
+    double ref_lon = config.bbox_coords()[1];
     double delta = 0.5;
 
     std::cout << config << std::endl;
 
+    // Compute the area of the bounding box
     std::array<double, 2> B_cart = wgs84::toCartesian(
         {ref_lat, ref_lon} /* reference position */,
-        {config.Blat(), config.Blon()} /* position to be converted */);
+        {config.bbox_coords()[2],
+         config.bbox_coords()[3]} /* position to be converted */);
 
     double Bx = B_cart[0];
     double By = B_cart[1];
     double area = Bx * By; // A is (0, 0) : origin
 
-    // Increase the bounding box
-    if (area < 500 * 500) {
-        config.setAlat(config.Alat() + delta);
-        config.setAlon(config.Alon() - delta);
-        config.setBlat(config.Blat() - delta);
-        config.setBlon(config.Blon() + delta);
-    }
-
-    auto query = config.query();
-
-    query.perform_query();
-
-    nlohmann::json jsonData = query.get_query_result();
+    // Perform the Overpass query
+    perform_query(bbox);
+    nlohmann::json jsonData = get_query_result();
 
     // Compute average height for each genus
     std::map<std::string, GenusHeight> genusHeights;
@@ -75,18 +68,6 @@ int main(int argc, char **argv) {
         defaultHeights[entry.first] = entry.second.averageHeight();
     }
 
-    if (area < 500 * 500) {
-        // Reset bounding box to original values and recompute query
-        config.setAlat(config.Alat() - delta);
-        config.setAlon(config.Alon() + delta);
-        config.setBlat(config.Blat() + delta);
-        config.setBlon(config.Blon() - delta);
-
-        query = config.query();
-        query.perform_query();
-        jsonData = query.get_query_result();
-    }
-
     // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
 
@@ -116,13 +97,11 @@ int main(int argc, char **argv) {
             ++nNoHeight;
             double h;
 
-            // if (defaultHeights.find(tree.genus()) != defaultHeights.end()) {
-            //     h = defaultHeights[tree.genus()];
-
-            // } else {
-            h = defaultHeight;
-            // }
-
+            if (defaultHeights.find(tree.genus()) != defaultHeights.end()) {
+                h = defaultHeights[tree.genus()];
+            } else {
+                h = defaultHeight;
+            }
             tree.setHeight(h);
         }
 

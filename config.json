@@ -1,13 +1,6 @@
 {
-  "A": {
-    "latitude": 48.5868,
-    "longitude": 7.75259
-  },
-  "B": {
-    "latitude": 48.58762,
-    "longitude": 7.75549
-  },
-  "LOD": 3,
+  "bbox": "48.58690,7.75265,48.58744,7.75503",
+  "LOD": 0,
   "default_height": 10,
   "default_genus": "Platanus",
   "output_name": "republique"

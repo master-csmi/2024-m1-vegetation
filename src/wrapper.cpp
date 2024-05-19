@@ -60,5 +60,6 @@ int main(int argc, char **argv) {
     std::cout << "Writing to " << output_name << std::endl;
     CGAL::IO::write_polygon_mesh(output_name, wrap,
                                  CGAL::parameters::stream_precision(17));
+
     return EXIT_SUCCESS;
 }

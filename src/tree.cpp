@@ -157,15 +157,13 @@ void Tree::wrap(int lod) {
 
     // Create affine transformation (scaling and translation)
     CGAL::Aff_transformation_3<K> transformation =
-        CGAL::Aff_transformation_3<K>(
-            CGAL::TRANSLATION,
-            Vector_3(M_x - centroid.x(), M_y - centroid.y(), 0)) *
+        CGAL::Aff_transformation_3<K>(CGAL::TRANSLATION,
+                                      Vector_3(M_x, M_y, 0)) *
         CGAL::Aff_transformation_3<K>(CGAL::SCALING, scaling_factor) *
         CGAL::Aff_transformation_3<K>(
             CGAL::TRANSLATION,
             Vector_3(centroid.x() - M_x, centroid.y() - M_y, 0));
 
-    // Apply transformation to each point in the mesh
     for (auto &p : points) {
         p = transformation.transform(p);
     }
