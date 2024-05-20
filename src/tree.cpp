@@ -155,25 +155,29 @@ void Tree::wrap(int lod) {
 
     K::RT scaling_factor(scaling_factor_double); // Convert to exact type
 
+    // Find the base of the tree (minimum z-coordinate)
+    double base_z = std::numeric_limits<double>::max();
+    for (const auto &p : points) {
+        if (p.z() < base_z)
+            base_z = p.z();
+    }
+
     // Create affine transformations
-    CGAL::Aff_transformation_3<K> translate_to_origin(
-        CGAL::TRANSLATION,
-        Vector_3(-centroid.x(), -centroid.y(), -centroid.z()));
+    CGAL::Aff_transformation_3<K> translate_to_base(
+        CGAL::TRANSLATION, Vector_3(-centroid.x(), -centroid.y(), -base_z));
     CGAL::Aff_transformation_3<K> scale(CGAL::SCALING, scaling_factor);
     CGAL::Aff_transformation_3<K> translate_back(
-        CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), centroid.z()));
+        CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), base_z));
     CGAL::Aff_transformation_3<K> translate_to_target(CGAL::TRANSLATION,
                                                       Vector_3(M_x, M_y, 0));
 
-    // Apply transformations: move to origin, scale, move back, then move to
-    // target
+    // Apply transformations: move to base, scale, move back, move to target
     for (auto &p : points) {
-        p = translate_to_origin.transform(p); // Move to origin
+        p = translate_to_base.transform(p);   // Move to base
         p = scale.transform(p);               // Scale
         p = translate_back.transform(p);      // Move back to original position
         p = translate_to_target.transform(p); // Move to target position
     }
-
     // Clear existing mesh data
     M_wrap.clear();
 
@@ -197,7 +201,7 @@ void Tree::wrap(int lod) {
     }
 
     // Compute the bounding box of the transformed mesh
-    bbox = PMP::bbox(M_wrap);
+    // bbox = PMP::bbox(M_wrap);
 
     // std::cout << "\n height: " << M_height << std::endl;
     // std::cout << "x, y: " << M_x << ", " << M_y << std::endl;
