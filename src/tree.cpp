@@ -155,17 +155,23 @@ void Tree::wrap(int lod) {
 
     K::RT scaling_factor(scaling_factor_double); // Convert to exact type
 
-    // Create affine transformation (scaling and translation)
-    CGAL::Aff_transformation_3<K> transformation =
-        CGAL::Aff_transformation_3<K>(CGAL::TRANSLATION,
-                                      Vector_3(M_x, M_y, 0)) *
-        CGAL::Aff_transformation_3<K>(CGAL::SCALING, scaling_factor) *
-        CGAL::Aff_transformation_3<K>(
-            CGAL::TRANSLATION,
-            Vector_3(centroid.x() - M_x, centroid.y() - M_y, 0));
+    // Create affine transformations
+    CGAL::Aff_transformation_3<K> translate_to_origin(
+        CGAL::TRANSLATION,
+        Vector_3(-centroid.x(), -centroid.y(), -centroid.z()));
+    CGAL::Aff_transformation_3<K> scale(CGAL::SCALING, scaling_factor);
+    CGAL::Aff_transformation_3<K> translate_back(
+        CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), centroid.z()));
+    CGAL::Aff_transformation_3<K> translate_to_target(CGAL::TRANSLATION,
+                                                      Vector_3(M_x, M_y, 0));
 
+    // Apply transformations: move to origin, scale, move back, then move to
+    // target
     for (auto &p : points) {
-        p = transformation.transform(p);
+        p = translate_to_origin.transform(p); // Move to origin
+        p = scale.transform(p);               // Scale
+        p = translate_back.transform(p);      // Move back to original position
+        p = translate_to_target.transform(p); // Move to target position
     }
 
     // Clear existing mesh data

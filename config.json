@@ -1,7 +1,7 @@
 {
-  "bbox": "48.58690,7.75265,48.58744,7.75503",
-  "LOD": 0,
+  "bbox": "48.59074,7.75693,48.59164,7.75975",
+  "LOD": 3,
   "default_height": 10,
   "default_genus": "Platanus",
-  "output_name": "republique"
+  "output_name": "contades"
 }
