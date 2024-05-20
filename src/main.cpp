@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
     metrics << "Number of tree which had no genus: " << nNoGenus << std::endl;
     metrics << "Number of vertices: " << num_vertices(finalMesh) << std::endl;
     metrics << "Number of faces: " << num_faces(finalMesh) << std::endl;
-    metrics << "Time: " << t.time() << " seconds" << std::endl;
+    metrics << "Time to mesh: " << t.time() << " seconds" << std::endl;
     metrics.close();
 
     std::cout << "Metrics available at " << metrics_filename << std::endl;
