@@ -44,6 +44,8 @@
       {]}{{{\color{delim}{]}}}}{1},
 }
 
+
+
 \setlength{\parskip}{1em}
 
 \lstset{frame=single, showstringspaces=false, columns=fixed, basicstyle={\ttfamily}, commentstyle={\it}, numbers=left, tabsize=4}
@@ -295,7 +297,7 @@ categories for the meshing of the trees. \\
 
 \newpage
 
-\begin{lstlisting}
+\begin{lstlisting}[language=json]
 {
     "known_genus": [
         "Abies",
@@ -343,7 +345,7 @@ A \texttt{wrap} executable will be available to generate the reference meshes, i
 can be used as follows:
 (50 is the alpha value and 600 is the offset value)
 
-\begin{lstlisting}
+\begin{lstlisting}[language=bash]
 ./build/wrap tree_ref/raw_tree/Ginkgo.stl 50 600
 \end{lstlisting}
 
@@ -351,7 +353,7 @@ can be used as follows:
 Additionally, to wrap all the trees in a directory, the \texttt{wrap\_all.sh} script
 can be used:
 
-\begin{lstlisting}
+\begin{lstlisting}[language=bash]
 #!/bin/bash
 
 # Directory containing the raw STL files
