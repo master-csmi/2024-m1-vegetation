@@ -87,15 +87,27 @@ Use the configuration file `config.json` to specify:
 
 - the base name of the output file `output_file` saved in the `/output` directory
 
+Use the `trees.json` file to specify the genus and height of the trees to be used in the simulation.
 
-Then run the program:
+- `known_genus` is a list of genus for which we have a base mesh
+- `cedrus_like` is a list of the genus for which the cedrus mesh model will be used
+- etc.
+
+If you wish you can mesh your own tree model using link:https://doc.cgal.org/latest/Alpha_wrap_3/index.html[CGAL Alpha Wrapper] by running:
+
+```bash
+./build/wrap Genus.stl <alpha> <offset>
+```
+
+and move the result to the `tree_ref` directory. Then add the genus to the `known_genus` in the `trees.json` file.
+
+Finnaly run the program:
 ```bash
 cd build
 ./run
 ```
 
-The output mesh and some metrics will be saved in the `/output` directory (which is automatically 
-created if needed).
+The output mesh and some metrics will be saved in the `/output` directory (which is automatically created if needed).
 
 You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
 
