@@ -108,9 +108,10 @@ void Tree::wrap(int lod) {
                          M_genus) != M_quercus_like.end()) {
         filename += "Quercus";
     } else {
-        std::cerr << "Genus : " << M_genus << " ,not found in trees.json data."
+        std::cout << "Genus : " << M_genus
+                  << ", not found in trees.json database, using Quercus instead"
                   << std::endl;
-        exit(1);
+        filename += "Quercus";
     }
 
     switch (lod) {

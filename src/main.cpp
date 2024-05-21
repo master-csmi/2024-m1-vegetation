@@ -127,6 +127,7 @@ int main(int argc, char **argv) {
     std::ofstream output(filename);
     CGAL::IO::write_STL(output, finalMesh);
 
+    std::cout << "" << std::endl;
     std::cout << "Final mesh: " << num_vertices(finalMesh) << " vertices, "
               << num_faces(finalMesh) << " faces" << std::endl;
     std::cout << "Took " << t.time() << " s. (" << t.time() / 60.0

@@ -25,7 +25,17 @@
     "Chamaecyparis",
     "Calocedrus"
   ],
-  "acer_like": ["Fadus"],
-  "liquidambar_like": ["Liriodendron"],
-  "quercus_like": ["Corylus", "Carya", "Fagus", "Prunus"]
+  "acer_like": ["Fadus", "Metasequoia", "Sequoiadendron", "Thuja", "Tsuga"],
+  "liquidambar_like": ["Liriodendron", "Pyrus", "Alnus", "Ostrya"],
+  "quercus_like": [
+    "Corylus",
+    "Carya",
+    "Fagus",
+    "Prunus",
+    "Fraxinus",
+    "Ailanthus",
+    "Celtis",
+    "Carpinus",
+    "Styphnolobium"
+  ]
 }

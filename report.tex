@@ -238,7 +238,7 @@ interest and some parameters for the tree generation. \\
     "default_height": 10,
     "default_genus": "Platanus",
     "output_name": "republique"
-  }
+}
 \end{lstlisting}
 
 Where :
@@ -288,6 +288,36 @@ to generate the 3D tree models.
 Using the results from the \texttt{Overpass API} query, we will create a library
 of tree objects. Each tree object will contain the tree's metadata (location, species, height,
 leave density, etc.).
+
+Additionally, since it's not feasible to have a mesh model for each species of trees, 
+we will use the \texttt{trees.json} file to specify the genus 
+categories for the meshing of the trees. \\
+
+\newpage
+
+\begin{lstlisting}
+{
+    "known_genus": [
+        "Abies",
+        "Acer",
+        "Aesculus",
+        ...
+    ],
+    "cedrus_like": [
+        "Chaemacyparis",
+        "Cupressus",
+        ...
+    ],
+    "acer_like": ["Fadus", "Metasequoia", "Sequoiadendron", "Thuja", "Tsuga"],
+    "liquidambar_like": ["Liriodendron", "Pyrus", "Alnus", "Ostrya"],
+    "quercus_like": [
+        "Corylus",
+        "Carya",
+        "Fagus",
+        ...
+    ]
+}
+\end{lstlisting}
 
 \subsection{Tree Model Generation}
 Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
@@ -429,6 +459,18 @@ On each execution of the program, basics metrics will be exported to a text file
 the \texttt{output} directory. \\
 These results will be analyzed more thoroughly in the \textbf{Results} section.
 
+Example of the result's metrics for \texttt{grande\_ile\_LOD1.txt}:
+
+\begin{lstlisting}
+Area: 561545 meters
+Total number of trees: 409
+Number of tree which had no height: 67
+Number of tree which had no genus: 27
+Number of vertices: 241791
+Number of faces: 482686
+Time to mesh: 155.965 seconds, (2.59942 minutes)
+\end{lstlisting}
+
 \section{Implementation}
 
 \subsection{Querying data}
@@ -462,6 +504,8 @@ class Tree {
     double M_diameter_crown;
     double M_x, M_y;
     Mesh M_wrap;
+    std::vector<std::string> M_known_genus, M_cedrus_like, M_acer_like,
+        M_liquidambar_like, M_quercus_like;
 
     public:
     // Default constructor
@@ -503,6 +547,7 @@ class Tree {
 
     void computeXY(double ref_lat, double ref_lon);
     void wrap(int lod);
+    void load_data(const std::string &filename);
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);
