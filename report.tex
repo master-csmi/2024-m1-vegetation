@@ -229,11 +229,7 @@ The roadmap we defined includes the following milestones and issues:
 
 \subsection{Data Acquisition}
 A \textit{config.json} file will be available for the user to specify the area of
-interest. The file contains the latitude and longitude of two points, A and B,
-which define a bounding box.
-
-Here's an example of the \textit{config.json} file for the Strasbourg, France
-city center:
+interest and some parameters for the tree generation. \\
 
 \begin{lstlisting}[language=json]
 {
@@ -256,9 +252,6 @@ Where :
     \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
 \end{itemize}
 
-This configuration file will be updated along the way to include more options
-as needed such as mesh level of detail (LOD), seasons for the density of leaves,
-etc.
 
 We will then use the \texttt{Overpass API} to query \texttt{OpenStreetMap}
 for all the available tree data within the specified bounding box.
@@ -520,6 +513,81 @@ bool operator<(const Tree &lhs, const Tree &rhs);
 Each tree model has a CGAL \href{https://doc.cgal.org/latest/Surface_mesh/classCGAL_1_1Surface__mesh.html}{Mesh}
 wrapper object that will contain the tree's
 mesh and its position in the 3D space.
+
+Scaling and moving the trees into the correct position ended being more complex
+than expected. \\
+
+
+\begin{lstlisting}[language=C++]
+// Calculate centroid of the tree
+double centroid_x = 0, centroid_y = 0, centroid_z = 0;
+for (const Point_3 &p : points) {
+    centroid_x += p.x();
+    centroid_y += p.y();
+    centroid_z += p.z();
+}
+centroid_x /= points.size();
+centroid_y /= points.size();
+centroid_z /= points.size();
+Point_3 centroid(centroid_x, centroid_y, centroid_z);
+
+// Calculate bounding box from points
+for (const Point_3 &p : points)
+    bbox += p.bbox();
+
+scaling_factor_double = M_height / (bbox.zmax() - bbox.zmin());
+
+K::RT scaling_factor(scaling_factor_double); // Convert to exact type
+
+// Find the base of the tree (minimum z-coordinate)
+double base_z = std::numeric_limits<double>::max();
+for (const auto &p : points) {
+    if (p.z() < base_z)
+        base_z = p.z();
+}
+
+// Create affine transformations
+CGAL::Aff_transformation_3<K> translate_to_base(
+    CGAL::TRANSLATION, Vector_3(-centroid.x(), -centroid.y(), -base_z));
+CGAL::Aff_transformation_3<K> scale(CGAL::SCALING, scaling_factor);
+CGAL::Aff_transformation_3<K> translate_back(
+    CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), base_z));
+CGAL::Aff_transformation_3<K> translate_to_target(CGAL::TRANSLATION,
+                                                  Vector_3(M_x, M_y, 0));
+
+// Apply transformations: move to base, scale, move back, move to target
+for (auto &p : points) {
+    p = translate_to_base.transform(p);   // Move to base
+    p = scale.transform(p);               // Scale
+    p = translate_back.transform(p);      // Move back to original position
+    p = translate_to_target.transform(p); // Move to target position
+}
+// Clear existing mesh data
+M_wrap.clear();
+
+// Add transformed vertices to the mesh and store their descriptors
+std::map<Point_3, Mesh::Vertex_index> vertex_map;
+for (const auto &p : points) {
+    auto v = M_wrap.add_vertex(p);
+    // Store the vertex descriptor for the transformed vertex
+    vertex_map[p] = v;
+}
+
+// Add faces to the mesh
+for (const auto &face : faces) {
+    // Retrieve vertex descriptors for the face vertices
+    Mesh::Vertex_index v0 = vertex_map[points[face[0]]];
+    Mesh::Vertex_index v1 = vertex_map[points[face[1]]];
+    Mesh::Vertex_index v2 = vertex_map[points[face[2]]];
+
+    // Add the face to the mesh
+    M_wrap.add_face(v0, v1, v2);
+}
+\end{lstlisting}
+
+To ensure the placement was correct we first had to move the tree to the origin
+of its bounding box, scale it to the correct height, move it back to its original position
+(because scaling it was moving the tree around), and finally move it to the correct position in the 3D space.
 %  model integration
 %  shading calculations
 

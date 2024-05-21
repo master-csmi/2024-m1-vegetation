@@ -94,7 +94,7 @@ cd build
 ./run
 ```
 
-The output mesh will be saved in the `/output` directory (which is automatically 
+The output mesh and some metrics will be saved in the `/output` directory (which is automatically 
 created if needed).
 
 You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
