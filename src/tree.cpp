@@ -86,11 +86,14 @@ void Tree::wrap(int lod) {
                                         "Juniperus",     "Larix",
                                         "Picea",         "Pinus",
                                         "Pseudotsuga",   "Chamaecyparis",
-                                        "Calocedrus"};    // -> Cedrus
-    std::vector<std::string> hetre = {"Fadus"};           // -> Acer
-    std::vector<std::string> tulipier = {"Liriodendron"}; // -> Liquidambar
-    std::vector<std::string> broad_leef = {"Corylus", "Quercus", "Carya",
-                                           "Fagus"}; // -> Aesculus
+                                        "Calocedrus"}; // -> Cedrus
+    std::vector<std::string> hetre = {"Fadus"};        // -> Acer
+    std::vector<std::string> tulipier = {"Liriodendron", "Fraxinus",
+                                         "Pyrus"}; // -> Liquidambar
+    std::vector<std::string> big_tree = {"Corylus", "Carya", "Fagus", "Celtis",
+                                         "Ailanthus"}; // -> Quercus
+    std::vector<std::string> long_tree = {"Alnus"};    // -> Ginkgo
+    std::vector<std::string> prunus = {"Prunus"};      // -> Aesculus
 
     if (std::find(known_tree.begin(), known_tree.end(), M_genus) !=
         known_tree.end()) {
@@ -103,8 +106,14 @@ void Tree::wrap(int lod) {
     } else if (std::find(tulipier.begin(), tulipier.end(), M_genus) !=
                tulipier.end()) {
         filename += "Liquidambar";
-    } else if (std::find(broad_leef.begin(), broad_leef.end(), M_genus) !=
-               broad_leef.end()) {
+    } else if (std::find(big_tree.begin(), big_tree.end(), M_genus) !=
+               big_tree.end()) {
+        filename += "Quercus";
+    } else if (std::find(long_tree.begin(), long_tree.end(), M_genus) !=
+               long_tree.end()) {
+        filename += "Ginkgo";
+    } else if (std::find(prunus.begin(), prunus.end(), M_genus) !=
+               prunus.end()) {
         filename += "Aesculus";
     } else {
         std::cerr << "Unknown genus: " << M_genus << std::endl;
