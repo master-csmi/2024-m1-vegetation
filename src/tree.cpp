@@ -71,6 +71,20 @@ void Tree::computeXY(double ref_lat, double ref_lon) {
     M_y = cartesianPosition[1];
 }
 
+void Tree::load_data(const std::string &filename) {
+    std::ifstream ifile(filename);
+    if (ifile) {
+        nlohmann::json data = nlohmann::json::parse(ifile);
+        M_known_genus = data["known_genus"];
+        M_cedrus_like = data["cedrus_like"];
+        M_acer_like = data["acer_like"];
+        M_liquidambar_like = data["liquidambar_like"];
+        M_quercus_like = data["quercus_like"];
+    } else {
+        std::cerr << "Error opening file: " << filename << std::endl;
+    }
+}
+
 void Tree::wrap(int lod) {
     std::string filename = "../tree_ref/";
     double scaling_factor_double;
@@ -78,38 +92,27 @@ void Tree::wrap(int lod) {
     std::vector<std::array<int, 3>> faces;
     CGAL::Bbox_3 bbox;
 
-    std::vector<std::string> known_tree = {
-        "Abies",   "Acer",      "Aesculus",    "Catalpa",  "Cedrus",
-        "Ginkgo",  "Gleditsia", "Liquidambar", "Magnolia", "Platanus",
-        "Quercus", "Taxus",     "Tilia"};
-    std::vector<std::string> conifer = {"Chaemacyparis", "Cupressus",
-                                        "Juniperus",     "Larix",
-                                        "Picea",         "Pinus",
-                                        "Pseudotsuga",   "Chamaecyparis",
-                                        "Calocedrus"};    // -> Cedrus
-    std::vector<std::string> hetre = {"Fadus"};           // -> Acer
-    std::vector<std::string> tulipier = {"Liriodendron"}; // -> Liquidambar
-    std::vector<std::string> broad_leef = {"Corylus", "Quercus", "Carya",
-                                           "Fagus"}; // -> Aesculus
-
-    if (std::find(known_tree.begin(), known_tree.end(), M_genus) !=
-        known_tree.end()) {
+    if (std::find(M_known_genus.begin(), M_known_genus.end(), M_genus) !=
+        M_known_genus.end()) {
         filename += M_genus;
-    } else if (std::find(conifer.begin(), conifer.end(), M_genus) !=
-               conifer.end()) {
+    } else if (std::find(M_cedrus_like.begin(), M_cedrus_like.end(), M_genus) !=
+               M_cedrus_like.end()) {
         filename += "Cedrus";
-    } else if (std::find(hetre.begin(), hetre.end(), M_genus) != hetre.end()) {
+    } else if (std::find(M_acer_like.begin(), M_acer_like.end(), M_genus) !=
+               M_acer_like.end()) {
         filename += "Acer";
-    } else if (std::find(tulipier.begin(), tulipier.end(), M_genus) !=
-               tulipier.end()) {
+    } else if (std::find(M_liquidambar_like.begin(), M_liquidambar_like.end(),
+                         M_genus) != M_liquidambar_like.end()) {
         filename += "Liquidambar";
-    } else if (std::find(broad_leef.begin(), broad_leef.end(), M_genus) !=
-               broad_leef.end()) {
-        filename += "Aesculus";
+    } else if (std::find(M_quercus_like.begin(), M_quercus_like.end(),
+                         M_genus) != M_quercus_like.end()) {
+        filename += "Quercus";
     } else {
-        std::cerr << "Unknown genus: " << M_genus << std::endl;
+        std::cerr << "Genus : " << M_genus << " ,not found in trees.json data."
+                  << std::endl;
         exit(1);
     }
+
     switch (lod) {
     case 0:
         filename += "_0_600.stl";
