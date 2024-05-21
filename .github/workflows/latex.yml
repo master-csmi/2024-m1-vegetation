@@ -1,22 +1,12 @@
-name: LaTeX CI
-
+name: Build LaTeX document
 on: [pull_request]
-
 jobs:
-  build:
-    runs-on: ubuntu-20.04
-
+  build_latex:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install LaTeX
-        run: |
-          sudo apt-get -y update
-          sudo apt-get -y install texlive-full
-
+      - name: Set up Git repository
+        uses: actions/checkout@v2
       - name: Compile LaTeX document
-        run: |
-          pdflatex report.tex
-          bibtex report
-          pdflatex report.tex
-          pdflatex report.tex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: report.tex
