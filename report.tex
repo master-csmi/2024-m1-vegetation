@@ -319,6 +319,12 @@ categories for the meshing of the trees. \\
 }
 \end{lstlisting}
 
+\begin{itemize}
+    \item \texttt{known\_genus} is a list of the genus for which we have a mesh model.
+    \item \texttt{cedrus\_like} is a list of the genus for which the cedrus mesh model will be used.
+    \item etc.
+\end{itemize}
+
 \subsection{Tree Model Generation}
 Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
 reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid computing
