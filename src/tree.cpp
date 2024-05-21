@@ -78,8 +78,64 @@ void Tree::wrap(int lod) {
     std::vector<std::array<int, 3>> faces;
     CGAL::Bbox_3 bbox;
 
-    // Append LOD to filename
-    filename += "arbre1_lod" + std::to_string(lod) + ".stl";
+    std::vector<std::string> known_tree = {
+        "Abies",   "Acer",      "Aesculus",    "Catalpa",  "Cedrus",
+        "Ginkgo",  "Gleditsia", "Liquidambar", "Magnolia", "Platanus",
+        "Quercus", "Taxus",     "Tilia"};
+    std::vector<std::string> conifer = {"Chaemacyparis", "Cupressus",
+                                        "Juniperus",     "Larix",
+                                        "Picea",         "Pinus",
+                                        "Pseudotsuga",   "Chamaecyparis",
+                                        "Calocedrus"}; // -> Cedrus
+    std::vector<std::string> hetre = {"Fadus"};        // -> Acer
+    std::vector<std::string> tulipier = {"Liriodendron", "Fraxinus",
+                                         "Pyrus"}; // -> Liquidambar
+    std::vector<std::string> big_tree = {"Corylus", "Carya", "Fagus", "Celtis",
+                                         "Ailanthus"}; // -> Quercus
+    std::vector<std::string> long_tree = {"Alnus"};    // -> Ginkgo
+    std::vector<std::string> prunus = {"Prunus"};      // -> Aesculus
+
+    if (std::find(known_tree.begin(), known_tree.end(), M_genus) !=
+        known_tree.end()) {
+        filename += M_genus;
+    } else if (std::find(conifer.begin(), conifer.end(), M_genus) !=
+               conifer.end()) {
+        filename += "Cedrus";
+    } else if (std::find(hetre.begin(), hetre.end(), M_genus) != hetre.end()) {
+        filename += "Acer";
+    } else if (std::find(tulipier.begin(), tulipier.end(), M_genus) !=
+               tulipier.end()) {
+        filename += "Liquidambar";
+    } else if (std::find(big_tree.begin(), big_tree.end(), M_genus) !=
+               big_tree.end()) {
+        filename += "Quercus";
+    } else if (std::find(long_tree.begin(), long_tree.end(), M_genus) !=
+               long_tree.end()) {
+        filename += "Ginkgo";
+    } else if (std::find(prunus.begin(), prunus.end(), M_genus) !=
+               prunus.end()) {
+        filename += "Aesculus";
+    } else {
+        std::cerr << "Unknown genus: " << M_genus << std::endl;
+        exit(1);
+    }
+    switch (lod) {
+    case 0:
+        filename += "_0_600.stl";
+        break;
+    case 1:
+        filename += "_20_600.stl";
+        break;
+    case 2:
+        filename += "_50_600.stl";
+        break;
+    case 3:
+        filename += "_100_600.stl";
+        break;
+    default:
+        std::cerr << "Invalid LOD." << std::endl;
+        exit(1);
+    }
 
     CGAL::data_file_path(filename);
 
@@ -88,28 +144,49 @@ void Tree::wrap(int lod) {
         exit(1);
     }
 
+    // Calculate centroid of the tree
+    double centroid_x = 0, centroid_y = 0, centroid_z = 0;
+    for (const Point_3 &p : points) {
+        centroid_x += p.x();
+        centroid_y += p.y();
+        centroid_z += p.z();
+    }
+    centroid_x /= points.size();
+    centroid_y /= points.size();
+    centroid_z /= points.size();
+    Point_3 centroid(centroid_x, centroid_y, centroid_z);
+
     // Calculate bounding box from points
     for (const Point_3 &p : points)
         bbox += p.bbox();
-
-    if (M_height == 0)
-        M_height = 5; // change to k-nearest neighbors
 
     scaling_factor_double = M_height / (bbox.zmax() - bbox.zmin());
 
     K::RT scaling_factor(scaling_factor_double); // Convert to exact type
 
-    // Create affine transformation (translation and scaling)
-    CGAL::Aff_transformation_3<K> transformation =
-        CGAL::Aff_transformation_3<K>(CGAL::TRANSLATION,
-                                      Vector_3(M_x, M_y, 0)) *
-        CGAL::Aff_transformation_3<K>(CGAL::SCALING, scaling_factor);
-
-    // Apply transformation to each point in the mesh
-    for (auto &p : points) {
-        p = transformation.transform(p);
+    // Find the base of the tree (minimum z-coordinate)
+    double base_z = std::numeric_limits<double>::max();
+    for (const auto &p : points) {
+        if (p.z() < base_z)
+            base_z = p.z();
     }
 
+    // Create affine transformations
+    CGAL::Aff_transformation_3<K> translate_to_base(
+        CGAL::TRANSLATION, Vector_3(-centroid.x(), -centroid.y(), -base_z));
+    CGAL::Aff_transformation_3<K> scale(CGAL::SCALING, scaling_factor);
+    CGAL::Aff_transformation_3<K> translate_back(
+        CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), base_z));
+    CGAL::Aff_transformation_3<K> translate_to_target(CGAL::TRANSLATION,
+                                                      Vector_3(M_x, M_y, 0));
+
+    // Apply transformations: move to base, scale, move back, move to target
+    for (auto &p : points) {
+        p = translate_to_base.transform(p);   // Move to base
+        p = scale.transform(p);               // Scale
+        p = translate_back.transform(p);      // Move back to original position
+        p = translate_to_target.transform(p); // Move to target position
+    }
     // Clear existing mesh data
     M_wrap.clear();
 
@@ -133,7 +210,7 @@ void Tree::wrap(int lod) {
     }
 
     // Compute the bounding box of the transformed mesh
-    bbox = PMP::bbox(M_wrap);
+    // bbox = PMP::bbox(M_wrap);
 
     // std::cout << "\n height: " << M_height << std::endl;
     // std::cout << "x, y: " << M_x << ", " << M_y << std::endl;

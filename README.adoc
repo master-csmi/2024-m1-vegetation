@@ -75,14 +75,26 @@ make test
 
 === Usage 
 
+Use the configuration file `config.json` to specify:  
+
+- the bounding box `bbox` of the area of interest ("bottom latitude, bottom longitude, top latitude, top longitude")
+
+- the level of detail `LOD` (1, 2, or 3)
+
+- the default height of the trees `default_height` (in meters) when the height is not available in the OpenStreetMap data
+
+- the default genus of the trees `default_genus` when the genus is not available in the OpenStreetMap data
+
+- the base name of the output file `output_file` saved in the `/output` directory
+
+
+Then run the program:
 ```bash
 cd build
 ./run
 ```
 
-The `config.json` file contains the GPS coordinates of the 2 corners of the area to pull data from OpenSTreetMap as well as the LOD setting (0, 1, 2 or 3) and the output name desired.
-
-The output mesh will be saved in the `/output` directory (which is automatically 
+The output mesh and some metrics will be saved in the `/output` directory (which is automatically 
 created if needed).
 
 You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)

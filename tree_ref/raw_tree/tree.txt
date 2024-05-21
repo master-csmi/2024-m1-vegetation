@@ -1,0 +1,18 @@
+- Conifer:
+Cedrus
+Chaemacyparis
+Pinus
+
+- Hetre:
+Acer
+Fagus
+
+- Tulipier:
+Liriodendron
+Liquidambar
+
+Corylus
+Quercus
+Carya
+Aesculus
+

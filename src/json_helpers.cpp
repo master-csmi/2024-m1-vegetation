@@ -11,30 +11,33 @@ std::vector<Tree> createLibraryFromJson(nlohmann::json const &jsonData) {
     return treeLibrary;
 }
 
-double treeHeightKNN(double dist, Tree &t,
-                     std::vector<Tree> const &treeLibrary) {
-    std::vector<Tree> knn;
+double treeHeightKNN(int k, Tree &t, std::vector<Tree> const &treeLibrary) {
+    // Compute the distance to all other trees and store them along with their
+    // heights
+    std::vector<std::pair<double, double>> distances;
     for (auto &tree : treeLibrary) {
-        if (t.id() != tree.id()) {
+        if (t.id() != tree.id() && tree.height() != 0) {
             double d =
                 sqrt(pow(t.x() - tree.x(), 2) + pow(t.y() - tree.y(), 2));
-            if (d <= dist) {
-                knn.push_back(tree);
-            }
+            distances.push_back({d, tree.height()});
         }
     }
 
+    // Sort by distance
+    std::sort(distances.begin(), distances.end());
+
+    // Check if we have at least k trees
+    if (distances.size() < k) {
+        std::cerr << "Not enough trees with non-zero height, exiting"
+                  << std::endl;
+        exit(1);
+    }
+
+    // Compute the average height of the k nearest trees
     double sum = 0;
-    int count = 0;
-    for (auto &tree : knn) {
-        if (tree.height() != 0) {
-            sum += tree.height();
-            ++count;
-        }
+    for (int i = 0; i < k; i++) {
+        sum += distances[i].second;
     }
 
-    if (count == 0)
-        return 0;
-
-    return sum / count;
+    return sum / k;
 }
