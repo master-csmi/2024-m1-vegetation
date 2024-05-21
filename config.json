@@ -1,14 +1,7 @@
 {
-  "A": {
-    "latitude": 48.58868,
-    "longitude": 7.75168
-  },
-  "B": {
-    "latitude": 48.58548,
-    "longitude": 7.75455
-  },
-  "new_query": true,
-  "LOD": 1,
-  "KNN_dist": 50,
-  "output_name": "republique"
+  "bbox": "48.5797,7.7435,48.5856,7.7551",
+  "LOD": 0,
+  "default_height": 10,
+  "default_genus": "Platanus",
+  "output_name": "grande_ile"
 }
