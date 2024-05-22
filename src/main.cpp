@@ -84,6 +84,7 @@ int main(int argc, char **argv) {
     std::cout << "Computing the union of tree meshes ..." << std::endl;
     t.start();
     for (auto &tree : treeLibrary) {
+        tree.load_data("../trees.json");
         tree.computeXY(ref_lat, ref_lon);
 
         // std::cout << tree << std::endl;
@@ -126,9 +127,11 @@ int main(int argc, char **argv) {
     std::ofstream output(filename);
     CGAL::IO::write_STL(output, finalMesh);
 
+    std::cout << "" << std::endl;
     std::cout << "Final mesh: " << num_vertices(finalMesh) << " vertices, "
               << num_faces(finalMesh) << " faces" << std::endl;
-    std::cout << "Took " << t.time() << " s." << std::endl;
+    std::cout << "Took " << t.time() << " s. (" << t.time() / 60.0
+              << " minutes)" << std::endl;
     std::cout << "Final mesh written to " << filename << std::endl;
 
     // Metrics export
@@ -142,7 +145,8 @@ int main(int argc, char **argv) {
     metrics << "Number of tree which had no genus: " << nNoGenus << std::endl;
     metrics << "Number of vertices: " << num_vertices(finalMesh) << std::endl;
     metrics << "Number of faces: " << num_faces(finalMesh) << std::endl;
-    metrics << "Time to mesh: " << t.time() << " seconds" << std::endl;
+    metrics << "Time to mesh: " << t.time() << " seconds, (" << t.time() / 60.0
+            << " minutes)" << std::endl;
     metrics.close();
 
     std::cout << "Metrics available at " << metrics_filename << std::endl;

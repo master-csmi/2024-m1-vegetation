@@ -1,0 +1,41 @@
+{
+  "known_genus": [
+    "Abies",
+    "Acer",
+    "Aesculus",
+    "Catalpa",
+    "Cedrus",
+    "Ginkgo",
+    "Gleditsia",
+    "Liquidambar",
+    "Magnolia",
+    "Platanus",
+    "Quercus",
+    "Taxus",
+    "Tilia"
+  ],
+  "cedrus_like": [
+    "Chaemacyparis",
+    "Cupressus",
+    "Juniperus",
+    "Larix",
+    "Picea",
+    "Pinus",
+    "Pseudotsuga",
+    "Chamaecyparis",
+    "Calocedrus"
+  ],
+  "acer_like": ["Fadus", "Metasequoia", "Sequoiadendron", "Thuja", "Tsuga"],
+  "liquidambar_like": ["Liriodendron", "Pyrus", "Alnus", "Ostrya"],
+  "quercus_like": [
+    "Corylus",
+    "Carya",
+    "Fagus",
+    "Prunus",
+    "Fraxinus",
+    "Ailanthus",
+    "Celtis",
+    "Carpinus",
+    "Styphnolobium"
+  ]
+}

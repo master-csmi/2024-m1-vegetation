@@ -18,6 +18,21 @@ Config::Config(std::string const &filename) {
     }
 }
 
+std::vector<double> Config::bbox_coords() const {
+    std::vector<double> coords;
+    std::string delimiter = ",";
+    size_t pos = 0;
+    std::string token;
+    std::string bbox = M_bbox; // Create a local copy of M_bbox
+    while ((pos = bbox.find(delimiter)) != std::string::npos) {
+        token = bbox.substr(0, pos);
+        coords.push_back(std::stod(token));
+        bbox.erase(0, pos + delimiter.length());
+    }
+    coords.push_back(std::stod(bbox));
+    return coords;
+}
+
 Config::~Config() {}
 
 std::ostream &operator<<(std::ostream &os, const Config &config) {

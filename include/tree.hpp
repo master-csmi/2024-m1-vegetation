@@ -30,6 +30,8 @@ class Tree {
     double M_diameter_crown;
     double M_x, M_y;
     Mesh M_wrap;
+    std::vector<std::string> M_known_genus, M_cedrus_like, M_acer_like,
+        M_liquidambar_like, M_quercus_like;
 
   public:
     // Default constructor
@@ -71,6 +73,7 @@ class Tree {
 
     void computeXY(double ref_lat, double ref_lon);
     void wrap(int lod);
+    void load_data(const std::string &filename);
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);
