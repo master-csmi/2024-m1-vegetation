@@ -14,9 +14,9 @@ endif()
 set(requiredlibs)
 
 # Find libraries
-find_package(CGAL REQUIRED)
+find_package(CGAL REQUIRED COMPONENTS Core)
 if(CGAL_FOUND)
-    set(requiredlibs ${requiredlibs} ${CGAL_3RD_PARTY_LIBRARIES})
+    set(requiredlibs ${requiredlibs} CGAL::CGAL CGAL::CGAL_Core ${CGAL_3RD_PARTY_LIBRARIES})
 else()
     message(STATUS "This program requires the CGAL library, and will not be compiled.")
     return()
