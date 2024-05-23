@@ -10,7 +10,7 @@ class Config {
     int M_LOD;
     std::string M_output_name;
     std::string M_default_genus;
-    double M_default_height;
+    std::string M_default_height;
     std::string M_origin;
     std::string M_input_building_mesh;
 
@@ -22,7 +22,7 @@ class Config {
     // Getters
     std::string output_name() const { return M_output_name; }
     std::string default_genus() const { return M_default_genus; }
-    double default_height() const { return M_default_height; }
+    std::string default_height() const { return M_default_height; }
     std::string bbox() const { return M_bbox; }
     int LOD() const { return M_LOD; }
     std::vector<double> bbox_coords() const;
@@ -31,6 +31,6 @@ class Config {
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);
-std::pair<double, double> extractCoordinates(const std::string &origin);
+std::pair<double, double> string_to_pair(const std::string &origin);
 
 #endif
