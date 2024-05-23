@@ -235,10 +235,12 @@ interest and some parameters for the tree generation. \\
 
 \begin{lstlisting}[language=json]
 {
-    "bbox": "48.58690, 7.75265, 48.58744,7.75503",
+    "bbox": "48.5866,7.7522,48.5876,7.7557",
+    "origin": "48.583055227464364, 7.748664426560083",
     "LOD": 0,
     "default_height": 10,
     "default_genus": "Platanus",
+    "input_building_mesh": "mesh_lod1.stl",
     "output_name": "republique"
 }
 \end{lstlisting}
@@ -247,10 +249,12 @@ Where :
 \begin{itemize}
     \item \texttt{bbox} is the bounding box for the query in the format:
     \subitem (bottom latitude, bottom longitude, top latitude, top longitude)
-
+    \item \texttt{origin} is the origin of the 3D space in latitude and longitude
+    used to convert the GPS coordinates to Cartesian coordinates.
     \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
     \item \texttt{default\_height} is the default height of the trees if not specified in the data.
     \item \texttt{default\_genus} is the default genus of the trees if not specified in the data.
+    \item \texttt{input\_building\_mesh} is the name of the input file representing the building mesh.
     \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
 \end{itemize}
 
@@ -283,7 +287,7 @@ Here's an example of the result of the query for one tree:
 \end{lstlisting}
 
 We will especially use the \texttt{position} of the tree (latitude and longitude),
-its \texttt{height}, the \texttt{diameter of its foliage}, and the \texttt{species}
+its \texttt{height} and the \texttt{genus} (since this data is more abundant than the species)
 to generate the 3D tree models.
 
 \subsection{Tree Library}
@@ -292,8 +296,8 @@ of tree objects. Each tree object will contain the tree's metadata (location, sp
 leave density, etc.).
 
 Additionally, since it's not feasible to have a mesh model for each species of trees, 
-we will use the \texttt{trees.json} file to specify the genus 
-categories for the meshing of the trees. \\
+we will use the \texttt{trees.json} file to specify the genus categories for the
+ meshing of the trees. \\
 
 \newpage
 
@@ -327,19 +331,171 @@ categories for the meshing of the trees. \\
     \item etc.
 \end{itemize}
 
+\subsection{Base tree model}
+Since making all tree model would take too much time we will use tree meshes 
+publicly available on \href{https://app.sketchup.com/app}{Sketchup} 3D Warehouse.
+
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/ginkgo_sketchup.png}
+        \captionsetup{font={scriptsize}}
+        \caption{The mesh of a Ginkgo tree available on Sketchup 3D Warehouse}
+\end{figure}
+
+Those meshes can be directly downloaded in STL format.  
+
+To provide different level of details (LOD) we will wrap then using the
+CGAL 3D Alpha Wrapping\cite{cgal_alpha_wrapper}.
+
+\subsection{Alpha Wrapping}
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/aw3_bike_lod.jpg}
+        \captionsetup{font={scriptsize}}
+        \caption{Different LOD of the Alpha Wrapping of a bike}
+\end{figure}
+
+Many approaches exist to enclose a 3D model within a volume, each balancing runtime
+and quality (tightness) of approximation. Simple methods, like using an axis-aligned
+or oriented bounding box, have uncontrollable and often large approximation errors.
+Computing the convex hull of the input improves quality but increases runtime and
+still provides a crude approximation, especially for models with several components.
+
+The convex hull is a special case of alpha shapes. Mathematically, alpha shapes are
+subcomplexes of the Delaunay triangulation, where simplices are included based on the
+size of their minimal (empty) Delaunay ball. Constructing 3D alpha shapes can be seen
+as carving 3D space with an empty ball of radius alpha. Alpha shapes provide good
+piecewise-linear approximations of a shape but are defined on point sets. For more
+general input data like triangle soups, even after sampling, alpha shapes may not be
+conservative for any alpha and can carve inner structures within volumes.
+
+Inspired by alpha shapes, we use shrink-wrapping. We iteratively construct a subcomplex
+of a 3D Delaunay triangulation by starting from a simple triangulation enclosing the
+input and then iteratively removing eligible tetrahedra on the boundary of the complex.
+The underlying triangulation is refined as shrinking proceeds. Instead of carving from
+the convex hull, we construct a new mesh through a Delaunay refinement-like algorithm.
+This algorithm inserts Steiner points on the boundary of an offset volume, defined as
+a level set of the unsigned distance field to the input.
+
+This method prevents the creation of inner structures and avoids superfluous
+computations. It also detaches mesh construction from the input's geometry and
+discretization, offering several advantages: (1) the input format is flexible (triangle
+soups, polygon soups, point clouds), as only three basic geometric queries are needed:
+(a) the distance between a point and the input, (b) the projection of a query point
+onto the input, and (c) an intersection test between a tetrahedron and the input, and
+(2) the user can trade tightness to the input for final mesh complexity, requiring
+fewer mesh elements for a large offset conservative approximation.
+
+\textbf{Algorithm}
+
+\textbf{Initialization}
+
+The algorithm begins by inserting the eight corner vertices of a loose bounding box
+into a 3D Delaunay triangulation. In CGAL's 3D Delaunay triangulation, all triangle
+facets are adjacent to two tetrahedron cells. Each boundary facet of the triangulation,
+coinciding with a convex hull facet, is adjacent to an infinite tetrahedron cell.
+Initially, all infinite cells are tagged as outside, and all finite tetrahedron cells
+are tagged as inside.
+
+\textbf{Shrink-wrapping}
+
+The algorithm traverses the cells of the Delaunay triangulation from outside to inside,
+flood-filling from one cell to its adjacent cell and tagging the adjacent cell as
+outside when possible. Flood-filling uses a priority queue of Delaunay triangle facets
+(gates) representing the traversal between adjacent cells.
+
+A gate is alpha-traversable if its circumradius is larger than the user-defined
+parameter alpha, where the circumradius is the radius of the relating triangle's
+Delaunay ball. Cavities smaller than alpha are not accessible as their gates are not
+alpha-traversable.
+
+Initialized by the alpha-traversable gates on the convex hull, the priority queue only
+contains alpha-traversable gates and is sorted by decreasing circumradius. Traversal
+advances along dual Voronoi edges of the gates with a pencil of empty balls
+circumscribing the gate.
+
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/aw3_pencil.png}
+        \captionsetup{font={scriptsize}}
+        \caption{(Left) Pencil of empty circles (blue) circumscribing a Delaunay 
+        edge (green) in a 2D Delaunay triangulation (black). From the top triangle 
+        circumcenter c1 to the bottom triangle circumcenter c2, the dual Voronoi
+         edge denoted by e (doted red) is the trace of centers of the largest circles
+          that are empty of Delaunay vertex. (Right) The graph corresponding to the 
+          left example. The x-axis corresponds to the position of empty circle centers
+           located on the Voronoi edge e, from c1 to c2. The y-axis is the radius
+            value of the corresponding empty circles. In this case, the minimum 
+            radius of this pencil of empty circle is located at the midpoint of 
+            the green Delaunay edge. In our algorithm, a gate (green Delaunay edge)
+             is said to be not alpha-traversable when the minimum radius of the pencil
+              of empty circle is smaller than alpha. }
+\end{figure}
+
+When traversing from an outside cell \( c_o \) to an inside cell \( c_i \) through an 
+alpha-traversable facet \( f \), two criteria are tested to prevent the wrapping process 
+from colliding with the input:
+
+1. Check for an intersection between the dual Voronoi edge of \( f \) and the offset 
+surface, defined as the level set of the unsigned isosurface to the input. If intersections 
+exist, the first intersection point along the dual Voronoi edge oriented from outside to 
+inside is inserted into the triangulation as a Steiner point.
+
+2. If the dual Voronoi edge does not intersect the offset surface but the neighboring cell 
+\( c_i \) intersects the input, compute the projection of the circumcenter of \( c_i \) 
+onto the offset surface and insert it into the triangulation as a Steiner point, which 
+destroys \( c_i \).
+
+After each Steiner point insertion, all new incident cells are tagged as inside, and the 
+newly alpha-traversable gates are pushed into the priority queue.
+
+If neither criterion is met, the neighboring cell \( c_i \) is traversed and tagged as 
+outside. Alpha-traversable facets of \( c_i \) separating inside from outside cells are 
+pushed as new gates into the priority queue.
+
+Once the queue empties—a process guaranteed as facets (and their circumradii) become 
+smaller due to new Steiner point insertions—the construction phase terminates. The output 
+triangle surface mesh is extracted from the Delaunay triangulation as the set of facets 
+separating inside from outside cells.
+
+The figure below depicts the steps of the algorithm in 2D.
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/aw3_steps.jpg}
+        \captionsetup{font={scriptsize}}
+        \caption{Steps of the shrink-wrapping algorithm in 2D. The algorithm is initialized by 
+        inserting the corners of the loose bounding box of the input (red) into a Delaunay 
+        triangulation, and all finite triangles are tagged inside (grey). The current gate 
+        (green edge) popped out from the queue is alpha-traversable. The triangle adjacent 
+        to the gate is tagged outside when it does not intersect the input, and new 
+        alpha-traversable gates are pushed to the queue. When the adjacent triangle 
+        intersects the input, a new Steiner point (large green disc) is computed and inserted 
+        into the triangulation, all neighboring triangles are tagged inside, new 
+        alpha-traversable gates are pushed to the queue, and traversal is resumed. Grey edges 
+        depict the Delaunay triangulation. Blue edges depict the Voronoi diagram. Pink circles 
+        depict the empty circle of radius alpha. The output edges (dark blue) separate inside 
+        from outside triangles.
+        }
+\end{figure}
+
+\textbf{Guarantes}
+The algorithm is proven to terminate and to produce a 2-manifold triangulated surface 
+mesh that strictly encloses the input data. The key element to the proof is that we wrap 
+from outside to inside and never allow a cell that intersects the input to be flagged 
+inside. Furthermore, both criteria that lead to refinement of the triangulation insert
+ Steiner points that are guaranteed to break the cells in need of refinement and 
+ reduce the neighbor facets circumradii.
+
+
+
 \subsection{Tree Model Generation}
 Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
 reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid computing
 a new mesh for each tree.
-The wrapping algorithm  works by
-approximating 3D objects by constructing a
-conservative approximation that strictly encloses the input, ensuring it is watertight, 
-intersection-free, orientable, and 2-manifold, and iteratively removing eligible 
-triangles from a Delaunay triangulation while refining the mesh, it prevents 
-the creation of inner structures within the output and allows users to control 
-the level of detail and complexity through user-defined parameters \texttt{alpha} 
-(smaller the alpha, the finer the detail in the final result) and \texttt{offset} 
-(how far away the vertices of the resulting mesh are from the original input geometry).
 
 A \texttt{wrap} executable will be available to generate the reference meshes, it 
 can be used as follows:
