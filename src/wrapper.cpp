@@ -8,10 +8,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 namespace AW3 = CGAL::Alpha_wraps_3;
 using K = CGAL::Exact_predicates_inexact_constructions_kernel;
 using Point_3 = K::Point_3;
 using Mesh = CGAL::Surface_mesh<Point_3>;
+
 int main(int argc, char **argv) {
     std::cout.precision(17);
     // Read the input
