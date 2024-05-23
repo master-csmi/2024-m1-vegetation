@@ -238,7 +238,7 @@ interest and some parameters for the tree generation. \\
     "bbox": "48.5866,7.7522,48.5876,7.7557",
     "origin": "48.583055227464364, 7.748664426560083",
     "LOD": 0,
-    "default_height": 10,
+    "default_height_range": "3, 40",
     "default_genus": "Platanus",
     "input_building_mesh": "mesh_lod1.stl",
     "output_name": "republique"
@@ -250,9 +250,10 @@ Where :
     \item \texttt{bbox} is the bounding box for the query in the format:
     \subitem (bottom latitude, bottom longitude, top latitude, top longitude)
     \item \texttt{origin} is the origin of the 3D space in latitude and longitude
-    used to convert the GPS coordinates to Cartesian coordinates.
+    used to convert the GPS coordinates to Cartesian coordinates. It must be the 
+    same for the terrain mesh and the tree meshes.
     \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
-    \item \texttt{default\_height} is the default height of the trees if not specified in the data.
+    \item \texttt{default\_height\_range} is a range to randomly pick from to apply to tree which have no height.
     \item \texttt{default\_genus} is the default genus of the trees if not specified in the data.
     \item \texttt{input\_building\_mesh} is the name of the input file representing the building mesh.
     \item \texttt{output\_name} is the name of the output file representing the unions of the tree meshes.
@@ -547,8 +548,8 @@ inside. Furthermore, both criteria that lead to refinement of the triangulation 
 
 \subsection{Tree model generation}
 Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
-reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid computing
-a new mesh for each tree.
+reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid wrapping 
+each tree model individually. \\
 
 A \texttt{wrap} executable will be available to generate the reference meshes, it 
 can be used as follows:
@@ -627,8 +628,8 @@ decide the tree's metadata (species, height, leave density, etc.) based on the
 surrounding trees. \\
 Unfortunately, this approach is not feasible due to the fact that
 when data is missing it's usually missing for a large area such as a park. \\
-Instead, we will use first try to use the mean of the available height per genus. \\
-Else we will use the default height and genus specified in the \textit{config.json} file.
+Instead, we will use a random height picked in \texttt{default\_height\_range} 
+and genus specified by \texttt{default\_genus} in the \textit{config.json} file.
 
 \subsection{Model integration}
 Generated tree models will be integrated into terrain meshes to create comprehensive
@@ -663,7 +664,7 @@ We were given a \texttt{.stl} file representing the city center of Strasbourg, F
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/strasbourg3d.png}
+    \includegraphics[width=1\textwidth]{images/stras_mesh.png}
     \captionsetup{font={scriptsize}}
     \caption{Strasbourg 3D model.}
 \end{figure}
@@ -817,9 +818,12 @@ for (const auto &face : faces) {
 
 To ensure the placement was correct we first had to move the tree to the origin
 of its bounding box, scale it to the correct height, move it back to its original position
-(because scaling it was moving the tree around), and finally move it to the correct position in the 3D space.
-%  model integration
-%  shading calculations
+(because scaling it was moving the tree around), and finally move it to the correct position in the 3D space. \\
+
+Note: To improve tree placement we would also need to take into account the real 
+position on the z-axis (taking into account the elevation of the terrain) instead 
+of putting the trees and the buildings on 0 on the z-axis (i.e. on sea level).
+
 
 \section{Results}
 
