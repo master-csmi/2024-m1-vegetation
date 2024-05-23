@@ -8,30 +8,36 @@
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/IO/Color.h>
 #include <CGAL/IO/STL.h>
+#include <CGAL/IO/polygon_soup_io.h>
 #include <CGAL/Polygon_mesh_processing/IO/polygon_mesh_io.h>
+// #include <CGAL/Polygon_mesh_processing/autorefinement.h>
 #include <CGAL/Polygon_mesh_processing/corefinement.h>
 #include <CGAL/Polygon_mesh_processing/fair.h>
 #include <CGAL/Polygon_mesh_processing/orient_polygon_soup_extension.h>
 #include <CGAL/Polygon_mesh_processing/orientation.h>
 #include <CGAL/Polygon_mesh_processing/polygon_soup_to_polygon_mesh.h>
 #include <CGAL/Polygon_mesh_processing/repair.h>
+#include <CGAL/Polygon_mesh_processing/repair_polygon_soup.h>
+#include <CGAL/Polygon_mesh_processing/triangulate_faces.h>
 #include <CGAL/Real_timer.h>
 #include <CGAL/Surface_mesh.h>
 #include <filesystem>
 #include <iostream>
 #include <string>
 
-void clean_mesh(Mesh &mesh) {
-    CGAL::Polygon_mesh_processing::duplicate_non_manifold_vertices(mesh);
-    CGAL::Polygon_mesh_processing::remove_degenerate_faces(mesh);
-    CGAL::Polygon_mesh_processing::remove_isolated_vertices(mesh);
-    CGAL::Polygon_mesh_processing::stitch_borders(mesh);
-}
+#include <boost/container/small_vector.hpp>
 
 using K = CGAL::Exact_predicates_inexact_constructions_kernel;
 using Point_3 = K::Point_3;
 using Mesh = CGAL::Surface_mesh<Point_3>;
 namespace PMP = CGAL::Polygon_mesh_processing;
+
+void clean_mesh(Mesh &mesh) {
+    PMP::duplicate_non_manifold_vertices(mesh);
+    PMP::remove_degenerate_faces(mesh);
+    PMP::remove_isolated_vertices(mesh);
+    PMP::stitch_borders(mesh);
+}
 
 int main(int argc, char **argv) {
 
@@ -94,15 +100,16 @@ int main(int argc, char **argv) {
     // Mesh part
     Mesh finalMesh, currentWrap, building_mesh;
     std::string output_name = config.output_name();
+    std::string height_range_str = config.default_height();
     std::string output_folder, filename, metrics_filename;
     int lod = config.LOD();
     CGAL::Real_timer t;
-    double defaultHeight = config.default_height();
     int nNoHeight = 0;
     int nNoGenus = 0;
     double h;
     std::string origin = config.origin();
-    std::pair<double, double> origin_double = extractCoordinates(origin);
+    std::pair<double, double> origin_double = string_to_pair(origin);
+    std::pair<double, double> heigth_range = string_to_pair(height_range_str);
     const std::string building_mesh_str =
         CGAL::data_file_path(config.input_building_mesh());
 
@@ -124,7 +131,11 @@ int main(int argc, char **argv) {
             if (defaultHeights.find(tree.genus()) != defaultHeights.end()) {
                 h = defaultHeights[tree.genus()];
             } else {
-                h = defaultHeight;
+                // random value in the range
+                h = heigth_range.first +
+                    static_cast<double>(rand()) /
+                        (static_cast<double>(RAND_MAX / (heigth_range.second -
+                                                         heigth_range.first)));
             }
             tree.setHeight(h);
         }
@@ -140,23 +151,41 @@ int main(int argc, char **argv) {
         }
     }
 
-    std::vector<Point_3> points;
-    std::vector<std::array<std::size_t, 3>> faces;
+    // std::vector<Point_3> input_points;
+    // std::vector<boost::container::small_vector<std::size_t, 3>>
+    // input_triangles;
 
-    // Read the content of the STL file into points and facets
-    if (!CGAL::IO::read_polygon_soup(building_mesh_str, points, faces)) {
-        std::cerr << "Invalid input." << std::endl;
-        return 1;
-    }
+    // if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
+    //                                  input_triangles)) {
+    //     std::cerr << "Cannot read " << building_mesh_str << "\n";
+    //     return 1;
+    // }
+    // PMP::repair_polygon_soup(input_points, input_triangles);
+    // PMP::triangulate_polygons(input_points, input_triangles);
 
-    std::cout << "Computing the union of building and tree meshes ..."
-              << std::endl;
-    if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
-            finalMesh, building_mesh, finalMesh)) {
-        std::cerr << "Corefine_and_compute_union buildings and trees failed"
-                  << std::endl;
-        exit(1);
-    }
+    // PMP::autorefine_triangle_soup(
+    //     input_points, input_triangles,
+    //     CGAL::parameters::concurrency_tag(CGAL::Parallel_if_available_tag()));
+
+    // std::cout << "Computing the union of building and tree meshes ..."
+    //           << std::endl;
+    // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
+    //         finalMesh, building_mesh, finalMesh)) {
+    //     std::cerr << "Corefine_and_compute_union buildings and trees failed"
+    //               << std::endl;
+    //     exit(1);
+    // }
+
+    // // Create a mesh from the points and facets
+
+    // std::cout << "Computing the union of building and tree meshes ..."
+    //           << std::endl;
+    // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
+    //         finalMesh, building_mesh, finalMesh)) {
+    //     std::cerr << "Corefine_and_compute_union buildings and trees failed"
+    //               << std::endl;
+    //     exit(1);
+    // }
 
     t.stop();
 
@@ -183,7 +212,7 @@ int main(int argc, char **argv) {
                        std::to_string(lod) + ".txt";
 
     std::ofstream metrics(metrics_filename);
-    metrics << "Area: " << area << " meters" << std::endl;
+    metrics << "Area: " << std::sqrt(area) << " squared meters" << std::endl;
     metrics << "Total number of trees: " << treeLibrary.size() << std::endl;
     metrics << "Number of tree which had no height: " << nNoHeight << std::endl;
     metrics << "Number of tree which had no genus: " << nNoGenus << std::endl;

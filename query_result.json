@@ -2,2590 +2,2060 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.62.1 084b4234",
   "osm3s": {
-    "timestamp_osm_base": "2024-05-23T12:53:06Z",
+    "timestamp_osm_base": "2024-05-23T18:20:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
 
 {
   "type": "node",
-  "id": 10161978687,
-  "lat": 48.5871937,
-  "lon": 7.7531245,
+  "id": 5190678079,
+  "lat": 48.5894228,
+  "lon": 7.7555210,
   "tags": {
-    "circumference": "0.62832",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27490",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978689,
-  "lat": 48.5873214,
-  "lon": 7.7547778,
-  "tags": {
-    "circumference": "2.19911",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27511",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978690,
-  "lat": 48.5871327,
-  "lon": 7.7547703,
-  "tags": {
-    "circumference": "1.3823",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27514",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978691,
-  "lat": 48.5868515,
-  "lon": 7.7545490,
-  "tags": {
-    "circumference": "0.87965",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27516",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978692,
-  "lat": 48.5866900,
-  "lon": 7.7540915,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27521",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978695,
-  "lat": 48.5872478,
-  "lon": 7.7548520,
-  "tags": {
-    "circumference": "0.7854",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27466",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978696,
-  "lat": 48.5871301,
-  "lon": 7.7548381,
-  "tags": {
-    "circumference": "0.81681",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27468",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978697,
-  "lat": 48.5868318,
-  "lon": 7.7546199,
-  "tags": {
-    "circumference": "0.65973",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27470",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978698,
-  "lat": 48.5866699,
-  "lon": 7.7542372,
-  "tags": {
-    "circumference": "0.97389",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27475",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978699,
-  "lat": 48.5866660,
-  "lon": 7.7536840,
-  "tags": {
-    "circumference": "0.97389",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27481",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978700,
-  "lat": 48.5871342,
-  "lon": 7.7531365,
-  "tags": {
-    "circumference": "1.82212",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "11",
-    "natural": "tree",
-    "ref": "27489",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978707,
-  "lat": 48.5870394,
-  "lon": 7.7531032,
-  "tags": {
-    "circumference": "1.66504",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27439",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978708,
-  "lat": 48.5872155,
-  "lon": 7.7530534,
-  "tags": {
-    "circumference": "0.7854",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27442",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978712,
-  "lat": 48.5867986,
-  "lon": 7.7551664,
-  "tags": {
-    "circumference": "1.13097",
-    "diameter_crown": "10",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "16837",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978713,
-  "lat": 48.5868666,
-  "lon": 7.7555187,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "8",
-    "natural": "tree",
-    "ref": "16841",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978714,
-  "lat": 48.5869416,
-  "lon": 7.7552603,
-  "tags": {
-    "circumference": "1.85354",
-    "diameter_crown": "7",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "16844",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10161978715,
-  "lat": 48.5869664,
-  "lon": 7.7551739,
-  "tags": {
-    "circumference": "0.97389",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "16845",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161982003,
-  "lat": 48.5869177,
-  "lon": 7.7544782,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Aesculus",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114872",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus carnea x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161990992,
-  "lat": 48.5868210,
-  "lon": 7.7522359,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "6",
-    "genus": "Aesculus",
-    "height": "12",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17331",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10161991003,
-  "lat": 48.5869255,
-  "lon": 7.7523255,
-  "tags": {
-    "circumference": "2.23053",
-    "diameter_crown": "10",
-    "genus": "Aesculus",
-    "height": "20",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17270",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10161991004,
-  "lat": 48.5867915,
-  "lon": 7.7527888,
-  "tags": {
-    "circumference": "0.56549",
-    "diameter_crown": "3",
-    "genus": "Aesculus",
-    "height": "7",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17263",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10161991007,
-  "lat": 48.5866809,
-  "lon": 7.7539974,
-  "tags": {
-    "circumference": "1.9792",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27522",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10161991008,
-  "lat": 48.5868751,
-  "lon": 7.7546738,
-  "tags": {
-    "circumference": "1.25664",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27469",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10161991010,
-  "lat": 48.5873804,
-  "lon": 7.7547571,
-  "tags": {
-    "circumference": "2.51327",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27510",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013647,
-  "lat": 48.5869479,
-  "lon": 7.7527346,
-  "tags": {
-    "circumference": "0.94248",
-    "diameter_crown": "6",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16659",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013667,
-  "lat": 48.5867302,
-  "lon": 7.7537991,
-  "tags": {
-    "circumference": "1.88496",
-    "diameter_crown": "5",
-    "genus": "Taxus",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16192",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013668,
-  "lat": 48.5875592,
-  "lon": 7.7542592,
-  "tags": {
-    "circumference": "1.22522",
-    "diameter_crown": "9",
-    "genus": "Magnolia",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16208",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013669,
-  "lat": 48.5869987,
-  "lon": 7.7533373,
-  "tags": {
-    "circumference": "0.81681",
-    "diameter_crown": "6",
-    "genus": "Liriodendron",
-    "height": "11",
-    "natural": "tree",
-    "ref": "16219",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Liriodendron tulipifera"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013683,
-  "lat": 48.5867575,
-  "lon": 7.7524297,
-  "tags": {
-    "circumference": "1.63363",
-    "diameter_crown": "8",
-    "genus": "Aesculus",
-    "height": "15",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17329",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013684,
-  "lat": 48.5867903,
-  "lon": 7.7523342,
-  "tags": {
-    "circumference": "1.31947",
-    "diameter_crown": "8",
-    "genus": "Aesculus",
-    "height": "14",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17330",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013694,
-  "lat": 48.5868354,
-  "lon": 7.7526365,
-  "tags": {
-    "circumference": "0.5969",
-    "diameter_crown": "4",
-    "genus": "Aesculus",
-    "height": "10",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17265",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013836,
-  "lat": 48.5871716,
-  "lon": 7.7546900,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Gleditsia",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114870",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Gleditsia triacanthos f. inermis"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013868,
-  "lat": 48.5867155,
-  "lon": 7.7535059,
-  "tags": {
-    "circumference": "0.87965",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27432",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013873,
-  "lat": 48.5867855,
-  "lon": 7.7545478,
-  "tags": {
-    "circumference": "0.91106",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27471",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013875,
-  "lat": 48.5875829,
-  "lon": 7.7546839,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27460",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013880,
-  "lat": 48.5867681,
-  "lon": 7.7528679,
-  "tags": {
-    "circumference": "1.28805",
-    "diameter_crown": "6",
-    "genus": "Aesculus",
-    "height": "13",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17262",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013881,
-  "lat": 48.5871551,
-  "lon": 7.7530616,
-  "tags": {
-    "circumference": "0.97389",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27441",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013884,
-  "lat": 48.5868824,
-  "lon": 7.7532236,
-  "tags": {
-    "circumference": "0.91106",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27436",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013886,
-  "lat": 48.5866530,
-  "lon": 7.7541580,
-  "tags": {
-    "circumference": "0.7854",
-    "diameter_crown": "2",
-    "genus": "Tilia",
-    "natural": "tree",
-    "ref": "27476",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013887,
-  "lat": 48.5867194,
-  "lon": 7.7542538,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27519",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013888,
-  "lat": 48.5873638,
-  "lon": 7.7548322,
-  "tags": {
-    "circumference": "0.84823",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27464",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013893,
-  "lat": 48.5869323,
-  "lon": 7.7531780,
-  "tags": {
-    "circumference": "0.7854",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27437",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013894,
-  "lat": 48.5869841,
-  "lon": 7.7531362,
-  "tags": {
-    "circumference": "1.9792",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27438",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013895,
-  "lat": 48.5870293,
-  "lon": 7.7531801,
-  "tags": {
-    "circumference": "1.63363",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "11",
-    "natural": "tree",
-    "ref": "27487",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162013915,
-  "lat": 48.5869066,
-  "lon": 7.7523955,
-  "tags": {
-    "circumference": "0.7854",
-    "diameter_crown": "5",
-    "genus": "Aesculus",
-    "height": "12",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17269",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162014203,
-  "lat": 48.5868947,
-  "lon": 7.7546100,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27515",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162014325,
-  "lat": 48.5875484,
-  "lon": 7.7545228,
-  "tags": {
-    "circumference": "2.67035",
-    "diameter_crown": "23",
-    "genus": "Tilia",
-    "height": "26",
-    "natural": "tree",
-    "ref": "16226",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia europaea"
-  }
-},
-{
-  "type": "node",
-  "id": 10162014326,
-  "lat": 48.5870860,
-  "lon": 7.7537670,
-  "tags": {
-    "circumference": "1.25664",
-    "genus": "Magnolia",
-    "height": "3",
-    "natural": "tree",
-    "ref": "16199",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162014346,
-  "lat": 48.5875352,
-  "lon": 7.7536719,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "3",
-    "genus": "Abies",
-    "height": "6",
-    "natural": "tree",
-    "ref": "113020",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Abies pinsapo"
-  }
-},
-{
-  "type": "node",
-  "id": 10162014461,
-  "lat": 48.5868750,
-  "lon": 7.7528227,
-  "tags": {
-    "circumference": "1.13097",
-    "diameter_crown": "7",
-    "genus": "Aesculus",
-    "height": "12",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16660",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016666,
-  "lat": 48.5868800,
-  "lon": 7.7533192,
-  "tags": {
-    "circumference": "1.82212",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "11",
-    "natural": "tree",
-    "ref": "27484",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016754,
-  "lat": 48.5875259,
-  "lon": 7.7545877,
-  "tags": {
-    "circumference": "2.45044",
-    "diameter_crown": "12",
-    "genus": "Catalpa",
-    "height": "21",
-    "natural": "tree",
-    "ref": "16227",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Catalpa bignonioides"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016755,
-  "lat": 48.5873667,
-  "lon": 7.7543307,
-  "tags": {
-    "circumference": "5.24646",
-    "diameter_crown": "21",
-    "genus": "Ginkgo",
-    "height": "25",
-    "natural": "tree",
-    "ref": "16225",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Ginkgo biloba"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016756,
-  "lat": 48.5874120,
-  "lon": 7.7539797,
-  "tags": {
-    "circumference": "1.35088",
-    "diameter_crown": "9",
-    "genus": "Magnolia",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16205",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016773,
-  "lat": 48.5868932,
-  "lon": 7.7554322,
-  "tags": {
-    "circumference": "0.81681",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "8",
-    "natural": "tree",
-    "ref": "16842",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016776,
-  "lat": 48.5868116,
-  "lon": 7.7544873,
-  "tags": {
-    "circumference": "0.81681",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27525",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016777,
-  "lat": 48.5874803,
-  "lon": 7.7547732,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27462",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016784,
-  "lat": 48.5867556,
-  "lon": 7.7534183,
-  "tags": {
-    "circumference": "1.09956",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27433",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016785,
-  "lat": 48.5868383,
-  "lon": 7.7533809,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27483",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016786,
-  "lat": 48.5867951,
-  "lon": 7.7533448,
-  "tags": {
-    "circumference": "0.56549",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27434",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016791,
-  "lat": 48.5867191,
-  "lon": 7.7544039,
-  "tags": {
-    "circumference": "0.84823",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27473",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016824,
-  "lat": 48.5867918,
-  "lon": 7.7530432,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "6",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16653",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162016836,
-  "lat": 48.5867935,
-  "lon": 7.7540549,
-  "tags": {
-    "circumference": "1.13097",
-    "diameter_crown": "5",
-    "genus": "Chamaecyparis",
     "height": "12",
     "natural": "tree",
-    "ref": "16221",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Chamaecyparis lawsoniana"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162016931,
-  "lat": 48.5870819,
-  "lon": 7.7531558,
+  "id": 5190678080,
+  "lat": 48.5894811,
+  "lon": 7.7555591,
   "tags": {
-    "circumference": "0.31416",
-    "diameter_crown": "2",
-    "genus": "Tilia",
-    "height": "4",
-    "natural": "tree",
-    "ref": "111392",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017072,
-  "lat": 48.5873645,
-  "lon": 7.7544915,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Cedrus",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114867",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Cedrus libani"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017086,
-  "lat": 48.5868625,
-  "lon": 7.7544583,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Pseudotsuga",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114873",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Pseudotsuga menziesii"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017170,
-  "lat": 48.5873663,
-  "lon": 7.7541372,
-  "tags": {
-    "circumference": "1.19381",
-    "diameter_crown": "9",
-    "genus": "Magnolia",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16204",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017184,
-  "lat": 48.5869988,
-  "lon": 7.7537129,
-  "tags": {
-    "circumference": "1.25664",
-    "diameter_crown": "4",
-    "genus": "Taxus",
-    "height": "6",
-    "natural": "tree",
-    "ref": "16197",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017187,
-  "lat": 48.5871471,
-  "lon": 7.7539989,
-  "tags": {
-    "circumference": "1.13097",
-    "diameter_crown": "4",
-    "genus": "Taxus",
-    "height": "4",
-    "natural": "tree",
-    "ref": "16200",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017188,
-  "lat": 48.5868535,
-  "lon": 7.7538019,
-  "tags": {
-    "circumference": "1.63363",
-    "diameter_crown": "8",
-    "genus": "Magnolia",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16194",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017191,
-  "lat": 48.5868383,
-  "lon": 7.7529981,
-  "tags": {
-    "circumference": "0.21991",
-    "diameter_crown": "1",
-    "genus": "Aesculus",
-    "height": "3",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "113532",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017196,
-  "lat": 48.5868080,
-  "lon": 7.7535226,
-  "tags": {
-    "circumference": "2.19911",
-    "diameter_crown": "6",
-    "genus": "Taxus",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16193",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017199,
-  "lat": 48.5873128,
-  "lon": 7.7539117,
-  "tags": {
-    "circumference": "1.25664",
-    "diameter_crown": "3",
-    "genus": "Taxus",
-    "height": "4",
-    "natural": "tree",
-    "ref": "16203",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017230,
-  "lat": 48.5871743,
-  "lon": 7.7534215,
-  "tags": {
-    "circumference": "2.73319",
-    "diameter_crown": "9",
-    "genus": "Chamaecyparis",
-    "height": "17",
-    "natural": "tree",
-    "ref": "16217",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Chamaecyparis lawsoniana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017336,
-  "lat": 48.5869435,
-  "lon": 7.7529093,
-  "tags": {
-    "circumference": "0.75398",
-    "diameter_crown": "5",
-    "genus": "Aesculus",
     "height": "12",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
     "natural": "tree",
-    "ref": "16655",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162017351,
-  "lat": 48.5870358,
-  "lon": 7.7527951,
+  "id": 5190678081,
+  "lat": 48.5895494,
+  "lon": 7.7556038,
   "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "5",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16658",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017384,
-  "lat": 48.5872756,
-  "lon": 7.7530551,
-  "tags": {
-    "circumference": "0.62832",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27443",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017385,
-  "lat": 48.5866898,
-  "lon": 7.7543255,
-  "tags": {
-    "circumference": "0.91106",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27474",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017386,
-  "lat": 48.5866376,
-  "lon": 7.7539740,
-  "tags": {
-    "circumference": "0.97389",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27478",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017387,
-  "lat": 48.5869783,
-  "lon": 7.7532214,
-  "tags": {
-    "circumference": "1.79071",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "11",
-    "natural": "tree",
-    "ref": "27486",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017388,
-  "lat": 48.5875377,
-  "lon": 7.7546462,
-  "tags": {
-    "circumference": "0.50265",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27507",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017389,
-  "lat": 48.5872649,
-  "lon": 7.7547824,
-  "tags": {
-    "circumference": "2.51327",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27512",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017390,
-  "lat": 48.5866821,
-  "lon": 7.7539065,
-  "tags": {
-    "circumference": "2.19911",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27523",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017404,
-  "lat": 48.5867240,
-  "lon": 7.7554261,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "7",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "16831",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017405,
-  "lat": 48.5868183,
-  "lon": 7.7556897,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16838",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017480,
-  "lat": 48.5869467,
-  "lon": 7.7522516,
-  "tags": {
-    "circumference": "1.75929",
-    "diameter_crown": "12",
-    "genus": "Aesculus",
-    "height": "25",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17271",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017482,
-  "lat": 48.5867619,
-  "lon": 7.7522457,
-  "tags": {
-    "circumference": "0.97389",
-    "diameter_crown": "7",
-    "genus": "Aesculus",
     "height": "12",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
     "natural": "tree",
-    "ref": "17288",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162017929,
-  "lat": 48.5867229,
-  "lon": 7.7525277,
+  "id": 5190678082,
+  "lat": 48.5896200,
+  "lon": 7.7556500,
   "tags": {
-    "circumference": "0.15708",
-    "diameter_crown": "9",
-    "genus": "Aesculus",
-    "height": "5",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17328",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162017999,
-  "lat": 48.5872577,
-  "lon": 7.7545010,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Liquidambar",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114868",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Liquidambar styraciflua"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018000,
-  "lat": 48.5872265,
-  "lon": 7.7547297,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Acer",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114869",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Acer pseudoplatanus Atropurpureum"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018014,
-  "lat": 48.5874928,
-  "lon": 7.7536756,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "2",
-    "genus": "Pinus",
-    "height": "5",
-    "natural": "tree",
-    "ref": "114865",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Pinus - mugo"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018205,
-  "lat": 48.5874651,
-  "lon": 7.7542071,
-  "tags": {
-    "circumference": "1.5708",
-    "diameter_crown": "5",
-    "genus": "Taxus",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16206",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018217,
-  "lat": 48.5874931,
-  "lon": 7.7546881,
-  "tags": {
-    "circumference": "0.94248",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27508",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018218,
-  "lat": 48.5867423,
-  "lon": 7.7543322,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27518",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018219,
-  "lat": 48.5866872,
-  "lon": 7.7538189,
-  "tags": {
-    "circumference": "0.94248",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27524",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018223,
-  "lat": 48.5867733,
-  "lon": 7.7552545,
-  "tags": {
-    "circumference": "1.06814",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "16835",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018229,
-  "lat": 48.5868365,
-  "lon": 7.7532858,
-  "tags": {
-    "circumference": "2.29336",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27435",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018230,
-  "lat": 48.5875386,
-  "lon": 7.7547296,
-  "tags": {
-    "circumference": "0.91106",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27461",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018274,
-  "lat": 48.5872467,
-  "lon": 7.7531653,
-  "tags": {
-    "circumference": "3.61283",
-    "diameter_crown": "19",
-    "genus": "Fagus",
-    "height": "25",
-    "natural": "tree",
-    "ref": "16218",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Fagus sylvatica Purpurea"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018288,
-  "lat": 48.5866273,
-  "lon": 7.7528126,
-  "tags": {
-    "circumference": "0.87965",
-    "diameter_crown": "6",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17325",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018289,
-  "lat": 48.5866593,
-  "lon": 7.7527213,
-  "tags": {
-    "circumference": "0.72257",
-    "diameter_crown": "4",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17326",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018308,
-  "lat": 48.5866626,
-  "lon": 7.7525389,
-  "tags": {
-    "circumference": "1.35088",
-    "diameter_crown": "8",
-    "genus": "Aesculus",
-    "height": "16",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17285",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018399,
-  "lat": 48.5869002,
-  "lon": 7.7536475,
-  "tags": {
-    "circumference": "1.35088",
-    "diameter_crown": "9",
-    "genus": "Magnolia",
-    "height": "8",
-    "natural": "tree",
-    "ref": "16195",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018400,
-  "lat": 48.5874978,
-  "lon": 7.7538353,
-  "tags": {
-    "circumference": "5.65487",
-    "diameter_crown": "27",
-    "genus": "Ginkgo",
-    "height": "29",
-    "natural": "tree",
-    "ref": "16215",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Ginkgo biloba"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018419,
-  "lat": 48.5868827,
-  "lon": 7.7539654,
-  "tags": {
-    "circumference": "0.62832",
-    "diameter_crown": "5",
-    "genus": "Taxus",
-    "height": "6",
-    "natural": "tree",
-    "ref": "16220",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata Fastigiata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018510,
-  "lat": 48.5869654,
-  "lon": 7.7540813,
-  "tags": {
-    "circumference": "6.59734",
-    "diameter_crown": "25",
-    "genus": "Ginkgo",
-    "height": "33",
-    "natural": "tree",
-    "ref": "16223",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Ginkgo biloba"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018620,
-  "lat": 48.5867980,
-  "lon": 7.7534439,
-  "tags": {
-    "circumference": "2.26195",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "11",
-    "natural": "tree",
-    "ref": "27482",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018621,
-  "lat": 48.5866396,
-  "lon": 7.7538904,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27479",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018623,
-  "lat": 48.5867294,
-  "lon": 7.7523455,
-  "tags": {
-    "circumference": "2.54469",
-    "diameter_crown": "12",
-    "genus": "Aesculus",
-    "height": "18",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17287",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018626,
-  "lat": 48.5868150,
-  "lon": 7.7527122,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "5",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17264",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018627,
-  "lat": 48.5868616,
-  "lon": 7.7525499,
-  "tags": {
-    "circumference": "0.7854",
-    "diameter_crown": "5",
-    "genus": "Aesculus",
-    "height": "11",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17266",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018644,
-  "lat": 48.5868437,
-  "lon": 7.7556023,
-  "tags": {
-    "circumference": "0.56549",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "6",
-    "natural": "tree",
-    "ref": "16840",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018645,
-  "lat": 48.5866491,
-  "lon": 7.7556841,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "16827",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018646,
-  "lat": 48.5867021,
-  "lon": 7.7554979,
-  "tags": {
-    "circumference": "0.81681",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "16829",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018931,
-  "lat": 48.5869551,
-  "lon": 7.7538722,
-  "tags": {
-    "circumference": "1.69646",
-    "diameter_crown": "4",
-    "genus": "Taxus",
-    "height": "6",
-    "natural": "tree",
-    "ref": "16196",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018932,
-  "lat": 48.5873182,
-  "lon": 7.7546370,
-  "tags": {
-    "circumference": "0.53407",
-    "diameter_crown": "6",
-    "genus": "Liriodendron",
-    "height": "13",
-    "natural": "tree",
-    "ref": "16228",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Liriodendron tulipifera"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018941,
-  "lat": 48.5874046,
-  "lon": 7.7551496,
-  "tags": {
-    "circumference": "2.01062",
-    "diameter_crown": "13",
-    "genus": "Corylus",
-    "height": "17",
-    "natural": "tree",
-    "ref": "16533",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Corylus colurna"
-  }
-},
-{
-  "type": "node",
-  "id": 10162018962,
-  "lat": 48.5871065,
-  "lon": 7.7535838,
-  "tags": {
-    "circumference": "4.27257",
-    "diameter_crown": "28",
-    "genus": "Ginkgo",
-    "height": "21",
-    "natural": "tree",
-    "ref": "16216",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Ginkgo biloba"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019001,
-  "lat": 48.5867518,
-  "lon": 7.7544819,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27472",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019003,
-  "lat": 48.5873099,
-  "lon": 7.7548456,
-  "tags": {
-    "circumference": "0.81681",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27465",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019004,
-  "lat": 48.5874208,
-  "lon": 7.7548057,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27463",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019005,
-  "lat": 48.5872044,
-  "lon": 7.7547834,
-  "tags": {
-    "circumference": "1.82212",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27513",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019167,
-  "lat": 48.5872656,
-  "lon": 7.7540658,
-  "tags": {
-    "circumference": "1.5708",
-    "diameter_crown": "4",
-    "genus": "Taxus",
-    "height": "4",
-    "natural": "tree",
-    "ref": "16202",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019168,
-  "lat": 48.5871975,
-  "lon": 7.7538365,
-  "tags": {
-    "circumference": "0.91106",
-    "diameter_crown": "3",
-    "genus": "Taxus",
-    "height": "4",
-    "natural": "tree",
-    "ref": "16201",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019179,
-  "lat": 48.5870505,
-  "lon": 7.7539205,
-  "tags": {
-    "circumference": "0.06283",
-    "diameter_crown": "2",
-    "genus": "Magnolia",
-    "height": "2",
-    "natural": "tree",
-    "ref": "16198",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Magnolia x soulangiana"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019180,
-  "lat": 48.5875148,
-  "lon": 7.7540484,
-  "tags": {
-    "circumference": "1.16239",
-    "diameter_crown": "4",
-    "genus": "Taxus",
-    "height": "7",
-    "natural": "tree",
-    "ref": "16207",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Taxus baccata"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019182,
-  "lat": 48.5869273,
-  "lon": 7.7532654,
-  "tags": {
-    "circumference": "0.28274",
-    "diameter_crown": "2",
-    "genus": "Tilia",
-    "height": "5",
-    "natural": "tree",
-    "ref": "27485",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019218,
-  "lat": 48.5866417,
-  "lon": 7.7540635,
-  "tags": {
-    "circumference": "0.62832",
-    "diameter_crown": "4",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27477",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019221,
-  "lat": 48.5867747,
-  "lon": 7.7544147,
-  "tags": {
-    "circumference": "1.88496",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27517",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019222,
-  "lat": 48.5874325,
-  "lon": 7.7547268,
-  "tags": {
-    "circumference": "0.65973",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27509",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019229,
-  "lat": 48.5870952,
-  "lon": 7.7530768,
-  "tags": {
-    "circumference": "0.69115",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27440",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019230,
-  "lat": 48.5866484,
-  "lon": 7.7537898,
-  "tags": {
-    "circumference": "1.09956",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
-    "natural": "tree",
-    "ref": "27480",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019246,
-  "lat": 48.5868205,
-  "lon": 7.7550908,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "16839",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019263,
-  "lat": 48.5868324,
-  "lon": 7.7543121,
-  "tags": {
-    "circumference": "2.01062",
-    "diameter_crown": "9",
-    "genus": "Calocedrus",
-    "height": "22",
-    "natural": "tree",
-    "ref": "16222",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Calocedrus decurrens"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019269,
-  "lat": 48.5866934,
-  "lon": 7.7524488,
-  "tags": {
-    "circumference": "1.50796",
-    "diameter_crown": "8",
-    "genus": "Aesculus",
-    "height": "17",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "17286",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019278,
-  "lat": 48.5866572,
-  "lon": 7.7532167,
-  "tags": {
-    "circumference": "0.94248",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "8",
-    "natural": "tree",
-    "ref": "16537",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019315,
-  "lat": 48.5875610,
-  "lon": 7.7537115,
-  "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "3",
-    "genus": "Carya",
-    "height": "6",
-    "natural": "tree",
-    "ref": "113021",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Carya - laciniosa"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019709,
-  "lat": 48.5868946,
-  "lon": 7.7529464,
-  "tags": {
-    "circumference": "2.1677",
-    "diameter_crown": "10",
-    "genus": "Aesculus",
-    "height": "15",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16654",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019710,
-  "lat": 48.5870460,
-  "lon": 7.7528582,
-  "tags": {
-    "circumference": "1.53938",
-    "diameter_crown": "10",
-    "genus": "Aesculus",
-    "height": "18",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16657",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019711,
-  "lat": 48.5869939,
-  "lon": 7.7528841,
-  "tags": {
-    "circumference": "2.04204",
-    "diameter_crown": "10",
-    "genus": "Aesculus",
-    "height": "18",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "ref": "16656",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
-  }
-},
-{
-  "type": "node",
-  "id": 10162019843,
-  "lat": 48.5867433,
-  "lon": 7.7529602,
-  "tags": {
-    "circumference": "1.00531",
-    "diameter_crown": "4",
-    "genus": "Aesculus",
     "height": "12",
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
     "natural": "tree",
-    "ref": "17261",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Aesculus hippocastanum",
-    "species:wikidata": "Q26899"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162019858,
-  "lat": 48.5875845,
-  "lon": 7.7545899,
+  "id": 5190678083,
+  "lat": 48.5896909,
+  "lon": 7.7556964,
   "tags": {
-    "circumference": "0.65973",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "10",
+    "height": "12",
     "natural": "tree",
-    "ref": "27506",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162019863,
-  "lat": 48.5867019,
-  "lon": 7.7541737,
+  "id": 5190678084,
+  "lat": 48.5897674,
+  "lon": 7.7557465,
   "tags": {
-    "circumference": "1.79071",
-    "diameter_crown": "6",
-    "genus": "Tilia",
-    "height": "10",
+    "height": "12",
     "natural": "tree",
-    "ref": "27520",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162019864,
-  "lat": 48.5871912,
-  "lon": 7.7548498,
+  "id": 5190678106,
+  "lat": 48.5898341,
+  "lon": 7.7555403,
   "tags": {
-    "circumference": "0.50265",
-    "diameter_crown": "3",
-    "genus": "Tilia",
-    "height": "9",
+    "height": "12",
     "natural": "tree",
-    "ref": "27467",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162019894,
-  "lat": 48.5867494,
-  "lon": 7.7553372,
+  "id": 5190678107,
+  "lat": 48.5900941,
+  "lon": 7.7556878,
   "tags": {
-    "circumference": "0.87965",
-    "diameter_crown": "7",
-    "genus": "Tilia",
-    "height": "10",
+    "height": "12",
     "natural": "tree",
-    "ref": "16833",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162019895,
-  "lat": 48.5869162,
-  "lon": 7.7553521,
+  "id": 5190678108,
+  "lat": 48.5901650,
+  "lon": 7.7557328,
   "tags": {
-    "circumference": "1.19381",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
+    "height": "12",
     "natural": "tree",
-    "ref": "16843",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia tomentosa"
+    "taxon": "platanus"
   }
 },
 {
   "type": "node",
-  "id": 10162019954,
-  "lat": 48.5875990,
-  "lon": 7.7533973,
+  "id": 5190678109,
+  "lat": 48.5902302,
+  "lon": 7.7557741,
   "tags": {
-    "circumference": "0.25133",
-    "diameter_crown": "3",
-    "genus": "Quercus",
-    "height": "6",
+    "height": "12",
     "natural": "tree",
-    "ref": "113223",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Quercus castaneifolia"
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678110,
+  "lat": 48.5902919,
+  "lon": 7.7558132,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678111,
+  "lat": 48.5905451,
+  "lon": 7.7559795,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678112,
+  "lat": 48.5904711,
+  "lon": 7.7559306,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678113,
+  "lat": 48.5906338,
+  "lon": 7.7560419,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678114,
+  "lat": 48.5907101,
+  "lon": 7.7561016,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678118,
+  "lat": 48.5919270,
+  "lon": 7.7569079,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678119,
+  "lat": 48.5918725,
+  "lon": 7.7568722,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678120,
+  "lat": 48.5918290,
+  "lon": 7.7568437,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678121,
+  "lat": 48.5917780,
+  "lon": 7.7568102,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678122,
+  "lat": 48.5916327,
+  "lon": 7.7567150,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678123,
+  "lat": 48.5915821,
+  "lon": 7.7566818,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678124,
+  "lat": 48.5915254,
+  "lon": 7.7566446,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678125,
+  "lat": 48.5914685,
+  "lon": 7.7566073,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678126,
+  "lat": 48.5914088,
+  "lon": 7.7565682,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678127,
+  "lat": 48.5913325,
+  "lon": 7.7565181,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678128,
+  "lat": 48.5912758,
+  "lon": 7.7564809,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678129,
+  "lat": 48.5912180,
+  "lon": 7.7564431,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678130,
+  "lat": 48.5911592,
+  "lon": 7.7564045,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678131,
+  "lat": 48.5910573,
+  "lon": 7.7563377,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678132,
+  "lat": 48.5909892,
+  "lon": 7.7562930,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678133,
+  "lat": 48.5909382,
+  "lon": 7.7562596,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678134,
+  "lat": 48.5908854,
+  "lon": 7.7562250,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678135,
+  "lat": 48.5908369,
+  "lon": 7.7561932,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678136,
+  "lat": 48.5907678,
+  "lon": 7.7561478,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678141,
+  "lat": 48.5919272,
+  "lon": 7.7571600,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678142,
+  "lat": 48.5918776,
+  "lon": 7.7571276,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678143,
+  "lat": 48.5918205,
+  "lon": 7.7570903,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678144,
+  "lat": 48.5917673,
+  "lon": 7.7570554,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678145,
+  "lat": 48.5917211,
+  "lon": 7.7570252,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678146,
+  "lat": 48.5916765,
+  "lon": 7.7569960,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678147,
+  "lat": 48.5916269,
+  "lon": 7.7569636,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678148,
+  "lat": 48.5915646,
+  "lon": 7.7569228,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678149,
+  "lat": 48.5915231,
+  "lon": 7.7568957,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678150,
+  "lat": 48.5914803,
+  "lon": 7.7568677,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678151,
+  "lat": 48.5914275,
+  "lon": 7.7568331,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678152,
+  "lat": 48.5913686,
+  "lon": 7.7567946,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678153,
+  "lat": 48.5913147,
+  "lon": 7.7567593,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678154,
+  "lat": 48.5912673,
+  "lon": 7.7567283,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678155,
+  "lat": 48.5912164,
+  "lon": 7.7566950,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678156,
+  "lat": 48.5911673,
+  "lon": 7.7566629,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678157,
+  "lat": 48.5911171,
+  "lon": 7.7566300,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678158,
+  "lat": 48.5910631,
+  "lon": 7.7565948,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678159,
+  "lat": 48.5909980,
+  "lon": 7.7565521,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678160,
+  "lat": 48.5909317,
+  "lon": 7.7565087,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678161,
+  "lat": 48.5908785,
+  "lon": 7.7564739,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678162,
+  "lat": 48.5908308,
+  "lon": 7.7564428,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678163,
+  "lat": 48.5907668,
+  "lon": 7.7564009,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678164,
+  "lat": 48.5907088,
+  "lon": 7.7563630,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 5190678165,
+  "lat": 48.5906547,
+  "lon": 7.7563275,
+  "tags": {
+    "height": "12",
+    "natural": "tree",
+    "taxon": "platanus"
+  }
+},
+{
+  "type": "node",
+  "id": 9280104133,
+  "lat": 48.5910065,
+  "lon": 7.7579132,
+  "tags": {
+    "circumference": "5.7",
+    "diameter_crown": "1.9",
+    "height": "40",
+    "natural": "tree",
+    "species": "Platanus x acerifolia",
+    "species:fr": "Platane commun",
+    "species:wikidata": "Q161374",
+    "website": "https://www.strasbourg.eu/lieu/-/entity/id/684116"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963238,
+  "lat": 48.5895609,
+  "lon": 7.7576230,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963239,
+  "lat": 48.5897179,
+  "lon": 7.7575976,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963240,
+  "lat": 48.5897375,
+  "lon": 7.7578296,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963241,
+  "lat": 48.5899113,
+  "lon": 7.7578162,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963242,
+  "lat": 48.5897375,
+  "lon": 7.7581273,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963243,
+  "lat": 48.5898324,
+  "lon": 7.7581836,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963244,
+  "lat": 48.5899158,
+  "lon": 7.7582292,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963245,
+  "lat": 48.5901695,
+  "lon": 7.7584277,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963246,
+  "lat": 48.5902883,
+  "lon": 7.7582265,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963247,
+  "lat": 48.5904232,
+  "lon": 7.7584653,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963248,
+  "lat": 48.5907061,
+  "lon": 7.7591264,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963249,
+  "lat": 48.5906538,
+  "lon": 7.7590513,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963250,
+  "lat": 48.5906786,
+  "lon": 7.7587710,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963251,
+  "lat": 48.5905021,
+  "lon": 7.7587616,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963252,
+  "lat": 48.5911869,
+  "lon": 7.7593879,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963253,
+  "lat": 48.5908649,
+  "lon": 7.7590245,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963254,
+  "lat": 48.5909660,
+  "lon": 7.7588421,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963255,
+  "lat": 48.5910813,
+  "lon": 7.7590580,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963256,
+  "lat": 48.5910068,
+  "lon": 7.7591452,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963257,
+  "lat": 48.5909243,
+  "lon": 7.7592739,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963258,
+  "lat": 48.5910459,
+  "lon": 7.7593933,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963259,
+  "lat": 48.5908968,
+  "lon": 7.7595220,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963260,
+  "lat": 48.5909678,
+  "lon": 7.7596092,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963261,
+  "lat": 48.5911009,
+  "lon": 7.7598225,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963262,
+  "lat": 48.5911621,
+  "lon": 7.7598949,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963263,
+  "lat": 48.5912579,
+  "lon": 7.7595422,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963264,
+  "lat": 48.5913616,
+  "lon": 7.7597192,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963265,
+  "lat": 48.5913200,
+  "lon": 7.7600732,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963266,
+  "lat": 48.5913962,
+  "lon": 7.7598707,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963267,
+  "lat": 48.5914202,
+  "lon": 7.7599981,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963268,
+  "lat": 48.5916207,
+  "lon": 7.7601376,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963269,
+  "lat": 48.5915807,
+  "lon": 7.7598748,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963270,
+  "lat": 48.5915994,
+  "lon": 7.7600236,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963271,
+  "lat": 48.5916331,
+  "lon": 7.7602610,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963272,
+  "lat": 48.5916730,
+  "lon": 7.7599740,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963273,
+  "lat": 48.5917493,
+  "lon": 7.7600236,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963274,
+  "lat": 48.5917573,
+  "lon": 7.7599083,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963275,
+  "lat": 48.5918548,
+  "lon": 7.7598345,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963276,
+  "lat": 48.5916020,
+  "lon": 7.7588582,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963277,
+  "lat": 48.5918114,
+  "lon": 7.7588528,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963278,
+  "lat": 48.5917058,
+  "lon": 7.7589145,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963279,
+  "lat": 48.5917120,
+  "lon": 7.7587858,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963280,
+  "lat": 48.5917431,
+  "lon": 7.7585980,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963281,
+  "lat": 48.5918353,
+  "lon": 7.7584867,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963282,
+  "lat": 48.5918948,
+  "lon": 7.7585028,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963291,
+  "lat": 48.5919036,
+  "lon": 7.7595891,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963292,
+  "lat": 48.5918318,
+  "lon": 7.7596830,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963293,
+  "lat": 48.5917741,
+  "lon": 7.7596146,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963294,
+  "lat": 48.5918273,
+  "lon": 7.7595086,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963295,
+  "lat": 48.5915630,
+  "lon": 7.7591667,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963296,
+  "lat": 48.5916100,
+  "lon": 7.7592404,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963297,
+  "lat": 48.5916632,
+  "lon": 7.7593128,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963298,
+  "lat": 48.5917191,
+  "lon": 7.7593759,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963299,
+  "lat": 48.5912242,
+  "lon": 7.7590755,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963300,
+  "lat": 48.5912694,
+  "lon": 7.7591170,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963301,
+  "lat": 48.5915506,
+  "lon": 7.7593598,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963302,
+  "lat": 48.5914956,
+  "lon": 7.7592766,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963303,
+  "lat": 48.5913821,
+  "lon": 7.7591465,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963304,
+  "lat": 48.5914388,
+  "lon": 7.7592190,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963305,
+  "lat": 48.5914477,
+  "lon": 7.7590393,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963306,
+  "lat": 48.5914832,
+  "lon": 7.7587697,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963307,
+  "lat": 48.5913058,
+  "lon": 7.7583767,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963308,
+  "lat": 48.5912925,
+  "lon": 7.7585725,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963309,
+  "lat": 48.5907203,
+  "lon": 7.7571000,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963310,
+  "lat": 48.5907576,
+  "lon": 7.7572851,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963311,
+  "lat": 48.5909669,
+  "lon": 7.7574648,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963312,
+  "lat": 48.5907398,
+  "lon": 7.7576525,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963313,
+  "lat": 48.5911692,
+  "lon": 7.7583083,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963314,
+  "lat": 48.5911851,
+  "lon": 7.7584264,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963315,
+  "lat": 48.5912091,
+  "lon": 7.7585363,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050963316,
+  "lat": 48.5912250,
+  "lon": 7.7586342,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983417,
+  "lat": 48.5911496,
+  "lon": 7.7588542,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983418,
+  "lat": 48.5910982,
+  "lon": 7.7588059,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983419,
+  "lat": 48.5909687,
+  "lon": 7.7586544,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983420,
+  "lat": 48.5910308,
+  "lon": 7.7587201,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983421,
+  "lat": 48.5911425,
+  "lon": 7.7586772,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983422,
+  "lat": 48.5910876,
+  "lon": 7.7586168,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983423,
+  "lat": 48.5910414,
+  "lon": 7.7585471,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983424,
+  "lat": 48.5909722,
+  "lon": 7.7584800,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983425,
+  "lat": 48.5909234,
+  "lon": 7.7586047,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983426,
+  "lat": 48.5908126,
+  "lon": 7.7584693,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983427,
+  "lat": 48.5908578,
+  "lon": 7.7583553,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983428,
+  "lat": 48.5909199,
+  "lon": 7.7583969,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983429,
+  "lat": 48.5909669,
+  "lon": 7.7582654,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983430,
+  "lat": 48.5908667,
+  "lon": 7.7581488,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983431,
+  "lat": 48.5905908,
+  "lon": 7.7580146,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983432,
+  "lat": 48.5905385,
+  "lon": 7.7583365,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983433,
+  "lat": 48.5905260,
+  "lon": 7.7582185,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983434,
+  "lat": 48.5905420,
+  "lon": 7.7581233,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983435,
+  "lat": 48.5902218,
+  "lon": 7.7580455,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983436,
+  "lat": 48.5902670,
+  "lon": 7.7578054,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983437,
+  "lat": 48.5903761,
+  "lon": 7.7579623,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983438,
+  "lat": 48.5905030,
+  "lon": 7.7579020,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983439,
+  "lat": 48.5904400,
+  "lon": 7.7578363,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983440,
+  "lat": 48.5903841,
+  "lon": 7.7577572,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983441,
+  "lat": 48.5904276,
+  "lon": 7.7575761,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983442,
+  "lat": 48.5903344,
+  "lon": 7.7574594,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983443,
+  "lat": 48.5902590,
+  "lon": 7.7574648,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983444,
+  "lat": 48.5902076,
+  "lon": 7.7575453,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983445,
+  "lat": 48.5902972,
+  "lon": 7.7576043,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983446,
+  "lat": 48.5901597,
+  "lon": 7.7576673,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983447,
+  "lat": 48.5902040,
+  "lon": 7.7577250,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983448,
+  "lat": 48.5901863,
+  "lon": 7.7578376,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983449,
+  "lat": 48.5900621,
+  "lon": 7.7577572,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983451,
+  "lat": 48.5890038,
+  "lon": 7.7573803,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983452,
+  "lat": 48.5890704,
+  "lon": 7.7573803,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983453,
+  "lat": 48.5890713,
+  "lon": 7.7574889,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983454,
+  "lat": 48.5891405,
+  "lon": 7.7574836,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983455,
+  "lat": 48.5891892,
+  "lon": 7.7574836,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983456,
+  "lat": 48.5891901,
+  "lon": 7.7575493,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983457,
+  "lat": 48.5893338,
+  "lon": 7.7576056,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983458,
+  "lat": 48.5892735,
+  "lon": 7.7574970,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983459,
+  "lat": 48.5892575,
+  "lon": 7.7573951,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983460,
+  "lat": 48.5892061,
+  "lon": 7.7573830,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983461,
+  "lat": 48.5891467,
+  "lon": 7.7573830,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983462,
+  "lat": 48.5890704,
+  "lon": 7.7570088,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983463,
+  "lat": 48.5891706,
+  "lon": 7.7569123,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983464,
+  "lat": 48.5892868,
+  "lon": 7.7568600,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983465,
+  "lat": 48.5893507,
+  "lon": 7.7570598,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983466,
+  "lat": 48.5894208,
+  "lon": 7.7565743,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983467,
+  "lat": 48.5895192,
+  "lon": 7.7567299,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983468,
+  "lat": 48.5893711,
+  "lon": 7.7567312,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983469,
+  "lat": 48.5894172,
+  "lon": 7.7567701,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983470,
+  "lat": 48.5894758,
+  "lon": 7.7568425,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983471,
+  "lat": 48.5895343,
+  "lon": 7.7569136,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983472,
+  "lat": 48.5895937,
+  "lon": 7.7569820,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983473,
+  "lat": 48.5896186,
+  "lon": 7.7570638,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983474,
+  "lat": 48.5897268,
+  "lon": 7.7571429,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983475,
+  "lat": 48.5899344,
+  "lon": 7.7568921,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983476,
+  "lat": 48.5899140,
+  "lon": 7.7569967,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983477,
+  "lat": 48.5898049,
+  "lon": 7.7570276,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983478,
+  "lat": 48.5898661,
+  "lon": 7.7570947,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983479,
+  "lat": 48.5898404,
+  "lon": 7.7573012,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983480,
+  "lat": 48.5900107,
+  "lon": 7.7576351,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983481,
+  "lat": 48.5899903,
+  "lon": 7.7575493,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983482,
+  "lat": 48.5899317,
+  "lon": 7.7575399,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983483,
+  "lat": 48.5898572,
+  "lon": 7.7575345,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983484,
+  "lat": 48.5897809,
+  "lon": 7.7575278,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983485,
+  "lat": 48.5896887,
+  "lon": 7.7575251,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983486,
+  "lat": 48.5896150,
+  "lon": 7.7575184,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983487,
+  "lat": 48.5895467,
+  "lon": 7.7575158,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983488,
+  "lat": 48.5894908,
+  "lon": 7.7575117,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983489,
+  "lat": 48.5893480,
+  "lon": 7.7574997,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983490,
+  "lat": 48.5893507,
+  "lon": 7.7573991,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983491,
+  "lat": 48.5894217,
+  "lon": 7.7575064,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983492,
+  "lat": 48.5894110,
+  "lon": 7.7573977,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983493,
+  "lat": 48.5894341,
+  "lon": 7.7572931,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983494,
+  "lat": 48.5894864,
+  "lon": 7.7573937,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983495,
+  "lat": 48.5895547,
+  "lon": 7.7574085,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983496,
+  "lat": 48.5896275,
+  "lon": 7.7574138,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983497,
+  "lat": 48.5897011,
+  "lon": 7.7574152,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983498,
+  "lat": 48.5897836,
+  "lon": 7.7574219,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983499,
+  "lat": 48.5898519,
+  "lon": 7.7574299,
+  "tags": {
+    "natural": "tree"
+  }
+},
+{
+  "type": "node",
+  "id": 10050983500,
+  "lat": 48.5899273,
+  "lon": 7.7574299,
+  "tags": {
+    "natural": "tree"
   }
 }
 
