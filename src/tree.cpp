@@ -86,7 +86,7 @@ void Tree::load_data(const std::string &filename) {
 }
 
 void Tree::wrap(int lod) {
-    std::string filename = "../tree_ref/";
+    std::string filename = "tree_ref/";
     double scaling_factor_double;
     std::vector<Point_3> points;
     std::vector<std::array<int, 3>> faces;

@@ -103,8 +103,7 @@ and move the result to the `tree_ref` directory. Then add the genus to the `know
 
 Finnaly run the program:
 ```bash
-cd build
-./run
+./build/run
 ```
 
 The output mesh and some metrics will be saved in the `/output` directory (which is automatically created if needed).

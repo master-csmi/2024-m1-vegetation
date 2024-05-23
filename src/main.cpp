@@ -5,18 +5,39 @@
 #include "../include/query.hpp"
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/IO/Color.h>
+#include <CGAL/IO/STL.h>
+#include <CGAL/Polygon_mesh_processing/IO/polygon_mesh_io.h>
 #include <CGAL/Polygon_mesh_processing/corefinement.h>
+#include <CGAL/Polygon_mesh_processing/fair.h>
+#include <CGAL/Polygon_mesh_processing/orient_polygon_soup_extension.h>
+#include <CGAL/Polygon_mesh_processing/orientation.h>
+#include <CGAL/Polygon_mesh_processing/polygon_soup_to_polygon_mesh.h>
+#include <CGAL/Polygon_mesh_processing/repair.h>
 #include <CGAL/Real_timer.h>
+#include <CGAL/Surface_mesh.h>
 #include <filesystem>
 #include <iostream>
 #include <string>
 
+void clean_mesh(Mesh &mesh) {
+    CGAL::Polygon_mesh_processing::duplicate_non_manifold_vertices(mesh);
+    CGAL::Polygon_mesh_processing::remove_degenerate_faces(mesh);
+    CGAL::Polygon_mesh_processing::remove_isolated_vertices(mesh);
+    CGAL::Polygon_mesh_processing::stitch_borders(mesh);
+}
+
+using K = CGAL::Exact_predicates_inexact_constructions_kernel;
+using Point_3 = K::Point_3;
+using Mesh = CGAL::Surface_mesh<Point_3>;
+namespace PMP = CGAL::Polygon_mesh_processing;
+
 int main(int argc, char **argv) {
 
-    Config config("../config.json");
+    Config config("config.json");
     std::string bbox = config.bbox();
-    double ref_lat = config.bbox_coords()[0];
-    double ref_lon = config.bbox_coords()[1];
+
     std::map<std::string, GenusHeight> genusHeights;
     std::array<double, 2> B_cart;
     double Bx, By, area, height;
@@ -28,7 +49,8 @@ int main(int argc, char **argv) {
 
     // Compute the area of the bounding box
     B_cart = wgs84::toCartesian(
-        {ref_lat, ref_lon} /* reference position */,
+        {config.bbox_coords()[0],
+         config.bbox_coords()[1]} /* reference position */,
         {config.bbox_coords()[2],
          config.bbox_coords()[3]} /* position to be converted */);
 
@@ -70,8 +92,7 @@ int main(int argc, char **argv) {
     auto treeLibrary = createLibraryFromJson(jsonData);
 
     // Mesh part
-    Mesh finalMesh;
-    Mesh currentWrap;
+    Mesh finalMesh, currentWrap, building_mesh;
     std::string output_name = config.output_name();
     std::string output_folder, filename, metrics_filename;
     int lod = config.LOD();
@@ -80,12 +101,16 @@ int main(int argc, char **argv) {
     int nNoHeight = 0;
     int nNoGenus = 0;
     double h;
+    std::string origin = config.origin();
+    std::pair<double, double> origin_double = extractCoordinates(origin);
+    const std::string building_mesh_str =
+        CGAL::data_file_path(config.input_building_mesh());
 
     std::cout << "Computing the union of tree meshes ..." << std::endl;
     t.start();
     for (auto &tree : treeLibrary) {
-        tree.load_data("../trees.json");
-        tree.computeXY(ref_lat, ref_lon);
+        tree.load_data("trees.json");
+        tree.computeXY(origin_double.first, origin_double.second);
 
         // std::cout << tree << std::endl;
 
@@ -114,15 +139,34 @@ int main(int argc, char **argv) {
             exit(1);
         }
     }
+
+    std::vector<Point_3> points;
+    std::vector<std::array<std::size_t, 3>> faces;
+
+    // Read the content of the STL file into points and facets
+    if (!CGAL::IO::read_polygon_soup(building_mesh_str, points, faces)) {
+        std::cerr << "Invalid input." << std::endl;
+        return 1;
+    }
+
+    std::cout << "Computing the union of building and tree meshes ..."
+              << std::endl;
+    if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
+            finalMesh, building_mesh, finalMesh)) {
+        std::cerr << "Corefine_and_compute_union buildings and trees failed"
+                  << std::endl;
+        exit(1);
+    }
+
     t.stop();
 
     // Final mesh export
-    output_folder = "../output/";
+    output_folder = "output/";
     if (!std::filesystem::exists(output_folder)) {
         std::filesystem::create_directory(output_folder);
     }
     filename =
-        "../output/" + output_name + "_LOD" + std::to_string(lod) + ".stl";
+        output_folder + output_name + "_lod" + std::to_string(lod) + ".stl";
 
     std::ofstream output(filename);
     CGAL::IO::write_STL(output, finalMesh);
@@ -135,7 +179,7 @@ int main(int argc, char **argv) {
     std::cout << "Final mesh written to " << filename << std::endl;
 
     // Metrics export
-    metrics_filename = "../output/" + output_name + "_metrics_LOD" +
+    metrics_filename = output_folder + output_name + "_metrics_LOD" +
                        std::to_string(lod) + ".txt";
 
     std::ofstream metrics(metrics_filename);
