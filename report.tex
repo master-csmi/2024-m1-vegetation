@@ -112,7 +112,7 @@ models for integration into terrain meshes.
 The project follows a roadmap with defined milestones to deliver versions
 \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified  deadlines.
 
-\subsection{Main Objectives}
+\subsection{Main objectives}
 
 The primary objective is to enhance the accuracy of thermal and energy
 simulations of a given area.
@@ -164,7 +164,7 @@ seasons. The first boasts dense foliage, while the second experiences sparse lea
 This could be done by adding multiple textures to the tree mesh and changing
 the texture based on the season.
 
-\subsection{Data Formats and Structure}
+\subsection{Data formats and structure}
 Tree data will be sourced from \texttt{OpenStreetMap} and processed into formats suitable for
 integration into our models, such as \texttt{.stl}, \texttt{.csv}, and \texttt{.json}.
 We aim to ensure watertight triangulation consistent with the Finite Element Method
@@ -187,7 +187,7 @@ endfacet
 endsolid name
 \end{lstlisting}
 But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
-\subsection{Software and Libraries}
+\subsection{Software and libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
 \texttt{curl} \cite{curl} to access and leverage information from \texttt{OpenStreetMap}.
 For geometric modeling, we will utilize the \texttt{CGAL} library, known for its efficiency and
@@ -195,7 +195,7 @@ reliability in geometric computation\cite{cgal}. Shading calculations will be pe
 \texttt{Feel++} \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs)
 essential for simulating light and shade on 3D objects.
 
-\subsection{GitHub Repository}
+\subsection{GitHub repository}
 We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub} repository to manage the project and facilitate collaboration.
 The repository contains the project's code, documentation, and resources. It will be
 updated regularly to reflect the progress and changes made during the project's
@@ -229,7 +229,7 @@ The roadmap we defined includes the following milestones and issues:
 
 \section{Methodology}
 
-\subsection{Data Acquisition}
+\subsection{Data acquisition}
 A \textit{config.json} file will be available for the user to specify the area of
 interest and some parameters for the tree generation. \\
 
@@ -290,7 +290,7 @@ We will especially use the \texttt{position} of the tree (latitude and longitude
 its \texttt{height} and the \texttt{genus} (since this data is more abundant than the species)
 to generate the 3D tree models.
 
-\subsection{Tree Library}
+\subsection{Tree library}
 Using the results from the \texttt{Overpass API} query, we will create a library
 of tree objects. Each tree object will contain the tree's metadata (location, species, height,
 leave density, etc.).
@@ -343,9 +343,66 @@ publicly available on \href{https://app.sketchup.com/app}{Sketchup} 3D Warehouse
         \caption{The mesh of a Ginkgo tree available on Sketchup 3D Warehouse}
 \end{figure}
 
-Those meshes can be directly downloaded in STL format.  
+Those meshes can be directly downloaded in STL format\cite{stl_format}.  \\
+Below, some of these models visualized using MeshLab\cite{meshlab}:
 
-To provide different level of details (LOD) we will wrap then using the
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/abies.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Abies.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/acer.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Acer.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/aesculus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Aesculus.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/catalpa.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Catalpa.}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cedrus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Cedrus.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/liquidanbar.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Liquidanbar.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/platanus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Platanus.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/quercus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Quercus.}
+    \end{minipage}
+\end{figure}
+
+To provide different level of details (LOD) we will wrap them using the
 CGAL 3D Alpha Wrapping\cite{cgal_alpha_wrapper}.
 
 \subsection{Alpha Wrapping}
@@ -357,6 +414,7 @@ CGAL 3D Alpha Wrapping\cite{cgal_alpha_wrapper}.
         \caption{Different LOD of the Alpha Wrapping of a bike}
 \end{figure}
 
+\textbf{Approach}\\
 Many approaches exist to enclose a 3D model within a volume, each balancing runtime
 and quality (tightness) of approximation. Simple methods, like using an axis-aligned
 or oriented bounding box, have uncontrollable and often large approximation errors.
@@ -388,10 +446,7 @@ onto the input, and (c) an intersection test between a tetrahedron and the input
 (2) the user can trade tightness to the input for final mesh complexity, requiring
 fewer mesh elements for a large offset conservative approximation.
 
-\textbf{Algorithm}
-
-\textbf{Initialization}
-
+\textbf{Algorithm Initialization}\\
 The algorithm begins by inserting the eight corner vertices of a loose bounding box
 into a 3D Delaunay triangulation. In CGAL's 3D Delaunay triangulation, all triangle
 facets are adjacent to two tetrahedron cells. Each boundary facet of the triangulation,
@@ -399,8 +454,7 @@ coinciding with a convex hull facet, is adjacent to an infinite tetrahedron cell
 Initially, all infinite cells are tagged as outside, and all finite tetrahedron cells
 are tagged as inside.
 
-\textbf{Shrink-wrapping}
-
+\textbf{Shrink-wrapping}\\
 The algorithm traverses the cells of the Delaunay triangulation from outside to inside,
 flood-filling from one cell to its adjacent cell and tagging the adjacent cell as
 outside when possible. Flood-filling uses a priority queue of Delaunay triangle facets
@@ -482,7 +536,7 @@ The figure below depicts the steps of the algorithm in 2D.
         }
 \end{figure}
 
-\textbf{Guarantes}
+\textbf{Guarantees} \\
 The algorithm is proven to terminate and to produce a 2-manifold triangulated surface 
 mesh that strictly encloses the input data. The key element to the proof is that we wrap 
 from outside to inside and never allow a cell that intersects the input to be flagged 
@@ -491,8 +545,7 @@ inside. Furthermore, both criteria that lead to refinement of the triangulation 
  reduce the neighbor facets circumradii.
 
 
-
-\subsection{Tree Model Generation}
+\subsection{Tree model generation}
 Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
 reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid computing
 a new mesh for each tree.
@@ -577,7 +630,7 @@ when data is missing it's usually missing for a large area such as a park. \\
 Instead, we will use first try to use the mean of the available height per genus. \\
 Else we will use the default height and genus specified in the \textit{config.json} file.
 
-\subsection{Model Integration}
+\subsection{Model integration}
 Generated tree models will be integrated into terrain meshes to create comprehensive
 3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
 (latitude, longitude) will be converted to Cartesian coordinates (x, y) using
@@ -605,14 +658,19 @@ using generic trees and LOD1:
 
 \end{figure}
 
+
+We were given a \texttt{.stl} file representing the city center of Strasbourg, France.
+
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=\textwidth]{images/republic_side.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Side view of Place de la République.}
+    \centering
+    \includegraphics[width=1\textwidth]{images/strasbourg3d.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model.}
 \end{figure}
 
-\subsection{Shading Calculations}
+The idea is to integrate the tree models into the terrain mesh.
+
+\subsection{Shading calculations}
 Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
 of trees and their impact on urban microclimates. Execution time considerations will be
 addressed to optimize computational efficiency.
@@ -649,7 +707,7 @@ nlohmann::json get_query_result();
 We will mainly be using the \texttt{nlohmann json} library (available as a package or as 
 header only).
 
-\subsection{Class Tree}
+\subsection{Class tree}
 \begin{lstlisting}[language=C++]
 using K = CGAL::Exact_predicates_inexact_constructions_kernel;
 using Point_3 = K::Point_3;
@@ -672,43 +730,6 @@ class Tree {
         M_liquidambar_like, M_quercus_like;
 
     public:
-    // Default constructor
-    Tree();
-
-    // Constructor that takes arguments
-    Tree(long id, double lat, double lon, std::string genus,
-            std::string species, double height, double circumference,
-            double diameter_crown);
-
-    // Getters
-    long id() const { return M_id; }
-    double lat() const { return M_lat; }
-    double lon() const { return M_lon; }
-    std::string genus() const { return M_genus; }
-    std::string species() const { return M_species; }
-    double height() const { return M_height; }
-    double circumference() const { return M_circumference; }
-    double diameterCrown() const { return M_diameter_crown; }
-    std::string season() const { return M_season; }
-    double x() const { return M_x; }
-    double y() const { return M_y; }
-    Mesh wrap() const { return M_wrap; }
-
-    // Setters
-    void setId(long id) { M_id = id; }
-    void setLat(double lat) { M_lat = lat; }
-    void setLon(double lon) { M_lon = lon; }
-    void setGenus(std::string genus) { M_genus = genus; }
-    void setSpecies(std::string species) { M_species = species; }
-    void setHeight(double height) { M_height = height; }
-    void setCircumference(double circumference) {
-        M_circumference = circumference;
-    }
-    void setDiameterCrown(double diameter_crown) {
-        M_diameter_crown = diameter_crown;
-    }
-    void setSeason(std::string season) { M_season = season; }
-
     void computeXY(double ref_lat, double ref_lon);
     void wrap(int lod);
     void load_data(const std::string &filename);
