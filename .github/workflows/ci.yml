@@ -14,7 +14,7 @@ jobs:
           libboost-all-dev \
           libmpfr-dev \
           libgmp-dev \
-          libcurl4-gnutls-dev \
+          curl \
 
       - name: Clone CGAL master branch
         run: git clone --branch master https://github.com/CGAL/cgal.git
