@@ -8,15 +8,9 @@ The goal of this project is to develop a tool that integrates vegetation (trees)
 
 === Required Packages
 
-To build the project, you need to install the following packages:
+To build the project, you need the following packages:
 
-- https://www.cgal.org/[CGAL] (master)
-- https://cmake.org/[CMake] (>= 3.15)
-- https://git-scm.com/[Git]
-- https://www.boost.org/[Boost]
-- https://fmt.dev/[fmt]
-- https://www.mpfr.org/[MPFR]
-- https://curl.se/[libcurl]
+- https://www.cgal.org/[CGAL] (master), https://cmake.org/[CMake] (>= 3.15), https://git-scm.com/[Git], https://www.boost.org/[Boost], https://fmt.dev/[fmt], https://www.mpfr.org/[MPFR], https://curl.se/[libcurl]
 
 === Installating package on Ubuntu
 
