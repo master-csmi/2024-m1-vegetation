@@ -8,7 +8,8 @@ WORKDIR /vegetation
 ENV TZ=Europe/Paris
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+	apt-get install -y \
 	build-essential \
 	cmake \
 	git \
@@ -16,8 +17,8 @@ RUN apt-get update && apt-get install -y \
 	libboost-dev \
 	libcurl4-openssl-dev \
 	libcgal-dev \
-	libfmt-dev \
-	libspdlog-dev && \
+	libfmt-dev && \
+	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
 
