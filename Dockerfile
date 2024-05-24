@@ -19,6 +19,7 @@ RUN apt-get update && \
 	libcgal-dev \
 	libfmt-dev && \
 	apt-get clean && \
+	git lfs install && \
 	rm -rf /var/lib/apt/lists/*
 
 
