@@ -1,5 +1,6 @@
 #include "../include/json.hpp"
 #include "../include/json_helpers.hpp"
+#include "../include/query.hpp"
 #include "../include/tree.hpp"
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/IO/Color.h>
@@ -23,20 +24,8 @@
 #include <boost/container/small_vector.hpp>
 
 TEST_CASE("Union of 2 trees", "[union]") {
-    // Sample JSON data representing a tree
-    std::vector<nlohmann::json> jsonData = {
-        {{"type", "node"},
-         {"id", 5190678123},
-         {"lat", 48.5915821},
-         {"lon", 7.7566818},
-         {"tags",
-          {{"height", "12"}, {"natural", "tree"}, {"taxon", "platanus"}}}},
-        {{"type", "node"},
-         {"id", 5190678124},
-         {"lat", 48.5915254},
-         {"lon", 7.7566446},
-         {"tags",
-          {{"height", "12"}, {"natural", "tree"}, {"taxon", "platanus"}}}}};
+    perform_query("48.58715,7.75364,48.58731,7.75438");
+    nlohmann::json jsonData = get_query_result();
 
     // Create Tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
@@ -47,10 +36,7 @@ TEST_CASE("Union of 2 trees", "[union]") {
 
     for (auto &tree : treeLibrary) {
         tree.computeXY(48.5915821, 7.7566818);
-
-        // std::cout << tree << std::endl;
-
-        tree.wrap(0);
+        tree.wrap(0, "../../");
         currentWrap = tree.wrap();
 
         // Compute the union of the meshes
