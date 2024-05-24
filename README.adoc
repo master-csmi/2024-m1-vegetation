@@ -45,7 +45,7 @@ source .venv/bin/activate
 With the environment set up, install the required packages:
 ```bash
 
-mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl catch2 -y
+mamba install -c conda-forge cgal-cpp fmt spdlog mpfr boost-cpp curl catch2 -y
 ```
 
 === Alternatively you can use a Docker container:
