@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 	libcgal-dev \
 	libfmt-dev \
 	libspdlog-dev && \
+	catch2-dev \
 	rm -rf /var/lib/apt/lists/*
 
 

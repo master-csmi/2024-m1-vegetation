@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           source $HOME/miniforge3/bin/activate vegetation
-          mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
+          mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl catch2 -y
           # git clone https://github.com/libcpr/cpr.git
           # cd cpr && mkdir build && cd build
           # cmake .. -DCPR_USE_SYSTEM_CURL=OFF
