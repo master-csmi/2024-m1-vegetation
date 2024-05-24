@@ -12,6 +12,17 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
+# Include FetchContent module
+include(FetchContent)
+
+# Fetch Catch2 library
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.4.0 # or a later release
+)
+FetchContent_MakeAvailable(Catch2)
+
 # Include src and test directories
 add_subdirectory(src)
 add_subdirectory(test)

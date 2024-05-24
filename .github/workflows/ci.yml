@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install libcgal-dev libfmt-dev libspdlog-dev libmpfr-dev libboost-all-dev libcurl4-openssl-dev catch2
+          sudo apt install libcgal-dev libfmt-dev libspdlog-dev libmpfr-dev libboost-all-dev libcurl4-openssl-dev
 
       - name: Cmake
         run: |
