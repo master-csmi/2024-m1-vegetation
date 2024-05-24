@@ -15,7 +15,6 @@ jobs:
           libmpfr-dev \
           libgmp-dev \
           libcurl4-openssl-dev \
-          cmake
 
       - name: Clone CGAL master branch
         run: git clone --branch master https://github.com/CGAL/cgal.git
