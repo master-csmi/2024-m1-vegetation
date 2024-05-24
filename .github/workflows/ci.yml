@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -14,24 +14,16 @@ jobs:
           libboost-all-dev \
           libmpfr-dev \
           libgmp-dev \
-          libcurl4-openssl-dev \
+          libcurl4-gnutls-dev \
 
       - name: Clone CGAL master branch
         run: git clone --branch master https://github.com/CGAL/cgal.git
-
-      - name: Setup CGAL
-        run: |
-          cd cgal
-          mkdir build
-          cd build
-          cmake ..
-          sudo make install
 
       - name: Configure and build
         run: |
           mkdir build
           cd build
-          cmake -DCGAL_DIR=$GITHUB_WORKSPACE/cgal/build -DCMAKE_BUILD_TYPE=Release ..
+          cmake -DCGAL_DIR=$GITHUB_WORKSPACE/CGAL-5.6.1 -DCMAKE_BUILD_TYPE=Release ..
           cmake --build .
 
       - name: Run tests
