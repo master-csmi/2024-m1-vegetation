@@ -11,15 +11,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update && apt-get install -y \
-          build-essential \
-          cmake \
-          git \
-          libmpfr-dev \
-          libboost-dev \
-          libcurl4-openssl-dev \
-          libcgal-dev \
-          libfmt-dev \
+          sudo apt-get update \
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            git \
+            libmpfr-dev \
+            libboost-dev \
+            libcurl4-openssl-dev \
+            libcgal-dev \
+            libfmt-dev \
 
       - name: Clone CGAL master branch
         run: git clone --branch master https://github.com/CGAL/cgal.git
