@@ -15,11 +15,9 @@ RUN apt-get update && apt-get install -y \
 	libmpfr-dev \
 	libboost-dev \
 	libcurl4-openssl-dev \
-	python3-pip \
 	libcgal-dev \
 	libfmt-dev \
 	libspdlog-dev && \
-	catch2-dev \
 	rm -rf /var/lib/apt/lists/*
 
 
