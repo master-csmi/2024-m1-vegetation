@@ -4,28 +4,38 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install libcgal-dev libfmt-dev libspdlog-dev libmpfr-dev libboost-all-dev libcurl4-openssl-dev
+        run: sudo apt-get update && sudo apt-get install -y \
+          libboost-all-dev \
+          libmpfr-dev \
+          libgmp-dev \
+          libcurl4-openssl-dev \
+          cmake
 
-      - name: Cmake
+      - name: Clone CGAL master branch
+        run: git clone --branch master https://github.com/CGAL/cgal.git
+
+      - name: Setup CGAL
+        run: |
+          cd cgal
+          mkdir build
+          cd build
+          cmake ..
+          sudo make install
+
+      - name: Configure and build
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake -DCGAL_DIR=$GITHUB_WORKSPACE/cgal/build -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build .
 
-      - name: Build
-        run: |
-          cd build
-          make
-
-      - name: Test
+      - name: Run tests
         run: |
           cd build
           ctest --output-on-failure
