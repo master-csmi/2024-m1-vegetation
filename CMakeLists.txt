@@ -100,6 +100,7 @@ add_library(Tree ${SOURCES_FILES})
 # Create executable
 add_executable(run src/main.cpp)
 add_executable(wrap src/wrapper.cpp)
+add_executable(simplify src/simplify.cpp)
 
 
 target_link_libraries(Tree PUBLIC ${requiredlibs})

@@ -112,6 +112,8 @@ int main(int argc, char **argv) {
     std::pair<double, double> heigth_range = string_to_pair(height_range_str);
     const std::string building_mesh_str =
         CGAL::data_file_path(config.input_building_mesh());
+    std::vector<Point_3> input_points;
+    std::vector<boost::container::small_vector<std::size_t, 3>> input_triangles;
 
     std::cout << "Computing the union of tree meshes ..." << std::endl;
     t.start();
@@ -128,15 +130,11 @@ int main(int argc, char **argv) {
 
         if (tree.height() == 0) {
             ++nNoHeight;
-            if (defaultHeights.find(tree.genus()) != defaultHeights.end()) {
-                h = defaultHeights[tree.genus()];
-            } else {
-                // random value in the range
-                h = heigth_range.first +
-                    static_cast<double>(rand()) /
-                        (static_cast<double>(RAND_MAX / (heigth_range.second -
-                                                         heigth_range.first)));
-            }
+            h = heigth_range.first +
+                static_cast<double>(rand()) /
+                    (static_cast<double>(
+                        RAND_MAX / (heigth_range.second - heigth_range.first)));
+
             tree.setHeight(h);
         }
 
@@ -150,10 +148,6 @@ int main(int argc, char **argv) {
             exit(1);
         }
     }
-
-    // std::vector<Point_3> input_points;
-    // std::vector<boost::container::small_vector<std::size_t, 3>>
-    // input_triangles;
 
     // if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
     //                                  input_triangles)) {
@@ -175,8 +169,6 @@ int main(int argc, char **argv) {
     //               << std::endl;
     //     exit(1);
     // }
-
-    // // Create a mesh from the points and facets
 
     // std::cout << "Computing the union of building and tree meshes ..."
     //           << std::endl;
