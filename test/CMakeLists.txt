@@ -1,6 +1,6 @@
 # Add the test executable
 add_executable(
-    tests 
+    tests
     test_config.cpp
     test_tree.cpp
     test_query.cpp
