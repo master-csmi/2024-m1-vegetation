@@ -653,11 +653,42 @@ and genus specified by \texttt{default\_genus} in the \textit{config.json} file.
 Generated tree models will be integrated into terrain meshes to create comprehensive
 3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
 (latitude, longitude) will be converted to Cartesian coordinates (x, y) using
-a Mercator projection\cite{mercator-proj}. To achieve this we will assume the Earth is a geodesic
-defined as WGS84 \cite{wgs84} and use the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
+a Mercator projection\cite{mercator-proj}.  \\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/mercator.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Mercator's projection.}
+\end{figure}
+
+This is the most common way to represent the Earth's surface on a plane and has 
+the advantage of being conformal, meaning that it preserves angles locally (hence
+ its usage in sailings). \\
+ In a Mercator projection, parallels and meridians are represented by straight 
+ orthogonal lines, with the equator being the horizontal line placed at the center
+  of the map. The other parallels must necessarily be stretched (east-west 
+  stretching). This stretching is accompanied by a corresponding north-south 
+  stretching, so that the north-south scale is equal to the east-west scale 
+  everywhere. \\
+  Mathematically, the Mercator projection is defined as follows: if a point on 
+  the sphere has a latitude $\phi$ and longitude $\lambda$ (with $\lambda_{0}$ 
+  placed at the center of the map), then its projection on the Mercator map will 
+  have coordinates 
+  \begin{equation}
+    \left\{
+    \begin{array}{l}
+        x =  \lambda - \lambda_{0} \\
+        y =  \ln(\tan(\frac{\pi}{4} + \frac{\phi}{2}))
+    \end{array}
+    \right.
+\end{equation}
+
+To achieve this while taking into account that the Earth is not perfect sphere
+ we will assume the Earth is a geodesic defined as WGS84 \cite{wgs84} and use 
+ the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
   library to convert the coordinates.
 
-The union of all the tree meshed need to be computed to create a single mesh
+Then the union of all the tree meshed will need to be computed to create a single mesh
 and avoid collision between the trees. \\
 This will be achieved using the \href{https://doc.cgal.org/latest/Polygon_mesh_processing/group__PMP__corefinement__grp.html}{corefine\_and\_compute\_union} function from the CGAL library.
 (complexity ?) \\
@@ -699,8 +730,8 @@ Here is an example of what this integration could look like:
 \end{figure}
 
 This image is made of 2 distinct meshes, the tree mesh and the building mesh.
-We need to make the union of those mesh, but this cause challenges as the intersections
-may not be well-defined and can violate the mesh properties.
+We will also need to make the union of those mesh, but this cause challenges 
+as the intersections may not be well-defined and can violate the mesh properties.
 
 
 \subsection{Shading calculations}
