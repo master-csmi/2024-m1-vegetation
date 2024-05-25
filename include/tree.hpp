@@ -72,7 +72,7 @@ class Tree {
     void setSeason(std::string season) { M_season = season; }
 
     void computeXY(double ref_lat, double ref_lon);
-    void wrap(int lod);
+    void wrap(int lod, std::string rep = "./");
     void load_data(const std::string &filename);
 };
 
