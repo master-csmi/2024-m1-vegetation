@@ -85,8 +85,8 @@ void Tree::load_data(const std::string &filename) {
     }
 }
 
-void Tree::wrap(int lod) {
-    std::string filename = "../tree_ref/";
+void Tree::wrap(int lod, std::string rep) {
+    std::string filename = rep + "tree_ref/";
     double scaling_factor_double;
     std::vector<Point_3> points;
     std::vector<std::array<int, 3>> faces;
@@ -108,9 +108,10 @@ void Tree::wrap(int lod) {
                          M_genus) != M_quercus_like.end()) {
         filename += "Quercus";
     } else {
-        std::cout << "Genus : " << M_genus
-                  << ", not found in trees.json database, using Quercus instead"
-                  << std::endl;
+        // std::cout << "Genus : " << M_genus
+        //           << ", not found in trees.json database, using Quercus
+        //           instead"
+        //           << std::endl;
         filename += "Quercus";
     }
 

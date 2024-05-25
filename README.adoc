@@ -6,46 +6,23 @@ The goal of this project is to develop a tool that integrates vegetation (trees)
 
 == Installation and Usage
 
-=== Install Required Packages
+=== Required Packages
 
-This project uses link:https://www.cgal.org[CGAL], link:https://curl.se/[curl].
+To build the project, you need the following packages:
 
-If you don't want to install dependencies globally on your local machine you can use Miniforge or venv to create a new environment with the required packages:
+- https://www.cgal.org/[CGAL] (master), https://cmake.org/[CMake] (>= 3.15), https://git-scm.com/[Git], https://www.boost.org/[Boost], https://fmt.dev/[fmt], https://www.mpfr.org/[MPFR], https://curl.se/[libcurl]
 
-=== Set up an environment 
-We provide here two example of environment, Mamba and venv
-
-==== Mamba environment:
+=== Installating package on Ubuntu
 
 ```bash
-# Download Miniforge
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
-
-# Install Miniforge
-bash miniforge.sh -b -p $HOME/miniforge3 
-
-# Activate Miniforge
-source $HOME/miniforge3/bin/activate 
-
-# Create a new Mamba environment
-mamba create --name vegetation python=3.10 -y
-
-# Activate the new environment
-mamba activate vegetation
+sudo apt-get update
+sudo apt-get install -y build-essential cmake git libmpfr-dev libboost-dev libcurl4-openssl-dev libfmt-dev
 ```
 
-==== Or venv environment:
+=== Install CGAL
+CGAL is a header-only library, so you don't need to build it. You just need to install the package.
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-=== Install Required Packages
-
-With the environment set up, install the required packages:
-```bash
-
-mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
+git clone https://github.com/CGAL/cgal.git
 ```
 
 === Alternatively you can use a Docker container:
@@ -64,13 +41,13 @@ mkdir build
 cd build
 
 # Build the project
-cmake ..
+cmake -DCGAL_DIR=$HOME/CGAL-5.6.1 -DCMAKE_BUILD_TYPE=Release ..
 
 # Compile the project
 make
 
 # Run the tests
-make test
+ctest
 ```
 
 === Usage 
@@ -79,11 +56,15 @@ Use the configuration file `config.json` to specify:
 
 - the bounding box `bbox` of the area of interest ("bottom latitude, bottom longitude, top latitude, top longitude")
 
-- the level of detail `LOD` (1, 2, or 3)
+- the `origin` used in the conversion from latitude and longitude to Cartesian coordinates
 
-- the default height of the trees `default_height` (in meters) when the height is not available in the OpenStreetMap data
+- the level of detail `LOD` (0, 1, 2, 3) of the meshes
+
+- the default height of the trees `default_height_range` (in meters) when the height is not available in the OpenStreetMap data
 
 - the default genus of the trees `default_genus` when the genus is not available in the OpenStreetMap data
+
+- the `input_building_mesh` file for making the union of the building with the trees
 
 - the base name of the output file `output_file` saved in the `/output` directory
 
@@ -103,13 +84,12 @@ and move the result to the `tree_ref` directory. Then add the genus to the `know
 
 Finnaly run the program:
 ```bash
-cd build
-./run
+./build/run
 ```
 
 The output mesh and some metrics will be saved in the `/output` directory (which is automatically created if needed).
 
-You can visualize the output mesh with **Meshlab** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
+You can visualize the output mesh with **Meshlab**, **Paraview** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
 
 
 == Contributors
