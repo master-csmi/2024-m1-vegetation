@@ -758,20 +758,73 @@ Time to mesh: 155.965 seconds, (2.59942 minutes)
 \end{lstlisting}
 
 \section{Implementation}
+If you downloaded the project from the \href{https://github.com/master-csmi/2024-m1-vegetation}{Github}
+ repository, a \texttt{Doxygen} documentation is available. \\
+To generate the documentation, you can use the following command:
+
+\begin{lstlisting}[language=bash]
+doxygen Doxyfile
+\end{lstlisting}
+
+The documentation will be available in the \texttt{html} directory.\\
+You can open it with the browser of your choice, for example with Firefox:
+
+\begin{lstlisting}[language=bash]
+firefox html/index.html
+\end{lstlisting}
+
+\subsection{Config class}
+
+This class is made to store the configuration of the program. It will be used to
+store the bounding box, the level of details, the default height range, the default
+genus, the origin of the 3D space, the input building mesh and the output name.
+
+\begin{lstlisting}[language=C++]
+class Config {
+    private:
+        std::string M_bbox;
+        int M_LOD;
+        std::string M_output_name;
+        std::string M_default_genus;
+        double M_default_height;
+    
+    public:
+        Config(std::string const &filename);
+
+        // Ommiting getters and setters
+
+        std::vector<double> bbox_coords() const;
+    };
+    
+\end{lstlisting}
 
 \subsection{Querying data}
-%  data acquisition
-%  tree library
-%  tree model generation
+
+The function \texttt{perform\_query} will be used to query the \texttt{Overpass API}
+and save the result in a \texttt{.json} file. It will take the bounding box as a
+parameter. \\
+The function \texttt{get\_query\_result} will be used to get the result of the query
+ using the header only library \texttt{nlohmann::json}.
+
 \begin{lstlisting}[language=C++]
 void perform_query(std::string bbox);
 nlohmann::json get_query_result();
 \end{lstlisting}
 
-We will mainly be using the \texttt{nlohmann json} library (available as a package or as
-header only).
-
 \subsection{Class tree}
+
+The \texttt{Tree} class will be used to store the tree's metadata and mesh. \\
+The function \texttt{computeXY} will be used to convert the latitude and longitude
+to Cartesian coordinates using the \texttt{WGS84toCartesian} library. \\
+The function \texttt{wrap} will be used to model the tree by scaling and moving
+the reference mesh to the correct position in the 3D space. \\
+The function \texttt{load\_data} will be used to load tree genus categories from
+the \texttt{trees.json} file. \\
+The function \texttt{createTreeFromJson} will be used to create a tree object from
+the \texttt{.json} data acquired from the \texttt{Overpass API}. \\
+In order to be able to sort trees, the \texttt{operator<} function will be overloaded.
+
+
 \begin{lstlisting}[language=C++]
 using K = CGAL::Exact_predicates_inexact_constructions_kernel;
 using Point_3 = K::Point_3;
@@ -810,7 +863,6 @@ mesh and its position in the 3D space.
 
 Scaling and moving the trees into the correct position ended being more complex
 than expected. \\
-
 
 \begin{lstlisting}[language=C++]
 // Calculate centroid of the tree
