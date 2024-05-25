@@ -13,7 +13,7 @@
 
 int main(int argc, char **argv) {
 
-    Config config("../config.json");
+    Config config("config.json");
     std::string bbox = config.bbox();
     double ref_lat = config.bbox_coords()[0];
     double ref_lon = config.bbox_coords()[1];
