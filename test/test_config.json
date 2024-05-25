@@ -1,0 +1,9 @@
+{
+  "bbox": "48.58900,7.75551,48.59193,7.76066",
+  "origin": "48.583055227464364, 7.748664426560083",
+  "LOD": 0,
+  "default_height_range": "3, 40",
+  "default_genus": "Platanus",
+  "input_building_mesh": "mesh_lod1.stl",
+  "output_name": "contades"
+}

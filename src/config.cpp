@@ -12,7 +12,9 @@ Config::Config(std::string const &filename) {
         M_LOD = data["LOD"];
         M_output_name = data["output_name"];
         M_default_genus = data["default_genus"];
-        M_default_height = data["default_height"];
+        M_default_height = data["default_height_range"];
+        M_origin = data["origin"];
+        M_input_building_mesh = data["input_building_mesh"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
     }
@@ -40,4 +42,30 @@ std::ostream &operator<<(std::ostream &os, const Config &config) {
        << std::endl;
     os << "LOD: " << config.LOD() << std::endl;
     return os;
+}
+
+std::pair<double, double> string_to_pair(const std::string &origin) {
+    double a, b;
+
+    // Extract the longitude and latitude from the string
+    size_t commaPos = origin.find(',');
+    if (commaPos != std::string::npos) {
+        std::string longStr = origin.substr(0, commaPos);
+        std::string latStr = origin.substr(commaPos + 1);
+
+        // Convert the longitude and latitude to double values
+        try {
+            a = std::stod(longStr);
+            b = std::stod(latStr);
+        } catch (const std::exception &e) {
+            std::cerr << "Error converting coordinates to double: " << e.what()
+                      << std::endl;
+            exit(1);
+        }
+    } else {
+        std::cerr << "Invalid coordinates format: " << origin << std::endl;
+        exit(1);
+    }
+
+    return std::make_pair(a, b);
 }
