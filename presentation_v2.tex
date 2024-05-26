@@ -458,6 +458,41 @@ We can use the \textit{WGS84toCartesian.hpp}\cite{wgs84_to_cartesian} open sourc
   library to convert the \textbf{GPS} coordinates so \textbf{Cartesian} coordinates.
 \end{frame}
 
+\begin{frame}{Modeling trees in 3D space}
+We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation} 
+(complexity in $O(n)$)
+
+\begin{figure}[H]
+  \centering
+      \centering
+      \includegraphics[width=\textwidth]{images/mesh_vs_overpass.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Top view of Place de la République, on the left the mesh generated from the data,
+      on the right the overpass data.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Model integration}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/stras_lod0.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model with LOD 0 trees.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Shading calculation}
+  Using the software given by Vincent Chabannes...
+
+\end{frame}
+
+\begin{frame}{Benchmark}
+
+\end{frame}
+
+
+
+
 % \nocite{*}
 \bibliographystyle{plain}
 \bibliography{references}
