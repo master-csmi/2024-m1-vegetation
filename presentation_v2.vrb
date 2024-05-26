@@ -1,19 +1,24 @@
-\frametitle{Tree modeling: STL format}
+\frametitle{Tree modeling: tree object}
 
-The \texttt{stl} format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
-software. It represents 3D models as a collection of triangular facets, making it
-suitable for our geometric modeling purposes.
-The \texttt{ASCII} versions is defined as :
-\begin{lstlisting}
-solid name
-facet normal ni nj nk
-    outer loop
-        vertex v1x v1y v1z
-        vertex v2x v2y v2z
-        vertex v3x v3y v3z
-    endloop
-endfacet
-....
-endsolid name
+\begin{lstlisting}[language=C++]
+using K = CGAL::Exact_predicates_inexact_constructions_kernel;
+using Point_3 = K::Point_3;
+using Mesh = CGAL::Surface_mesh<Point_3>;
+
+class Tree {
+    private:
+    long M_id;
+    double M_lat, M_lon, M_x, M_y,
+    double M_height, M_circumference, M_diameter_crown
+    std::string M_genus, M_species, M_season;
+    Mesh M_wrap;
+
+    public:
+    void computeXY(double ref_lat, double ref_lon);
+    void wrap(int lod);
+};
+
+Tree createTreeFromJson(const nlohmann::json &treeJson);
+std::ostream &operator<<(std::ostream &os, const Tree &tree);
+bool operator<(const Tree &lhs, const Tree &rhs);
 \end{lstlisting}
-But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
