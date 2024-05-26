@@ -1,0 +1,15 @@
+\frametitle{Data acquisition: Curl - Query result}
+A tree with less information:
+
+\begin{lstlisting}[language=json]
+{
+    "type": "node",
+    "id": 4439566691,
+    "lat": 48.5839128,
+    "lon": 7.7487125,
+    "tags": {
+      "natural": "tree"
+    }
+}
+\end{lstlisting}
+
