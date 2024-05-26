@@ -17,6 +17,7 @@
 % Define JSON language
 \lstdefinelanguage{json}{
     basicstyle=\ttfamily\footnotesize\color{black},
+    basicstyle=\ttfamily\footnotesize\color{black},
     numbers=left,
     numberstyle=\scriptsize,
     stepnumber=1,
@@ -100,24 +101,55 @@ Pierre Alliez and Vincent Chabannes
 \newpage
 
 \section{Introduction}
-Urban areas are complex ecosystems influenced by various factors, among which
-vegetation, especially trees, holds significant importance. Trees play a crucial
-role in shaping microclimates, reducing energy consumption, and enhancing overall
-livability\cite{TIR4sTREEt}. This project aims to integrate vegetation, specifically trees, into 3D
-geometric models of urban environments to improve the accuracy and realism of thermal
-and energy simulations. Utilizing data from open sources like \texttt{OpenStreetMap},
-we identified tree positions and attributes and developed a library of 3D tree
-models for integration into terrain meshes.
 
-The project follows a roadmap with defined milestones to deliver versions
-\texttt{V0}, \texttt{V1}, and \texttt{V2} by specified  deadlines.
+\subsection{Context}
+
+Urban areas are complex ecosystems influenced by various factors, with
+vegetation, especially trees, playing a crucial role in shaping microclimates,
+reducing energy consumption, and enhancing overall livability \cite{TIR4sTREEt}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/TreeShade.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Tree providing shade to a building \cite{img:TreeShade}}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/heat_street.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}}
+\end{figure}
+
+This project aims to integrate trees into 3D geometric models of urban
+environments to improve the accuracy and realism of thermal and energy
+simulations.
+
+By leveraging data from \texttt{OpenStreetMap}\cite{openstreetmap}, we will use the
+\texttt{CGAL}\cite{cgal} library to generate 3D tree models and integrate them into terrain
+meshes.
+With the help of the \texttt{Feel++}\cite{feel++} library, we will calculate solar masks and
+the shading of trees on buildings.
+
+Our primary focus will be on Strasbourg, France. More specifically we were given a
+\texttt{.stl} file representing the Strasbourg city center.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/stras_mesh.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model visualized in ParaView-5.12.0}
+\end{figure}
+
+However, the software is designed to be easily adaptable to any area.
+
+
+
+\newpage
 
 \subsection{Main objectives}
 
-The primary objective is to enhance the accuracy of thermal and energy
-simulations of a given area.
-
-Specific objectives include:
 \begin{itemize}
     \item Extracting tree data from \texttt{OpenStreetMap}
     \item Generating 3D tree models.
@@ -127,21 +159,6 @@ Specific objectives include:
     \item Delivering versions \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified deadlines
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/TreeShade.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Tree providing shade to a building \cite{img:TreeShade}.}
-    \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/heat_street.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}.}
-    \end{minipage}
-\end{figure}
 
 Computational modeling has advanced significantly, enabling the simulation of thermal
 and energy performance in urban environments. However, integrating vegetation into
@@ -150,43 +167,6 @@ and representing their geometry efficiently\cite{AdTree}.
 
 \newpage
 
-\subsection{Challenges}
-This project aims to address these challenges by developing a methodology for
-integrating trees into 3D urban models. Leveraging data from \texttt{OpenStreetMap},
-the  project will identify tree positions and attributes, generate a library of 3D tree
-models, and integrate them into terrain meshes for comprehensive simulations while
-ensuring computational efficiency.
-
-One of the main challenges is to developp a way to represent different density
-of leaves for each season. To streamline things, we've opted to combine spring
-and summer into one period and fall and winter into another, giving us just two
-seasons. The first boasts dense foliage, while the second experiences sparse leaf coverage.
-This could be done by adding multiple textures to the tree mesh and changing
-the texture based on the season.
-
-\subsection{Data formats and structure}
-Tree data will be sourced from \texttt{OpenStreetMap} and processed into formats suitable for
-integration into our models, such as \texttt{.stl}, \texttt{.csv}, and \texttt{.json}.
-We aim to ensure watertight triangulation consistent with the Finite Element Method
-(FEM) for accurate simulations.
-
-The \texttt{stl} format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
-software. It represents 3D models as a collection of triangular facets, making it
-suitable for our geometric modeling purposes.
-The \texttt{ASCII} versions is defined as :
-\begin{lstlisting}
-solid name
-facet normal ni nj nk
-    outer loop
-        vertex v1x v1y v1z
-        vertex v2x v2y v2z
-        vertex v3x v3y v3z
-    endloop
-endfacet
-....
-endsolid name
-\end{lstlisting}
-But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
 \subsection{Software and libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
 \texttt{curl} \cite{curl} to access and leverage information from \texttt{OpenStreetMap}.
@@ -352,167 +332,7 @@ Additionally, since it's not feasible to have a mesh model for each species or e
 
 \subsection{Base tree model}
 Since making all tree model would take too much time we will use tree meshes
-publicly available on \href{https://app.sketchup.com/app}{Sketchup} 3D Warehouse.
-
-\begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/ginkgo_sketchup.png}
-        \captionsetup{font={scriptsize}}
-        \caption{The mesh of a Ginkgo tree available on Sketchup 3D Warehouse}
-\end{figure}
-
-Those meshes can be directly downloaded in STL format.  
-
-To provide different level of details (LOD) we will wrap then using the
-CGAL 3D Alpha Wrapping\cite{cgal_alpha_wrapper}.
-
-\subsection{Alpha Wrapping}
-\begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/aw3_bike_lod.jpg}
-        \captionsetup{font={scriptsize}}
-        \caption{Different LOD of the Alpha Wrapping of a bike}
-\end{figure}
-
-Many approaches exist to enclose a 3D model within a volume, each balancing runtime
-and quality (tightness) of approximation. Simple methods, like using an axis-aligned
-or oriented bounding box, have uncontrollable and often large approximation errors.
-Computing the convex hull of the input improves quality but increases runtime and
-still provides a crude approximation, especially for models with several components.
-
-The convex hull is a special case of alpha shapes. Mathematically, alpha shapes are
-subcomplexes of the Delaunay triangulation, where simplices are included based on the
-size of their minimal (empty) Delaunay ball. Constructing 3D alpha shapes can be seen
-as carving 3D space with an empty ball of radius alpha. Alpha shapes provide good
-piecewise-linear approximations of a shape but are defined on point sets. For more
-general input data like triangle soups, even after sampling, alpha shapes may not be
-conservative for any alpha and can carve inner structures within volumes.
-
-Inspired by alpha shapes, we use shrink-wrapping. We iteratively construct a subcomplex
-of a 3D Delaunay triangulation by starting from a simple triangulation enclosing the
-input and then iteratively removing eligible tetrahedra on the boundary of the complex.
-The underlying triangulation is refined as shrinking proceeds. Instead of carving from
-the convex hull, we construct a new mesh through a Delaunay refinement-like algorithm.
-This algorithm inserts Steiner points on the boundary of an offset volume, defined as
-a level set of the unsigned distance field to the input.
-
-This method prevents the creation of inner structures and avoids superfluous
-computations. It also detaches mesh construction from the input's geometry and
-discretization, offering several advantages: (1) the input format is flexible (triangle
-soups, polygon soups, point clouds), as only three basic geometric queries are needed:
-(a) the distance between a point and the input, (b) the projection of a query point
-onto the input, and (c) an intersection test between a tetrahedron and the input, and
-(2) the user can trade tightness to the input for final mesh complexity, requiring
-fewer mesh elements for a large offset conservative approximation.
-
-\textbf{Algorithm}
-
-\textbf{Initialization}
-
-The algorithm begins by inserting the eight corner vertices of a loose bounding box
-into a 3D Delaunay triangulation. In CGAL's 3D Delaunay triangulation, all triangle
-facets are adjacent to two tetrahedron cells. Each boundary facet of the triangulation,
-coinciding with a convex hull facet, is adjacent to an infinite tetrahedron cell.
-Initially, all infinite cells are tagged as outside, and all finite tetrahedron cells
-are tagged as inside.
-
-\textbf{Shrink-wrapping}
-
-The algorithm traverses the cells of the Delaunay triangulation from outside to inside,
-flood-filling from one cell to its adjacent cell and tagging the adjacent cell as
-outside when possible. Flood-filling uses a priority queue of Delaunay triangle facets
-(gates) representing the traversal between adjacent cells.
-
-A gate is alpha-traversable if its circumradius is larger than the user-defined
-parameter alpha, where the circumradius is the radius of the relating triangle's
-Delaunay ball. Cavities smaller than alpha are not accessible as their gates are not
-alpha-traversable.
-
-Initialized by the alpha-traversable gates on the convex hull, the priority queue only
-contains alpha-traversable gates and is sorted by decreasing circumradius. Traversal
-advances along dual Voronoi edges of the gates with a pencil of empty balls
-circumscribing the gate.
-
-\begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/aw3_pencil.png}
-        \captionsetup{font={scriptsize}}
-        \caption{(Left) Pencil of empty circles (blue) circumscribing a Delaunay
-        edge (green) in a 2D Delaunay triangulation (black). From the top triangle
-        circumcenter c1 to the bottom triangle circumcenter c2, the dual Voronoi
-         edge denoted by e (doted red) is the trace of centers of the largest circles
-          that are empty of Delaunay vertex. (Right) The graph corresponding to the
-          left example. The x-axis corresponds to the position of empty circle centers
-           located on the Voronoi edge e, from c1 to c2. The y-axis is the radius
-            value of the corresponding empty circles. In this case, the minimum
-            radius of this pencil of empty circle is located at the midpoint of
-            the green Delaunay edge. In our algorithm, a gate (green Delaunay edge)
-             is said to be not alpha-traversable when the minimum radius of the pencil
-              of empty circle is smaller than alpha. }
-\end{figure}
-
-When traversing from an outside cell \( c_o \) to an inside cell \( c_i \) through an
-alpha-traversable facet \( f \), two criteria are tested to prevent the wrapping process
-from colliding with the input:
-
-1. Check for an intersection between the dual Voronoi edge of \( f \) and the offset
-surface, defined as the level set of the unsigned isosurface to the input. If intersections
-exist, the first intersection point along the dual Voronoi edge oriented from outside to
-inside is inserted into the triangulation as a Steiner point.
-
-2. If the dual Voronoi edge does not intersect the offset surface but the neighboring cell
-\( c_i \) intersects the input, compute the projection of the circumcenter of \( c_i \)
-onto the offset surface and insert it into the triangulation as a Steiner point, which
-destroys \( c_i \).
-
-After each Steiner point insertion, all new incident cells are tagged as inside, and the
-newly alpha-traversable gates are pushed into the priority queue.
-
-If neither criterion is met, the neighboring cell \( c_i \) is traversed and tagged as
-outside. Alpha-traversable facets of \( c_i \) separating inside from outside cells are
-pushed as new gates into the priority queue.
-
-Once the queue empties—a process guaranteed as facets (and their circumradii) become
-smaller due to new Steiner point insertions—the construction phase terminates. The output
-triangle surface mesh is extracted from the Delaunay triangulation as the set of facets
-separating inside from outside cells.
-
-The figure below depicts the steps of the algorithm in 2D.
-\begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/aw3_steps.jpg}
-        \captionsetup{font={scriptsize}}
-        \caption{Steps of the shrink-wrapping algorithm in 2D. The algorithm is initialized by
-        inserting the corners of the loose bounding box of the input (red) into a Delaunay
-        triangulation, and all finite triangles are tagged inside (grey). The current gate
-        (green edge) popped out from the queue is alpha-traversable. The triangle adjacent
-        to the gate is tagged outside when it does not intersect the input, and new
-        alpha-traversable gates are pushed to the queue. When the adjacent triangle
-        intersects the input, a new Steiner point (large green disc) is computed and inserted
-        into the triangulation, all neighboring triangles are tagged inside, new
-        alpha-traversable gates are pushed to the queue, and traversal is resumed. Grey edges
-        depict the Delaunay triangulation. Blue edges depict the Voronoi diagram. Pink circles
-        depict the empty circle of radius alpha. The output edges (dark blue) separate inside
-        from outside triangles.
-        }
-\end{figure}
-
-\textbf{Guarantes}
-The algorithm is proven to terminate and to produce a 2-manifold triangulated surface 
-mesh that strictly encloses the input data. The key element to the proof is that we wrap 
-from outside to inside and never allow a cell that intersects the input to be flagged 
-inside. Furthermore, both criteria that lead to refinement of the triangulation insert
- Steiner points that are guaranteed to break the cells in need of refinement and
- reduce the neighbor facets circumradii.
-
-
-\subsection{Base tree model}
-Since making all tree model would take too much time we will use tree meshes
-publicly available on \href{https://app.sketchup.com/app}{Sketchup} 3D Warehouse.
+publicly available on Sketchup\cite{sketchup} 3D Warehouse.
 
 \begin{figure}[H]
     \centering
@@ -583,6 +403,9 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
 
 To provide different level of details (LOD) we will wrap them using the
 CGAL 3D Alpha Wrapping\cite{cgal_alpha_wrapper}.
+
+We aim to ensure watertight triangulation consistent with the Finite Element Method
+(FEM) for accurate simulations.
 
 \subsection{Alpha Wrapping}
 \begin{figure}[H]
@@ -761,11 +584,20 @@ To run the script:
 ./wrap_all.sh
 \end{lstlisting}
 
-   Those reference meshes will be used to generate the tree models for each tree
+Those reference meshes will be used to generate the tree models for each tree
 in the data. The tree models will be generated by scaling the reference mesh
 to match the tree's height and position in the 3D space. \\
 This will be done by using the \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 which as a linear complexity in the number of vertices of the mesh.
+
+The alpha parameter for the CGAL wrapper was set as follows for each LOD:
+
+\begin{itemize}
+    \item LOD 0: 0.1
+    \item LOD 1: 20
+    \item LOD 2: 50
+    \item LOD 3: 100
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -844,9 +676,9 @@ the advantage of being conformal, meaning that it preserves angles locally (henc
 \end{equation}
 
 To achieve this while taking into account that the Earth is not perfect sphere
- we will assume the Earth is a geodesic defined as WGS84 \cite{wgs84} and use 
- the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
-  library to convert the coordinates.
+we will assume the Earth is a geodesic defined as WGS84 \cite{wgs84} and use 
+the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
+library to convert the coordinates.
 
 Then the union of all the tree meshed will need to be computed to create a single mesh
 and avoid collision between the trees. \\
@@ -869,15 +701,6 @@ using generic trees and LOD1:
 \end{figure}
 
 
-We were given a \texttt{.stl} file representing the city center of Strasbourg, France.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/stras_mesh.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model.}
-\end{figure}
-
 The idea is to integrate the tree models into the terrain mesh.
 
 Here is an example of what this integration could look like:
@@ -889,10 +712,9 @@ Here is an example of what this integration could look like:
     \caption{Strasbourg 3D model with LOD 0 trees.}
 \end{figure}
 
-\subsection{Shading Calculations}
-Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
-of trees and their impact on urban microclimates. Execution time considerations will be
-addressed to optimize computational efficiency.
+This image is made of 2 distinct meshes, the tree mesh and the building mesh.
+We will also need to make the union of those meshes, but this cause challenges 
+as the intersections may not be well-defined and can violate the mesh properties.
 
 \subsection{Metrics}
 The complexity of the algorithms is a key metric to consider. \\
@@ -914,7 +736,7 @@ Time to mesh: 155.965 seconds, (2.59942 minutes)
 
 \section{Implementation}
 If you downloaded the project from the \href{https://github.com/master-csmi/2024-m1-vegetation}{Github}
- repository, a \texttt{Doxygen} documentation is available. \\
+repository, a \texttt{Doxygen} documentation is available. \\
 To generate the documentation, you can use the following command:
 
 \begin{lstlisting}[language=bash]
@@ -1099,6 +921,110 @@ of putting the trees and the buildings on 0 on the z-axis (i.e. on sea level).
 
 \section{Results}
 
+\subsection{Model integration}
+
+\subsection{Shading calculations}
+Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
+of trees and their impact on urban microclimates. Execution time considerations will be
+addressed to optimize computational efficiency.
+
+
+\subsection{Complexity and performance analysis}
+
+We acquired data by running the program on a High-Performance Computing (HPC) node.
+
+We used four different bounding boxes, all centered at the same point but with
+varying sizes:
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/bbox1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Bounding Box 1: 153.7 m², 12 trees}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/bbox2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Bounding Box 2: 384.0 m², 71 trees}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/bbox3.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Bounding Box 3: 626.1 m², 254 trees}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/bbox4.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Bounding Box 4: 808.4 m², 513 trees}
+    \end{minipage}
+\end{figure}
+
+
+For each bounding box, the program was run for the following Levels of Detail (LODs):
+
+\begin{itemize}
+    \item LOD 0
+    \item LOD 1
+    \item LOD 2
+    \item LOD 3
+\end{itemize}
+
+\subsubsection{Area and Number of Trees}
+
+Since we're using the area as our main feature (because it is the one we
+control when meshing an area), we want to examine how the area (in m²) relates
+to the number of trees available.
+
+It is important to note that this relationship highly depends on the
+configuration of the environment. In urban settings, trees are not usually
+evenly distributed (e.g., avenues, parks, etc.), so we cannot always expect a
+linear relationship between the area and the number of trees.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/area_vs_trees.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+
+Since the plot is a line on a log-log scale, we can infer that the relationship
+between the number of trees and the area (in square meters) follows a power law.
+
+\subsubsection{Impact of the level of detail (LOD)}
+The Level of Detail (LOD) we chose has a significant impact. Since we did not
+select the LODs in a linear fashion, we aim to examine how the different LODs
+are related to the number of faces produced in the meshes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/lod_vs_faces.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+
+The relationship between the number of faces and the Level of Detail (LOD) is
+linear. This plot clearly illustrates our choice of LODs, with the last one
+being significantly more detailed.
+
+\subsubsection{Execution time}
+Finally, we aim to benchmark the time it takes to mesh the area for each Level
+of Detail (LOD).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/lod_vs_time.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+
+Again, this relationship appears to follow a power law. To confirm this with
+greater precision, we would need more data.
 
 \newpage
 
