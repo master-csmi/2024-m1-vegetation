@@ -7,6 +7,7 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{pgfgantt}
 
 % Define colors
 \colorlet{punct}{red!60!black}
@@ -75,6 +76,10 @@
     showtabs=false,
     tabsize=4
 }
+
+\ganttset{group/.append style={orange},
+milestone/.append style={red},
+progress label node anchor/.append style={text=red}}
 
 \lstset{style=modernstyle}
 
@@ -184,26 +189,92 @@ development.
 \subsection{Roadmap}
 The roadmap we defined includes the following milestones and issues:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/roadmap_v0.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap for V0}
-\end{figure}
+\begin{ganttchart}[
+    y unit title=0.5cm,
+    y unit chart=0.7cm,
+    vgrid,hgrid,
+    title height=1,
+    title label font=\bfseries\footnotesize,
+    bar/.style={fill=blue},
+    bar height=0.7,
+    group right shift=0,
+    group top shift=0.7,
+    group height=.3,
+    group peaks width={0.2},
+    inline]{1}{20}
+    % Labels
+    \gantttitle{V0 Roadmap}{20} \\
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/roadmap_v1.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap for V1}
-\end{figure}
+    % Setting group if any
+    \\
+    \ganttgroup[group/.append style={fill=red}]{GitHub Project Setup}{1}{7} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=green}]{Roadmap}{3}{9} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=blue}]{Initial Bibliography}{5}{11} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=yellow}]{V0 Report}{7}{13} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=purple}]{V0 Presentation}{9}{15} \\
+\end{ganttchart}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/roadmap_v2.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Roadmap for V2}
-\end{figure}
+\begin{ganttchart}[
+    y unit title=0.5cm,
+    y unit chart=0.7cm,
+    vgrid,hgrid,
+    title height=1,
+    title label font=\bfseries\footnotesize,
+    bar/.style={fill=blue},
+    bar height=0.7,
+    group right shift=0,
+    group top shift=0.7,
+    group height=.3,
+    group peaks width={0.2},
+    inline]{1}{20}
+    % Labels
+    \gantttitle{V1 Roadmap}{20} \\
+
+    % Setting group if any
+    \\
+    \ganttgroup[group/.append style={fill=red}]{Tree model}{1}{7} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=green}]{Tree database}{3}{9} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=blue}]{CGAL}{5}{11} \\
+    \\
+    \ganttgroup[group/.append style={fill=yellow}]{CI workflow}{7}{13} \\
+    \\
+    \ganttgroup[group/.append style={fill=purple}]{V1 Report}{9}{15} \\
+\end{ganttchart}
+
+\begin{ganttchart}[
+    y unit title=0.5cm,
+    y unit chart=0.7cm,
+    vgrid,hgrid,
+    title height=1,
+    title label font=\bfseries\footnotesize,
+    bar/.style={fill=blue},
+    bar height=0.7,
+    group right shift=0,
+    group top shift=0.7,
+    group height=.3,
+    group peaks width={0.2},
+    inline]{1}{20}
+    % Labels
+    \gantttitle{V2 Roadmap}{20} \\
+
+    % Setting group if any
+    \\
+    \ganttgroup[group/.append style={fill=red}]{Code review}{1}{7} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=green}]{Gather feedback}{3}{9} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=blue}]{Performance analysis}{5}{11} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=yellow}]{Finalize report}{7}{13} \\ 
+    \\
+    \ganttgroup[group/.append style={fill=purple}]{Finalize presentation}{9}{15} \\
+\end{ganttchart}
 
 \newpage
 
@@ -942,13 +1013,13 @@ varying sizes:
         \centering
         \includegraphics[width=\textwidth]{images/bbox1.png}
         \captionsetup{font={scriptsize}}
-        \caption{Bounding Box 1: 153.7 m², 12 trees}
+        \caption{153.7 m², 12 trees}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/bbox2.png}
         \captionsetup{font={scriptsize}}
-        \caption{Bounding Box 2: 384.0 m², 71 trees}
+        \caption{384.0 m², 71 trees}
     \end{minipage}
 \end{figure}
 
@@ -958,13 +1029,13 @@ varying sizes:
         \centering
         \includegraphics[width=\textwidth]{images/bbox3.png}
         \captionsetup{font={scriptsize}}
-        \caption{Bounding Box 3: 626.1 m², 254 trees}
+        \caption{626.1 m², 254 trees}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/bbox4.png}
         \captionsetup{font={scriptsize}}
-        \caption{Bounding Box 4: 808.4 m², 513 trees}
+        \caption{808.4 m², 513 trees}
     \end{minipage}
 \end{figure}
 
