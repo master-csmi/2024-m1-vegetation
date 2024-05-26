@@ -311,24 +311,57 @@ But for efficiency we will use the \texttt{stl} format in its \textbf{binary for
   \begin{figure}[H]
     \centering
         \centering
-        \includegraphics[width=0.6\textwidth]{images/aw3_pencil.png}
+        \includegraphics[width=0.8\textwidth]{images/aw3_pencil.png}
         \captionsetup{font={scriptsize}}
         \caption{(Left) Pencil of empty circles (blue) circumscribing a Delaunay
-        edge (green) in a 2D Delaunay triangulation (black). From the top triangle
-        circumcenter c1 to the bottom triangle circumcenter c2, the dual Voronoi
-         edge denoted by e (doted red) is the trace of centers of the largest circles
-          that are empty of Delaunay vertex. (Right) The graph corresponding to the
-          left example. The x-axis corresponds to the position of empty circle centers
-           located on the Voronoi edge e, from c1 to c2. The y-axis is the radius
-            value of the corresponding empty circles. In this case, the minimum
-            radius of this pencil of empty circle is located at the midpoint of
-            the green Delaunay edge. In our algorithm, a gate (green Delaunay edge)
-             is said to be not alpha-traversable when the minimum radius of the pencil
-              of empty circle is smaller than alpha. }
+        edge (green) in a 2D Delaunay triangulation (black).}
 \end{figure}
 \end{frame}
 
+\begin{frame}{Alpha Wrapping algorithm}
 
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/aw3_steps.jpg}
+        \captionsetup{font={scriptsize}}
+        \caption{Steps of the shrink-wrapping algorithm in 2D}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: wrapping base tree}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod0.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod0.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod1.}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod2.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod3.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod3.}
+    \end{minipage}
+\end{figure}
+\end{frame}
 
 % \nocite{*}
 \bibliographystyle{plain}
