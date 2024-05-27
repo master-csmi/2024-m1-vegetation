@@ -7,7 +7,6 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{pgfgantt}
 
 % Define colors
 \colorlet{punct}{red!60!black}
@@ -77,9 +76,6 @@
     tabsize=4
 }
 
-\ganttset{group/.append style={orange},
-milestone/.append style={red},
-progress label node anchor/.append style={text=red}}
 
 \lstset{style=modernstyle}
 
@@ -189,92 +185,6 @@ development.
 \subsection{Roadmap}
 The roadmap we defined includes the following milestones and issues:
 
-\begin{ganttchart}[
-    y unit title=0.5cm,
-    y unit chart=0.7cm,
-    vgrid,hgrid,
-    title height=1,
-    title label font=\bfseries\footnotesize,
-    bar/.style={fill=blue},
-    bar height=0.7,
-    group right shift=0,
-    group top shift=0.7,
-    group height=.3,
-    group peaks width={0.2},
-    inline]{1}{20}
-    % Labels
-    \gantttitle{V0 Roadmap}{20} \\
-
-    % Setting group if any
-    \\
-    \ganttgroup[group/.append style={fill=red}]{GitHub Project Setup}{1}{7} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=green}]{Roadmap}{3}{9} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=blue}]{Initial Bibliography}{5}{11} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=yellow}]{V0 Report}{7}{13} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=purple}]{V0 Presentation}{9}{15} \\
-\end{ganttchart}
-
-\begin{ganttchart}[
-    y unit title=0.5cm,
-    y unit chart=0.7cm,
-    vgrid,hgrid,
-    title height=1,
-    title label font=\bfseries\footnotesize,
-    bar/.style={fill=blue},
-    bar height=0.7,
-    group right shift=0,
-    group top shift=0.7,
-    group height=.3,
-    group peaks width={0.2},
-    inline]{1}{20}
-    % Labels
-    \gantttitle{V1 Roadmap}{20} \\
-
-    % Setting group if any
-    \\
-    \ganttgroup[group/.append style={fill=red}]{Tree model}{1}{7} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=green}]{Tree database}{3}{9} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=blue}]{CGAL}{5}{11} \\
-    \\
-    \ganttgroup[group/.append style={fill=yellow}]{CI workflow}{7}{13} \\
-    \\
-    \ganttgroup[group/.append style={fill=purple}]{V1 Report}{9}{15} \\
-\end{ganttchart}
-
-\begin{ganttchart}[
-    y unit title=0.5cm,
-    y unit chart=0.7cm,
-    vgrid,hgrid,
-    title height=1,
-    title label font=\bfseries\footnotesize,
-    bar/.style={fill=blue},
-    bar height=0.7,
-    group right shift=0,
-    group top shift=0.7,
-    group height=.3,
-    group peaks width={0.2},
-    inline]{1}{20}
-    % Labels
-    \gantttitle{V2 Roadmap}{20} \\
-
-    % Setting group if any
-    \\
-    \ganttgroup[group/.append style={fill=red}]{Code review}{1}{7} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=green}]{Gather feedback}{3}{9} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=blue}]{Performance analysis}{5}{11} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=yellow}]{Finalize report}{7}{13} \\ 
-    \\
-    \ganttgroup[group/.append style={fill=purple}]{Finalize presentation}{9}{15} \\
-\end{ganttchart}
 
 \newpage
 
@@ -1002,7 +912,17 @@ addressed to optimize computational efficiency.
 
 \subsection{Complexity and performance analysis}
 
-We acquired data by running the program on a High-Performance Computing (HPC) node.
+To assess the complexity and performance of our program, we executed it on
+the High-Performance Computing (HPC) cluster Gaya. This cluster consists of a
+DELL PowerEdge R7525 head node and six DELL PowerEdge R6525 compute nodes,
+providing a total of 768 multi-threaded cores on the compute nodes and 96 cores
+on the head node. Gaya offers 150 TB of storage for data and an extremely fast
+15 TB NVME scratch space. The head node is equipped with two AMD EPYC 7552
+48-Core Processors running at 2.2GHz, totaling 192 virtual cores, and 1024
+GB of RAM. Each compute node features two AMD EPYC 7713 64-Core Processors
+running at 2GHz, totaling 256 virtual cores, and 512 GB of RAM.
+The nodes are interconnected via Broadcom Adv. Dual 10GBASE-T Ethernet and
+Mellanox ConnectX-6 Dx Dual Port 100 GbE for MPI communication.
 
 We used four different bounding boxes, all centered at the same point but with
 varying sizes:
