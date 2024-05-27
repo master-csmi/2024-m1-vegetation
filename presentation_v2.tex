@@ -124,18 +124,18 @@
   \vspace{0.5cm}
 
   \begin{itemize}
-    \item<2-> \textbf{Sun masks} : compute the shadow cast by trees on the ground and buildings
-    \item<3-> \textbf{Fluid mechanics} : simulate the air flow around trees
+    \item \textbf{Sun masks} : compute the shadow cast by trees on the ground and buildings
+    \item \textbf{Fluid mechanics} : simulate the air flow around trees
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Starting point}
   We have :
   \begin{itemize}
-    \item<2-> some scientific articles \cite{Verdie14} \cite{Verdie15} \cite{Stava14} ...
-    \item <3-> CGAL\cite{cgal} C++ library to mesh trees \includegraphics[width=0.2\textwidth]{images/cgal_logo.png}
-    \item <4-> Feel++\cite{feel++} C++ library to run simulations \includegraphics[width=0.2\textwidth]{images/feelpp.png}
-    \item <5-> The 3D model of Strasbourg
+    \item Scientific articles \cite{Verdie14} \cite{Verdie15} \cite{Stava14} ...
+    \item CGAL\cite{cgal} C++ library to mesh trees \includegraphics[width=0.2\textwidth]{images/cgal_logo.png}
+    \item Feel++\cite{feel++} C++ library to run simulations \includegraphics[width=0.2\textwidth]{images/feelpp.png}
+    \item A 3D model of Strasbourg
   \end{itemize}
 \end{frame}
 
@@ -321,13 +321,13 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
         \centering
         \includegraphics[width=\textwidth]{images/Delaunay_circumcircles_centers.svg.png}
         \captionsetup{font={scriptsize}}
-        \caption{Delaunay triangulation with the centers of the circumcircles.}
+        \caption{Delaunay triangulation with the centers of the circumcircles\cite{delaunay-wiki}.}
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/Delaunay_Voronoi.svg.png}
         \captionsetup{font={scriptsize}}
-        \caption{The dual of the Delaunay triangulation, the Voronoi diagram.}
+        \caption{The dual of the Delaunay triangulation, the Voronoi diagram\cite{delaunay-wiki}.}
     \end{minipage}
   \end{figure}
 \end{frame}
@@ -454,7 +454,7 @@ bool operator<(const Tree &lhs, const Tree &rhs);
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}.}
 \end{figure}
 
 \begin{itemize}
@@ -469,7 +469,7 @@ bool operator<(const Tree &lhs, const Tree &rhs);
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}.}
 \end{figure}
 Mathematically, the Mercator projection is defined as follows: if a point on 
 the sphere has a latitude $\phi$ and longitude $\lambda$ (with $\lambda_{0}$ 
@@ -490,7 +490,7 @@ have coordinates
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}.}
 \end{figure}
 But the Earth isn't a perfect sphere...
 \end{frame}
@@ -502,13 +502,13 @@ But the Earth isn't a perfect sphere...
         \centering
         \includegraphics[width=0.8\textwidth]{images/WGS84_mean_Earth_radius.svg.png}
         \captionsetup{font={scriptsize}}
-        \caption{Earth as an ellipsoid.}
+        \caption{Earth as an ellipsoid\cite{mercator-wiki}.}
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=0.8\textwidth]{images/WGS_84_reference_frame.png}
         \captionsetup{font={scriptsize}}
-        \caption{WGS 84 reference frame.}
+        \caption{WGS 84 reference frame\cite{mercator-wiki}.}
     \end{minipage}
 \end{figure}
 
@@ -534,6 +534,15 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
       \captionsetup{font={scriptsize}}
       \caption{Republic square trees from Overpass turbo.}
   \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Modeling trees in 3D space}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/republic_lod3_side.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Side view of Republic square with LOD 3 trees.}
 \end{figure}
 \end{frame}
 
