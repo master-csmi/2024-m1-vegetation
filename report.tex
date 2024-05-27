@@ -7,6 +7,11 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{snakes}
+\usepackage{rotating}
+\usetikzlibrary{arrows.meta, shapes}
 
 % Define colors
 \colorlet{punct}{red!60!black}
@@ -110,17 +115,18 @@ vegetation, especially trees, playing a crucial role in shaping microclimates,
 reducing energy consumption, and enhancing overall livability \cite{TIR4sTREEt}.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/TreeShade.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Tree providing shade to a building \cite{img:TreeShade}}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/heat_street.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/TreeShade.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Tree providing shade to a building \cite{img:TreeShade}}
+    \end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/heat_street.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}}
+    \end{minipage}
 \end{figure}
 
 This project aims to integrate trees into 3D geometric models of urban
@@ -134,7 +140,7 @@ With the help of the \texttt{Feel++}\cite{feel++} library, we will calculate sol
 the shading of trees on buildings.
 
 Our primary focus will be on Strasbourg, France. More specifically we were given a
-\texttt{.stl} file representing the Strasbourg city center.
+\texttt{.stl}\cite{stl_format} file representing the Strasbourg city center.
 
 \begin{figure}[H]
     \centering
@@ -144,8 +150,6 @@ Our primary focus will be on Strasbourg, France. More specifically we were given
 \end{figure}
 
 However, the software is designed to be easily adaptable to any area.
-
-
 
 \newpage
 
@@ -159,14 +163,6 @@ However, the software is designed to be easily adaptable to any area.
     \item Optimizing computational efficiency
     \item Delivering versions \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified deadlines
 \end{itemize}
-
-
-Computational modeling has advanced significantly, enabling the simulation of thermal
-and energy performance in urban environments. However, integrating vegetation into
-these models presents challenges due to the complexity of obtaining accurate tree data
-and representing their geometry efficiently\cite{AdTree}.
-
-\newpage
 
 \subsection{Software and libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
@@ -182,31 +178,99 @@ The repository contains the project's code, documentation, and resources. It wil
 updated regularly to reflect the progress and changes made during the project's
 development.
 
-\subsection{Roadmap}
-The roadmap we defined includes the following milestones and issues:
-
-
 \newpage
 
+\subsection{Roadmap}
+We created a roadmap on GitHub Projects to ensure we meet the deadlines for the
+deliverables.
+The deadlines are as follows:
+
+\begin{itemize}
+    \item \texttt{V0} - 26 March
+    \item \texttt{V1} - 23 April
+    \item \texttt{V2} - 28 May
+\end{itemize}
+
+Here is a brief overview of the main issues:
+
+\begin{tikzpicture}
+    
+    \draw[thick, -{Latex[length=2mm]}] (0,0) -- (10,0);
+    
+    \foreach \x in {1,2,3,4,5,6,7,8,9}
+    \draw (\x cm,3pt) -- (\x cm,-3pt);
+        
+    \draw (1,0) node[below=3pt] {$ 0 $};
+    \draw (2,0) node[below=3pt] {$ 1 $} node[above=30pt, yshift=6pt, rotate=45] {GitHub Project Setup};
+    \draw (3,0) node[below=3pt] {$ 2 $} node[above=30pt, yshift=6pt, rotate=45] {Roadmap};
+    \draw (4,0) node[below=3pt] {$ 3 $} node[above=30pt, yshift=6pt, rotate=45] {Literature Review};
+    \draw (5,0) node[below=3pt] {$ 4 $} node[above=30pt, yshift=6pt, rotate=45] {Bibliography};
+    \draw (6,0) node[below=3pt] {$ 5 $} node[above=40pt, yshift=6pt, rotate=45] {Familiarizing with CGAL};
+    \draw (7,0) node[below=3pt] {$ 6 $} node[above=30pt, yshift=6pt, rotate=45] {V0 Report};
+    \draw (8,0) node[below=3pt] {$ 7 $} node[above=30pt, yshift=6pt, rotate=45] {V0 Presentation};
+    \draw (9,0) node[below=3pt] {$ 8 $} node[above=30pt, yshift=6pt, rotate=45] {V0 Feedback};
+
+    \node[below] at (11,0) {26 March};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    
+    \draw[thick, -{Latex[length=2mm]}] (0,0) -- (10,0);
+    
+    \foreach \x in {1,2,3,4,5,6,7,8,9}
+    \draw (\x cm,3pt) -- (\x cm,-3pt);
+        
+    \draw (1,0) node[below=3pt] {$ 0 $};
+    \draw (2,0) node[below=3pt] {$ 1 $} node[above=45pt, yshift=6pt, rotate=45] {Model and Mesh First Tree};
+    \draw (3,0) node[below=3pt] {$ 2 $} node[above=45pt, yshift=6pt, rotate=45] {Find Suitable Tree Database};
+    \draw (4,0) node[below=3pt] {$ 3 $} node[above=45pt, yshift=6pt, rotate=45] {Tree Mapping and Arrangement};
+    \draw (5,0) node[below=3pt] {$ 4 $} node[above=45pt, yshift=6pt, rotate=45] {Project Environment and CI};
+    \draw (6,0) node[below=3pt] {$ 5 $} node[above=40pt, yshift=6pt, rotate=45] {Docker};
+    \draw (7,0) node[below=3pt] {$ 6 $} node[above=40pt, yshift=6pt, rotate=45] {V1 Report};
+    \draw (8,0) node[below=3pt] {$ 7 $} node[above=40pt, yshift=6pt, rotate=45] {V0 Presentation};
+    \draw (9,0) node[below=3pt] {$ 8 $} node[above=40pt, yshift=6pt, rotate=45] {V1 Feedback};
+
+    \node[below] at (11,0) {23 April};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    
+    \draw[thick, -{Latex[length=2mm]}] (0,0) -- (10,0);
+    
+    \foreach \x in {1,2,3,4,5,6,7,8,9}
+    \draw (\x cm,3pt) -- (\x cm,-3pt);
+        
+    \draw (1,0) node[below=3pt] {$ 0 $};
+    \draw (2,0) node[below=3pt] {$ 1 $} node[above=50pt, yshift=6pt, rotate=45] {Incorporate Tree and Buildings};
+    \draw (3,0) node[below=3pt] {$ 2 $} node[above=40pt, yshift=6pt, rotate=45] {Solar Masking and Shading};
+    \draw (4,0) node[below=3pt] {$ 3 $} node[above=45pt, yshift=6pt, rotate=45] {Unit Testing and Debugging};
+    \draw (5,0) node[below=3pt] {$ 4 $} node[above=45pt, yshift=6pt, rotate=45] {Performance Analysis};
+    \draw (6,0) node[below=3pt] {$ 5 $} node[above=50pt, yshift=6pt, rotate=45] {V2 Report};
+    \draw (7,0) node[below=3pt] {$ 6 $} node[above=40pt, yshift=6pt, rotate=45] {V2 Presentation};
+
+    \node[below] at (11,0) {28 May};
+\end{tikzpicture}
+
+We have adopted the Agile methodology to enhance flexibility and responsiveness
+throughout the project.
+
+\newpage
 \section{Methodology}
 
 \subsection{Data acquisition}
-Using the \texttt{Overpass API} (Application Programming Interface), we will be
-able to fetch and save raw tree data from \texttt{OpenStreetMap} database
-in a \texttt{.json} file.
 
-A \textit{config.json} file will be available for the user to specify the area of
-interest and some parameters for the tree generation. \\
+A \textit{config.json} file is available for the user to specify the area of
+interest and other parameters:
 
 \begin{lstlisting}[language=json]
 {
-    "bbox": "48.5866,7.7522,48.5876,7.7557",
+    "bbox": "48.5750,7.7394,48.5919,7.7621",
     "origin": "48.583055227464364, 7.748664426560083",
     "LOD": 0,
     "default_height_range": "3, 40",
     "default_genus": "Platanus",
     "input_building_mesh": "mesh_lod1.stl",
-    "output_name": "republique"
+    "output_name": "grande_ile"
 }
 \end{lstlisting}
 
@@ -218,19 +282,17 @@ Where :
     used to convert the GPS coordinates to Cartesian coordinates. It must be the
     same for the terrain mesh and the tree meshes.
     \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
-    \item \texttt{default\_height\_range} is a range to randomly pick from to apply to tree which have no height.
-    \item \texttt{default\_genus} is the default genus of the trees if not specified in the data.
-    \item \texttt{input\_building\_mesh} is the name of the input file representing the building mesh.
+    \item \texttt{default\_height\_range} is a range used to randomly assign a height to trees that do not have one.
+    \item \texttt{default\_genus} is the genus assigned to trees that lack a predefined genus.
+    \item \texttt{input\_building\_mesh} is the name of the input file representing the terrain mesh.
     \item \texttt{output\_name} is the base name of the output file representing the unions of the tree meshes.
 \end{itemize}
 
+We will then use the \texttt{Overpass API}\cite{overpass} to query
+\texttt{OpenStreetMap} for all the available tree data within the specified
+bounding box. The data will be stored in a \textit{.json} file.
 
-We will then use the \texttt{Overpass API} to query \texttt{OpenStreetMap}
-for all the available tree data within the specified bounding box.
-The data will be stored in a \textit{.json} file.
-
-\newpage
-Here's an example of the result of the query for one tree:
+Here is an example of the query result for one tree:
 
 \begin{lstlisting}[language=json]
 {
@@ -252,7 +314,7 @@ Here's an example of the result of the query for one tree:
 }
 \end{lstlisting}
 
-Note that this is an example, sometimes multiple \texttt{tags} are missing like here:
+Sometimes, multiple \texttt{tags} are missing, as shown here:
 
 \begin{lstlisting}[language=json]
 {
@@ -266,20 +328,20 @@ Note that this is an example, sometimes multiple \texttt{tags} are missing like 
 }
 \end{lstlisting}
 
-We will especially use the \texttt{position} of the tree (latitude and longitude),
-its \texttt{height} and the \texttt{genus} (since this data is more abundant than the species)
-to generate the 3D tree models.
+We will primarily use the \texttt{position} of the tree
+(latitude and longitude), its \texttt{height}, and the \texttt{genus}
+(since this data is more abundant than the species) to generate the 3D tree models.
+
+\newpage
 
 \subsection{Tree library}
 Using the results from the \texttt{Overpass API} query, we will create a library
-of tree objects. Each tree object will contain the tree's metadata (location, species, height,
-leave density, etc.).
+of tree objects. Each tree object will contain the tree's metadata (location,
+species, height, etc.).
 
 Additionally, since it's not feasible to have a mesh model for each species or even genus
- of trees, we will use the \texttt{trees.json} file to specify the genus
- categories to use for the meshing. \\
-
-\newpage
+of trees, we will use the \texttt{trees.json} file to specify the genus
+categories to use for the meshing.
 
 \begin{lstlisting}[language=json]
 {
@@ -311,9 +373,13 @@ Additionally, since it's not feasible to have a mesh model for each species or e
     \item etc.
 \end{itemize}
 
+\newpage
+
 \subsection{Base tree model}
-Since making all tree model would take too much time we will use tree meshes
-publicly available on Sketchup\cite{sketchup} 3D Warehouse.
+We obtained 13 tree models from the publicly accessible SketchUp\cite{sketchup}
+3D Warehouse, which were downloaded in \texttt{.stl} format.
+
+Here is an example of a Ginkgo model that we acquired from SketchUp:
 
 \begin{figure}[H]
     \centering
@@ -323,7 +389,8 @@ publicly available on Sketchup\cite{sketchup} 3D Warehouse.
         \caption{The mesh of a Ginkgo tree available on Sketchup 3D Warehouse}
 \end{figure}
 
-Those meshes can be directly downloaded in STL format\cite{stl_format}.  \\
+\newpage
+
 Below, some of these models visualized using MeshLab\cite{meshlab}:
 
 \begin{figure}[H]
@@ -332,25 +399,25 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
         \centering
         \includegraphics[width=\textwidth]{images/abies.png}
         \captionsetup{font={scriptsize}}
-        \caption{Abies.}
+        \caption{Abies}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/acer.png}
         \captionsetup{font={scriptsize}}
-        \caption{Acer.}
+        \caption{Acer}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/aesculus.png}
         \captionsetup{font={scriptsize}}
-        \caption{Aesculus.}
+        \caption{Aesculus}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/catalpa.png}
         \captionsetup{font={scriptsize}}
-        \caption{Catalpa.}
+        \caption{Catalpa}
     \end{minipage}
 \end{figure}
 
@@ -360,33 +427,35 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
         \centering
         \includegraphics[width=\textwidth]{images/cedrus.png}
         \captionsetup{font={scriptsize}}
-        \caption{Cedrus.}
+        \caption{Cedrus}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/liquidanbar.png}
         \captionsetup{font={scriptsize}}
-        \caption{Liquidanbar.}
+        \caption{Liquidanbar}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/platanus.png}
         \captionsetup{font={scriptsize}}
-        \caption{Platanus.}
+        \caption{Platanus}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/quercus.png}
         \captionsetup{font={scriptsize}}
-        \caption{Quercus.}
+        \caption{Quercus}
     \end{minipage}
 \end{figure}
 
-To provide different level of details (LOD) we will wrap them using the
-CGAL 3D Alpha Wrapping\cite{cgal_alpha_wrapper}.
+To achieve different levels of detail (LOD) for performance, flexibility,
+and scalability, we will employ CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper}.
 
 We aim to ensure watertight triangulation consistent with the Finite Element Method
 (FEM) for accurate simulations.
+
+\newpage
 
 \subsection{Alpha Wrapping}
 \begin{figure}[H]
@@ -524,26 +593,27 @@ The algorithm is proven to terminate and to produce a 2-manifold triangulated su
 mesh that strictly encloses the input data. The key element to the proof is that we wrap
 from outside to inside and never allow a cell that intersects the input to be flagged
 inside. Furthermore, both criteria that lead to refinement of the triangulation insert
- Steiner points that are guaranteed to break the cells in need of refinement and
- reduce the neighbor facets circumradii.
+Steiner points that are guaranteed to break the cells in need of refinement and
+reduce the neighbor facets circumradii.
 
 
 \subsection{Tree model generation}
-Using the CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper} algorithm we will produce
-reference tree meshes for each level of detail (LOD) from 0 to 3 to avoid wrapping
-each tree model individually. \\
+Using the CGAL 3D Alpha Wrapping algorithm, we will generate reference tree
+meshes for each level of detail (LOD) from 0 to 3. This pre-processing ensures
+that the meshes are readily available in memory, eliminating the need to wrap
+each tree model individually during program execution.
 
-A \texttt{wrap} executable will be available to generate the reference meshes, it
-can be used as follows:
-(50 is the alpha value and 600 is the offset value)
+A \textit{wrap.cpp} file will be provided to generate the reference meshes.
+It can be used as follows:
 
 \begin{lstlisting}[language=bash]
 ./build/wrap tree_ref/raw_tree/Ginkgo.stl 50 600
 \end{lstlisting}
 
+Where 50 is the alpha value and 600 is the offset value.
 
-Additionally, to wrap all the trees in a directory, the \texttt{wrap\_all.sh} script
-can be used:
+Additionally, to wrap all the trees in a directory, the \textit{wrap\_all.sh}
+script can be used:
 
 \begin{lstlisting}[language=bash]
 #!/bin/bash
@@ -560,16 +630,14 @@ for input_file in $INPUT_DIR/*.stl; do
 done
 \end{lstlisting}
 
-To run the script:
-\begin{lstlisting}
-./wrap_all.sh
-\end{lstlisting}
+The reference meshes will be used to generate the tree models obtained from
+the Overpass query. Each tree model will be generated by scaling the reference
+mesh to match the tree's height and position in 3D space. This will be
+accomplished using the
+\texttt{CGAL Affine Transformation}\cite{cgal_affine_transformation},
+which has linear complexity in the number of vertices of the mesh.
 
-Those reference meshes will be used to generate the tree models for each tree
-in the data. The tree models will be generated by scaling the reference mesh
-to match the tree's height and position in the 3D space. \\
-This will be done by using the \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
-which as a linear complexity in the number of vertices of the mesh.
+\newpage
 
 The alpha parameter for the CGAL wrapper was set as follows for each LOD:
 
@@ -580,19 +648,23 @@ The alpha parameter for the CGAL wrapper was set as follows for each LOD:
     \item LOD 3: 100
 \end{itemize}
 
+The offset parameter for the CGAL wrapper was set as 600 for each LOD.
+
+Here are the results for the Ginkgo tree model at each LOD:
+
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/lod0.png}
+        \includegraphics[width=1\textwidth]{images/gingko_lod0.png}
         \captionsetup{font={scriptsize}}
-        \caption{A reference mesh tree for LOD 0.}
+        \caption{Ginkgo lod0}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/lod1.png}
+        \includegraphics[width=1\textwidth]{images/gingko_lod1.png}
         \captionsetup{font={scriptsize}}
-        \caption{A reference mesh tree for LOD 1.}
+        \caption{Ginkgo lod1}
     \end{minipage}
 \end{figure}
 
@@ -600,38 +672,38 @@ The alpha parameter for the CGAL wrapper was set as follows for each LOD:
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/lod2.png}
+        \includegraphics[width=1\textwidth]{images/gingko_lod2.png}
         \captionsetup{font={scriptsize}}
-        \caption{A reference mesh tree for LOD 2.}
+        \caption{Ginkgo lod2}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/lod3.png}
+        \includegraphics[width=1\textwidth]{images/gingko_lod3.png}
         \captionsetup{font={scriptsize}}
-        \caption{A reference mesh tree for LOD 3.}
+        \caption{Ginkgo lod3}
     \end{minipage}
 \end{figure}
 
-The case where not enough data is available for a tree will need to be handled
-as well. \\
-Our first idea was to use a k-nearest neighbors algorithm \cite{k-NN} approach to
-decide the tree's metadata (species, height, leave density, etc.) based on the
-surrounding trees. \\
-Unfortunately, this approach is not feasible due to the fact that
-when data is missing it's usually missing for a large area such as a park. \\
-Instead, we will use a random height picked in \texttt{default\_height\_range}
-and genus specified by \texttt{default\_genus} in the \textit{config.json} file.
+The scenario where insufficient data is available for a tree must also be
+addressed. Initially, we considered using a k-nearest neighbors
+algorithm\cite{k-nn} to determine the tree's metadata (species, height,
+leaf density, etc.) based on surrounding trees. However, this approach is
+impractical because data is often missing for large areas, such as parks.
+Instead, we will assign a random height selected from the
+\texttt{default\_height\_range} and a genus specified by
+\texttt{default\_genus} in the \textit{config.json} file.
 
 \subsection{Model integration}
 Generated tree models will be integrated into terrain meshes to create comprehensive
 3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
 (latitude, longitude) will be converted to Cartesian coordinates (x, y) using
-a Mercator projection\cite{mercator-proj}.  \\
+a Mercator projection\cite{mercator-proj}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}}
 \end{figure}
 
 This is the most common way to represent the Earth's surface on a plane and has 
