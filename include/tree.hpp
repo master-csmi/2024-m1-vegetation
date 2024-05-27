@@ -20,18 +20,15 @@ using Mesh = CGAL::Surface_mesh<Point_3>;
 class Tree {
   private:
     long M_id;
-    double M_lat;
-    double M_lon;
-    std::string M_genus;
-    std::string M_species;
-    std::string M_season;
-    double M_height;
-    double M_circumference;
-    double M_diameter_crown;
-    double M_x, M_y;
+    double M_lat, M_lon, M_x, M_y;
+    double M_height, M_altitude;
+    double M_circumference, M_diameter_crown;
     Mesh M_wrap;
+    std::string M_genus, M_species, M_season;
     std::vector<std::string> M_known_genus, M_cedrus_like, M_acer_like,
         M_liquidambar_like, M_quercus_like;
+    std::vector<Point_3> M_points;
+    std::vector<std::array<int, 3>> M_faces;
 
   public:
     // Default constructor
@@ -55,6 +52,9 @@ class Tree {
     double x() const { return M_x; }
     double y() const { return M_y; }
     Mesh wrap() const { return M_wrap; }
+    double altitude() const { return M_altitude; }
+    std::vector<Point_3> points() const { return M_points; }
+    std::vector<std::array<int, 3>> faces() const { return M_faces; }
 
     // Setters
     void setId(long id) { M_id = id; }
@@ -70,6 +70,7 @@ class Tree {
         M_diameter_crown = diameter_crown;
     }
     void setSeason(std::string season) { M_season = season; }
+    void setAltitude(double altitude) { M_altitude = altitude; }
 
     void computeXY(double ref_lat, double ref_lon);
     void wrap(int lod);

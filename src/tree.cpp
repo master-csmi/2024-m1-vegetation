@@ -88,8 +88,6 @@ void Tree::load_data(const std::string &filename) {
 void Tree::wrap(int lod) {
     std::string filename = "tree_ref/";
     double scaling_factor_double;
-    std::vector<Point_3> points;
-    std::vector<std::array<int, 3>> faces;
     CGAL::Bbox_3 bbox;
 
     if (std::find(M_known_genus.begin(), M_known_genus.end(), M_genus) !=
@@ -135,25 +133,25 @@ void Tree::wrap(int lod) {
 
     CGAL::data_file_path(filename);
 
-    if (!CGAL::IO::read_STL(filename, points, faces)) {
+    if (!CGAL::IO::read_polygon_soup(filename, M_points, M_faces)) {
         std::cerr << "Invalid input." << std::endl;
         exit(1);
     }
 
     // Calculate centroid of the tree
     double centroid_x = 0, centroid_y = 0, centroid_z = 0;
-    for (const Point_3 &p : points) {
+    for (const Point_3 &p : M_points) {
         centroid_x += p.x();
         centroid_y += p.y();
         centroid_z += p.z();
     }
-    centroid_x /= points.size();
-    centroid_y /= points.size();
-    centroid_z /= points.size();
+    centroid_x /= M_points.size();
+    centroid_y /= M_points.size();
+    centroid_z /= M_points.size();
     Point_3 centroid(centroid_x, centroid_y, centroid_z);
 
     // Calculate bounding box from points
-    for (const Point_3 &p : points)
+    for (const Point_3 &p : M_points)
         bbox += p.bbox();
 
     scaling_factor_double = M_height / (bbox.zmax() - bbox.zmin());
@@ -161,23 +159,23 @@ void Tree::wrap(int lod) {
     K::RT scaling_factor(scaling_factor_double); // Convert to exact type
 
     // Find the base of the tree (minimum z-coordinate)
-    double base_z = std::numeric_limits<double>::max();
-    for (const auto &p : points) {
-        if (p.z() < base_z)
-            base_z = p.z();
-    }
+    // double base_z = std::numeric_limits<double>::max();
+    // for (const auto &p : points) {
+    //     if (p.z() < base_z)
+    //         base_z = p.z();
+    // }
 
     // Create affine transformations
     CGAL::Aff_transformation_3<K> translate_to_base(
-        CGAL::TRANSLATION, Vector_3(-centroid.x(), -centroid.y(), -base_z));
+        CGAL::TRANSLATION, Vector_3(-centroid.x(), -centroid.y(), M_altitude));
     CGAL::Aff_transformation_3<K> scale(CGAL::SCALING, scaling_factor);
     CGAL::Aff_transformation_3<K> translate_back(
-        CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), base_z));
-    CGAL::Aff_transformation_3<K> translate_to_target(CGAL::TRANSLATION,
-                                                      Vector_3(M_x, M_y, 0));
+        CGAL::TRANSLATION, Vector_3(centroid.x(), centroid.y(), M_altitude));
+    CGAL::Aff_transformation_3<K> translate_to_target(
+        CGAL::TRANSLATION, Vector_3(M_x, M_y, M_altitude));
 
     // Apply transformations: move to base, scale, move back, move to target
-    for (auto &p : points) {
+    for (auto &p : M_points) {
         p = translate_to_base.transform(p);   // Move to base
         p = scale.transform(p);               // Scale
         p = translate_back.transform(p);      // Move back to original position
@@ -188,25 +186,25 @@ void Tree::wrap(int lod) {
 
     // Add transformed vertices to the mesh and store their descriptors
     std::map<Point_3, Mesh::Vertex_index> vertex_map;
-    for (const auto &p : points) {
+    for (const auto &p : M_points) {
         auto v = M_wrap.add_vertex(p);
         // Store the vertex descriptor for the transformed vertex
         vertex_map[p] = v;
     }
 
     // Add faces to the mesh
-    for (const auto &face : faces) {
+    for (const auto &face : M_faces) {
         // Retrieve vertex descriptors for the face vertices
-        Mesh::Vertex_index v0 = vertex_map[points[face[0]]];
-        Mesh::Vertex_index v1 = vertex_map[points[face[1]]];
-        Mesh::Vertex_index v2 = vertex_map[points[face[2]]];
+        Mesh::Vertex_index v0 = vertex_map[M_points[face[0]]];
+        Mesh::Vertex_index v1 = vertex_map[M_points[face[1]]];
+        Mesh::Vertex_index v2 = vertex_map[M_points[face[2]]];
 
         // Add the face to the mesh
         M_wrap.add_face(v0, v1, v2);
     }
 
     // Compute the bounding box of the transformed mesh
-    // bbox = PMP::bbox(M_wrap);
+    bbox = PMP::bbox(M_wrap);
 
     // std::cout << "\n height: " << M_height << std::endl;
     // std::cout << "x, y: " << M_x << ", " << M_y << std::endl;

@@ -24,3 +24,5 @@ temp/
 
 # macOS
 .DS_Store
+
+query_result.json

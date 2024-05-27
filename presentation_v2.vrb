@@ -1,0 +1,24 @@
+\frametitle{Tree modeling: tree object}
+
+\begin{lstlisting}[language=C++]
+using K = CGAL::Exact_predicates_inexact_constructions_kernel;
+using Point_3 = K::Point_3;
+using Mesh = CGAL::Surface_mesh<Point_3>;
+
+class Tree {
+    private:
+    long M_id;
+    double M_lat, M_lon, M_x, M_y,
+    double M_height, M_circumference, M_diameter_crown
+    std::string M_genus, M_species, M_season;
+    Mesh M_wrap;
+
+    public:
+    void computeXY(double ref_lat, double ref_lon);
+    void wrap(int lod);
+};
+
+Tree createTreeFromJson(const nlohmann::json &treeJson);
+std::ostream &operator<<(std::ostream &os, const Tree &tree);
+bool operator<(const Tree &lhs, const Tree &rhs);
+\end{lstlisting}

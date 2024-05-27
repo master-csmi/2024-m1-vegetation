@@ -13,6 +13,7 @@ class Config {
     std::string M_default_height;
     std::string M_origin;
     std::string M_input_building_mesh;
+    double M_altitude;
 
   public:
     Config(std::string const &filename);
@@ -28,6 +29,7 @@ class Config {
     std::vector<double> bbox_coords() const;
     std::string origin() const { return M_origin; }
     std::string input_building_mesh() const { return M_input_building_mesh; }
+    double altitude() const { return M_altitude; }
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);

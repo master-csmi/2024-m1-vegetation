@@ -1,9 +1,10 @@
 {
-  "bbox": "48.58900,7.75551,48.59193,7.76066",
+  "bbox": "48.58670,7.75271,48.58705,7.75376",
   "origin": "48.583055227464364, 7.748664426560083",
-  "LOD": 3,
+  "altitude": 0.0,
+  "LOD": 0,
   "default_height_range": "3, 40",
   "default_genus": "Platanus",
   "input_building_mesh": "mesh_lod1.stl",
-  "output_name": "contades"
+  "output_name": "republic"
 }
