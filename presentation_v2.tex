@@ -364,7 +364,7 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
     \centering
     \includegraphics[width=1.1\textwidth]{images/alpha-wrapping3.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Alpha Wrapping in 2D with different Alpha parameters.}
+    \caption{Alpha Wrapping in 2D with Offset and different Alpha parameters.}
 \end{figure}
 \end{frame}
 
@@ -544,8 +544,66 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 
 \end{frame}
 
-\begin{frame}{Benchmark}
+\begin{frame}{Benchmark: bbox 1}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 1: 153.7 m², 12 trees}
+\end{figure}
+\end{frame}
 
+\begin{frame}{Benchmark: bbox 2}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 2: 384.0 m², 71 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: bbox 3}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox3.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 3: 626.1 m², 254 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: bbox 4}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox4.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 4: 808.4 m², 513 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: relation area-number of trees}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/area_vs_trees.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+Line on a log-log scale $\Longrightarrow$ power law.
+\end{frame}
+
+\begin{frame}{Benchmark: relation LOD-number of faces}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/lod_vs_faces.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: execution time}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/lod_vs_time.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+Lines on log-log scale $\Longrightarrow$ power law.
 \end{frame}
 
 

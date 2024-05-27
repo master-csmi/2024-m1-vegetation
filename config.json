@@ -1,7 +1,7 @@
 {
-  "bbox": "48.5866,7.7522,48.5876,7.7557",
+  "bbox": "48.58670,7.75271,48.58766,7.75522",
   "origin": "48.583055227464364, 7.748664426560083",
-  "LOD": 0,
+  "LOD": 3,
   "default_height_range": "3, 40",
   "default_genus": "Platanus",
   "input_building_mesh": "mesh_lod1.stl",
