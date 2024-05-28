@@ -11,14 +11,11 @@
 \usepackage{xcolor}
 \usepackage{multimedia}
 
-
-% Define colors
 \colorlet{punct}{red!60!black}
-\definecolor{background}{RGB}{240, 248, 255} % Pale Blue
+\definecolor{background}{RGB}{240, 248, 255}
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
 
-% Define JSON language
 \lstdefinelanguage{json}{
     basicstyle=\ttfamily\footnotesize\color{black},
     numbers=left,
@@ -48,10 +45,9 @@
       {]}{{{\color{delim}{]}}}}{1},
 }
 
-
 \lstset{frame=single, showstringspaces=false, columns=fixed, basicstyle={\ttfamily}, commentstyle={\it}, numbers=left, tabsize=4}
 
-\definecolor{codebackground}{RGB}{240, 248, 255} % Pale Blue
+\definecolor{codebackground}{RGB}{240, 248, 255}
 \definecolor{codecomment}{RGB}{106,153,85}
 \definecolor{codekeyword}{RGB}{30,30,255}
 \definecolor{codestring}{RGB}{163,21,21}
@@ -79,112 +75,128 @@
 \lstset{style=modernstyle}
 
 \usetheme{Copenhagen}
-\usecolortheme{default}  % You can choose from various color themes provided by metropolis
-% \setbeamertemplate{footline}[frame number]
+\usecolortheme{default}
 \setbeamertemplate{navigation symbols}{}
 
 \title[exMA WP1 Vegetation]{
   \includegraphics[width=0.8\textwidth]{images/logo_ufr.png}
   Project WP1 - Vegetation}
-\author[PA-Giulio]{Giulio CARPI LAPI, Pierre-Antoine SENGER}
+\author[Carpi Lapi - Senger]{Giulio CARPI LAPI, Pierre-Antoine SENGER}
 
 \begin{document}
 
-\frame{\titlepage}
+frame{\titlepage}
 
-\begin{frame}{Context: Hidalgo2}
+\begin{frame}{Introduction}
   \begin{figure}[H]
     \begin{itemize}
-      \item Part of the \textbf{HiDALGO2}\cite{hidalgo2} project.
-      \item Specifically Urban Building Model.
-      \item Project conducted \textbf{Cemosis\ - IRMA}.
-      \item Supervised by \textbf{Pierre Alliez} and \textbf{Vicent Chabannes}.
+      \item Part of the \textbf{HiDALGO2} project
+      \item Specifically \textbf{Urban Building Model}
+      \item Project conducted \textbf{Cemosis}\- \textbf{IRMA}
+      \item Supervised by \textbf{Pierre Alliez} and \textbf{Vicent Chabannes}
     \end{itemize}
     \centering
-    \includegraphics[width=0.6\textwidth]{images/hidalgo2.png}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/hidalgo2.png}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/logo-cemosis.png}
+    \end{minipage}
     \captionsetup{font={scriptsize}}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Context : Impact of vegetation on urban heat}
+\begin{frame}{Context}
+  
+\textbf{Main Goal:} Integrate trees into 3D geometric models of urban environment
+  
   \begin{figure}[H]
-    \centering
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/TreeShade.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Tree providing shade to a building \cite{img:TreeShade}.}
-    \end{minipage}\hfill
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/heat_street.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}.}
-    \end{minipage}
+      \begin{minipage}{0.45\textwidth}
+          \centering
+          \includegraphics[width=1\textwidth]{images/TreeShade.png}
+          \captionsetup{font={scriptsize}}
+          \caption{Tree providing shade to a building}
+      \end{minipage}
+      \begin{minipage}{0.45\textwidth}
+          \centering
+          \includegraphics[width=1\textwidth]{images/heat_street.png}
+          \captionsetup{font={scriptsize}}
+          \caption{Thermal image of a street depicting heat distribution}
+      \end{minipage}
   \end{figure}
+\end{frame}
+
+\begin{frame}{Context}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{images/stras_mesh.png}
+  \captionsetup{font={scriptsize}}
+  \caption{Strasbourg 3D model}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Context}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{images/manhattan_mesh.png}
+  \captionsetup{font={scriptsize}}
+  \caption{Manhattan 3D model}
+\end{figure}
+
 \end{frame}
 
 \begin{frame}{Objectives}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/stras_mesh.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model.}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Manhattan 3D model}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/manhattan_mesh.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Manhattan 3D model.}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Objectives}
-  Main objectives: 
   \begin{itemize}
-  \item run \textbf{sun masks} using the \textbf{Feel++} library.
-  \end{itemize}
-  \vspace{0.5cm}
-
-\begin{itemize}
-    \item Extracting tree data from \texttt{OpenStreetMap}
-    \item Generating 3D tree models.
-    \item Integrating tree models into terrain meshes.
-    \item Simulating how trees influence energy consumption and microclimates.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Starting point}
-  We have :
-  \begin{itemize}
-    \item Scientific articles \cite{Verdie14} \cite{Verdie15} \cite{Stava14} ...
-    \item CGAL\cite{cgal} C++ library to mesh trees \includegraphics[width=0.2\textwidth]{images/cgal_logo.png}
-    \item Feel++\cite{feel++} C++ library to run simulations \includegraphics[width=0.2\textwidth]{images/feelpp.png}
-    \item A 3D model of Strasbourg
+      \item Extracting tree data from \textbf{OpenStreetMap}
+      \item Generating 3D tree models using \textbf{CGAL}
+      \item Integrating tree models into terrain meshes
+      \item Optimizing computational efficiency
+      \item Delivering versions \textbf{V0}, \textbf{V1}, and \textbf{V2} by specified deadlines
+      \item Simulating how trees influence energy consumption and microclimates
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Methodology: data acquisition}
-  Use \textbf{OpenStreetMap} API to get the data about the trees in Strasbourg.
-
+\begin{frame}{Sofware and libraries}
   \begin{figure}[H]
-    \centering
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/osm_logo.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Overpass logo.}
-    \end{minipage}\hfill
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Overpass API logo.}
-    \end{minipage}
+      \centering
+      \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
   \end{figure}
+  \begin{center}
+  \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Sofware and libraries}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/osm_logo.png}
+  \end{figure}
+  \begin{center}
+  \textbf{OpenStreetMap} is a collaborative free geographic database
+  \end{center}
+\end{frame}
+
+\begin{frame}{Sofware and libraries}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/Curl-logo.svg.png}
+  \end{figure}
+  \begin{center}
+  \textbf{cURL} is a URL transfer library
+  \end{center}
+\end{frame}
+
+\begin{frame}{Sofware and libraries}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/cgal_logo.png}
+  \end{figure}
+  \begin{center}
+  \textbf{CGAL} is an open source software library of computational geometry algorithms
+  \end{center}
 \end{frame}
 
 \begin{frame}{Data acquisition: how API works}
