@@ -85,7 +85,7 @@
 
 \begin{document}
 
-frame{\titlepage}
+\titlepage
 
 \begin{frame}{Introduction}
   \begin{figure}[H]
@@ -312,8 +312,7 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
 
 \begin{frame}{Tree modeling: Alpha Wrapping}
   To provide different LODs we will wrap then using the CGAL 3D 
-  Alpha Wrapping\cite{cgal_alpha_wrapper}.
-
+  Alpha Wrapping
   \begin{figure}[H]
     \centering
         \centering
@@ -460,10 +459,9 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
     \captionsetup{font={scriptsize}}
     \caption{Mercator's projection}
 \end{figure}
-Mathematically, the Mercator projection is defined as follows: if a point on 
-the sphere has a latitude $\phi$ and longitude $\lambda$ (with $\lambda_{0}$ 
-placed at the center of the map), then its projection on the Mercator map will 
-have coordinates 
+Mathematically, with a point A, \\
+A(latitude, longitude) = A($\phi$, $\lambda$),\\
+ then its projection on the Mercator map will have coordinates 
 \begin{equation}
   \left\{
   \begin{array}{l}
@@ -472,6 +470,7 @@ have coordinates
   \end{array}
   \right.
 \end{equation}
+Where $\lambda_{0}$ is the center of the map
 \end{frame}
 
 \begin{frame}{Mercator's projection}
@@ -479,7 +478,7 @@ have coordinates
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection\cite{img:mercator}.}
+    \caption{Mercator's projection}
 \end{figure}
 But the Earth isn't a perfect sphere...
 \end{frame}
@@ -491,22 +490,22 @@ But the Earth isn't a perfect sphere...
         \centering
         \includegraphics[width=0.8\textwidth]{images/WGS84_mean_Earth_radius.svg.png}
         \captionsetup{font={scriptsize}}
-        \caption{Earth as an ellipsoid\cite{mercator-wiki}.}
+        \caption{Earth as an ellipsoid}
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=0.8\textwidth]{images/WGS_84_reference_frame.png}
         \captionsetup{font={scriptsize}}
-        \caption{WGS 84 reference frame\cite{mercator-wiki}.}
+        \caption{WGS 84 reference frame}
     \end{minipage}
 \end{figure}
 
-We can use the \textit{WGS84toCartesian.hpp}\cite{wgs84_to_cartesian} open source header-only
+We can use the \textit{WGS84toCartesian.hpp} open source header-only
   library to convert the \textbf{GPS} coordinates so \textbf{Cartesian} coordinates.
 \end{frame}
 
 \begin{frame}{Modeling trees in 3D space}
-We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation} 
+We can use \texttt{CGAL Affine Transformation} 
 (complexity in $O(n)$)
 
 \begin{figure}[H]
@@ -521,7 +520,7 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
       \centering
       \includegraphics[width=1\textwidth]{images/republic_overpassturbo.png}
       \captionsetup{font={scriptsize}}
-      \caption{Republic square trees from Overpass turbo.}
+      \caption{Republic square trees from Overpass turbo}
   \end{minipage}
 \end{figure}
 \end{frame}
@@ -531,7 +530,7 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
     \centering
     \includegraphics[width=1\textwidth]{images/republic_lod3_side.png}
     \captionsetup{font={scriptsize}}
-    \caption{Side view of Republic square with LOD 3 trees.}
+    \caption{Side view of Republic square with LOD 3 trees}
 \end{figure}
 \end{frame}
 
@@ -540,7 +539,7 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
     \centering
     \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced1.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model with LOD 0 trees.}
+    \caption{Strasbourg 3D model with LOD 0 trees}
 \end{figure}
 \end{frame}
 
@@ -549,7 +548,7 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
     \centering
     \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced2.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model with LOD 0 trees.}
+    \caption{Strasbourg 3D model with LOD 0 trees}
 \end{figure}
 \end{frame}
 
@@ -613,26 +612,23 @@ Linear relation between the number of faces and the number of trees.
 \begin{frame}{Benchmark: execution time}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree_quad.png}
-    \captionsetup{font={scriptsize}}
-\end{figure}
-Quadratic relation between the number of trees and the execution time.\\
-\texttt{CGAL\:\:Polygon\_mesh\_processing\:\:corefine\_and\_compute\_union}
-cite
-\end{frame}
-
-\begin{frame}{Benchmark: execution time}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree_linear.png}
-    \captionsetup{font={scriptsize}}
-\end{figure}
-Quadratic relation between the number of trees and the execution time.\\
-\texttt{autorefine\_triangle\_soup} ...cite ....
-\end{frame}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/bench_time_ntree_quad.png}
+        \captionsetup{font={scriptsize}}
+        \caption{\texttt{corefine\_and\_compute\_union}}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/bench_time_ntree_linear.png}
+        \captionsetup{font={scriptsize}}
+        \caption{\texttt{autorefine\_triangle\_soup}}
+    \end{minipage}
+  \end{figure}
+  \end{frame}
 
 
-% \nocite{*}
+\nocite{*}
 \bibliographystyle{unsrt}
 \bibliography{references}
 
