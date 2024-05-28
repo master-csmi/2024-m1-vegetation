@@ -290,26 +290,32 @@ interest and other parameters:
 {
     "bbox": "48.5750,7.7394,48.5919,7.7621",
     "origin": "48.583055227464364, 7.748664426560083",
-    "LOD": 0,
+    "altitude": 0,
+    "LOD": 3,
     "default_height_range": "3, 40",
     "default_genus": "Platanus",
     "input_building_mesh": "mesh_lod1.stl",
     "output_name": "grande_ile"
-}
+    }
 \end{lstlisting}
 
 Where :
 \begin{itemize}
-    \item \texttt{bbox} is the bounding box for the query in the format:
+    \item \texttt{bbox}: is the bounding box for the query in the format:
     \subitem (SW latitude, SW longitude, NE latitude, NE longitude)
-    \item \texttt{origin} is the origin of the 3D space in latitude and longitude
+    \item \texttt{origin}: is the origin of the 3D space in latitude and longitude
     used to convert the GPS coordinates to Cartesian coordinates. It must be the
     same for the terrain mesh and the tree meshes.
-    \item \texttt{LOD} is the level of details of the meshes (0, 1, 2 or 3)
-    \item \texttt{default\_height\_range} is a range used to randomly assign a height to trees that do not have one.
-    \item \texttt{default\_genus} is the genus assigned to trees that lack a predefined genus.
-    \item \texttt{input\_building\_mesh} is the name of the input file representing the terrain mesh.
-    \item \texttt{output\_name} is the base name of the output file representing the unions of the tree meshes.
+    \item \texttt{altitude}: is the z coordinate of the tree base.
+    \item \texttt{LOD}: is the level of details of the meshes (0, 1, 2 or 3)
+    \item \texttt{default\_height\_range}: is a range used to randomly assign a
+    height to trees that do not have one.
+    \item \texttt{default\_genus}: is the genus assigned to trees that lack a
+    predefined genus.
+    \item \texttt{input\_building\_mesh}: is the name of the input file
+    representing the terrain mesh.
+    \item \texttt{output\_name}: is the base name of the output file
+    representing the unions of the tree meshes.
 \end{itemize}
 
 We will then use the \texttt{Overpass API}\cite{overpass} to query
