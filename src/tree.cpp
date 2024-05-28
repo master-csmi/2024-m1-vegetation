@@ -71,7 +71,7 @@ void Tree::computeXY(double ref_lat, double ref_lon) {
     M_y = cartesianPosition[1];
 }
 
-void Tree::load_data(const std::string &filename) {
+void Tree::load_genus(const std::string &filename) {
     std::ifstream ifile(filename);
     if (ifile) {
         nlohmann::json data = nlohmann::json::parse(ifile);
