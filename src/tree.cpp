@@ -85,8 +85,8 @@ void Tree::load_data(const std::string &filename) {
     }
 }
 
-void Tree::wrap(int lod) {
-    std::string filename = "tree_ref/";
+void Tree::wrap(int lod, std::string rep) {
+    std::string filename = rep + "tree_ref/";
     double scaling_factor_double;
     CGAL::Bbox_3 bbox;
 

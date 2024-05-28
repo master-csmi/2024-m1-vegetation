@@ -73,7 +73,7 @@ class Tree {
     void setAltitude(double altitude) { M_altitude = altitude; }
 
     void computeXY(double ref_lat, double ref_lon);
-    void wrap(int lod);
+    void wrap(int lod, std::string rep = "./");
     void load_data(const std::string &filename);
 };
 

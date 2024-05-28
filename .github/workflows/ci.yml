@@ -4,46 +4,35 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install miniforge
-        run: |
-          wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O miniforge.sh
-          bash miniforge.sh -b -p $HOME/miniforge3
-          source $HOME/miniforge3/bin/activate
-          mamba create --name vegetation python=3.10 -y
-
       - name: Install dependencies
         run: |
-          source $HOME/miniforge3/bin/activate vegetation
-          mamba install -c conda-forge cgal-cpp  fmt spdlog mpfr boost-cpp curl -y
-          # git clone https://github.com/libcpr/cpr.git
-          # cd cpr && mkdir build && cd build
-          # cmake .. -DCPR_USE_SYSTEM_CURL=OFF
-          # cmake --build . --parallel
-          # sudo cmake --install .
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            git \
+            libmpfr-dev \
+            libboost-dev \
+            libcurl4-openssl-dev \
+            libcgal-dev \
+            libfmt-dev
 
-      - name: Cmake
+      - name: Clone CGAL master branch
+        run: git clone --branch master https://github.com/CGAL/cgal.git
+
+      - name: Configure and build
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_PREFIX_PATH="$HOME/miniforge3/envs/vegetation/lib/cmake/CGAL" \
-                -DCMAKE_CXX_FLAGS="-I$HOME/miniforge3/envs/vegetation/include" \
-                -DCMAKE_BUILD_TYPE=Release \
-                -DMPFR_ROOT="$HOME/miniforge3/envs/vegetation" \
-                -DBOOST_ROOT="$HOME/miniforge3/envs/vegetation" \
-                -DCURL_ROOT="$HOME/miniforge3/envs/vegetation" \
-                ..
+          cmake -DCGAL_DIR=$GITHUB_WORKSPACE/CGAL-5.6.1 -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build .
 
-      - name: Build
-        run: |
-          cd build
-          make
-
-      - name: Test
+      - name: Run tests
         run: |
           cd build
           ctest --output-on-failure
