@@ -694,6 +694,9 @@ Instead, we will assign a random height selected from the
 \texttt{default\_genus} in the \textit{config.json} file.
 
 \subsection{Model integration}
+
+\subsubsection{Mercator projection}
+
 Generated tree models will be integrated into terrain meshes to create comprehensive
 3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
 (latitude, longitude) will be converted to Cartesian coordinates (x, y) using
@@ -729,14 +732,14 @@ the advantage of being conformal, meaning that it preserves angles locally (henc
 \end{equation}
 
 To achieve this while taking into account that the Earth is not perfect sphere
-we will assume the Earth is a geodesic defined as WGS84 \cite{wgs84} and use 
-the WGS84toCartesian\cite{wgs84_to_cartesian} open source header-only
+we will assume the Earth is a geodesic defined as \texttt{WGS84}\cite{wgs84} and use 
+the \texttt{WGS84toCartesian}\cite{wgs84_to_cartesian} open source header-only
 library to convert the coordinates.
 
 Then the union of all the tree meshed will need to be computed to create a single mesh
 and avoid collision between the trees. \\
-This will be achieved using the \href{https://doc.cgal.org/latest/Polygon_mesh_processing/group__PMP__corefinement__grp.html}{corefine\_and\_compute\_union} function from the CGAL library.
-(complexity ?) \\
+This will be achieved using the \texttt{corefine and compute}\cite{corefine-compute}
+function from the CGAL library.
 Another approach could be to use the convex hull of the tree meshes, using the
 intersection of the convex hulls to compute the union of the tree meshes.
 
@@ -749,7 +752,7 @@ using generic trees and LOD1:
         \includegraphics[width=\textwidth]{images/mesh_vs_overpass.png}
         \captionsetup{font={scriptsize}}
         \caption{Top view of Place de la République, on the left the mesh generated from the data,
-        on the right the overpass data.}
+        on the right the overpass data}
 
 \end{figure}
 
