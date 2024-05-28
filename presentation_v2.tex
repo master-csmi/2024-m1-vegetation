@@ -557,9 +557,15 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Shading calculation}
-  Using the software given by Vincent Chabannes...
-
+\begin{frame}{Model integration: prospects}
+  Prospects: 
+  \begin{itemize}
+    \item Use the \texttt{Feel++} library to compute the shading of the trees.
+    \item Make the mesh for the Hungarian team $\Longrightarrow$ fluid mechanics simu. 
+  \end{itemize}
+  \begin{center}
+    \movie[width=1\textwidth,height=0.7\textheight,poster,showcontrols]{}{videos/SolarMask.mp4}
+\end{center}
 \end{frame}
 
 \begin{frame}{Benchmark: bbox 1}
@@ -598,32 +604,23 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Benchmark: relation area-number of trees}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/area_vs_trees.png}
-    \captionsetup{font={scriptsize}}
-\end{figure}
-Line on a log-log scale $\Longrightarrow$ power law.
-\end{frame}
-
 \begin{frame}{Benchmark: relation LOD-number of faces}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/lod_vs_faces.png}
+    \includegraphics[width=0.8\textwidth]{images/bench_ntree_nfaces.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
+Linear relation between the number of faces and the number of trees.
 \end{frame}
 
 \begin{frame}{Benchmark: execution time}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/lod_vs_time.png}
+    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
-Lines on log-log scale $\Longrightarrow$ power law.
+Quadratic relation between the number of trees and the execution time.
 \end{frame}
-
 
 
 
