@@ -155,11 +155,11 @@ frame{\titlepage}
       \item Integrating tree models into terrain meshes
       \item Optimizing computational efficiency
       \item Delivering versions \textbf{V0}, \textbf{V1}, and \textbf{V2} by specified deadlines
-      \item Simulating how trees influence energy consumption and microclimates
+      \item Simulations
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Sofware and libraries}
+\begin{frame}{Sofware and libraries: Overpass API}
   \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
@@ -169,7 +169,7 @@ frame{\titlepage}
   \end{center}
 \end{frame}
 
-\begin{frame}{Sofware and libraries}
+\begin{frame}{Sofware and libraries: OpenStreetMap}
   \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{images/osm_logo.png}
@@ -179,7 +179,19 @@ frame{\titlepage}
   \end{center}
 \end{frame}
 
-\begin{frame}{Sofware and libraries}
+\begin{frame}{Sofware and libraries: Overpass turbo}
+  Overpass turbo is a web-based data filtering tool for OpenStreetMap. 
+  It runs queries on the Overpass API.
+  
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{images/overpass_turbo.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Example of query to get trees in Strasbourg using Overpass turbo.}
+    \end{figure}
+  \end{frame}
+
+\begin{frame}{Sofware and libraries: cURL}
   \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{images/Curl-logo.svg.png}
@@ -189,7 +201,16 @@ frame{\titlepage}
   \end{center}
 \end{frame}
 
-\begin{frame}{Sofware and libraries}
+\begin{frame}{Sofware and libraries: how an API works}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/how-api-works.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Example of query to get trees in Strasbourg.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: CGAL}
   \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{images/cgal_logo.png}
@@ -199,88 +220,48 @@ frame{\titlepage}
   \end{center}
 \end{frame}
 
-\begin{frame}{Data acquisition: how API works}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/how-api-works.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Example of query to get trees in Strasbourg.}
-  \end{figure}
+\begin{frame}[fragile]{Methodology: Data acquisition}
+  \textbf{Overpass API} and \textbf{cURL} to query
+  \textbf{OpenStreetMap}
+  \begin{lstlisting}[language=json]
+curl_easy_setopt(curl, CURLOPT_URL,
+                "http://overpass-api.de/api/interpreter");
+
+// Set the Overpass query with the bounding box
+std::string query =
+"[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
+
+std::cout << "Query: " << query << std::endl;
+  \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Data acquisition: Overpass turbo}
-\href{https://overpass-turbo.eu/}{Overpass turbo}
- is a web-based data filtering tool for OpenStreetMap. 
-It runs queries on the Overpass API.
 
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/overpass_turbo.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Example of query to get trees in Strasbourg using Overpass turbo.}
-  \end{figure}
-\end{frame}
+\begin{frame}[fragile]{Methodology: Data acquisition}
+The data will be stored in a \textbf{.json} file:
 
-\begin{frame}[fragile]{Data acquisition: Curl}
-  \includegraphics[width=0.2\textwidth]{images/Curl-logo.svg.png}is a command-line tool to transfer data with URL syntax.
-  We're using a configuration file \textit{config.json} to specify the query parameters.
-  Here is an example of a configuration file:
 \begin{lstlisting}[language=json]
 {
-  "bbox": "48.5866,7.7522,48.5876,7.7557",
-  "origin": "48.583055227464364, 7.748664426560083",
-  "altitude": 0,
-  "LOD": 0,
-  "default_height_range": "3, 6",
-  "default_genus": "Platanus",
-  "input_building_mesh": "mesh_lod1.stl",
-  "output_name": "republique"
+    "type": "node",
+    "id": 10161978695,
+    "lat": 48.5872478,
+    "lon": 7.7548520,
+    "tags": {
+        "circumference": "78.54",
+        "diameter_crown": "5",
+        "genus": "Tilia",
+        "height": "10",
+        "natural": "tree",
+        "ref": "27466",
+        "source": "data.strasbourg.eu - patrimoine_arbore",
+        "source:date": "2022-01-02",
+        "species": "Tilia euchlora x"
+    }
 }
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Data acquisition: Curl - Query result} 
-  The result of the query is a JSON file \textit{query\_result.json} containing the data about the trees.
-Here is the beginning of the file from the previous query:
-
-\begin{lstlisting}[language=json]
-{
-  "version": 0.6,
-  "generator": "Overpass API 0.7.62.1 084b4234",
-  "osm3s": {
-    "timestamp_osm_base": "2024-05-26T13:31:45Z",
-    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
-  },
-  "elements": [
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Data acquisition: Curl - Query result}
- The elements are the trees:
-
-\begin{lstlisting}[language=json]
-{
-  "type": "node",
-  "id": 10161978687,
-  "lat": 48.5871937,
-  "lon": 7.7531245,
-  "tags": {
-    "circumference": "0.62832",
-    "diameter_crown": "5",
-    "genus": "Tilia",
-    "height": "9",
-    "natural": "tree",
-    "ref": "27490",
-    "source": "data.strasbourg.eu - patrimoine_arbore",
-    "source:date": "2022-01-02",
-    "species": "Tilia euchlora x"
-  }
-}, ...
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Data acquisition: Curl - Query result}
-  A tree with less information:
+\begin{frame}[fragile]{Methodology: Data acquisition}
+Sometimes, multiple \textbf{tags} are missing:
 
 \begin{lstlisting}[language=json]
 {
@@ -293,20 +274,117 @@ Here is the beginning of the file from the previous query:
     }
 }
 \end{lstlisting}
-\vfill
-How to deal with this case ?
 \end{frame}
 
-\begin{frame}{Tree modeling: base tree}
-Making all tree model from scratch $\Longrightarrow$ too long. \\
-Instead, we're going to start from tree models on \href{https://app.sketchup.com/app}{Sketchup}.
+\begin{frame}[fragile]{Methodology: Data acquisition}
+  \textbf{config.json} to specify the query parameters:
+  \begin{lstlisting}[language=json]
+  {
+    "bbox": "48.5750,7.7394,48.5919,7.7621",
+    "origin": "48.583055227464364, 7.748664426560083",
+    "altitude": 0,
+    "LOD": 3,
+    "default_height_range": "3, 6",
+    "default_genus": "Platanus",
+    "input_building_mesh": "mesh_lod1.stl",
+    "output_name": "grande_ile"
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tree library}
+\begin{lstlisting}[language=json]
+{
+    "known_genus": ["Abies",
+                    "Acer",
+                    "Aesculus",
+                        ... ],
+    "cedrus_like": [ "Chaemacyparis",
+                    "Cupressus",
+                        ... ],
+    "acer_like": ["Fadus",
+                "Metasequoia",
+                "Sequoiadendron",
+                ... ],
+    "liquidambar_like": ["Liriodendron",
+                        "Pyrus",
+                        "Alnus",
+                        ... ],
+    "quercus_like": ["Corylus",
+                    "Carya",
+                    "Fagus",
+                    ... ]
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Base tree model}
+\textbf{13} tree models from the publicly accessible \textbf{SketchUp}:
 
 \begin{figure}[H]
     \centering
         \centering
         \includegraphics[width=0.8\textwidth]{images/ginkgo_sketchup.png}
         \captionsetup{font={scriptsize}}
-        \caption{The mesh of a Ginkgo tree available on Sketchup 3D Warehouse}
+        \caption{Mesh of a Ginkgo tree on Sketchup 3D Warehouse}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Base tree model}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/abies.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Abies}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/acer.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Acer}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/aesculus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Aesculus}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/catalpa.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Catalpa}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cedrus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Cedrus}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/liquidanbar.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Liquidanbar}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/platanus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Platanus}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/quercus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Quercus}
+    \end{minipage}
 \end{figure}
 \end{frame}
 
