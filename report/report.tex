@@ -109,25 +109,32 @@ Pierre Alliez and Vincent Chabannes
 
 \section{Introduction}
 
-This project is part of the \texttt{HiDALGO2}\cite{hidalgo2}, specifically
-focusing on the \texttt{Urban Building Model}\cite{urban-building-model}
-Use Case (UBM). The context behind this use case is significant: According to
-the European Commission, about 75\% of the EU building stock is energy
-inefficient, and the building sector accounts for around 40\% of our energy
-consumption. Buildings also generate 36\% of the EU's greenhouse gas emissions,
-primarily due to energy use. Therefore, enhancing building energy efficiency is
-crucial to achieving the goals set by the European Green Deal\cite{green-deal}.
-Additionally, both indoor and outdoor thermal comfort and air quality greatly
-affect people's well-being, productivity, and health. With climate change
-exacerbating these issues, developing tools to help building managers and
-decision-makers understand and control these factors is becoming increasingly
-essential.\cite{urban-building-model}
+This project is part of the \texttt{HiDALGO2}\cite{hidalgo2} initiative, which
+"aims to explore synergies between modelling, data acquisition, simulation,
+data analysis and visualisation along with achieving better scalability on
+current and future HPC and AI infrastructures to deliver highly-scalable
+solutions that can effectively utilise pre-exascale systems."\cite{hidalgo2-about}
+
+Specifically focusing on the \texttt{Urban Building Model}\cite{hidalgo2-ubm}
+Use Case (UBM) which is "developping the Urban Building pilot applicaitonto
+improve building energy efficiency and indoor air quality"\cite{hidalgo2-ubm},
+this project aims to integrate vegetation, particularly trees, into 3D models
+of urban environments.
+
+The project was conducted within \texttt{Cemosis}\cite{cemosis} (Center for
+Modeling and Simulation in Strasbourg), which is hosted by
+\texttt{IRMA}\cite{irma} (Institute for Advanced Mathematical Research) at
+\texttt{Strasbourg University}. We operated as students under the supervision of
+\texttt{Pierre Alliez}\cite{alliez}, senior researcher and team leader at
+\texttt{Inria}\cite{Inria} (National Institute for Research in Digital Science
+and Technology) Sophia Antipolis, and \texttt{Vincent Chabannes}\cite{chabannes},
+a research engineer at IRMA.
 
 \subsection{Context}
 
 Urban areas are complex ecosystems influenced by various factors, with
 vegetation, especially trees, playing a crucial role in shaping microclimates,
-reducing energy consumption, and enhancing overall livability \cite{TIR4sTREEt}.
+reducing energy consumption, and enhancing overall livability\cite{TIR4sTREEt}.
 
 \begin{figure}[H]
     \begin{minipage}{0.45\textwidth}
@@ -148,24 +155,24 @@ This project aims to integrate trees into 3D geometric models of urban
 environments to improve the accuracy and realism of thermal and energy
 simulations.
 
-By leveraging data from \texttt{OpenStreetMap}\cite{openstreetmap}, we will use the
-\texttt{CGAL}\cite{cgal} library to generate 3D tree models and integrate them into terrain
-meshes.
-With the help of the \texttt{Feel++}\cite{feel++} library, we will calculate solar masks and
-the shading of trees on buildings.
+By leveraging data from \texttt{OpenStreetMap}\cite{openstreetmap}, a
+collaborative free geographic database, we will use \texttt{CGAL}\cite{cgal},
+an open source software library of computational geometry algorithms library to
+generate 3D tree models and integrate them into terrain meshes.
 
-Our primary focus will be on Strasbourg, France. More specifically we were given a
-\texttt{.stl}\cite{stl_format} file representing the Strasbourg city center:
+Our primary focus will be on Strasbourg, France. More specifically, we were
+provided with an \texttt{.stl}\cite{stl} file containing a 3D model of the
+Strasbourg city center:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{images/stras_mesh.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model}
+    \caption{Strasbourg 3D model visualized in ParaView-5.12.0\cite{paraview}}
 \end{figure}
 
 However, the software is designed to be easily adaptable to any area.
-Here's an example of a mesh from Manhattan, NYC:
+Here's an example of a 3D model of Manhattan, NYC:
 
 \begin{figure}[H]
     \centering
@@ -188,13 +195,12 @@ Here's an example of a mesh from Manhattan, NYC:
 \newpage
 
 \subsection{Software and libraries}
-To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass}
-alongside \texttt{curl} \cite{curl} to access and leverage information from
-\texttt{OpenStreetMap}. For geometric modeling, we will utilize the master
-\texttt{CGAL}\cite{cgal} library, known for its efficiency and reliability in
-geometric computation. Shading calculations will be performed using the
-\texttt{Feel++} \cite{feel++} library, which specializes in solving Partial
-Differential Equations (PDEs) essential for simulating light and shade on 3D objects.
+To source our data, we'll utilize the \texttt{Overpass API}\cite{overpass} a
+read-only API to query data from \texttt{OpenStreetMap}, alongside
+\texttt{curl}\cite{curl}, URL transfer library. For geometric modeling, we will
+utilize the master \texttt{CGAL} library, available on
+GitHub\cite{cgal-master}, known for its efficiency and reliability in geometric
+computation.
 
 \subsection{GitHub repository}
 We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub}
@@ -829,7 +835,7 @@ class Config {
     
 \end{lstlisting}
 
-\subsection{Querying data}
+\subsection{Query function}
 
 The function \texttt{perform\_query} will be used to query the \texttt{Overpass API}
 and save the result in a \texttt{.json} file. It will take the bounding box as a
@@ -1146,7 +1152,9 @@ greater precision, we would need more data.
 \section{Prospects}
 
 \subsection{Shading calculations}
-Using \texttt{Feel++} ray tracing, shading effects on buildings will be
+Using the \texttt{Feel++}\cite{feel++} library, which specializes in solving Partial
+Differential Equations (PDEs) essential for simulating light and shade on 3D
+objects, ray tracing and shading effects on buildings will be
 simulated to account for the presence of trees and their impact on urban
 microclimates. Execution time considerations will be addressed to optimize
 computational efficiency.
