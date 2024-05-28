@@ -103,21 +103,20 @@ Pierre Alliez and Vincent Chabannes
 {\large Date: \today\par}
 \end{titlepage}
 
-
 \tableofcontents
-\newpage
 
+\newpage
 
 \section{Introduction}
 
 This project is part of the \texttt{HiDALGO2}\cite{hidalgo2}, specifically
-focusing on the \texttt{Urban Building Model} Use Case (UBM).
-The context behind this use case is significant: According to the European
-Commission, about 75\% of the EU building stock is energy inefficient,
-and the building sector accounts for around 40\% of our energy consumption.
-Buildings also generate 36\% of the EU's greenhouse gas emissions, primarily
-due to energy use. Therefore, enhancing building energy efficiency is crucial
-to achieving the goals set by the European Green Deal\cite{green-deal}.
+focusing on the \texttt{Urban Building Model}\cite{urban-building-model}
+Use Case (UBM). The context behind this use case is significant: According to
+the European Commission, about 75\% of the EU building stock is energy
+inefficient, and the building sector accounts for around 40\% of our energy
+consumption. Buildings also generate 36\% of the EU's greenhouse gas emissions,
+primarily due to energy use. Therefore, enhancing building energy efficiency is
+crucial to achieving the goals set by the European Green Deal\cite{green-deal}.
 Additionally, both indoor and outdoor thermal comfort and air quality greatly
 affect people's well-being, productivity, and health. With climate change
 exacerbating these issues, developing tools to help building managers and
@@ -279,6 +278,7 @@ We have adopted the Agile methodology to enhance flexibility and responsiveness
 throughout the project.
 
 \newpage
+
 \section{Methodology}
 
 \subsection{Data acquisition}
@@ -793,12 +793,15 @@ Number of faces: 482686
 Time to mesh: 155.965 seconds, (2.59942 minutes)
 \end{lstlisting}
 
+\newpage
+
 \section{Implementation}
 
 \subsection{Config class}
 
-This class is made to store the configuration of the program. It will be used to
-store the bounding box, the level of details, the default height range, the default
+This class is designed to store the program's configuration. It will be used to
+store the \texttt{bounding box}, the \texttt{level of details}, the
+\texttt{default height range}, the default
 genus, the origin of the 3D space, the input building mesh and the output name.
 
 \begin{lstlisting}[language=C++]
@@ -982,6 +985,8 @@ You can open it with the browser of your choice, for example with Firefox:
 firefox html/index.html
 \end{lstlisting}
 
+\newpage
+
 \section{Results}
 \label{sec:Results}
 \subsection{Model integration}
@@ -1129,6 +1134,8 @@ greater precision, we would need more data.
 \newpage
 
 \section{Conclusion}
+
+\newpage
 
 \section{Prospects}
 
