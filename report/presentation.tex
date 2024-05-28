@@ -372,7 +372,7 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
     \centering
     \includegraphics[width=1.1\textwidth]{images/alpha-wrapping3.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Alpha Wrapping in 2D with Offset and different Alpha parameters.}
+    \caption{Alpha Wrapping in 2D with Offset and different Alpha parameters}
 \end{figure}
 \end{frame}
 
@@ -381,7 +381,7 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
     \centering
     \includegraphics[width=1.1\textwidth]{images/alpha-wrapping4.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Alpha Wrapping Alpha and Offset parameters.}
+    \caption{Alpha Wrapping Alpha and Offset parameters}
 \end{figure}
 \end{frame}
 
@@ -392,13 +392,6 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
 \end{center}
 \end{frame}
 
-\begin{frame}{Alpha Wrapping tractor}
-  \href{https://youtu.be/HG9oHA2NJMM}{video link}
-  \begin{center}
-    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{images/tractor.mp4}
-\end{center}
-\end{frame}
-
 \begin{frame}{Tree modeling: wrapping base tree}
   \begin{figure}[H]
     \centering
@@ -406,13 +399,13 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
         \centering
         \includegraphics[width=0.8\textwidth]{images/gingko_lod0.png}
         \captionsetup{font={scriptsize}}
-        \caption{Ginkgo lod0.}
+        \caption{Ginkgo lod0}
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=0.8\textwidth]{images/gingko_lod1.png}
         \captionsetup{font={scriptsize}}
-        \caption{Ginkgo lod1.}
+        \caption{Ginkgo lod1}
     \end{minipage}
 \end{figure}
 
@@ -422,43 +415,15 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
         \centering
         \includegraphics[width=0.8\textwidth]{images/gingko_lod2.png}
         \captionsetup{font={scriptsize}}
-        \caption{Ginkgo lod2.}
+        \caption{Ginkgo lod2}
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=0.8\textwidth]{images/gingko_lod3.png}
         \captionsetup{font={scriptsize}}
-        \caption{Ginkgo lod3.}
+        \caption{Ginkgo lod3}
     \end{minipage}
 \end{figure}
-\end{frame}
-
-\begin{frame}[fragile]{Tree modeling: tree object}
-
-\begin{lstlisting}[language=C++]
-using K = CGAL::Exact_predicates_inexact_constructions_kernel;
-using Point_3 = K::Point_3;
-using Mesh = CGAL::Surface_mesh<Point_3>;
-
-class Tree {
-    private:
-    long M_id;
-    double M_lat, M_lon, M_x, M_y,
-    double M_height, M_circumference, M_diameter_crown
-    std::string M_genus, M_species, M_season;
-    Mesh M_wrap;
-    std::vector<Point_3> M_points;
-    std::vector<std::array<int, 3>> M_faces;
-
-    public:
-    void computeXY(double ref_lat, double ref_lon);
-    void wrap(int lod);
-};
-
-Tree createTreeFromJson(const nlohmann::json &treeJson);
-std::ostream &operator<<(std::ostream &os, const Tree &tree);
-bool operator<(const Tree &lhs, const Tree &rhs);
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}{Mercator's projection}
