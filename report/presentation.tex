@@ -226,8 +226,9 @@ It runs queries on the Overpass API.
 {
   "bbox": "48.5866,7.7522,48.5876,7.7557",
   "origin": "48.583055227464364, 7.748664426560083",
+  "altitude": 0,
   "LOD": 0,
-  "default_height_range": "3, 40",
+  "default_height_range": "3, 6",
   "default_genus": "Platanus",
   "input_building_mesh": "mesh_lod1.stl",
   "output_name": "republique"
@@ -406,7 +407,6 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
 \end{frame}
 
 \begin{frame}{Alpha Wrapping}
-  \href{https://youtu.be/xIIDolWCrgU}{video link}
   \begin{figure}[H]
     \centering
     \includegraphics[width=1.1\textwidth]{images/alpha-wrapping4.jpg}
@@ -418,14 +418,14 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
 \begin{frame}{Alpha Wrapping animation}
   \href{https://youtu.be/xIIDolWCrgU}{video link}
   \begin{center}
-    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{videos/alpha-wrapping-2d.mp4}
+    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{images/alpha-wrapping-2d.mp4}
 \end{center}
 \end{frame}
 
 \begin{frame}{Alpha Wrapping tractor}
   \href{https://youtu.be/HG9oHA2NJMM}{video link}
   \begin{center}
-    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{videos/tractor.mp4}
+    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{images/tractor.mp4}
 \end{center}
 \end{frame}
 
@@ -477,6 +477,8 @@ class Tree {
     double M_height, M_circumference, M_diameter_crown
     std::string M_genus, M_species, M_season;
     Mesh M_wrap;
+    std::vector<Point_3> M_points;
+    std::vector<std::array<int, 3>> M_faces;
 
     public:
     void computeXY(double ref_lat, double ref_lon);
@@ -589,7 +591,16 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 \begin{frame}{Model integration}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/stras_lod0.png}
+    \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model with LOD 0 trees.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Model integration}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced2.png}
     \captionsetup{font={scriptsize}}
     \caption{Strasbourg 3D model with LOD 0 trees.}
 \end{figure}
@@ -603,7 +614,7 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
   \end{itemize}
   \href{https://youtu.be/O6flpW6jR60}{video link}
   \begin{center}
-    \movie[width=1\textwidth,height=0.7\textheight,poster,showcontrols]{}{videos/SolarMask.mp4}
+    \movie[width=1\textwidth,height=0.7\textheight,poster,showcontrols]{}{images/SolarMask.mp4}
 \end{center}
 \end{frame}
 
@@ -655,12 +666,22 @@ Linear relation between the number of faces and the number of trees.
 \begin{frame}{Benchmark: execution time}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree.png}
+    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree_quad.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
-Quadratic relation between the number of trees and the execution time.
+Quadratic relation between the number of trees and the execution time.\\
+\texttt{CGAL\:\:Polygon\_mesh\_processing\:\:corefine\_and\_compute\_union}
 \end{frame}
 
+\begin{frame}{Benchmark: execution time}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree_linear.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+Quadratic relation between the number of trees and the execution time.\\
+\texttt{autorefine\_triangle\_soup}
+\end{frame}
 
 
 % \nocite{*}
