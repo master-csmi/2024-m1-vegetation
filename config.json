@@ -1,9 +1,9 @@
 {
-  "bbox": "48.58670,7.75271,48.58766,7.75522",
+  "bbox": "48.5750,7.7394,48.5919,7.7621",
   "origin": "48.583055227464364, 7.748664426560083",
   "LOD": 3,
   "default_height_range": "3, 40",
   "default_genus": "Platanus",
   "input_building_mesh": "mesh_lod1.stl",
-  "output_name": "republique"
+  "output_name": "grande_ile"
 }
