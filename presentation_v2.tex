@@ -9,6 +9,7 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{multimedia}
 
 
 % Define colors
@@ -91,6 +92,29 @@
 
 \frame{\titlepage}
 
+\begin{frame}{Context: Hidalgo2}
+  \begin{figure}[H]
+    \begin{itemize}
+      \item Part of the HiDALGO2 project, focusing on the Urban Building Model (UBM) use case.
+      \item Context:
+      \begin{itemize}
+        \item 75\% of EU building stock is energy inefficient.
+        \item Buildings account for 40\% of EU energy consumption.
+        \item Buildings generate 36\% of EU greenhouse gas emissions.
+      \end{itemize}
+      \item Importance:
+      \begin{itemize}
+        \item Enhancing building energy efficiency aligns with European Green Deal goals.
+        \item Improving thermal comfort and air quality affects well-being, productivity, and health.
+        \item Climate change increases the urgency for effective building management tools.
+      \end{itemize}
+    \end{itemize}
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/hidalgo2.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+\end{frame}
+
 \begin{frame}{Context : Impact of vegetation on urban heat}
   \begin{figure}[H]
     \centering
@@ -118,23 +142,34 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}{Manhattan mesh}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/manhattan_mesh.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Manhattan 3D model.}
+  \end{figure}
+\end{frame}
+
 \begin{frame}{Objectives}
   Main objectives : run \textbf{sun masks} and \textbf{fluid mechanics} simulations using Feel++\cite{feel++} \\
   \vspace{0.5cm}
 
-  \begin{itemize}
-    \item<2-> \textbf{Sun masks} : compute the shadow cast by trees on the ground and buildings
-    \item<3-> \textbf{Fluid mechanics} : simulate the air flow around trees
-  \end{itemize}
+\begin{itemize}
+    \item Extracting tree data from \texttt{OpenStreetMap}
+    \item Generating 3D tree models.
+    \item Integrating tree models into terrain meshes.
+    \item Simulating how trees influence energy consumption and microclimates.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Starting point}
   We have :
   \begin{itemize}
-    \item<2-> some scientific articles \cite{Verdie14} \cite{Verdie15} \cite{Stava14} ...
-    \item <3-> CGAL\cite{cgal} C++ library to mesh trees \includegraphics[width=0.2\textwidth]{images/cgal_logo.png}
-    \item <4-> Feel++\cite{feel++} C++ library to run simulations \includegraphics[width=0.2\textwidth]{images/feelpp.png}
-    \item <5-> The 3D model of Strasbourg
+    \item Scientific articles \cite{Verdie14} \cite{Verdie15} \cite{Stava14} ...
+    \item CGAL\cite{cgal} C++ library to mesh trees \includegraphics[width=0.2\textwidth]{images/cgal_logo.png}
+    \item Feel++\cite{feel++} C++ library to run simulations \includegraphics[width=0.2\textwidth]{images/feelpp.png}
+    \item A 3D model of Strasbourg
   \end{itemize}
 \end{frame}
 
@@ -268,26 +303,26 @@ Instead, we're going to start from tree models on \href{https://app.sketchup.com
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Tree modeling: STL format}
+% \begin{frame}[fragile]{Tree modeling: STL format}
 
-The \textbf{STL} format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
-software. It represents 3D models as a collection of triangular facets, making it
-suitable for our geometric modeling purposes.
-The \texttt{ASCII} versions is defined as :
-\begin{lstlisting}
-solid name
-facet normal ni nj nk
-    outer loop
-        vertex v1x v1y v1z
-        vertex v2x v2y v2z
-        vertex v3x v3y v3z
-    endloop
-endfacet
-....
-endsolid name
-\end{lstlisting}
-But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
-\end{frame}
+% The \textbf{STL} format\cite{stl_format} is a widely used format for 3D printing and computer-aided design (CAD)
+% software. It represents 3D models as a collection of triangular facets, making it
+% suitable for our geometric modeling purposes.
+% The \texttt{ASCII} versions is defined as :
+% \begin{lstlisting}
+% solid name
+% facet normal ni nj nk
+%     outer loop
+%         vertex v1x v1y v1z
+%         vertex v2x v2y v2z
+%         vertex v3x v3y v3z
+%     endloop
+% endfacet
+% ....
+% endsolid name
+% \end{lstlisting}
+% But for efficiency we will use the \texttt{stl} format in its \textbf{binary form}.
+% \end{frame}
 
 \begin{frame}{Tree modeling: Alpha Wrapping}
   To provide different LODs we will wrap then using the CGAL 3D 
@@ -302,33 +337,90 @@ But for efficiency we will use the \texttt{stl} format in its \textbf{binary for
 \end{figure}
 \end{frame}
 
-\begin{frame}{Alpha Wrapping algorithm}
-  \begin{itemize}
-    \item <1-> Initialization
-    \item <2-> Shrink-wrapping
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Alpha Wrapping algorithm}
+\begin{frame}{Reminder: Delaunay triangulation}
   \begin{figure}[H]
     \centering
-        \centering
-        \includegraphics[width=0.8\textwidth]{images/aw3_pencil.png}
-        \captionsetup{font={scriptsize}}
-        \caption{(Left) Pencil of empty circles (blue) circumscribing a Delaunay
-        edge (green) in a 2D Delaunay triangulation (black).}
+    \includegraphics[width=0.6\textwidth]{images/Delaunay_circumcircles_vectorial.svg.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Delaunay triangulation.
+    The circumcircle of each triangle contains no other point.}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Alpha Wrapping algorithm}
+\begin{frame}{Delaunay and Voronoi}
 
-\begin{figure}[H]
+  \begin{figure}[H]
     \centering
+    \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{images/aw3_steps.jpg}
+        \includegraphics[width=\textwidth]{images/Delaunay_circumcircles_centers.svg.png}
         \captionsetup{font={scriptsize}}
-        \caption{Steps of the shrink-wrapping algorithm in 2D}
+        \caption{Delaunay triangulation with the centers of the circumcircles\cite{delaunay-wiki}.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/Delaunay_Voronoi.svg.png}
+        \captionsetup{font={scriptsize}}
+        \caption{The dual of the Delaunay triangulation, the Voronoi diagram\cite{delaunay-wiki}.}
+    \end{minipage}
+  \end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Alpha Wrapping}
+  \begin{figure}[H]
+    \hspace*{-1cm}
+    \includegraphics[width=1.2\textwidth]{images/alpha-wrapping.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Alpha Wrapping}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping1.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Alpha Wrapping in 2D.}
 \end{figure}
+\end{frame}
+
+\begin{frame}{Alpha Wrapping}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping2.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Alpha Wrapping in 2D result.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Alpha Wrapping}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping3.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Alpha Wrapping in 2D with Offset and different Alpha parameters.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Alpha Wrapping}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping4.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Alpha Wrapping Alpha and Offset parameters.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Alpha Wrapping animation}
+  \begin{center}
+    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{videos/alpha-wrapping-2d.mp4}
+\end{center}
+\end{frame}
+
+\begin{frame}{Alpha Wrapping tractor}
+  \begin{center}
+    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{videos/tractor.mp4}
+\end{center}
 \end{frame}
 
 \begin{frame}{Tree modeling: wrapping base tree}
@@ -396,7 +488,7 @@ bool operator<(const Tree &lhs, const Tree &rhs);
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}.}
 \end{figure}
 
 \begin{itemize}
@@ -411,7 +503,7 @@ bool operator<(const Tree &lhs, const Tree &rhs);
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}.}
 \end{figure}
 Mathematically, the Mercator projection is defined as follows: if a point on 
 the sphere has a latitude $\phi$ and longitude $\lambda$ (with $\lambda_{0}$ 
@@ -432,7 +524,7 @@ have coordinates
     \centering
     \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
     \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection.}
+    \caption{Mercator's projection\cite{img:mercator}.}
 \end{figure}
 But the Earth isn't a perfect sphere...
 \end{frame}
@@ -444,13 +536,13 @@ But the Earth isn't a perfect sphere...
         \centering
         \includegraphics[width=0.8\textwidth]{images/WGS84_mean_Earth_radius.svg.png}
         \captionsetup{font={scriptsize}}
-        \caption{Earth as an ellipsoid.}
+        \caption{Earth as an ellipsoid\cite{mercator-wiki}.}
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=0.8\textwidth]{images/WGS_84_reference_frame.png}
         \captionsetup{font={scriptsize}}
-        \caption{WGS 84 reference frame.}
+        \caption{WGS 84 reference frame\cite{mercator-wiki}.}
     \end{minipage}
 \end{figure}
 
@@ -464,11 +556,27 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 
 \begin{figure}[H]
   \centering
+  \begin{minipage}{0.49\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/mesh_vs_overpass.png}
+      \includegraphics[width=1\textwidth]{images/republic_lod3.png}
       \captionsetup{font={scriptsize}}
-      \caption{Top view of Place de la République, on the left the mesh generated from the data,
-      on the right the overpass data.}
+      \caption{Republic square with LOD 3 trees.}
+  \end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/republic_overpassturbo.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Republic square trees from Overpass turbo.}
+  \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Modeling trees in 3D space}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/republic_lod3_side.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Side view of Republic square with LOD 3 trees.}
 \end{figure}
 \end{frame}
 
@@ -481,15 +589,70 @@ We can use \texttt{CGAL Affine Transformation} \cite{cgal_affine_transformation}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Shading calculation}
-  Using the software given by Vincent Chabannes...
-
+\begin{frame}{Model integration: prospects}
+  Prospects: 
+  \begin{itemize}
+    \item Use the \texttt{Feel++} library to compute the shading of the trees.
+    \item Make the mesh for the Hungarian team $\Longrightarrow$ fluid mechanics simu. 
+  \end{itemize}
+  \begin{center}
+    \movie[width=1\textwidth,height=0.7\textheight,poster,showcontrols]{}{videos/SolarMask.mp4}
+\end{center}
 \end{frame}
 
-\begin{frame}{Benchmark}
-
+\begin{frame}{Benchmark: bbox 1}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 1: 153.7 m², 12 trees}
+\end{figure}
 \end{frame}
 
+\begin{frame}{Benchmark: bbox 2}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 2: 384.0 m², 71 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: bbox 3}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox3.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 3: 626.1 m², 254 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: bbox 4}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox4.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 4: 808.4 m², 513 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: relation LOD-number of faces}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/bench_ntree_nfaces.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+Linear relation between the number of faces and the number of trees.
+\end{frame}
+
+\begin{frame}{Benchmark: execution time}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/bench_time_ntree.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+Quadratic relation between the number of trees and the execution time.
+\end{frame}
 
 
 

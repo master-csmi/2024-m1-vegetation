@@ -11,6 +11,7 @@
 *.log
 *.out
 *.toc
+*.vrb
 
 # Project files
 build/
@@ -24,3 +25,5 @@ temp/
 
 # macOS
 .DS_Store
+
+query_result.json

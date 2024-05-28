@@ -103,8 +103,10 @@ Pierre Alliez and Vincent Chabannes
 {\large Date: \today\par}
 \end{titlepage}
 
+
 \tableofcontents
 \newpage
+
 
 \section{Introduction}
 
@@ -542,24 +544,7 @@ contains alpha-traversable gates and is sorted by decreasing circumradius. Trave
 advances along dual Voronoi edges of the gates with a pencil of empty balls
 circumscribing the gate.
 
-\begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/aw3_pencil.png}
-        \captionsetup{font={scriptsize}}
-        \caption{(Left) Pencil of empty circles (blue) circumscribing a Delaunay
-        edge (green) in a 2D Delaunay triangulation (black). From the top triangle
-        circumcenter c1 to the bottom triangle circumcenter c2, the dual Voronoi
-         edge denoted by e (doted red) is the trace of centers of the largest circles
-          that are empty of Delaunay vertex. (Right) The graph corresponding to the
-          left example. The x-axis corresponds to the position of empty circle centers
-           located on the Voronoi edge e, from c1 to c2. The y-axis is the radius
-            value of the corresponding empty circles. In this case, the minimum
-            radius of this pencil of empty circle is located at the midpoint of
-            the green Delaunay edge. In our algorithm, a gate (green Delaunay edge)
-             is said to be not alpha-traversable when the minimum radius of the pencil
-              of empty circle is smaller than alpha. }
-\end{figure}
+
 
 When traversing from an outside cell \( c_o \) to an inside cell \( c_i \) through an
 alpha-traversable facet \( f \), two criteria are tested to prevent the wrapping process
