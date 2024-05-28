@@ -150,6 +150,11 @@ int main(int argc, char **argv) {
 
     t.stop();
 
+    // create output folder if it does not exist
+    if (!std::filesystem::exists(output_folder)) {
+        std::filesystem::create_directory(output_folder);
+    }
+
     filename =
         output_folder + output_name + "_LOD" + std::to_string(lod) + ".stl";
 
