@@ -807,20 +807,6 @@ Time to mesh: 155.965 seconds, (2.59942 minutes)
 \end{lstlisting}
 
 \section{Implementation}
-If you downloaded the project from the \href{https://github.com/master-csmi/2024-m1-vegetation}{Github}
-repository, a \texttt{Doxygen} documentation is available. \\
-To generate the documentation, you can use the following command:
-
-\begin{lstlisting}[language=bash]
-doxygen Doxyfile
-\end{lstlisting}
-
-The documentation will be available in the \texttt{html} directory.\\
-You can open it with the browser of your choice, for example with Firefox:
-
-\begin{lstlisting}[language=bash]
-firefox html/index.html
-\end{lstlisting}
 
 \subsection{Config class}
 
@@ -989,6 +975,25 @@ of its bounding box, scale it to the correct height, move it back to its origina
 Note: To improve tree placement we would also need to take into account the real
 position on the z-axis (taking into account the elevation of the terrain) instead
 of putting the trees and the buildings on 0 on the z-axis (i.e. on sea level).
+
+\subsection{Doxygen documentation}
+
+\texttt{Doxygen}\cite{doxygen} documentation is available for the project. Doxygen is a
+documentation generator that produces comprehensive reference manuals from
+annotated source code.
+
+To generate the documentation, you can use the following command:
+
+\begin{lstlisting}[language=bash]
+doxygen Doxyfile
+\end{lstlisting}
+
+The documentation will be available in the \texttt{html} directory.\\
+You can open it with the browser of your choice, for example with Firefox:
+
+\begin{lstlisting}[language=bash]
+firefox html/index.html
+\end{lstlisting}
 
 \section{Results}
 \label{sec:Results}
