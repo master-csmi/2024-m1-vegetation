@@ -1,10 +1,10 @@
 {
-  "bbox": "48.5750,7.7394,48.5919,7.7621",
+  "bbox": "48.5800,7.7412,48.5859,7.7547",
   "origin": "48.583055227464364, 7.748664426560083",
   "altitude": 0,
   "LOD": 3,
-  "default_height_range": "3, 40",
+  "default_height_range": "0, 0",
   "default_genus": "Platanus",
   "input_building_mesh": "mesh_lod1.stl",
-  "output_name": "grande_ile"
+  "output_name": "strasbourg_c4"
 }
