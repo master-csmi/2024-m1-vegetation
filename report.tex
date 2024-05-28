@@ -189,18 +189,20 @@ Here's an example of a mesh from Manhattan, NYC:
 \newpage
 
 \subsection{Software and libraries}
-To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
-\texttt{curl} \cite{curl} to access and leverage information from \texttt{OpenStreetMap}.
-For geometric modeling, we will utilize the \texttt{CGAL} library, known for its efficiency and
-reliability in geometric computation\cite{cgal}. Shading calculations will be performed using the
-\texttt{Feel++} \cite{feel++} library, which specializes in solving Partial Differential Equations (PDEs)
-essential for simulating light and shade on 3D objects.
+To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass}
+alongside \texttt{curl} \cite{curl} to access and leverage information from
+\texttt{OpenStreetMap}. For geometric modeling, we will utilize the master
+\texttt{CGAL}\cite{cgal} library, known for its efficiency and reliability in
+geometric computation. Shading calculations will be performed using the
+\texttt{Feel++} \cite{feel++} library, which specializes in solving Partial
+Differential Equations (PDEs) essential for simulating light and shade on 3D objects.
 
 \subsection{GitHub repository}
-We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub} repository to manage the project and facilitate collaboration.
-The repository contains the project's code, documentation, and resources. It will be
-updated regularly to reflect the progress and changes made during the project's
-development.
+We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub}
+repository to manage the project and facilitate collaboration.
+The repository contains the project's code, documentation, and resources.
+It will be updated regularly to reflect the progress and changes made during
+the project's development.
 
 \subsection{Roadmap}
 We created a roadmap on GitHub Projects to ensure we meet the deadlines for the
@@ -350,20 +352,20 @@ Sometimes, multiple \texttt{tags} are missing, as shown here:
 }
 \end{lstlisting}
 
-We will primarily use the \texttt{position} of the tree
-(latitude and longitude), its \texttt{height}, and the \texttt{genus}
-(since this data is more abundant than the species) to generate the 3D tree models.
+We will primarily use the \texttt{position} of the tree (latitude and
+longitude), its \texttt{height}, and the \texttt{genus} (since this data is
+more abundant than the species) to generate the 3D tree models.
 
 \newpage
 
 \subsection{Tree library}
-Using the results from the \texttt{Overpass API} query, we will create a library
-of tree objects. Each tree object will contain the tree's metadata (location,
-species, height, etc.).
+Using the results from the \texttt{Overpass API} query, we will create a
+library of tree objects. Each tree object will contain the tree's metadata
+(location, species, height, etc.).
 
-Additionally, since it's not feasible to have a mesh model for each species or even genus
-of trees, we will use the \texttt{trees.json} file to specify the genus
-categories to use for the meshing.
+Additionally, since it's not feasible to have a mesh model for each species or
+even genus of trees, we will use the \texttt{trees.json} file to specify the
+genus categories to use for the meshing.
 
 \begin{lstlisting}[language=json]
 {
@@ -1131,10 +1133,10 @@ greater precision, we would need more data.
 \section{Prospects}
 
 \subsection{Shading calculations}
-Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
-of trees and their impact on urban microclimates. Execution time considerations will be
-addressed to optimize computational efficiency.
-
+Using \texttt{Feel++} ray tracing, shading effects on buildings will be
+simulated to account for the presence of trees and their impact on urban
+microclimates. Execution time considerations will be addressed to optimize
+computational efficiency.
 
 \newpage
 
