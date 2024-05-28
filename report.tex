@@ -56,7 +56,7 @@
 
 \lstset{frame=single, showstringspaces=false, columns=fixed, basicstyle={\ttfamily}, commentstyle={\it}, numbers=left, tabsize=4}
 
-\definecolor{codebackground}{RGB}{240, 248, 255} % Pale Blue
+\definecolor{codebackground}{RGB}{240, 248, 255}
 \definecolor{codecomment}{RGB}{106,153,85}
 \definecolor{codekeyword}{RGB}{30,30,255}
 \definecolor{codestring}{RGB}{163,21,21}
@@ -108,6 +108,20 @@ Pierre Alliez and Vincent Chabannes
 
 \section{Introduction}
 
+This project is part of the \texttt{HiDALGO2}\cite{hidalgo2}, specifically
+focusing on the \texttt{Urban Building Model} Use Case (UBM).
+The context behind this use case is significant: According to the European
+Commission, about 75\% of the EU building stock is energy inefficient,
+and the building sector accounts for around 40\% of our energy consumption.
+Buildings also generate 36\% of the EU's greenhouse gas emissions, primarily
+due to energy use. Therefore, enhancing building energy efficiency is crucial
+to achieving the goals set by the European Green Deal\cite{green-deal}.
+Additionally, both indoor and outdoor thermal comfort and air quality greatly
+affect people's well-being, productivity, and health. With climate change
+exacerbating these issues, developing tools to help building managers and
+decision-makers understand and control these factors is becoming increasingly
+essential.\cite{urban-building-model}
+
 \subsection{Context}
 
 Urban areas are complex ecosystems influenced by various factors, with
@@ -117,13 +131,13 @@ reducing energy consumption, and enhancing overall livability \cite{TIR4sTREEt}.
 \begin{figure}[H]
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{images/TreeShade.png}
+        \includegraphics[width=1\textwidth]{images/TreeShade.png}
         \captionsetup{font={scriptsize}}
         \caption{Tree providing shade to a building \cite{img:TreeShade}}
-    \end{minipage}%
+    \end{minipage}
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{images/heat_street.png}
+        \includegraphics[width=1\textwidth]{images/heat_street.png}
         \captionsetup{font={scriptsize}}
         \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}}
     \end{minipage}
@@ -140,18 +154,24 @@ With the help of the \texttt{Feel++}\cite{feel++} library, we will calculate sol
 the shading of trees on buildings.
 
 Our primary focus will be on Strasbourg, France. More specifically we were given a
-\texttt{.stl}\cite{stl_format} file representing the Strasbourg city center.
+\texttt{.stl}\cite{stl_format} file representing the Strasbourg city center:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/stras_mesh.png}
+    \includegraphics[width=0.75\textwidth]{images/stras_mesh.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model visualized in ParaView-5.12.0}
+    \caption{Strasbourg 3D model}
 \end{figure}
 
 However, the software is designed to be easily adaptable to any area.
+Here's an example of a mesh from Manhattan, NYC:
 
-\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/manhattan_mesh.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Manhattan 3D model}
+\end{figure}
 
 \subsection{Main objectives}
 
@@ -163,6 +183,8 @@ However, the software is designed to be easily adaptable to any area.
     \item Optimizing computational efficiency
     \item Delivering versions \texttt{V0}, \texttt{V1}, and \texttt{V2} by specified deadlines
 \end{itemize}
+
+\newpage
 
 \subsection{Software and libraries}
 To source our data, we'll utilize the \texttt{Overpass API} \cite{overpass} alongside
@@ -177,8 +199,6 @@ We created a \href{https://github.com/master-csmi/2024-m1-vegetation}{GitHub} re
 The repository contains the project's code, documentation, and resources. It will be
 updated regularly to reflect the progress and changes made during the project's
 development.
-
-\newpage
 
 \subsection{Roadmap}
 We created a roadmap on GitHub Projects to ensure we meet the deadlines for the
@@ -648,9 +668,36 @@ The alpha parameter for the CGAL wrapper was set as follows for each LOD:
     \item LOD 3: 100
 \end{itemize}
 
+Here's a table showing the number of faces per tree type and LOD:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    Tree & LOD 0 & LOD 1 & LOD 2 & LOD 3 \\
+    \hline
+    Abies & 334 & 920 & 5648 & 35592 \\
+    Acer & 326 & 1516 & 10622 & 33606 \\
+    Aesculus & 274 & 1068 & 6084 & 28782 \\
+    Catalpa & 404 & 946 & 4508 & 19940 \\
+    Cedrus & 248 & 974 & 6702 & 27564 \\
+    Ginkgo & 332 & 1128 & 7488 & 38258 \\
+    Gleditsia & 228 & 1032 & 7506 & 28866 \\
+    Liquidambar & 212 & 858 & 5210 & 25146 \\
+    Magnolia & 230 & 892 & 7820 & 41150 \\
+    Platanus & 286 & 1150 & 7148 & 30670 \\
+    Quercus & 274 & 1008 & 8748 & 40426 \\
+    Taxus & 370 & 798 & 3644 & 15826 \\
+    Tilia & 328 & 1102 & 8104 & 46112 \\
+    \hline
+    \end{tabular}
+    \caption{Number of faces per tree type and LOD}
+    \label{tab:my_label}
+\end{table}
+
 The offset parameter for the CGAL wrapper was set as 600 for each LOD.
 
-Here are the results for the Ginkgo tree model at each LOD:
+Here are the results for a Ginkgo tree model at each LOD:
 
 \begin{figure}[H]
     \centering
@@ -693,9 +740,7 @@ Instead, we will assign a random height selected from the
 \texttt{default\_height\_range} and a genus specified by
 \texttt{default\_genus} in the \textit{config.json} file.
 
-\subsection{Model integration}
-
-\subsubsection{Mercator projection}
+\subsection{Mercator projection}
 
 Generated tree models will be integrated into terrain meshes to create comprehensive
 3D urban models. To ensure precise integration into the terrain mesh (especially for large area), the tree models coordinates
@@ -743,42 +788,13 @@ function from the CGAL library.
 Another approach could be to use the convex hull of the tree meshes, using the
 intersection of the convex hulls to compute the union of the tree meshes.
 
-Here is an example of the tree mesh union of Place de la République in Strasbourg
-using generic trees and LOD1:
-
-\begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/mesh_vs_overpass.png}
-        \captionsetup{font={scriptsize}}
-        \caption{Top view of Place de la République, on the left the mesh generated from the data,
-        on the right the overpass data}
-
-\end{figure}
-
-
-The idea is to integrate the tree models into the terrain mesh.
-
-Here is an example of what this integration could look like:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/stras_lod0.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model with LOD 0 trees.}
-\end{figure}
-
-This image is made of 2 distinct meshes, the tree mesh and the building mesh.
-We will also need to make the union of those meshes, but this cause challenges 
-as the intersections may not be well-defined and can violate the mesh properties.
-
 \subsection{Metrics}
 The complexity of the algorithms is a key metric to consider. \\
 On each execution of the program, basics metrics will be exported to a text file in
 the \texttt{output} directory. \\
-These results will be analyzed more thoroughly in the \textbf{Results} section.
+These results will be analyzed more thoroughly in the \autoref{sec:Results}.
 
-Example of the result's metrics for \texttt{grande\_ile\_LOD1.txt}:
+Example of the result's metrics for \textit{grande\_ile\_LOD1.txt}:
 
 \begin{lstlisting}
 Area: 561545 meters
@@ -835,9 +851,9 @@ class Config {
 
 The function \texttt{perform\_query} will be used to query the \texttt{Overpass API}
 and save the result in a \texttt{.json} file. It will take the bounding box as a
-parameter. \\
+parameter.
 The function \texttt{get\_query\_result} will be used to get the result of the query
- using the header only library \texttt{nlohmann::json}.
+using the header only library \texttt{nlohmann::json}.
 
 \begin{lstlisting}[language=C++]
 void perform_query(std::string bbox);
@@ -897,7 +913,7 @@ wrapper object that will contain the tree's
 mesh and its position in the 3D space.
 
 Scaling and moving the trees into the correct position ended being more complex
-than expected. \\
+than expected.
 
 \begin{lstlisting}[language=C++]
 // Calculate centroid of the tree
@@ -968,22 +984,48 @@ for (const auto &face : faces) {
 
 To ensure the placement was correct we first had to move the tree to the origin
 of its bounding box, scale it to the correct height, move it back to its original position
-(because scaling it was moving the tree around), and finally move it to the correct position in the 3D space. \\
+(because scaling it was moving the tree around), and finally move it to the correct position in the 3D space.
 
 Note: To improve tree placement we would also need to take into account the real
 position on the z-axis (taking into account the elevation of the terrain) instead
 of putting the trees and the buildings on 0 on the z-axis (i.e. on sea level).
 
-
 \section{Results}
-
+\label{sec:Results}
 \subsection{Model integration}
 
-\subsection{Shading calculations}
-Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
-of trees and their impact on urban microclimates. Execution time considerations will be
-addressed to optimize computational efficiency.
+Here is an example of the tree mesh union of Place de la République in Strasbourg
+using generic trees and LOD1:
 
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{images/republic_overpassturbo.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Top view of Place de la République, on the left the mesh generated from the data,
+        on the right the overpass data}
+\end{figure}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{images/republic_lod3.png}
+        \captionsetup{font={scriptsize}}
+        \caption{3D view of Place de la République}
+\end{figure}
+
+The idea is to integrate the tree models into the terrain mesh.
+
+Here is an example of what this integration could look like:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/stras_lod0.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model with LOD 0 trees.}
+\end{figure}
+
+This image is made of 2 distinct meshes, the tree mesh and the building mesh.
+We will also need to make the union of those meshes, but this cause challenges 
+as the intersections may not be well-defined and can violate the mesh properties.
 
 \subsection{Complexity and performance analysis}
 
@@ -999,7 +1041,7 @@ running at 2GHz, totaling 256 virtual cores, and 512 GB of RAM.
 The nodes are interconnected via Broadcom Adv. Dual 10GBASE-T Ethernet and
 Mellanox ConnectX-6 Dx Dual Port 100 GbE for MPI communication.
 
-We used four different bounding boxes, all centered at the same point but with
+We used four different bounding boxes Strasbourg city center as our test area, all centered at the same point but with
 varying sizes:
 
 \begin{figure}[H]
@@ -1095,6 +1137,13 @@ greater precision, we would need more data.
 \newpage
 
 \section{Conclusion}
+
+\section{Prospects}
+
+\subsection{Shading calculations}
+Using \texttt{Feel++} ray tracing, shading effects on buildings will be simulated to account for the presence
+of trees and their impact on urban microclimates. Execution time considerations will be
+addressed to optimize computational efficiency.
 
 
 \newpage
