@@ -9,7 +9,7 @@
 #include <CGAL/IO/STL.h>
 #include <CGAL/IO/polygon_soup_io.h>
 #include <CGAL/Polygon_mesh_processing/IO/polygon_mesh_io.h>
-// #include <CGAL/Polygon_mesh_processing/autorefinement.h>
+#include <CGAL/Polygon_mesh_processing/autorefinement.h>
 #include <CGAL/Polygon_mesh_processing/corefinement.h>
 #include <CGAL/Polygon_mesh_processing/fair.h>
 #include <CGAL/Polygon_mesh_processing/orient_polygon_soup_extension.h>
@@ -70,27 +70,38 @@ int main(int argc, char **argv) {
     auto treeLibrary = createLibraryFromJson(jsonData);
 
     // Mesh part
-    Mesh finalMesh, currentWrap, building_mesh;
+    Mesh finalMesh, currentWrap;
     std::string output_name = config.output_name();
     std::string height_range_str = config.default_height();
-    std::string output_folder, filename, metrics_filename;
-    int lod = config.LOD();
-    CGAL::Real_timer t;
-    int nNoHeight = 0;
-    int nNoGenus = 0;
-    double h;
+    std::string filename, metrics_filename;
+    std::string output_folder = "output/";
     std::string origin = config.origin();
-    std::pair<double, double> origin_double = string_to_pair(origin);
-    std::pair<double, double> heigth_range = string_to_pair(height_range_str);
     const std::string building_mesh_str =
         CGAL::data_file_path(config.input_building_mesh());
+    int lod = config.LOD();
+    int nNoHeight = 0;
+    int nNoGenus = 0;
+    double altitude = config.altitude();
+    std::pair<double, double> origin_double = string_to_pair(origin);
+    std::pair<double, double> heigth_range = string_to_pair(height_range_str);
     std::vector<Point_3> input_points;
     std::vector<boost::container::small_vector<std::size_t, 3>> input_triangles;
+    std::map<Mesh::Vertex_index, std::size_t> vertex_index_map;
+    CGAL::Real_timer t;
 
-    std::cout << "Computing the union of tree meshes ..." << std::endl;
+    // Read building mesh as a polygon soup
+    if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
+                                     input_triangles)) {
+        std::cerr << "Cannot read " << building_mesh_str << "\n";
+        exit(1);
+    }
+
+    std::cout << "Computing the union of meshes ..." << std::endl;
+
     t.start();
     for (auto &tree : treeLibrary) {
         tree.load_data("trees.json");
+        tree.setAltitude(altitude);
         tree.computeXY(origin_double.first, origin_double.second);
 
         // std::cout << tree << std::endl;
@@ -102,7 +113,8 @@ int main(int argc, char **argv) {
 
         if (tree.height() == 0) {
             ++nNoHeight;
-            h = heigth_range.first +
+            double h =
+                heigth_range.first +
                 static_cast<double>(rand()) /
                     (static_cast<double>(
                         RAND_MAX / (heigth_range.second - heigth_range.first)));
@@ -113,60 +125,40 @@ int main(int argc, char **argv) {
         tree.wrap(lod);
         currentWrap = tree.wrap();
 
-        // Compute the union of the meshes
-        if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
-                finalMesh, currentWrap, finalMesh)) {
-            std::cerr << "Corefine_and_compute_union failed." << std::endl;
-            exit(1);
+        for (auto vertex : currentWrap.vertices()) {
+            Point_3 point = currentWrap.point(vertex);
+            vertex_index_map[vertex] = input_points.size();
+            input_points.push_back(point);
+        }
+
+        for (auto face : currentWrap.faces()) {
+            boost::container::small_vector<std::size_t, 3> triangle;
+            for (auto vertex : CGAL::vertices_around_face(
+                     currentWrap.halfedge(face), currentWrap)) {
+                triangle.push_back(vertex_index_map[vertex]);
+            }
+            input_triangles.push_back(triangle);
         }
     }
 
-    // if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
-    //                                  input_triangles)) {
-    //     std::cerr << "Cannot read " << building_mesh_str << "\n";
-    //     return 1;
-    // }
-    // PMP::repair_polygon_soup(input_points, input_triangles);
-    // PMP::triangulate_polygons(input_points, input_triangles);
+    PMP::repair_polygon_soup(input_points, input_triangles);
+    PMP::triangulate_polygons(input_points, input_triangles);
 
-    // PMP::autorefine_triangle_soup(
-    //     input_points, input_triangles,
-    //     CGAL::parameters::concurrency_tag(CGAL::Parallel_if_available_tag()));
-
-    // std::cout << "Computing the union of building and tree meshes ..."
-    //           << std::endl;
-    // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
-    //         finalMesh, building_mesh, finalMesh)) {
-    //     std::cerr << "Corefine_and_compute_union buildings and trees failed"
-    //               << std::endl;
-    //     exit(1);
-    // }
-
-    // std::cout << "Computing the union of building and tree meshes ..."
-    //           << std::endl;
-    // if (!CGAL::Polygon_mesh_processing::corefine_and_compute_union(
-    //         finalMesh, building_mesh, finalMesh)) {
-    //     std::cerr << "Corefine_and_compute_union buildings and trees failed"
-    //               << std::endl;
-    //     exit(1);
-    // }
+    PMP::autorefine_triangle_soup(
+        input_points, input_triangles,
+        CGAL::parameters::concurrency_tag(CGAL::Parallel_if_available_tag()));
 
     t.stop();
 
-    // Final mesh export
-    output_folder = "output/";
-    if (!std::filesystem::exists(output_folder)) {
-        std::filesystem::create_directory(output_folder);
-    }
     filename =
-        output_folder + output_name + "_lod" + std::to_string(lod) + ".stl";
+        output_folder + output_name + "_LOD" + std::to_string(lod) + ".stl";
 
-    std::ofstream output(filename);
-    CGAL::IO::write_STL(output, finalMesh);
+    CGAL::IO::write_polygon_soup(filename, input_points, input_triangles,
+                                 CGAL::parameters::stream_precision(17));
 
     std::cout << "" << std::endl;
-    std::cout << "Final mesh: " << num_vertices(finalMesh) << " vertices, "
-              << num_faces(finalMesh) << " faces" << std::endl;
+    std::cout << "Final mesh: " << input_triangles.size() << " faces"
+              << std::endl;
     std::cout << "Took " << t.time() << " s. (" << t.time() / 60.0
               << " minutes)" << std::endl;
     std::cout << "Final mesh written to " << filename << std::endl;

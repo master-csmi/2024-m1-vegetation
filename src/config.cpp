@@ -10,6 +10,7 @@ Config::Config(std::string const &filename) {
         nlohmann::json data = nlohmann::json::parse(ifile);
         M_bbox = data["bbox"];
         M_LOD = data["LOD"];
+        M_altitude = data["altitude"];
         M_output_name = data["output_name"];
         M_default_genus = data["default_genus"];
         M_default_height = data["default_height_range"];
