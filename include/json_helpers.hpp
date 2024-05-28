@@ -6,7 +6,12 @@
 
 class Tree;
 
+/**
+ * @brief Create a Library of Tree From Json object
+ *
+ * @param jsonData a nlohmann::json object
+ * @return std::vector<Tree> a vector of Tree
+ */
 std::vector<Tree> createLibraryFromJson(nlohmann::json const &jsonData);
-double treeHeightKNN(int k, Tree &t, std::vector<Tree> const &treeLibrary);
 
 #endif

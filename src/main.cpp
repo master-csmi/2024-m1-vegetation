@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
 
     t.start();
     for (auto &tree : treeLibrary) {
-        tree.load_data("trees.json");
+        tree.load_genus("genus.json");
         tree.setAltitude(altitude);
         tree.computeXY(origin_double.first, origin_double.second);
 
