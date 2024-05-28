@@ -429,10 +429,10 @@ genus categories to use for the meshing.
 \newpage
 
 \subsection{Base tree model}
-We obtained 13 tree models from the publicly accessible SketchUp\cite{sketchup}
-3D Warehouse, which were downloaded in \texttt{.stl} format.
+We downloaded 13 tree models in \texttt{.stl} format from the publicly
+accessible \texttt{SketchUp}\cite{sketchup} 3D Warehouse.
 
-Here is an example of a Ginkgo model that we acquired from SketchUp:
+Here is an example of a Ginkgo model that we acquired from \texttt{SketchUp}:
 
 \begin{figure}[H]
     \centering
@@ -503,10 +503,10 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
 \end{figure}
 
 To achieve different levels of detail (LOD) for performance, flexibility,
-and scalability, we will employ CGAL 3D Alpha Wrapping \cite{cgal_alpha_wrapper}.
+and scalability, we will employ \texttt{CGAL 3D Alpha Wrapping}\cite{cgal_alpha_wrapper}.
 
-We aim to ensure watertight triangulation consistent with the Finite Element Method
-(FEM) for accurate simulations.
+We aim to ensure watertight triangulation consistent with the
+\texttt{Finite Element Method} (FEM) for accurate simulations.
 
 \newpage
 
@@ -1044,12 +1044,19 @@ Here is an example of what this integration could look like:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced1.png}
+    \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced1.png}
     \captionsetup{font={scriptsize}}
     \caption{Strasbourg 3D model with LOD 0 trees}
 \end{figure}
 
-This image is made of 2 distinct meshes, the tree mesh and the building mesh.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model with LOD 0 trees}
+\end{figure}
+
+This 2 images are made of 2 distinct meshes, the tree mesh and the building mesh.
 We will also need to make the union of those meshes, but this cause challenges 
 as the intersections may not be well-defined and can violate the mesh properties.
 
