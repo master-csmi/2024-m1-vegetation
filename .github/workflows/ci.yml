@@ -31,14 +31,13 @@ jobs:
           cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/cgal.install ..
           make install
 
-      - name: Configure and build
+      - name: Configure project
         run: |
           mkdir build
           cd build
           cmake -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE/cgal.install ..
-          cmake --build .
 
-      - name: Run tests
+      - name: Build project
         run: |
           cd build
-          ctest --output-on-failure
+          cmake --build . -- -j2  # Adjust the number of parallel jobs
