@@ -116,7 +116,7 @@ current and future HPC and AI infrastructures to deliver highly-scalable
 solutions that can effectively utilise pre-exascale systems."\cite{hidalgo2-about}
 
 Specifically focusing on the \texttt{Urban Building Model}\cite{hidalgo2-ubm}
-Use Case (UBM) which is "developping the Urban Building pilot applicaitonto
+Use Case (UBM) which is "developping the Urban Building pilot application to
 improve building energy efficiency and indoor air quality"\cite{hidalgo2-ubm},
 this project aims to integrate vegetation, particularly trees, into 3D models
 of urban environments.
@@ -157,8 +157,8 @@ simulations.
 
 By leveraging data from \texttt{OpenStreetMap}\cite{openstreetmap}, a
 collaborative free geographic database, we will use \texttt{CGAL}\cite{cgal},
-an open source software library of computational geometry algorithms library to
-generate 3D tree models and integrate them into terrain meshes.
+an open source software library of computational geometry algorithms library,
+to generate 3D tree models and integrate them into terrain meshes.
 
 Our primary focus will be on Strasbourg, France. More specifically, we were
 provided with an \texttt{.stl}\cite{stl} file containing a 3D model of the
@@ -197,8 +197,8 @@ Here's an example of a 3D model of Manhattan, NYC:
 \subsection{Software and libraries}
 To source our data, we'll utilize the \texttt{Overpass API}\cite{overpass} a
 read-only API to query data from \texttt{OpenStreetMap}, alongside
-\texttt{curl}\cite{curl}, URL transfer library. For geometric modeling, we will
-utilize the master \texttt{CGAL} library, available on
+\texttt{cURL}\cite{curl}, a URL transfer library. For geometric modeling, we
+will utilize the master \texttt{CGAL} library, available on
 GitHub\cite{cgal-master}, known for its efficiency and reliability in geometric
 computation.
 
@@ -302,7 +302,7 @@ interest and other parameters:
     "default_genus": "Platanus",
     "input_building_mesh": "mesh_lod1.stl",
     "output_name": "grande_ile"
-    }
+}
 \end{lstlisting}
 
 Where :
@@ -324,10 +324,27 @@ Where :
     representing the unions of the tree meshes.
 \end{itemize}
 
-We will then use the \texttt{Overpass API}\cite{overpass} to query
+We will then use the \texttt{Overpass API} and \texttt{cURL} to query
 \texttt{OpenStreetMap} for all the available tree data within the specified
-bounding box. The data will be stored in a \textit{.json} file.
+bounding box:
 
+\begin{lstlisting}[language=C++]
+curl_easy_setopt(curl, CURLOPT_URL,
+                "http://overpass-api.de/api/interpreter");
+
+// Set the Overpass query with the bounding box
+std::string query =
+    "[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
+
+    std::cout << "Query: " << query << std::endl;
+\end{lstlisting}
+
+The \texttt{http://overpass-api.de/api/interpreter} endpoint interprets and
+executes the \texttt{Overpass QL}\cite{overpass-ql} queries, retrieving
+specific parts of the \texttt{OpenStreetMap} data. In this case, the query
+fetches all nodes within the given bounding box tagged as \texttt{natural=tree}.
+
+The data will be stored in a \textit{.json} file. \\
 Here is an example of the query result for one tree:
 
 \begin{lstlisting}[language=json]
@@ -1027,9 +1044,9 @@ Here is an example of what this integration could look like:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/stras_lod0.png}
+    \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced1.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model with LOD 0 trees.}
+    \caption{Strasbourg 3D model with LOD 0 trees}
 \end{figure}
 
 This image is made of 2 distinct meshes, the tree mesh and the building mesh.
