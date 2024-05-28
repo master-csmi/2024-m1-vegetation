@@ -1,6 +1,5 @@
 #include "../include/WGS84toCartesian.hpp"
 #include "../include/config.hpp"
-#include "../include/default_tree.hpp"
 #include "../include/json_helpers.hpp"
 #include "../include/query.hpp"
 #include "../include/tree.hpp"
@@ -44,7 +43,6 @@ int main(int argc, char **argv) {
     Config config("config.json");
     std::string bbox = config.bbox();
 
-    std::map<std::string, GenusHeight> genusHeights;
     std::array<double, 2> B_cart;
     double Bx, By, area, height;
     nlohmann::json jsonData;
@@ -67,32 +65,6 @@ int main(int argc, char **argv) {
     // Perform the Overpass query
     perform_query(bbox);
     jsonData = get_query_result();
-
-    // Compute average height for each genus
-    for (const auto &tree : jsonData["elements"]) {
-        if (tree.contains("tags") && tree["tags"].contains("genus")) {
-            genus = tree["tags"]["genus"].get<std::string>();
-            height = 0;
-            if (tree["tags"].contains("height")) {
-                try {
-                    height =
-                        std::stod(tree["tags"]["height"].get<std::string>());
-                } catch (const std::exception &e) {
-                    std::cerr
-                        << "Error converting height to double: " << e.what()
-                        << std::endl;
-                    continue;
-                }
-            }
-            if (genusHeights.find(genus) == genusHeights.end()) {
-                genusHeights[genus] = GenusHeight();
-                genusHeights[genus].genus = genus;
-            }
-            genusHeights[genus].addHeight(height);
-        }
-    }
-    for (const auto &entry : genusHeights)
-        defaultHeights[entry.first] = entry.second.averageHeight();
 
     // Generate tree objects from the JSON data
     auto treeLibrary = createLibraryFromJson(jsonData);
