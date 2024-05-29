@@ -12,6 +12,8 @@
 *.out
 *.toc
 *.vrb
+.synctex
+*.synctex.gz
 
 # Project files
 build/
