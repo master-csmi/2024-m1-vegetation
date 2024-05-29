@@ -96,53 +96,68 @@
 
 \begin{document}
 
-\titlepage
-
 \begin{frame}{Introduction}
-  \begin{figure}[H]
-    \begin{itemize}
-      \item Part of the \textbf{HiDALGO2} project
-      \item Specifically \textbf{Urban Building Model}
-      \item Project conducted \textbf{Cemosis}\- \textbf{IRMA}
-      \item Supervised by \textbf{Pierre Alliez} and \textbf{Vicent Chabannes}
-    \end{itemize}
-    \centering
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=0.8\textwidth]{images/hidalgo2.png}
-    \end{minipage}
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=0.8\textwidth]{images/logo-cemosis.png}
-    \end{minipage}
-    \captionsetup{font={scriptsize}}
-\end{figure}
+  \titlepage
 \end{frame}
 
+\begin{frame}{Introduction}
+  \Large
+  \begin{itemize}
+    \item Part of the \textbf{HiDALGO2} project
+    \item Specifically \textbf{Urban Building Model} use case
+    \item Project conducted within \textbf{Cemosis} - \textbf{IRMA}
+    \item Supervised by \textbf{Pierre Alliez} and \textbf{Vicent Chabannes}
+  \end{itemize}
+  \vfill % This adds vertical space to push the images to the bottom
+  \centering
+  \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/hidalgo2.png}
+  \end{minipage}
+  \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/logo-cemosis.png}
+  \end{minipage}
+  \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/logo_irma.png}
+  \end{minipage}
+\end{frame}
+
+
+
 \begin{frame}{Context}
-  
-\textbf{Main Goal:} Integrate trees into 3D geometric models of urban environment
-  
-  \begin{figure}[H]
-      \begin{minipage}{0.45\textwidth}
-          \centering
-          \includegraphics[width=1\textwidth]{images/TreeShade.png}
-          \captionsetup{font={scriptsize}}
-          \caption{Tree providing shade to a building}
-      \end{minipage}
-      \begin{minipage}{0.45\textwidth}
-          \centering
-          \includegraphics[width=1\textwidth]{images/heat_street.png}
-          \captionsetup{font={scriptsize}}
-          \caption{Thermal image of a street depicting heat distribution}
-      \end{minipage}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/TreeShade.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Tree providing shade to a building\cite{img:TreeShade}}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Context}
+  \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{images/heat_street.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Thermal image of a street depicting heat distribution\cite{img:street_thermography}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Context}
+  \Large 
+  \textbf{Main Goals:}
+  \begin{itemize}
+    \item Integrate \textbf{trees} into \textbf{3D geometric models} of \textbf{urban environments}
+    \item Improve the \textbf{accuracy} of \textbf{thermal} and \textbf{energy simulations}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Context}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{images/stras_mesh.png}
+  \includegraphics[width=0.8\textwidth]{images/stras_mesh.png}
   \captionsetup{font={scriptsize}}
   \caption{Strasbourg 3D model}
 \end{figure}
@@ -152,7 +167,7 @@
 \begin{frame}{Context}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{images/manhattan_mesh.png}
+  \includegraphics[width=0.8\textwidth]{images/manhattan_mesh.png}
   \captionsetup{font={scriptsize}}
   \caption{Manhattan 3D model}
 \end{figure}
@@ -160,13 +175,13 @@
 \end{frame}
 
 \begin{frame}{Objectives}
+  \Large
   \begin{itemize}
-      \item Extracting tree data from \textbf{OpenStreetMap}
-      \item Generating 3D tree models using \textbf{CGAL}
-      \item Integrating tree models into terrain meshes
-      \item Optimizing computational efficiency
-      \item Delivering versions \textbf{V0}, \textbf{V1}, and \textbf{V2} by specified deadlines
-      \item Simulations
+      \item \textbf{\textcolor{red}{Extracting}} \textbf{tree data} from \textbf{OpenStreetMap}
+      \item \textbf{\textcolor{red}{Generating}} \textbf{3D tree models} using \textbf{CGAL}
+      \item \textbf{\textcolor{red}{Integrating}} \textbf{tree models} in the \textbf{terrain mesh}
+      \item \textbf{\textcolor{red}{Optimizing}} \textbf{computational efficiency}
+      \item \textbf{\textcolor{red}{Delivering}} versions \textbf{V0}, \textbf{V1}, and \textbf{V2}
   \end{itemize}
 \end{frame}
 
@@ -176,7 +191,7 @@
       \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
   \end{figure}
   \begin{center}
-  \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
+  \Large \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
   \end{center}
 \end{frame}
 
