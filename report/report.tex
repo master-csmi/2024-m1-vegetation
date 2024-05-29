@@ -220,12 +220,12 @@ The deadlines are as follows:
 Here is a brief overview of the main issues:
 
 \begin{tikzpicture}
-    
+
     \draw[thick, -{Latex[length=2mm]}] (0,0) -- (10,0);
-    
+
     \foreach \x in {1,2,3,4,5,6,7,8,9}
     \draw (\x cm,3pt) -- (\x cm,-3pt);
-        
+
     \draw (1,0) node[below=3pt] {$ 0 $};
     \draw (2,0) node[below=3pt] {$ 1 $} node[above=30pt, yshift=6pt, rotate=45] {GitHub Project Setup};
     \draw (3,0) node[below=3pt] {$ 2 $} node[above=30pt, yshift=6pt, rotate=45] {Roadmap};
@@ -240,12 +240,12 @@ Here is a brief overview of the main issues:
 \end{tikzpicture}
 
 \begin{tikzpicture}
-    
+
     \draw[thick, -{Latex[length=2mm]}] (0,0) -- (10,0);
-    
+
     \foreach \x in {1,2,3,4,5,6,7,8,9}
     \draw (\x cm,3pt) -- (\x cm,-3pt);
-        
+
     \draw (1,0) node[below=3pt] {$ 0 $};
     \draw (2,0) node[below=3pt] {$ 1 $} node[above=45pt, yshift=6pt, rotate=45] {Model and Mesh First Tree};
     \draw (3,0) node[below=3pt] {$ 2 $} node[above=45pt, yshift=6pt, rotate=45] {Find Suitable Tree Database};
@@ -260,12 +260,12 @@ Here is a brief overview of the main issues:
 \end{tikzpicture}
 
 \begin{tikzpicture}
-    
+
     \draw[thick, -{Latex[length=2mm]}] (0,0) -- (10,0);
-    
+
     \foreach \x in {1,2,3,4,5,6,7,8,9}
     \draw (\x cm,3pt) -- (\x cm,-3pt);
-        
+
     \draw (1,0) node[below=3pt] {$ 0 $};
     \draw (2,0) node[below=3pt] {$ 1 $} node[above=50pt, yshift=6pt, rotate=45] {Incorporate Tree and Buildings};
     \draw (3,0) node[below=3pt] {$ 2 $} node[above=40pt, yshift=6pt, rotate=45] {Solar Masking and Shading};
@@ -285,6 +285,26 @@ throughout the project.
 \section{Methodology}
 
 \subsection{Data acquisition}
+
+We will use the \texttt{Overpass API} and \texttt{cURL} to query
+\texttt{OpenStreetMap} for all the available tree data within the specified
+bounding box:
+
+\begin{lstlisting}[language=C++]
+curl_easy_setopt(curl, CURLOPT_URL,
+                "http://overpass-api.de/api/interpreter");
+
+// Set the Overpass query with the bounding box
+std::string query =
+    "[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
+
+    std::cout << "Query: " << query << std::endl;
+\end{lstlisting}
+
+The \texttt{http://overpass-api.de/api/interpreter} endpoint interprets and
+executes the \texttt{Overpass QL}\cite{overpass-ql} queries, retrieving
+specific parts of the \texttt{OpenStreetMap} data. In this case, the query
+fetches all nodes within the given bounding box tagged as \texttt{natural=tree}.
 
 A \textit{config.json} file is available for the user to specify the area of
 interest and other parameters:
@@ -320,52 +340,6 @@ Where :
     \item \texttt{output\_name}: is the base name of the output file
     representing the unions of the tree meshes.
 \end{itemize}
-
-We will then use the \texttt{Overpass API} and \texttt{cURL} to query
-\texttt{OpenStreetMap} for all the available tree data within the specified
-bounding box:
-
-\begin{lstlisting}[language=C++]
-#include <curl/curl.h>
-
-// Perform the Overpass query
-void perform_query(std::string bbox) {
-    CURL *curl;
-    CURLcode res;
-    std::string response_data;
-
-    // Initialize libcurl
-    curl_global_init(CURL_GLOBAL_ALL);
-    curl = curl_easy_init();
-    if (curl) {
-        // Set the Overpass API endpoint URL
-        curl_easy_setopt(curl, CURLOPT_URL,
-                         "http://overpass-api.de/api/interpreter");
-
-        // Set the Overpass query with the bounding box
-        std::string query =
-            "[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
-
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, query.c_str());
-
-        // Set callback function to receive response data
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data);
-
-        // Perform the request
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK) {
-            std::cerr << "curl_easy_perform() failed: "
-                      << curl_easy_strerror(res) << std::endl;
-        }
-    }
-}
-\end{lstlisting}
-
-The \texttt{http://overpass-api.de/api/interpreter} endpoint interprets and
-executes the \texttt{Overpass QL}\cite{overpass-ql} queries, retrieving
-specific parts of the \texttt{OpenStreetMap} data. In this case, the query
-fetches all nodes within the given bounding box tagged as \texttt{natural=tree}.
 
 The data will be stored in a \textit{.json} file. \\
 Here is an example of the query result for one tree:
@@ -531,7 +505,7 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
 To achieve different levels of detail (LOD) for performance, flexibility,
 and scalability, we will employ \texttt{CGAL 3D Alpha Wrapping}\cite{cgal_alpha_wrapper}.
 
-We aim to ensure watertight triangulation consistent with the
+According to the manual it ensures watertight triangulation consistent with the
 \texttt{Finite Element Method} (FEM) for accurate simulations.
 
 \newpage
@@ -546,88 +520,42 @@ We aim to ensure watertight triangulation consistent with the
 \end{figure}
 
 \textbf{Approach}\\
-Many approaches exist to enclose a 3D model within a volume, each balancing runtime
-and quality (tightness) of approximation. Simple methods, like using an axis-aligned
-or oriented bounding box, have uncontrollable and often large approximation errors.
-Computing the convex hull of the input improves quality but increases runtime and
-still provides a crude approximation, especially for models with several components.
+To enclose a 3D model within a volume, various methods balance runtime and
+approximation quality. Simple methods, like bounding boxes, have large errors.
+Convex hulls improve quality but remain crude, especially for complex models.
+Alpha shapes, a special case of the Delaunay triangulation, offer piecewise-linear
+ approximations but struggle with complex input data.
 
-The convex hull is a special case of alpha shapes. Mathematically, alpha shapes are
-subcomplexes of the Delaunay triangulation, where simplices are included based on the
-size of their minimal (empty) Delaunay ball. Constructing 3D alpha shapes can be seen
-as carving 3D space with an empty ball of radius alpha. Alpha shapes provide good
-piecewise-linear approximations of a shape but are defined on point sets. For more
-general input data like triangle soups, even after sampling, alpha shapes may not be
-conservative for any alpha and can carve inner structures within volumes.
-
-Inspired by alpha shapes, we use shrink-wrapping. We iteratively construct a subcomplex
-of a 3D Delaunay triangulation by starting from a simple triangulation enclosing the
-input and then iteratively removing eligible tetrahedra on the boundary of the complex.
-The underlying triangulation is refined as shrinking proceeds. Instead of carving from
-the convex hull, we construct a new mesh through a Delaunay refinement-like algorithm.
-This algorithm inserts Steiner points on the boundary of an offset volume, defined as
-a level set of the unsigned distance field to the input.
-
-This method prevents the creation of inner structures and avoids superfluous
-computations. It also detaches mesh construction from the input's geometry and
-discretization, offering several advantages: (1) the input format is flexible (triangle
-soups, polygon soups, point clouds), as only three basic geometric queries are needed:
-(a) the distance between a point and the input, (b) the projection of a query point
-onto the input, and (c) an intersection test between a tetrahedron and the input, and
-(2) the user can trade tightness to the input for final mesh complexity, requiring
-fewer mesh elements for a large offset conservative approximation.
+Inspired by alpha shapes, it uses shrink-wrapping, constructing a 3D Delaunay
+triangulation and iteratively removing eligible boundary tetrahedra. This process
+ refines the triangulation, avoiding inner structures and unnecessary
+ computations. This method supports flexible input formats (triangle soups,
+ polygon soups, point clouds) and allows trading tightness for mesh complexity.
 
 \textbf{Algorithm Initialization}\\
-The algorithm begins by inserting the eight corner vertices of a loose bounding box
-into a 3D Delaunay triangulation. In CGAL's 3D Delaunay triangulation, all triangle
-facets are adjacent to two tetrahedron cells. Each boundary facet of the triangulation,
-coinciding with a convex hull facet, is adjacent to an infinite tetrahedron cell.
-Initially, all infinite cells are tagged as outside, and all finite tetrahedron cells
-are tagged as inside.
+The algorithm starts by inserting the vertices of a bounding box into a 3D
+Delaunay triangulation. In CGAL's 3D Delaunay triangulation, boundary facets
+are adjacent to infinite cells tagged as outside, while finite tetrahedra are
+tagged inside.
 
 \textbf{Shrink-wrapping}\\
-The algorithm traverses the cells of the Delaunay triangulation from outside to inside,
-flood-filling from one cell to its adjacent cell and tagging the adjacent cell as
-outside when possible. Flood-filling uses a priority queue of Delaunay triangle facets
-(gates) representing the traversal between adjacent cells.
+The algorithm traverses from outside to inside cells, using a priority queue of
+ Delaunay triangle facets (gates). A gate is alpha-traversable if its circumradius
+  exceeds a user-defined alpha. The priority queue, initialized with convex hull
+   gates, is sorted by decreasing circumradius. Traversal uses dual Voronoi edges.
 
-A gate is alpha-traversable if its circumradius is larger than the user-defined
-parameter alpha, where the circumradius is the radius of the relating triangle's
-Delaunay ball. Cavities smaller than alpha are not accessible as their gates are not
-alpha-traversable.
+When moving from an outside cell \( c_o \) to an inside cell \( c_i \) through
+an alpha-traversable facet \( f \):
 
-Initialized by the alpha-traversable gates on the convex hull, the priority queue only
-contains alpha-traversable gates and is sorted by decreasing circumradius. Traversal
-advances along dual Voronoi edges of the gates with a pencil of empty balls
-circumscribing the gate.
+1. Check for intersections between \( f \)’s dual Voronoi edge and the offset
+surface. Insert the first intersection point as a Steiner point into the triangulation.
+2. If no intersection but \( c_i \) intersects the input, project \( c_i \)’s
+circumcenter onto the offset surface and insert it as a Steiner point.
 
-
-
-When traversing from an outside cell \( c_o \) to an inside cell \( c_i \) through an
-alpha-traversable facet \( f \), two criteria are tested to prevent the wrapping process
-from colliding with the input:
-
-1. Check for an intersection between the dual Voronoi edge of \( f \) and the offset
-surface, defined as the level set of the unsigned isosurface to the input. If intersections
-exist, the first intersection point along the dual Voronoi edge oriented from outside to
-inside is inserted into the triangulation as a Steiner point.
-
-2. If the dual Voronoi edge does not intersect the offset surface but the neighboring cell
-\( c_i \) intersects the input, compute the projection of the circumcenter of \( c_i \)
-onto the offset surface and insert it into the triangulation as a Steiner point, which
-destroys \( c_i \).
-
-After each Steiner point insertion, all new incident cells are tagged as inside, and the
-newly alpha-traversable gates are pushed into the priority queue.
-
-If neither criterion is met, the neighboring cell \( c_i \) is traversed and tagged as
-outside. Alpha-traversable facets of \( c_i \) separating inside from outside cells are
-pushed as new gates into the priority queue.
-
-Once the queue empties—a process guaranteed as facets (and their circumradii) become
-smaller due to new Steiner point insertions—the construction phase terminates. The output
-triangle surface mesh is extracted from the Delaunay triangulation as the set of facets
-separating inside from outside cells.
+Newly alpha-traversable gates are added to the queue. If neither criterion is
+met, \( c_i \) is tagged outside, and its gates are pushed to the queue. The
+process terminates when the queue empties, producing a triangle surface mesh from
+ the Delaunay triangulation.
 
 The figure below depicts the steps of the algorithm in 2D.
 \begin{figure}[H]
@@ -635,28 +563,22 @@ The figure below depicts the steps of the algorithm in 2D.
         \centering
         \includegraphics[width=\textwidth]{images/aw3_steps.jpg}
         \captionsetup{font={scriptsize}}
-        \caption{Steps of the shrink-wrapping algorithm in 2D. The algorithm is initialized by
-        inserting the corners of the loose bounding box of the input (red) into a Delaunay
-        triangulation, and all finite triangles are tagged inside (grey). The current gate
-        (green edge) popped out from the queue is alpha-traversable. The triangle adjacent
-        to the gate is tagged outside when it does not intersect the input, and new
-        alpha-traversable gates are pushed to the queue. When the adjacent triangle
-        intersects the input, a new Steiner point (large green disc) is computed and inserted
-        into the triangulation, all neighboring triangles are tagged inside, new
-        alpha-traversable gates are pushed to the queue, and traversal is resumed. Grey edges
-        depict the Delaunay triangulation. Blue edges depict the Voronoi diagram. Pink circles
-        depict the empty circle of radius alpha. The output edges (dark blue) separate inside
-        from outside triangles.
+        \caption{Steps of the shrink-wrapping algorithm in 2D. The algorithm
+        initializes by inserting the bounding box corners into a Delaunay
+        triangulation, tagging finite triangles inside. The current gate (green
+        edge) is alpha-traversable. Adjacent triangles are tagged outside if
+        they do not intersect the input. If they do, new Steiner points are
+        inserted, and traversal resumes. The output edges (dark blue) separate
+        inside from outside triangles.
         }
 \end{figure}
 
 \textbf{Guarantees} \\
-The algorithm is proven to terminate and to produce a 2-manifold triangulated surface
-mesh that strictly encloses the input data. The key element to the proof is that we wrap
-from outside to inside and never allow a cell that intersects the input to be flagged
-inside. Furthermore, both criteria that lead to refinement of the triangulation insert
-Steiner points that are guaranteed to break the cells in need of refinement and
-reduce the neighbor facets circumradii.
+The algorithm guarantees termination and produces a 2-manifold triangulated
+surface mesh that encloses the input data. By wrapping from outside to inside
+and refining the triangulation as needed, it ensures no intersecting cells are
+flagged inside. Steiner points inserted during refinement break necessary cells,
+ reducing circumradii and ensuring completion.
 
 
 \subsection{Tree model generation}
@@ -796,19 +718,19 @@ a Mercator projection\cite{mercator-proj}.
     \caption{Mercator's projection\cite{img:mercator}}
 \end{figure}
 
-This is the most common way to represent the Earth's surface on a plane and has 
+This is the most common way to represent the Earth's surface on a plane and has
 the advantage of being conformal, meaning that it preserves angles locally (hence
  its usage in sailings). \\
- In a Mercator projection, parallels and meridians are represented by straight 
+ In a Mercator projection, parallels and meridians are represented by straight
  orthogonal lines, with the equator being the horizontal line placed at the center
-  of the map. The other parallels must necessarily be stretched (east-west 
-  stretching). This stretching is accompanied by a corresponding north-south 
-  stretching, so that the north-south scale is equal to the east-west scale 
+  of the map. The other parallels must necessarily be stretched (east-west
+  stretching). This stretching is accompanied by a corresponding north-south
+  stretching, so that the north-south scale is equal to the east-west scale
   everywhere. \\
-  Mathematically, the Mercator projection is defined as follows: if a point on 
-  the sphere has a latitude $\phi$ and longitude $\lambda$ (with $\lambda_{0}$ 
-  placed at the center of the map), then its projection on the Mercator map will 
-  have coordinates 
+  Mathematically, the Mercator projection is defined as follows: if a point on
+  the sphere has a latitude $\phi$ and longitude $\lambda$ (with $\lambda_{0}$
+  placed at the center of the map), then its projection on the Mercator map will
+  have coordinates
   \begin{equation}
     \left\{
     \begin{array}{l}
@@ -819,7 +741,7 @@ the advantage of being conformal, meaning that it preserves angles locally (henc
 \end{equation}
 
 To achieve this while taking into account that the Earth is not perfect sphere
-we will assume the Earth is a geodesic defined as \texttt{WGS84}\cite{wgs84} and use 
+we will assume the Earth is a geodesic defined as \texttt{WGS84}\cite{wgs84} and use
 the \texttt{WGS84toCartesian}\cite{wgs84_to_cartesian} open source header-only
 library to convert the coordinates.
 
@@ -855,9 +777,9 @@ Time to mesh: 155.965 seconds, (2.59942 minutes)
 \subsection{Config class}
 
 This class is designed to store the program's configuration. It will be used to
-store the \texttt{bounding box}, the \texttt{level of details}, the
-\texttt{default height range}, the default
-genus, the origin of the 3D space, the input building mesh and the output name.
+store the \texttt{bounding box}, the \texttt{level of details}, the \texttt{output name},
+the \texttt{default genus}, the \texttt{default height}, the \texttt{origin}, the
+\texttt{input building mesh}, and the \texttt{altitude}.
 
 \begin{lstlisting}[language=C++]
 class Config {
@@ -866,8 +788,11 @@ class Config {
         int M_LOD;
         std::string M_output_name;
         std::string M_default_genus;
-        double M_default_height;
-    
+        std::string M_default_height;
+        std::string M_origin;
+        std::string M_input_building_mesh;
+        double M_altitude;
+
     public:
         Config(std::string const &filename);
 
@@ -875,7 +800,7 @@ class Config {
 
         std::vector<double> bbox_coords() const;
     };
-    
+
 \end{lstlisting}
 
 \subsection{Query function}
@@ -898,7 +823,7 @@ The function \texttt{computeXY} will be used to convert the latitude and longitu
 to Cartesian coordinates using the \texttt{WGS84toCartesian} library. \\
 The function \texttt{wrap} will be used to model the tree by scaling and moving
 the reference mesh to the correct position in the 3D space. \\
-The function \texttt{load\_data} will be used to load tree genus categories from
+The function \texttt{load\_genus} will be used to load tree genus categories from
 the \texttt{trees.json} file. \\
 The function \texttt{createTreeFromJson} will be used to create a tree object from
 the \texttt{.json} data acquired from the \texttt{Overpass API}. \\
@@ -912,26 +837,23 @@ using Mesh = CGAL::Surface_mesh<Point_3>;
 
 class Tree {
     private:
-    long M_id;
-    double M_lat;
-    double M_lon;
-    std::string M_genus;
-    std::string M_species;
-    std::string M_season;
-    double M_height;
-    double M_circumference;
-    double M_diameter_crown;
-    double M_x, M_y;
-    Mesh M_wrap;
+    long M_id;                    
+    double M_lat, M_lon, M_x, M_y; 
+    double M_height, M_altitude;   
+    double M_circumference, M_diameter_crown; 
+    std::string M_genus, M_species, M_season; 
     std::vector<std::string> M_known_genus, M_cedrus_like, M_acer_like,
         M_liquidambar_like, M_quercus_like;
+    Mesh M_wrap;                             
+    std::vector<Point_3> M_points;           
+    std::vector<std::array<int, 3>> M_faces;
 
     public:
     // Ommiting getters and setters
 
     void computeXY(double ref_lat, double ref_lon);
     void wrap(int lod);
-    void load_data(const std::string &filename);
+    void load_genus(const std::string &filename);
 };
 
 Tree createTreeFromJson(const nlohmann::json &treeJson);
@@ -1017,9 +939,8 @@ To ensure the placement was correct we first had to move the tree to the origin
 of its bounding box, scale it to the correct height, move it back to its original position
 (because scaling it was moving the tree around), and finally move it to the correct position in the 3D space.
 
-Note: To improve tree placement we would also need to take into account the real
-position on the z-axis (taking into account the elevation of the terrain) instead
-of putting the trees and the buildings on 0 on the z-axis (i.e. on sea level).
+Note: To improve tree placement we could also compute the center of mass of a slice
+at the base of the tree and use it as its origin
 
 \subsection{Doxygen documentation}
 
@@ -1170,7 +1091,7 @@ are related to the number of faces produced in the meshes.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/lod_vs_faces.png}
+    \includegraphics[width=1\textwidth]{images/bench_ntree_nfaces.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
 
@@ -1184,12 +1105,25 @@ of Detail (LOD).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/lod_vs_time.png}
+    \includegraphics[width=1\textwidth]{images/bench_time_ntree_quad.png}
     \captionsetup{font={scriptsize}}
+    \caption{Execution time, union of meshes}
 \end{figure}
 
-Again, this relationship appears to follow a power law. To confirm this with
+This relationship appears to be quadratic. To confirm this with
 greater precision, we would need more data.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/bench_time_ntree_linear.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Execution time, union of triangle soup}
+\end{figure}
+
+We can see that making the union using triangle soup instead drastically reduces the
+execution time to a linear relationship.
+
+
 
 \newpage
 
