@@ -102,6 +102,7 @@
 \begin{frame}{Introduction}
   \Large
   \begin{itemize}
+    \Large
     \item Part of the \textbf{HiDALGO2} project
     \item Specifically \textbf{Urban Building Model} use case
     \item Project conducted within \textbf{Cemosis} - \textbf{IRMA}
@@ -191,7 +192,7 @@
       \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
   \end{figure}
   \begin{center}
- \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
+  \Large \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
   \end{center}
 \end{frame}
 
@@ -202,22 +203,28 @@
       \includegraphics[width=0.5\textwidth]{images/osm_logo.png}
   \end{figure}
   \begin{center}
-  \textbf{OpenStreetMap} is a collaborative free geographic database
+    \Large Collaborative free \textbf{geographic database}
   \end{center}
 \end{frame}
 
 \begin{frame}{Sofware and libraries: Overpass turbo}
-  \Large
   Overpass turbo is a web-based data filtering tool for OpenStreetMap. 
   It runs queries on the Overpass API.
   
     \begin{figure}[H]
       \centering
-      \includegraphics[width=1\textwidth]{images/overpass_turbo.png}
+      \includegraphics[width=\textwidth]{images/overpass-turbo.png}
       \captionsetup{font={scriptsize}}
-      \caption{Example of query to get trees in Strasbourg using Overpass turbo.}
+      \caption{Query in Overpass turbo interface}
     \end{figure}
-  \end{frame}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: Overpass Turbo}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/ovt-node.png}
+  \end{figure}
+\end{frame}
 
 \begin{frame}{Sofware and libraries: cURL}
   \Large
@@ -226,12 +233,11 @@
       \includegraphics[width=0.8\textwidth]{images/Curl-logo.svg.png}
   \end{figure}
   \begin{center}
-  \textbf{cURL} is a URL transfer library
+    \Large \textbf{URL} transfer library
   \end{center}
 \end{frame}
 
 \begin{frame}{Sofware and libraries: how an API works}
-  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/how-api-works.jpg}
@@ -247,12 +253,11 @@
       \includegraphics[width=0.8\textwidth]{images/cgal_logo.png}
   \end{figure}
   \begin{center}
-  \textbf{CGAL} is an open source software library of computational geometry algorithms
+    \Large Open source software library for \textbf{computational geometry algorithms}
   \end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-  \Large
   \textbf{Overpass API} and \textbf{cURL} to query
   \textbf{OpenStreetMap}
   \begin{lstlisting}[language=json]
@@ -269,7 +274,6 @@ std::cout << "Query: " << query << std::endl;
 
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-  \Large
 The data will be stored in a \textbf{.json} file:
 
 \begin{lstlisting}[language=json]
@@ -294,7 +298,6 @@ The data will be stored in a \textbf{.json} file:
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-  \Large
 Sometimes, multiple \textbf{tags} are missing:
 
 \begin{lstlisting}[language=json]
@@ -311,7 +314,6 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-  \Large
   \textbf{config.json} to specify the query parameters:
   \begin{lstlisting}[language=json]
   {
