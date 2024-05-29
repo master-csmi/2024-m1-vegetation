@@ -253,94 +253,31 @@ std::cout << "Query: " << query << std::endl;
 
 
 \begin{frame}[fragile]{Data acquisition: .json output}
-  \begin{lstlisting}[language=json]
-{
-    "version": 0.6,
-    "generator": "Overpass API
-
 \begin{lstlisting}[language=json]
 {
-    "type": "node",
-    "id": 10161978695,
-    "lat": 48.5872478,
-    "lon": 7.7548520,
-    "tags": {
-        "circumference": "78.54",
-        "diameter_crown": "5",
-        "genus": "Tilia",
-        "height": "10",
-        "natural": "tree",
-        "ref": "27466",
-        "source": "data.strasbourg.eu - patrimoine_arbore",
-        "source:date": "2022-01-02",
-        "species": "Tilia euchlora x"
-    }
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Data acquisition: Missing tags}
-
-\begin{lstlisting}[language=json]
-{
-    "type": "node",
-    "id": 4439566691,
-    "lat": 48.5839128,
-    "lon": 7.7487125,
-    "tags": {
-      "natural": "tree"
-    }
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Methodology: Data acquisition}
-  \textbf{config.json} to specify the query parameters:
-  \begin{lstlisting}[language=json]
-  {
-    "bbox": "48.5750,7.7394,48.5919,7.7621",
-    "origin": "48.583055227464364, 7.748664426560083",
-    "altitude": 0,
-    "LOD": 3,
-    "default_height_range": "3, 6",
-    "default_genus": "Platanus",
-    "input_building_mesh": "mesh_lod1.stl",
-    "output_name": "grande_ile"
+  "type": "node",
+  "id": 10162018740,
+  "lat": 48.5850910,
+  "lon": 7.7502624,
+  "tags": {
+    "circumference": "1.47655",
+    "diameter_crown": "5",
+    "genus": "Platanus",
+    "height": "6",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "ref": "16401",
+    "source": "data.strasbourg.eu - patrimoine_arbore",
+    "source:date": "2022-01-02",
+    "species": "Platanus acerifolia x",
+    "species:wikidata": "Q24853030"
   }
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Tree library}
-  \Large
-\begin{lstlisting}[language=json]
-{
-    "known_genus": ["Abies",
-                    "Acer",
-                    "Aesculus",
-                        ... ],
-    "cedrus_like": [ "Chaemacyparis",
-                    "Cupressus",
-                        ... ],
-    "acer_like": ["Fadus",
-                "Metasequoia",
-                "Sequoiadendron",
-                ... ],
-    "liquidambar_like": ["Liriodendron",
-                        "Pyrus",
-                        "Alnus",
-                        ... ],
-    "quercus_like": ["Corylus",
-                    "Carya",
-                    "Fagus",
-                    ... ]
 }
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}{Base tree model}
-  \Large
-\textbf{13} tree models from \textbf{SketchUp}:
-
 \begin{figure}[H]
     \centering
         \centering
@@ -409,6 +346,31 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
+\begin{frame}[fragile]{Tree library}
+  \begin{lstlisting}[language=json]
+  {
+      "known_genus": ["Abies",
+                      "Acer",
+                      "Aesculus",
+                          ... ],
+      "cedrus_like": [ "Chaemacyparis",
+                      "Cupressus",
+                          ... ],
+      "acer_like": ["Fadus",
+                  "Metasequoia",
+                  "Sequoiadendron",
+                  ... ],
+      "liquidambar_like": ["Liriodendron",
+                          "Pyrus",
+                          "Alnus",
+                          ... ],
+      "quercus_like": ["Corylus",
+                      "Carya",
+                      "Fagus",
+                      ... ]
+  }
+  \end{lstlisting}
+\end{frame}
 
 \begin{frame}{Reminder: Delaunay triangulation}
   \Large
@@ -483,7 +445,7 @@ std::cout << "Query: " << query << std::endl;
   \begin{center}
     \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}
     {images/alpha-wrapping-2d.mp4}
-\end{center}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Tree modeling: wrapping base tree}
