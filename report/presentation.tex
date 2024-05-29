@@ -73,15 +73,6 @@
     tabsize=4
 }
 
-\newcommand{\mercatorImage}[2][0.7\textwidth]{
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=#1]{images/mercator.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{#2}
-  \end{figure}
-}
-
 \lstset{style=modernstyle}
 
 \usetheme{Copenhagen}
@@ -418,19 +409,6 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Tree modeling: Alpha Wrapping}
-  \Large
-  To provide different LODs we will wrap then using the \texttt{CGAL 3D 
-  Alpha Wrapping}
-  \vfill
-  \begin{figure}[H]
-    \centering
-        \centering
-        \includegraphics[width=\textwidth]{images/aw3_bike_lod.jpg}
-        \captionsetup{font={scriptsize}}
-        \caption{Different LOD of the Alpha Wrapping of a bike}
-\end{figure}
-\end{frame}
 
 \begin{frame}{Reminder: Delaunay triangulation}
   \Large
@@ -443,7 +421,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Delaunay and Voronoi}
+\begin{frame}{Reminder: Delaunay and Voronoi}
   \Large
   \begin{figure}[H]
     \centering
@@ -462,7 +440,21 @@ std::cout << "Query: " << query << std::endl;
   \end{figure}
 \end{frame}
 
-\begin{frame}{Alpha Wrapping: Problem statement}
+\begin{frame}{Tree modeling: Alpha Wrapping}
+  \Large
+  To provide different LODs we will wrap then using the \texttt{CGAL 3D 
+  Alpha Wrapping}
+  \vfill
+  \begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/aw3_bike_lod.jpg}
+        \captionsetup{font={scriptsize}}
+        \caption{Different LOD of the Alpha Wrapping of a bike}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: Alpha Wrapping}
   \Large
   \textcolor{red}{\textbf{Input:}}
     \begin{itemize}
@@ -470,15 +462,16 @@ std::cout << "Query: " << query << std::endl;
     \end{itemize}
     \textcolor{red}{\textbf{Output:} }
     \begin{itemize}
-      \item \textbf{Water-tight} mesh
-      \item \textbf{No self-intersections}
-      \item \textbf{Strictly enclosing the input}
-      \item \textbf{Well shaped triangles}
+      \item Water-tight mesh
+      \item No self-intersections
+      \item Strictly enclosing the input
+      \item Well shaped triangles
     \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Alpha Wrapping}
+\begin{frame}{Tree modeling: Alpha Wrapping}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/alpha-wrapping_ball.jpg}
@@ -487,17 +480,8 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Alpha Wrapping}
-  \Large
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping_alpha_offset.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Alpha Wrapping Alpha and Offset parameters}
-\end{figure}
-\end{frame}
 
-\begin{frame}{Alpha Wrapping animation}
+\begin{frame}{Tree modeling: Alpha Wrapping}
   \Large
   \href{https://youtu.be/xIIDolWCrgU}{video link}
   \begin{center}
@@ -541,20 +525,18 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Mercator's projection}
-  \Large
-  \mercatorImage{Mercator's projection}
+\begin{frame}{Tree modeling: Mercator's projection}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/mercator.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Mercator's projection}
+\end{figure}
 
-  \begin{itemize}
-    \item \textbf{Most used} 
-    \item \textbf{Conformal} 
-    \item \textbf{Distortion} 
-  \end{itemize}
 \end{frame}
 
-\begin{frame}{Mercator's projection}
+\begin{frame}{Tree modeling: Mercator's projection}
   \Large
-  \mercatorImage{Mercator's projection}
   A(latitude, longitude) = A($\phi$, $\lambda$),\\
   \begin{equation}
     \text{projection} \Longrightarrow \quad
@@ -565,17 +547,12 @@ std::cout << "Query: " << query << std::endl;
     \end{array}
     \right.
   \end{equation}
+  \vfill
   ,where $\lambda_{0}$ is the center of the map
 \end{frame}
 
-\begin{frame}{Mercator's projection}
-  \Large
-  \mercatorImage{Mercator's projection}
-  But the Earth isn't a perfect sphere...
-\end{frame}
 
-
-\begin{frame}{Mercator's projection}
+\begin{frame}{Tree modeling: Mercator's projection}
   \Large
   \begin{figure}[H]
     \centering
@@ -596,11 +573,17 @@ std::cout << "Query: " << query << std::endl;
 \textit{WGS84toCartesian.hpp} $\Longrightarrow$ \textbf{GPS} to \textbf{Cartesian} coordinates.
 \end{frame}
 
-\begin{frame}{Modeling trees in 3D space}
+\begin{frame}{Tree modeling: affine transformation}
   \Large
-\texttt{CGAL Affine Transformation} \\
-(complexity in $O(n)$)
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/ginkgo-bbox.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Ginkgo tree bounding box}
+\end{figure}
+\end{frame}
 
+\begin{frame}{Tree modeling: affine transformation}
 \begin{figure}[H]
   \centering
   \begin{minipage}{0.49\textwidth}
@@ -618,7 +601,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Modeling trees in 3D space}
+\begin{frame}{Tree modeling: affine transformation}
   \Large
   \begin{figure}[H]
     \centering
@@ -628,7 +611,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Model integration}
+\begin{frame}{Tree modeling: model integration}
   \Large
   \begin{figure}[H]
     \centering
@@ -638,7 +621,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Model integration}
+\begin{frame}{Tree modeling: model integration}
   \Large
   \begin{figure}[H]
     \centering
@@ -648,20 +631,8 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Model integration: prospects}
-  \Large
-  Prospects: 
-  \begin{itemize}
-    \item \texttt{Feel++} $\Longrightarrow$ shading calculations
-    \item Mesh$\Longrightarrow$ Hungarian team.
-  \end{itemize}
-  \href{https://youtu.be/O6flpW6jR60}{video link}
-  \begin{center}
-    \movie[width=1\textwidth,height=0.7\textheight,poster,showcontrols]{}{images/SolarMask.mp4}
-\end{center}
-\end{frame}
 
-\begin{frame}{Benchmark: bbox 1}
+\begin{frame}{Benchmark}
   \Large
   \begin{figure}[H]
     \centering
@@ -671,7 +642,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Benchmark: bbox 2}
+\begin{frame}{Benchmark}
   \Large
   \begin{figure}[H]
     \centering
@@ -681,7 +652,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Benchmark: bbox 3}
+\begin{frame}{Benchmark}
   \Large
   \begin{figure}[H]
     \centering
@@ -691,7 +662,7 @@ std::cout << "Query: " << query << std::endl;
 \end{figure}
 \end{frame}
 
-\begin{frame}{Benchmark: bbox 4}
+\begin{frame}{Benchmark}
   \Large
   \begin{figure}[H]
     \centering
@@ -728,6 +699,18 @@ std::cout << "Query: " << query << std::endl;
     \captionsetup{font={scriptsize}}
     \caption{\texttt{autorefine\_triangle\_soup}}
   \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects}
+  \Large
+  \begin{itemize}
+    \item \texttt{Feel++} $\Longrightarrow$ shading calculations
+    \item Mesh $\Longrightarrow$ Hungarian team.
+  \end{itemize}
+  \href{https://youtu.be/O6flpW6jR60}{video link}
+  \begin{center}
+    \movie[width=1\textwidth,height=0.7\textheight,poster,showcontrols]{}{images/SolarMask.mp4}
+\end{center}
 \end{frame}
 
 
