@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[12pt]{beamer}
 \usepackage{graphicx}
 \usepackage{adjustbox}
 \usepackage{hyperref}
@@ -10,6 +10,8 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{multimedia}
+
+\setbeamerfont{normal text}{size=\Large}
 
 \colorlet{punct}{red!60!black}
 \definecolor{background}{RGB}{240, 248, 255}
@@ -70,6 +72,15 @@
     showstringspaces=false,
     showtabs=false,
     tabsize=4
+}
+
+\newcommand{\mercatorImage}[2][0.8\textwidth]{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=#1]{images/mercator.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{#2}
+  \end{figure}
 }
 
 \lstset{style=modernstyle}
@@ -431,35 +442,35 @@ Sometimes, multiple \textbf{tags} are missing:
 
 
 
-\begin{frame}{Alpha Wrapping}
+\begin{frame}{Alpha Wrapping: Problem statement}
   \begin{figure}[H]
-    \hspace*{-1cm}
-    \includegraphics[width=1.2\textwidth]{images/alpha-wrapping.jpg}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+      \textcolor{red}{\textbf{Input:}}
+       \begin{itemize}
+        \item  3D model with possible defects
+        \end{itemize}
+       \textcolor{red}{\textbf{Output:} }
+        \begin{itemize}
+          \item Water-tight mesh
+          \item No self-intersections
+          \item Strictly enclosing the input
+          \item Well shaped triangles
+       \end{itemize}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.2\textwidth]{images/alpha-wrapping_motor.jpg}
+        \captionsetup{font={scriptsize}}
+    \end{minipage}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Alpha Wrapping}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping1.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Alpha Wrapping in 2D}
-\end{figure}
-\end{frame}
 
 \begin{frame}{Alpha Wrapping}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping2.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Alpha Wrapping in 2D result}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Alpha Wrapping}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping3.jpg}
+    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping_ball.jpg}
     \captionsetup{font={scriptsize}}
     \caption{Alpha Wrapping in 2D with Offset and different Alpha parameters}
 \end{figure}
@@ -468,7 +479,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \begin{frame}{Alpha Wrapping}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping4.jpg}
+    \includegraphics[width=1.1\textwidth]{images/alpha-wrapping_alpha_offset.jpg}
     \captionsetup{font={scriptsize}}
     \caption{Alpha Wrapping Alpha and Offset parameters}
 \end{figure}
@@ -477,7 +488,8 @@ Sometimes, multiple \textbf{tags} are missing:
 \begin{frame}{Alpha Wrapping animation}
   \href{https://youtu.be/xIIDolWCrgU}{video link}
   \begin{center}
-    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}{images/alpha-wrapping-2d.mp4}
+    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}
+    {images/alpha-wrapping-2d.mp4}
 \end{center}
 \end{frame}
 
@@ -516,50 +528,36 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Mercator's projection}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection}
-\end{figure}
+  \mercatorImage{Mercator's projection}
 
-\begin{itemize}
-  \item Most used projection for representing the Earth's surface on a plane.
-  \item Conformal $\Longrightarrow$ preserves angles locally.
-  \item Distortion $\Longrightarrow$ relative sizes of countries is not accurate.
-\end{itemize}
+  \begin{itemize}
+    \item \textbf{Most used} projection for representing the Earth's surface on a plane.
+    \item \textbf{Conformal} $\Longrightarrow$ preserves angles locally.
+    \item \textbf{Distortion} $\Longrightarrow$ relative sizes of countries is not accurate.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Mercator's projection}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection}
-\end{figure}
-Mathematically, with a point A, \\
-A(latitude, longitude) = A($\phi$, $\lambda$),\\
- then its projection on the Mercator map will have coordinates 
-\begin{equation}
-  \left\{
-  \begin{array}{l}
-      x =  \lambda - \lambda_{0} \\
-      y =  \ln(\tan(\frac{\pi}{4} + \frac{\phi}{2}))
-  \end{array}
-  \right.
-\end{equation}
-Where $\lambda_{0}$ is the center of the map
+  \mercatorImage{Mercator's projection}
+
+  Mathematically, with a point A(latitude, longitude) = A($\phi$, $\lambda$),\\
+  \begin{equation}
+    \text{projection} \Longrightarrow \quad
+    \left\{
+    \begin{array}{l}
+        x =  \lambda - \lambda_{0} \\
+        y =  \ln(\tan(\frac{\pi}{4} + \frac{\phi}{2}))
+    \end{array}
+    \right.
+  \end{equation}
+  ,where $\lambda_{0}$ is the center of the map
 \end{frame}
 
 \begin{frame}{Mercator's projection}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/mercator.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Mercator's projection}
-\end{figure}
-But the Earth isn't a perfect sphere...
+  \mercatorImage{Mercator's projection}
+  But the Earth isn't a perfect sphere...
 \end{frame}
+
 
 \begin{frame}{Mercator's projection}
   \begin{figure}[H]
@@ -578,8 +576,7 @@ But the Earth isn't a perfect sphere...
     \end{minipage}
 \end{figure}
 
-We can use the \textit{WGS84toCartesian.hpp} open source header-only
-  library to convert the \textbf{GPS} coordinates so \textbf{Cartesian} coordinates.
+\textit{WGS84toCartesian.hpp} $\Longrightarrow$ \textbf{GPS} to \textbf{Cartesian} coordinates.
 \end{frame}
 
 \begin{frame}{Modeling trees in 3D space}
@@ -634,7 +631,7 @@ We can use \texttt{CGAL Affine Transformation}
   Prospects: 
   \begin{itemize}
     \item Use the \texttt{Feel++} library to compute the shading of the trees.
-    \item Make the mesh for the Hungarian team $\Longrightarrow$ fluid mechanics simu. 
+    \item Mesh for the Hungarian team $\Longrightarrow$ fluid mechanics simu. 
   \end{itemize}
   \href{https://youtu.be/O6flpW6jR60}{video link}
   \begin{center}
