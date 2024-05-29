@@ -11,8 +11,6 @@
 \usepackage{xcolor}
 \usepackage{multimedia}
 
-\setbeamerfont{normal text}{size=\Large}
-
 \colorlet{punct}{red!60!black}
 \definecolor{background}{RGB}{240, 248, 255}
 \definecolor{delim}{RGB}{20,105,176}
@@ -102,6 +100,7 @@
 
 \begin{frame}{Introduction}
   \begin{itemize}
+    \Large
     \item Part of the \textbf{HiDALGO2} project
     \item Specifically \textbf{Urban Building Model} use case
     \item Project conducted within \textbf{Cemosis} - \textbf{IRMA}
@@ -144,6 +143,7 @@
 \end{frame}
 
 \begin{frame}{Context}
+  \Large
   \textbf{Main Goals:}
   \begin{itemize}
     \item Integrate \textbf{trees} into \textbf{3D geometric models} of \textbf{urban environments}
@@ -173,6 +173,7 @@
 \end{frame}
 
 \begin{frame}{Objectives}
+  \Large
   \begin{itemize}
       \item \textbf{\textcolor{red}{Extracting}} \textbf{tree data} from \textbf{OpenStreetMap}
       \item \textbf{\textcolor{red}{Generating}} \textbf{3D tree models} using \textbf{CGAL}
@@ -188,7 +189,7 @@
       \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
   \end{figure}
   \begin{center}
-  \Large \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
+    \Large \textbf{Read-only API} to query data from \textbf{OpenStreetMap}
   \end{center}
 \end{frame}
 
@@ -198,21 +199,25 @@
       \includegraphics[width=0.5\textwidth]{images/osm_logo.png}
   \end{figure}
   \begin{center}
-  \textbf{OpenStreetMap} is a collaborative free geographic database
+    \Large Collaborative free \textbf{geographic database}
   \end{center}
 \end{frame}
 
 \begin{frame}{Sofware and libraries: Overpass turbo}
-  Overpass turbo is a web-based data filtering tool for OpenStreetMap. 
-  It runs queries on the Overpass API.
-  
     \begin{figure}[H]
       \centering
-      \includegraphics[width=1\textwidth]{images/overpass_turbo.png}
+      \includegraphics[width=\textwidth]{images/overpass-turbo.png}
       \captionsetup{font={scriptsize}}
-      \caption{Example of query to get trees in Strasbourg using Overpass turbo.}
+      \caption{Query in Overpass turbo interface}
     \end{figure}
-  \end{frame}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: Overpass Turbo}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/ovt-node.png}
+  \end{figure}
+\end{frame}
 
 \begin{frame}{Sofware and libraries: cURL}
   \begin{figure}[H]
@@ -220,17 +225,8 @@
       \includegraphics[width=0.8\textwidth]{images/Curl-logo.svg.png}
   \end{figure}
   \begin{center}
-  \textbf{cURL} is a URL transfer library
+    \Large \textbf{URL} transfer library
   \end{center}
-\end{frame}
-
-\begin{frame}{Sofware and libraries: how an API works}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/how-api-works.jpg}
-    \captionsetup{font={scriptsize}}
-    \caption{Example of query to get trees in Strasbourg.}
-  \end{figure}
 \end{frame}
 
 \begin{frame}{Sofware and libraries: CGAL}
@@ -239,13 +235,12 @@
       \includegraphics[width=0.8\textwidth]{images/cgal_logo.png}
   \end{figure}
   \begin{center}
-  \textbf{CGAL} is an open source software library of computational geometry algorithms
+    \Large Open source software library for \textbf{computational geometry algorithms}
   \end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-  \textbf{Overpass API} and \textbf{cURL} to query
-  \textbf{OpenStreetMap}
+  \Large \textbf{Overpass API} and \textbf{cURL} to query \textbf{OpenStreetMap}
   \begin{lstlisting}[language=json]
 curl_easy_setopt(curl, CURLOPT_URL,
                 "http://overpass-api.de/api/interpreter");
@@ -260,7 +255,7 @@ std::cout << "Query: " << query << std::endl;
 
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-The data will be stored in a \textbf{.json} file:
+\Large The data will be stored in a \textbf{.json} file:
 
 \begin{lstlisting}[language=json]
 {
@@ -284,7 +279,7 @@ The data will be stored in a \textbf{.json} file:
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-Sometimes, multiple \textbf{tags} are missing:
+\Large Sometimes, multiple \textbf{tags} are missing:
 
 \begin{lstlisting}[language=json]
 {
@@ -300,7 +295,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
-  \textbf{config.json} to specify the query parameters:
+  \Large \textbf{config.json} to specify the query parameters:
   \begin{lstlisting}[language=json]
   {
     "bbox": "48.5750,7.7394,48.5919,7.7621",
