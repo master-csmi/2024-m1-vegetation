@@ -11,7 +11,6 @@
 \usepackage{xcolor}
 \usepackage{multimedia}
 
-\setbeamerfont{normal text}{size=\Large}
 
 \colorlet{punct}{red!60!black}
 \definecolor{background}{RGB}{240, 248, 255}
@@ -74,7 +73,7 @@
     tabsize=4
 }
 
-\newcommand{\mercatorImage}[2][0.8\textwidth]{
+\newcommand{\mercatorImage}[2][0.7\textwidth]{
   \begin{figure}[H]
     \centering
     \includegraphics[width=#1]{images/mercator.jpg}
@@ -101,6 +100,7 @@
 \end{frame}
 
 \begin{frame}{Introduction}
+  \Large
   \begin{itemize}
     \item Part of the \textbf{HiDALGO2} project
     \item Specifically \textbf{Urban Building Model} use case
@@ -123,9 +123,8 @@
   \end{minipage}
 \end{frame}
 
-
-
 \begin{frame}{Context}
+  \Large
   \begin{figure}
       \centering
       \includegraphics[width=0.8\textwidth]{images/TreeShade.png}
@@ -135,6 +134,7 @@
 \end{frame}
 
 \begin{frame}{Context}
+  \Large
   \begin{figure}
       \centering
       \includegraphics[width=\textwidth]{images/heat_street.png}
@@ -144,6 +144,7 @@
 \end{frame}
 
 \begin{frame}{Context}
+  \Large
   \textbf{Main Goals:}
   \begin{itemize}
     \item Integrate \textbf{trees} into \textbf{3D geometric models} of \textbf{urban environments}
@@ -153,26 +154,27 @@
 
 
 \begin{frame}{Context}
+  \Large
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{images/stras_mesh.png}
   \captionsetup{font={scriptsize}}
   \caption{Strasbourg 3D model}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}{Context}
+  \Large
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{images/manhattan_mesh.png}
   \captionsetup{font={scriptsize}}
   \caption{Manhattan 3D model}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}{Objectives}
+  \Large
   \begin{itemize}
       \item \textbf{\textcolor{red}{Extracting}} \textbf{tree data} from \textbf{OpenStreetMap}
       \item \textbf{\textcolor{red}{Generating}} \textbf{3D tree models} using \textbf{CGAL}
@@ -183,16 +185,18 @@
 \end{frame}
 
 \begin{frame}{Sofware and libraries: Overpass API}
+  \Large
   \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
   \end{figure}
   \begin{center}
-  \Large \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
+ \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
   \end{center}
 \end{frame}
 
 \begin{frame}{Sofware and libraries: OpenStreetMap}
+  \Large
   \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{images/osm_logo.png}
@@ -203,6 +207,7 @@
 \end{frame}
 
 \begin{frame}{Sofware and libraries: Overpass turbo}
+  \Large
   Overpass turbo is a web-based data filtering tool for OpenStreetMap. 
   It runs queries on the Overpass API.
   
@@ -215,6 +220,7 @@
   \end{frame}
 
 \begin{frame}{Sofware and libraries: cURL}
+  \Large
   \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{images/Curl-logo.svg.png}
@@ -225,6 +231,7 @@
 \end{frame}
 
 \begin{frame}{Sofware and libraries: how an API works}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/how-api-works.jpg}
@@ -234,6 +241,7 @@
 \end{frame}
 
 \begin{frame}{Sofware and libraries: CGAL}
+  \Large
   \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{images/cgal_logo.png}
@@ -244,6 +252,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
+  \Large
   \textbf{Overpass API} and \textbf{cURL} to query
   \textbf{OpenStreetMap}
   \begin{lstlisting}[language=json]
@@ -260,6 +269,7 @@ std::cout << "Query: " << query << std::endl;
 
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
+  \Large
 The data will be stored in a \textbf{.json} file:
 
 \begin{lstlisting}[language=json]
@@ -284,6 +294,7 @@ The data will be stored in a \textbf{.json} file:
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
+  \Large
 Sometimes, multiple \textbf{tags} are missing:
 
 \begin{lstlisting}[language=json]
@@ -300,6 +311,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}[fragile]{Methodology: Data acquisition}
+  \Large
   \textbf{config.json} to specify the query parameters:
   \begin{lstlisting}[language=json]
   {
@@ -316,6 +328,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}[fragile]{Tree library}
+  \Large
 \begin{lstlisting}[language=json]
 {
     "known_genus": ["Abies",
@@ -342,6 +355,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Base tree model}
+  \Large
 \textbf{13} tree models from \textbf{SketchUp}:
 
 \begin{figure}[H]
@@ -354,6 +368,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Base tree model}
+  \Large
   \begin{figure}[H]
     \centering
     \begin{minipage}{0.24\textwidth}
@@ -412,6 +427,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Tree modeling: Alpha Wrapping}
+  \Large
   To provide different LODs we will wrap then using the \texttt{CGAL 3D 
   Alpha Wrapping}
   \vfill
@@ -425,6 +441,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Reminder: Delaunay triangulation}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{images/Delaunay_circumcircles_vectorial.svg.png}
@@ -435,7 +452,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Delaunay and Voronoi}
-
+  \Large
   \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -454,6 +471,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Alpha Wrapping: Problem statement}
+  \Large
   \textcolor{red}{\textbf{Input:}}
     \begin{itemize}
     \item  3D model with possible defects
@@ -469,6 +487,7 @@ Sometimes, multiple \textbf{tags} are missing:
 
 
 \begin{frame}{Alpha Wrapping}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1.1\textwidth]{images/alpha-wrapping_ball.jpg}
@@ -478,6 +497,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Alpha Wrapping}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1.1\textwidth]{images/alpha-wrapping_alpha_offset.jpg}
@@ -487,6 +507,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Alpha Wrapping animation}
+  \Large
   \href{https://youtu.be/xIIDolWCrgU}{video link}
   \begin{center}
     \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}
@@ -495,6 +516,7 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Tree modeling: wrapping base tree}
+  \Large
   \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -529,19 +551,20 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Mercator's projection}
+  \Large
   \mercatorImage{Mercator's projection}
 
   \begin{itemize}
-    \item \textbf{Most used} projection for representing the Earth's surface on a plane.
-    \item \textbf{Conformal} $\Longrightarrow$ preserves angles locally.
-    \item \textbf{Distortion} $\Longrightarrow$ relative sizes of countries is not accurate.
+    \item \textbf{Most used} 
+    \item \textbf{Conformal} 
+    \item \textbf{Distortion} 
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Mercator's projection}
+  \Large
   \mercatorImage{Mercator's projection}
-
-  Mathematically, with a point A(latitude, longitude) = A($\phi$, $\lambda$),\\
+  A(latitude, longitude) = A($\phi$, $\lambda$),\\
   \begin{equation}
     \text{projection} \Longrightarrow \quad
     \left\{
@@ -555,12 +578,14 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Mercator's projection}
+  \Large
   \mercatorImage{Mercator's projection}
   But the Earth isn't a perfect sphere...
 \end{frame}
 
 
 \begin{frame}{Mercator's projection}
+  \Large
   \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -581,8 +606,8 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Modeling trees in 3D space}
-We can use \texttt{CGAL Affine Transformation} 
-(complexity in $O(n)$)
+  \Large
+\texttt{CGAL Affine Transformation} 
 
 \begin{figure}[H]
   \centering
@@ -602,6 +627,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Modeling trees in 3D space}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/republic_lod3_side.png}
@@ -611,6 +637,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Model integration}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced1.png}
@@ -620,6 +647,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Model integration}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced2.png}
@@ -629,10 +657,11 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Model integration: prospects}
+  \Large
   Prospects: 
   \begin{itemize}
-    \item Use the \texttt{Feel++} library to compute the shading of the trees.
-    \item Mesh for the Hungarian team $\Longrightarrow$ fluid mechanics simu. 
+    \item \texttt{Feel++} $\Longrightarrow$ shading calculations
+    \item Mesh$\Longrightarrow$ Hungarian team.
   \end{itemize}
   \href{https://youtu.be/O6flpW6jR60}{video link}
   \begin{center}
@@ -641,6 +670,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Benchmark: bbox 1}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/bbox1.png}
@@ -650,6 +680,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Benchmark: bbox 2}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/bbox2.png}
@@ -659,6 +690,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Benchmark: bbox 3}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/bbox3.png}
@@ -668,6 +700,7 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Benchmark: bbox 4}
+  \Large
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/bbox4.png}
@@ -677,31 +710,33 @@ We can use \texttt{CGAL Affine Transformation}
 \end{frame}
 
 \begin{frame}{Benchmark: relation LOD-number of faces}
+  \Large
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/bench_ntree_nfaces.png}
+    \includegraphics[width=1\textwidth]{images/bench_ntree_nfaces.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
-Linear relation between the number of faces and the number of trees.
 \end{frame}
 
-\begin{frame}{Benchmark: execution time}
+\begin{frame}{Benchmark: execution time (Part 1)}
+  \Large
   \begin{figure}[H]
     \centering
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{images/bench_time_ntree_quad.png}
-        \captionsetup{font={scriptsize}}
-        \caption{\texttt{corefine\_and\_compute\_union}}
-    \end{minipage}\hfill
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=1\textwidth]{images/bench_time_ntree_linear.png}
-        \captionsetup{font={scriptsize}}
-        \caption{\texttt{autorefine\_triangle\_soup}}
-    \end{minipage}
+    \includegraphics[width=1\textwidth]{images/bench_time_ntree_quad.png}
+    \captionsetup{font={scriptsize}}
+    \caption{\texttt{corefine\_and\_compute\_union}}
   \end{figure}
-  \end{frame}
+\end{frame}
+
+\begin{frame}{Benchmark: execution time (Part 2)}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/bench_time_ntree_linear.png}
+    \captionsetup{font={scriptsize}}
+    \caption{\texttt{autorefine\_triangle\_soup}}
+  \end{figure}
+\end{frame}
 
 
 \nocite{*}
