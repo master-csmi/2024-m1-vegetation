@@ -326,14 +326,40 @@ We will then use the \texttt{Overpass API} and \texttt{cURL} to query
 bounding box:
 
 \begin{lstlisting}[language=C++]
-curl_easy_setopt(curl, CURLOPT_URL,
-                "http://overpass-api.de/api/interpreter");
+#include <curl/curl.h>
 
-// Set the Overpass query with the bounding box
-std::string query =
-    "[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
+// Perform the Overpass query
+void perform_query(std::string bbox) {
+    CURL *curl;
+    CURLcode res;
+    std::string response_data;
 
-    std::cout << "Query: " << query << std::endl;
+    // Initialize libcurl
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+    if (curl) {
+        // Set the Overpass API endpoint URL
+        curl_easy_setopt(curl, CURLOPT_URL,
+                         "http://overpass-api.de/api/interpreter");
+
+        // Set the Overpass query with the bounding box
+        std::string query =
+            "[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
+
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, query.c_str());
+
+        // Set callback function to receive response data
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data);
+
+        // Perform the request
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::cerr << "curl_easy_perform() failed: "
+                      << curl_easy_strerror(res) << std::endl;
+        }
+    }
+}
 \end{lstlisting}
 
 The \texttt{http://overpass-api.de/api/interpreter} endpoint interprets and

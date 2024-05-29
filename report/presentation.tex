@@ -216,7 +216,7 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Sofware and libraries: Overpass Turbo}
+\begin{frame}{Sofware and libraries: Overpass turbo}
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{images/ovt-node.png}
@@ -245,10 +245,10 @@
   \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Methodology: Data acquisition}
-  \textbf{Overpass API} and \textbf{cURL} to query
-  \textbf{OpenStreetMap}
-  \begin{lstlisting}[language=json]
+\begin{frame}[fragile]{Data acquisition: The query}
+  \begin{lstlisting}[language=C++]
+#include <curl/curl.h>
+
 curl_easy_setopt(curl, CURLOPT_URL,
                 "http://overpass-api.de/api/interpreter");
 
@@ -261,8 +261,11 @@ std::cout << "Query: " << query << std::endl;
 \end{frame}
 
 
-\begin{frame}[fragile]{Methodology: Data acquisition}
-The data will be stored in a \textbf{.json} file:
+\begin{frame}[fragile]{Data acquisition: .json output}
+  \begin{lstlisting}[language=json]
+{
+    "version": 0.6,
+    "generator": "Overpass API
 
 \begin{lstlisting}[language=json]
 {
@@ -285,8 +288,7 @@ The data will be stored in a \textbf{.json} file:
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Methodology: Data acquisition}
-Sometimes, multiple \textbf{tags} are missing:
+\begin{frame}[fragile]{Data acquisition: Missing tags}
 
 \begin{lstlisting}[language=json]
 {
