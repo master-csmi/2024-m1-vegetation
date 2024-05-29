@@ -388,49 +388,8 @@ more abundant than the species) to generate the 3D tree models.
 \newpage
 
 \subsection{Tree library}
-Using the results from the \texttt{Overpass API} query, we will create a
-library of tree objects. Each tree object will contain the tree's metadata
-(location, species, height, etc.).
-
-Additionally, since it's not feasible to have a mesh model for each species or
-even genus of trees, we will use the \texttt{trees.json} file to specify the
-genus categories to use for the meshing.
-
-\begin{lstlisting}[language=json]
-{
-    "known_genus": ["Abies",
-                    "Acer",
-                    "Aesculus",
-                     ... ],
-    "cedrus_like": [ "Chaemacyparis",
-                    "Cupressus",
-                     ... ],
-    "acer_like": ["Fadus",
-                "Metasequoia",
-                "Sequoiadendron",
-                ... ],
-    "liquidambar_like": ["Liriodendron",
-                        "Pyrus",
-                        "Alnus",
-                        ... ],
-    "quercus_like": ["Corylus",
-                    "Carya",
-                    "Fagus",
-                    ... ]
-}
-\end{lstlisting}
-
-\begin{itemize}
-    \item \texttt{known\_genus} is a list of the genus for which we have a mesh model.
-    \item \texttt{cedrus\_like} is a list of the genus for which the cedrus mesh model will be used.
-    \item etc.
-\end{itemize}
-
-\newpage
-
-\subsection{Base tree model}
-We downloaded 13 tree models in \texttt{.stl} format from the publicly
-accessible \texttt{SketchUp}\cite{sketchup} 3D Warehouse.
+We created a library of 13 tree models in \texttt{.stl} format sourced from
+the publicly accessible \texttt{SketchUp}\cite{sketchup} 3D Warehouse.
 
 Here is an example of a Ginkgo model that we acquired from \texttt{SketchUp}:
 
@@ -502,11 +461,39 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
     \end{minipage}
 \end{figure}
 
-To achieve different levels of detail (LOD) for performance, flexibility,
-and scalability, we will employ \texttt{CGAL 3D Alpha Wrapping}\cite{cgal_alpha_wrapper}.
+To ensure the program can handle trees not included in our library, we
+categorized an additional 28 genera by matching them to the most similar
+models among the 13 trees we have.
 
-According to the manual it ensures watertight triangulation consistent with the
-\texttt{Finite Element Method} (FEM) for accurate simulations.
+\begin{lstlisting}[language=json]
+{
+    "known_genus": ["Abies",
+                    "Acer",
+                    "Aesculus",
+                     ... ],
+    "cedrus_like": [ "Chaemacyparis",
+                    "Cupressus",
+                     ... ],
+    "acer_like": ["Fadus",
+                "Metasequoia",
+                "Sequoiadendron",
+                ... ],
+    "liquidambar_like": ["Liriodendron",
+                        "Pyrus",
+                        "Alnus",
+                        ... ],
+    "quercus_like": ["Corylus",
+                    "Carya",
+                    "Fagus",
+                    ... ]
+}
+\end{lstlisting}
+
+\begin{itemize}
+    \item \texttt{known\_genus} is a list of the genus for which we have a mesh model.
+    \item \texttt{cedrus\_like} is a list of the genus for which the cedrus mesh model will be used.
+    \item etc.
+\end{itemize}
 
 \newpage
 
