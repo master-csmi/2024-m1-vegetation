@@ -1,4 +1,4 @@
-\documentclass[12pt]{beamer}
+\documentclass[10pt]{beamer}
 \usepackage{graphicx}
 \usepackage{adjustbox}
 \usepackage{hyperref}
@@ -415,8 +415,9 @@ Sometimes, multiple \textbf{tags} are missing:
 \end{frame}
 
 \begin{frame}{Tree modeling: Alpha Wrapping}
-  To provide different LODs we will wrap then using the CGAL 3D 
-  Alpha Wrapping
+  To provide different LODs we will wrap then using the \texttt{CGAL 3D 
+  Alpha Wrapping}
+  \vfill
   \begin{figure}[H]
     \centering
         \centering
@@ -455,30 +456,18 @@ Sometimes, multiple \textbf{tags} are missing:
   \end{figure}
 \end{frame}
 
-
-
 \begin{frame}{Alpha Wrapping: Problem statement}
-  \begin{figure}[H]
-    \centering
-    \begin{minipage}{0.45\textwidth}
-      \textcolor{red}{\textbf{Input:}}
-       \begin{itemize}
-        \item  3D model with possible defects
-        \end{itemize}
-       \textcolor{red}{\textbf{Output:} }
-        \begin{itemize}
-          \item Water-tight mesh
-          \item No self-intersections
-          \item Strictly enclosing the input
-          \item Well shaped triangles
-       \end{itemize}
-    \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=1.2\textwidth]{images/alpha-wrapping_motor.jpg}
-        \captionsetup{font={scriptsize}}
-    \end{minipage}
-  \end{figure}
+  \textcolor{red}{\textbf{Input:}}
+    \begin{itemize}
+    \item  3D model with possible defects
+    \end{itemize}
+    \textcolor{red}{\textbf{Output:} }
+    \begin{itemize}
+      \item \textbf{Water-tight} mesh
+      \item \textbf{No self-intersections}
+      \item \textbf{Strictly enclosing the input}
+      \item \textbf{Well shaped triangles}
+    \end{itemize}
 \end{frame}
 
 
