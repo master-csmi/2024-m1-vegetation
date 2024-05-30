@@ -4,6 +4,7 @@
 #include "../include/query.hpp"
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
+#include "../include/randomnumber.hpp"
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/IO/Color.h>
 #include <CGAL/IO/STL.h>
@@ -116,11 +117,8 @@ int main(int argc, char **argv) {
 
         if (tree.height() == 0) {
             ++nNoHeight;
-            double h =
-                heigth_range.first +
-                static_cast<double>(rand()) /
-                    (static_cast<double>(
-                        RAND_MAX / (heigth_range.second - heigth_range.first)));
+            RandomNumber<double> rnd(heigth_range.first, heigth_range.second);
+            double h = rnd();
 
             tree.setHeight(h);
         }
