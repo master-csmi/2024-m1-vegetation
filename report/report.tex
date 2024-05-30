@@ -1120,13 +1120,21 @@ execution time to a linear relationship.
 
 \section{Prospects}
 
+\subsection{Account for seasonal changes and leaf fall}
+One of the developments of our project is to account for seasonal changes and
+leaf fall. Depending on the season, solar rays will penetrate foliage to
+varying degrees. To simulate this, we can group leaves into clusters of 5-10
+and label them, allowing us to add or remove these clusters in the
+configuration file based on the season. To simplify, we can categorize the
+seasons into two groups: more leaves for spring and summer, and fewer leaves
+for fall and winter.
+
 \subsection{Shading calculations}
-Using the \texttt{Feel++}\cite{feel++} library, which specializes in solving Partial
-Differential Equations (PDEs) essential for simulating light and shade on 3D
-objects, ray tracing and shading effects on buildings will be
-simulated to account for the presence of trees and their impact on urban
-microclimates. Execution time considerations will be addressed to optimize
-computational efficiency.
+Using the \texttt{Feel++}\cite{feel++} library, which specializes in solving
+Partial Differential Equations (PDEs) essential for simulating light and shade
+on 3D objects, we will simulate ray tracing and shading effects on buildings.
+This will help us account for the presence of trees and their impact on urban
+microclimates.
 
 \newpage
 
