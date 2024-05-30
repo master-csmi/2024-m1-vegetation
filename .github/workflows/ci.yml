@@ -26,8 +26,8 @@ jobs:
         run: |
           git clone --branch master https://github.com/CGAL/cgal.git
           cd cgal
-          mkdir cgal.install
-          cd cgal.install
+          mkdir cgal.build
+          cd cgal.build
           cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/cgal.install ..
           make install
 
