@@ -5,6 +5,7 @@ on: [pull_request, push]
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 500
 
     steps:
       - uses: actions/checkout@v4
