@@ -1,10 +1,11 @@
 name: C/C++ CI
 
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 500
 
     steps:
       - uses: actions/checkout@v4
