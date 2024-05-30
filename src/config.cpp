@@ -43,6 +43,8 @@ std::ostream &operator<<(std::ostream &os, const Config &config) {
     os << std::setprecision(10) << "Bounding box: " << config.bbox()
        << std::endl;
     os << "LOD: " << config.LOD() << std::endl;
+    os << "Merging buildings and trees: " << std::boolalpha << config.merge()
+       << std::endl;
     return os;
 }
 
