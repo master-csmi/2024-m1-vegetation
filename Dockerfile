@@ -18,18 +18,11 @@ RUN apt-get update && apt-get install -y \
 
 # Clone CGAL master branch and install it
 RUN git clone https://github.com/CGAL/cgal.git /workspace/cgal \
-	&& mkdir cgal.install \
-	&& cd cgal.install \
+	&& mkdir cgal.build \
+	&& cd cgal.build \
 	&& cmake -DCMAKE_INSTALL_PREFIX=/workspace/cgal/cgal.install ../cgal \
 	&& make install
 
-# Clone the project
-RUN git clone https://github.com/master-csmi/2024-m1-vegetation.git /workspace/2024-m1-vegetation
-
-# Build the project
-RUN cd /workspace/2024-m1-vegetation \
-	&& mkdir build \
-	&& cd build \
-	&& cmake -DCMAKE_PREFIX_PATH=/workspace/cgal/cgal.install .. \
-	&& make
+# Copy the project files into the container
+COPY . /workspace/2024-m1-vegetation
 

@@ -1,4 +1,8 @@
 {
-  "name": "Vegetation",
-  "image": "2024m1vegetation:latest"
+  "name": "2024-m1-vegetation:latest",
+  "context": "..",
+  "dockerFile": "../Dockerfile",
+  "workspaceFolder": "/workspaces/2024-m1-vegetation",
+  "postCreateCommand": "mkdir build && cd build && cmake -DCMAKE_PREFIX_PATH=/workspace/cgal/cgal.install ..  && make && ctest"
 }
+
