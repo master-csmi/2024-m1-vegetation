@@ -4,6 +4,7 @@
 #include "../include/query.hpp"
 #include "../include/tree.hpp"
 // #include <cpr/cpr.h>
+#include "../include/randomnumber.hpp"
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/IO/Color.h>
 #include <CGAL/IO/STL.h>
@@ -88,12 +89,15 @@ int main(int argc, char **argv) {
     std::vector<boost::container::small_vector<std::size_t, 3>> input_triangles;
     std::map<Mesh::Vertex_index, std::size_t> vertex_index_map;
     CGAL::Real_timer t;
+    bool merge = config.merge();
 
-    // Read building mesh as a polygon soup
-    if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
-                                     input_triangles)) {
-        std::cerr << "Cannot read " << building_mesh_str << "\n";
-        exit(1);
+    if (merge) {
+        // Read building mesh as a polygon soup
+        if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
+                                         input_triangles)) {
+            std::cerr << "Cannot read " << building_mesh_str << "\n";
+            exit(1);
+        }
     }
 
     std::cout << "Computing the union of meshes ..." << std::endl;
@@ -113,11 +117,8 @@ int main(int argc, char **argv) {
 
         if (tree.height() == 0) {
             ++nNoHeight;
-            double h =
-                heigth_range.first +
-                static_cast<double>(rand()) /
-                    (static_cast<double>(
-                        RAND_MAX / (heigth_range.second - heigth_range.first)));
+            RandomNumber<double> rnd(heigth_range.first, heigth_range.second);
+            double h = rnd();
 
             tree.setHeight(h);
         }

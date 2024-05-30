@@ -8,7 +8,13 @@ jobs:
     timeout-minutes: 500
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Display disk space and memory
+        run: |
+          df -h
+          free -m
 
       - name: Install dependencies
         run: |
@@ -42,3 +48,6 @@ jobs:
         run: |
           cd build
           cmake --build . -- -j2  # Adjust the number of parallel jobs
+
+      - name: Display build directory contents
+        run: ls -la build
