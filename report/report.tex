@@ -1110,11 +1110,48 @@ greater precision, we would need more data.
 We can see that making the union using triangle soup instead drastically reduces the
 execution time to a linear relationship.
 
-
-
 \newpage
 
 \section{Conclusion}
+
+The \texttt{ExaMA WP1 - Vegetation} project represents a significant stride towards 
+enhancing urban modeling through the integration of vegetation, specifically 
+trees, into 3D models of urban environments. By focusing on the \texttt{Urban Building 
+Model} (UBM) use case within the \texttt{HiDALGO2} initiative, we aimed to improve the 
+accuracy and realism of thermal and energy simulations, contributing to better 
+building energy efficiency and indoor air quality.
+
+Through our efforts, we successfully extracted tree data from
+\texttt{OpenStreetMap} and utilized the \texttt{CGAL} library to generate 3D
+tree models. We integrated these models into existing terrain meshes,
+specifically focusing on the Strasbourg city center. Our methodology, involving
+data acquisition via the \texttt{Overpass API}, tree model generation using
+\texttt{Alpha Wrapping}, and precise coordinate conversion through 
+\texttt{Mercator projection}, ensured a robust and scalable approach to urban
+vegetation modeling.
+
+The use of different Levels of Detail (LOD) allowed for flexible and efficient 
+modeling, catering to various computational and visual requirements. Our 
+benchmarking on the HPC cluster \texttt{Gaya} confirmed the scalability and performance 
+of our approach, highlighting the quadratic relationship between execution time 
+and the number of trees when using union of meshes and a linear relationship 
+when using triangle soup.
+
+Additionally, we addressed the challenge of missing data by implementing a 
+system to assign default values for tree height and genus, ensuring comprehensive 
+coverage even in the absence of complete metadata. Our categorization of tree 
+genera and the creation of a library of tree models further enhanced the 
+versatility and applicability of our solution.
+
+Overall, the \texttt{ExaMA WP1 - Vegetation} project has laid a strong foundation for 
+future urban modeling endeavors, emphasizing the importance of integrating 
+natural elements into urban simulations. The project's outcomes not only 
+contribute to the specific goals of the \texttt{HiDALGO2} initiative but also provide 
+valuable insights and tools for broader applications in urban planning, 
+environmental science, and computational geometry. As we move forward, the 
+incorporation of seasonal changes, leaf fall, and advanced shading calculations 
+will further refine and expand the capabilities of our modeling approach, paving 
+the way for more sustainable and livable urban environments.
 
 \newpage
 
