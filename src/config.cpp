@@ -26,7 +26,7 @@ std::vector<double> Config::bbox_coords() const {
     std::string delimiter = ",";
     size_t pos = 0;
     std::string token;
-    std::string bbox = M_bbox; // Create a local copy of M_bbox
+    std::string bbox = M_bbox; // Create a local copy of M_bbox.
     while ((pos = bbox.find(delimiter)) != std::string::npos) {
         token = bbox.substr(0, pos);
         coords.push_back(std::stod(token));
