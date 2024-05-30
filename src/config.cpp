@@ -16,6 +16,7 @@ Config::Config(std::string const &filename) {
         M_default_height = data["default_height_range"];
         M_origin = data["origin"];
         M_input_building_mesh = data["input_building_mesh"];
+        M_merge = data["merge_buildings_trees"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
     }

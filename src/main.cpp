@@ -88,12 +88,15 @@ int main(int argc, char **argv) {
     std::vector<boost::container::small_vector<std::size_t, 3>> input_triangles;
     std::map<Mesh::Vertex_index, std::size_t> vertex_index_map;
     CGAL::Real_timer t;
+    bool merge = config.merge();
 
-    // Read building mesh as a polygon soup
-    if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
-                                     input_triangles)) {
-        std::cerr << "Cannot read " << building_mesh_str << "\n";
-        exit(1);
+    if (merge) {
+        // Read building mesh as a polygon soup
+        if (!CGAL::IO::read_polygon_soup(building_mesh_str, input_points,
+                                         input_triangles)) {
+            std::cerr << "Cannot read " << building_mesh_str << "\n";
+            exit(1);
+        }
     }
 
     std::cout << "Computing the union of meshes ..." << std::endl;
