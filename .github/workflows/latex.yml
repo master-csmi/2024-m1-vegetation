@@ -6,6 +6,13 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+
+      - name: List report directory contents
+        run: ls -R report
+
+      - name: List report/images directory contents
+        run: ls -R report/images
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
