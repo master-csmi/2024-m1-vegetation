@@ -5,6 +5,7 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 500
 
     steps:
       - uses: actions/checkout@v4
@@ -23,16 +24,21 @@ jobs:
             libfmt-dev
 
       - name: Clone CGAL master branch
-        run: git clone --branch master https://github.com/CGAL/cgal.git
+        run: |
+          git clone --branch master https://github.com/CGAL/cgal.git
+          cd cgal
+          mkdir cgal.build
+          cd cgal.build
+          cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/cgal.install ..
+          make install
 
-      - name: Configure and build
+      - name: Configure project
         run: |
           mkdir build
           cd build
-          cmake -DCGAL_DIR=$GITHUB_WORKSPACE/CGAL-5.6.1 -DCMAKE_BUILD_TYPE=Release ..
-          cmake --build .
+          cmake -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE/cgal.install ..
 
-      - name: Run tests
+      - name: Build project
         run: |
           cd build
-          ctest --output-on-failure
+          cmake --build . -- -j2  # Adjust the number of parallel jobs

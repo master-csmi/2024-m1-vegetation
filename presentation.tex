@@ -1,0 +1,830 @@
+\documentclass[10pt]{beamer}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{multimedia}
+
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{RGB}{240, 248, 255}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\footnotesize\color{black},
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\lstset{frame=single, showstringspaces=false, columns=fixed, basicstyle={\ttfamily}, commentstyle={\it}, numbers=left, tabsize=4}
+
+\definecolor{codebackground}{RGB}{240, 248, 255}
+\definecolor{codecomment}{RGB}{106,153,85}
+\definecolor{codekeyword}{RGB}{30,30,255}
+\definecolor{codestring}{RGB}{163,21,21}
+\definecolor{codenumber}{RGB}{100,100,100}
+
+\lstdefinestyle{modernstyle}{
+    backgroundcolor=\color{codebackground},
+    commentstyle=\color{codecomment},
+    keywordstyle=\color{codekeyword},
+    numberstyle=\tiny\color{codenumber},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\footnotesize\color{black},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+
+\lstset{style=modernstyle}
+
+\usetheme{Copenhagen}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+\title[exMA WP1 Vegetation]{
+  \includegraphics[width=0.8\textwidth]{images/logo_ufr.png}
+  ExaMA WP1 - Vegetation}
+\author[Carpi Lapi - Senger]{Giulio CARPI LAPI, Pierre-Antoine SENGER}
+
+\begin{document}
+
+\begin{frame}{Introduction}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Introduction}
+  \Large
+  \begin{itemize}
+    \Large
+    \item Part of the \textbf{HiDALGO2} project
+    \item Specifically \textbf{Urban Building Model} use case
+    \item Project conducted within \textbf{Cemosis} - \textbf{IRMA}
+    \item Supervised by \textbf{Pierre Alliez} and \textbf{Vicent Chabannes}
+  \end{itemize}
+  \vfill % This adds vertical space to push the images to the bottom
+  \centering
+  \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/hidalgo2.png}
+  \end{minipage}
+  \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/logo-cemosis.png}
+  \end{minipage}
+  \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/logo_irma.png}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{Context}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/TreeShade.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Tree providing shade to a building\cite{img:TreeShade}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Context}
+  \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{images/heat_street.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Thermal image of a street depicting heat distribution\cite{img:street_thermography}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Context}
+  \Large
+  \textbf{Main Goals:}
+  \begin{itemize}
+    \item Integrate \textbf{trees} into \textbf{3D geometric models} of \textbf{urban environments}
+    \item Improve the \textbf{accuracy} of \textbf{thermal} and \textbf{energy simulations}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Context}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/strasbourg-mesh-1.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Strasbourg 3D model (1)}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/strasbourg-mesh-2.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Strasbourg 3D model (2)}
+    \end{minipage}
+  \end{figure}
+\end{frame}  
+
+\begin{frame}{Context}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/manhattan-mesh-1.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Manhattan 3D model (1)}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/manhattan-mesh-2.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Manhattan 3D model (2)}
+    \end{minipage}
+  \end{figure}
+\end{frame}  
+
+\begin{frame}{Objectives}
+  \Large
+  \begin{itemize}
+      \item \textbf{\textcolor{red}{Extracting}} \textbf{tree data} from \textbf{OpenStreetMap}
+      \item \textbf{\textcolor{red}{Generating}} \textbf{3D tree models} using \textbf{CGAL}
+      \item \textbf{\textcolor{red}{Integrating}} \textbf{tree models} in the \textbf{terrain mesh}
+      \item \textbf{\textcolor{red}{Optimizing}} \textbf{computational efficiency}
+      \item \textbf{\textcolor{red}{Delivering}} versions \textbf{V0}, \textbf{V1}, and \textbf{V2}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: Overpass API}
+  \Large
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{images/OvAPI_logo.png}
+  \end{figure}
+  \begin{center}
+  \Large \textbf{Overpass API} is a read-only API to query data from \textbf{OpenStreetMap}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: OpenStreetMap}
+  \Large
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/osm_logo.png}
+  \end{figure}
+  \begin{center}
+    \Large Collaborative free \textbf{geographic database}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: Overpass turbo}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{images/overpass-turbo.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Query in Overpass turbo interface}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: Overpass turbo}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/ovt-node.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: cURL}
+  \Large
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/Curl-logo.svg.png}
+  \end{figure}
+  \begin{center}
+    \Large \textbf{URL} transfer library
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Data acquisition: The query}
+  \begin{lstlisting}[language=C++]
+#include <curl/curl.h>
+
+curl_easy_setopt(curl, CURLOPT_URL,
+                "http://overpass-api.de/api/interpreter");
+
+// Set the Overpass query with the bounding box
+std::string query =
+"[out:json]; (node(" + bbox + ")[\"natural\"=\"tree\"];); out;";
+
+std::cout << "Query: " << query << std::endl;
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Data acquisition: .json output}
+\begin{lstlisting}[language=json]
+{
+  "type": "node",
+  "id": 10162018740,
+  "lat": 48.5850910,
+  "lon": 7.7502624,
+  "tags": {
+    "circumference": "1.47655",
+    "diameter_crown": "5",
+    "genus": "Platanus",
+    "height": "6",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "ref": "16401",
+    "source": "data.strasbourg.eu - patrimoine_arbore",
+    "source:date": "2022-01-02",
+    "species": "Platanus acerifolia x",
+    "species:wikidata": "Q24853030"
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Base tree model}
+\begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/ginkgo_sketchup.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Mesh of a Ginkgo tree on Sketchup 3D Warehouse}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Base tree model}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/abies.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Abies}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/acer.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Acer}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/aesculus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Aesculus}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/catalpa.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Catalpa}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cedrus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Cedrus}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/liquidanbar.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Liquidanbar}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/platanus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Platanus}
+    \end{minipage}\hfill
+    \begin{minipage}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/quercus.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Quercus}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Tree library}
+  \begin{lstlisting}[language=json]
+  {
+      "known_genus": ["Abies",
+                      "Acer",
+                      "Aesculus",
+                          ... ],
+      "cedrus_like": [ "Chaemacyparis",
+                      "Cupressus",
+                          ... ],
+      "acer_like": ["Fadus",
+                  "Metasequoia",
+                  "Sequoiadendron",
+                  ... ],
+      "liquidambar_like": ["Liriodendron",
+                          "Pyrus",
+                          "Alnus",
+                          ... ],
+      "quercus_like": ["Corylus",
+                      "Carya",
+                      "Fagus",
+                      ... ]
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Sofware and libraries: CGAL}
+  \Large
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/cgal_logo.png}
+  \end{figure}
+  \begin{center}
+    \Large Open source software library for \textbf{computational geometry algorithms}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Reminder: Delaunay triangulation}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/Delaunay_circumcircles_vectorial.svg.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Delaunay triangulation.
+    The circumcircle of each triangle contains no other point\cite{delaunay-wiki}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Reminder: Delaunay and Voronoi}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/Delaunay_circumcircles_centers.svg.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Delaunay triangulation with the centers of the circumcircles\cite{delaunay-wiki}}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/Delaunay_Voronoi.svg.png}
+        \captionsetup{font={scriptsize}}
+        \caption{The dual of the Delaunay triangulation, the Voronoi diagram\cite{delaunay-wiki}}
+    \end{minipage}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: Alpha Wrapping}
+  \begin{figure}[H]
+    \centering
+        \centering
+        \includegraphics[width=\textwidth]{images/aw3_bike_lod.jpg}
+        \captionsetup{font={scriptsize}}
+        \caption{Different LOD of the Alpha Wrapping of a bike\cite{cgal_alpha_wrapper}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: Alpha Wrapping}
+  \Large
+  \textcolor{red}{\textbf{Input:}}
+    \begin{itemize}
+    \item  3D model with possible defects
+    \end{itemize}
+    \textcolor{red}{\textbf{Output:} }
+    \begin{itemize}
+      \item Water-tight mesh
+      \item No self-intersections
+      \item Strictly enclosing the input
+      \item Well shaped triangles
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Tree modeling: Alpha Wrapping}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/alpha-wrapping_ball.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Alpha Wrapping in 2D with Offset and different Alpha parameters}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Tree modeling: Alpha Wrapping}
+  \Large
+  \href{https://youtu.be/xIIDolWCrgU}{video link}
+  \begin{center}
+    \movie[width=1\textwidth,height=0.8\textheight,poster,showcontrols]{}
+    {images/alpha-wrapping-2d.mp4}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Tree modeling: wrapping base tree}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod0.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod0}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod1}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod2}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/gingko_lod3.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Ginkgo lod3}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: Mercator's projection}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/mercator.jpg}
+    \captionsetup{font={scriptsize}}
+    \caption{Mercator's projection\cite{img:mercator}}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Tree modeling: Mercator's projection}
+  \Large
+  A(latitude, longitude) = A($\phi$, $\lambda$),\\
+  \begin{equation}
+    \text{projection} \Longrightarrow \quad
+    \left\{
+    \begin{array}{l}
+        x =  \lambda - \lambda_{0} \\
+        y =  \ln(\tan(\frac{\pi}{4} + \frac{\phi}{2}))
+    \end{array}
+    \right.
+  \end{equation}
+  \vfill
+  ,where $\lambda_{0}$ is the center of the map
+\end{frame}
+
+
+\begin{frame}{Tree modeling: Mercator's projection}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/WGS84_mean_Earth_radius.svg.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Earth as an ellipsoid\cite{mercator-proj}}
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/WGS_84_reference_frame.png}
+        \captionsetup{font={scriptsize}}
+        \caption{WGS 84 reference frame\cite{mercator-proj}}
+    \end{minipage}
+\end{figure}
+
+\textit{WGS84toCartesian.hpp} $\Longrightarrow$ \textbf{GPS} to \textbf{Cartesian}
+\end{frame}
+
+\begin{frame}{Tree modeling: affine transformation}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/ginkgo-bbox.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Ginkgo tree bounding box}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: affine transformation}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/republic_lod3.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Republic square with LOD 3 trees.}
+  \end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/republic_overpassturbo.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Republic square trees from Overpass turbo\cite{overpass-turbo}}
+  \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: affine transformation}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/republic_lod3_side.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Side view of Republic square with LOD 3 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: model integration}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model with LOD 0 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tree modeling: model integration}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/strasbourg_mesh_enhanced2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Strasbourg 3D model with LOD 0 trees}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Benchmark}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox1.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 1: 153.7 m², 12 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox2.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 2: 384.0 m², 71 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox3.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 3: 626.1 m², 254 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bbox4.png}
+    \captionsetup{font={scriptsize}}
+    \caption{Bounding Box 4: 808.4 m², 513 trees}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: relation LOD-number of faces}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/bench_ntree_nfaces.png}
+    \captionsetup{font={scriptsize}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: execution time (Part 1)}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/bench_time_ntree_quad.png}
+    \captionsetup{font={scriptsize}}
+    \caption{\texttt{corefine\_and\_compute\_union}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Benchmark: execution time (Part 2)}
+  \Large
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/bench_time_ntree_linear.png}
+    \captionsetup{font={scriptsize}}
+    \caption{\texttt{autorefine\_triangle\_soup}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects}
+  \Large
+  \begin{itemize}
+    \item Account for \textbf{seasonal changes} and \textbf{leaf fall}
+    \item \textbf{Solar masks} and \textbf{shading calculations}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Prospects: Leaf fall}
+  \Large
+  \begin{itemize}
+    \item Seasonal leaf changes
+    \item \textbf{More} leaves in \textbf{spring}/\textbf{summer} and \textbf{fewer} in \textbf{fall}/\textbf{winter}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \Large
+  \begin{itemize}
+    \item Ray tracing and shading simulations with \textbf{Feel++}
+    \item \textbf{Impact} of \textbf{trees} in urban \textbf{microclimates}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-1.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (1)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-2.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (2)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-3.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (3)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-4.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (4)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-5.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (5)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-6.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (6)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-7.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (7)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-8.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (8)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-9.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (9)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-10.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (10)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-11.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (11)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-12.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (12)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Prospects: Shading calculations}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.65\textwidth]{images/shading-13.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Shading calculations in urban environments (13)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{The end}
+  \Large
+  \centering
+  \textbf{Thank you for your attention!}
+\end{frame}
+
+
+
+\nocite{*}
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

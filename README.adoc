@@ -8,7 +8,7 @@ The goal of this project is to develop a tool that integrates vegetation (trees)
 
 === Required Packages
 
-To build the project, you need the following packages:
+To build the project, you either need the following packages or you can use the Docker container provided in the repository:
 
 - https://www.cgal.org/[CGAL] (master), https://cmake.org/[CMake] (>= 3.15), https://git-scm.com/[Git], https://www.boost.org/[Boost], https://fmt.dev/[fmt], https://www.mpfr.org/[MPFR], https://curl.se/[libcurl]
 
@@ -20,45 +20,49 @@ sudo apt-get install -y build-essential cmake git libmpfr-dev libboost-dev libcu
 ```
 
 === Install CGAL
-CGAL is a header-only library, so you don't need to build it. You just need to install the package.
+CGAL is a header-only library, so you don't need to build it. You just need to install the package. For our project, we need the master branch of CGAL.
 ```bash
-git clone https://github.com/CGAL/cgal.git
+git clone --branch master https://github.com/CGAL/cgal.git
+cd cgal
+mkdir cgal.install
+cd cgal.install
+cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install /path_to/cgal
+make install
 ```
 
 === Alternatively you can use a Docker container:
 ```bash
 docker build -t 2024m1vegetation:latest .
-docker run -it 2024m1vegetation:latest
+docker run -it 2024m1vegetation:latest`
 ```
 
-Note: on VsCode you can use the Remote - Containers extension to reopen the project in a container.
+You might want to remove the `build` directory before running (and closing) the container to avoid conflicts.
+
+On VsCode you can use the Remote - Containers extension to reopen the project in a container.
 
 === Build the Project
-
 Configure and build the project using CMake:
 ```bash
 mkdir build
 cd build
-
-# Build the project
-cmake -DCGAL_DIR=$HOME/CGAL-5.6.1 -DCMAKE_BUILD_TYPE=Release ..
-
-# Compile the project
+cmake -DCMAKE_PREFIX_PATH=/workspace/cgal/cgal.install ..
 make
 
 # Run the tests
 ctest
 ```
 
-=== Usage 
+=== Usage
 
-Use the configuration file `config.json` to specify:  
+Use the configuration file `config.json` to specify:
 
 - the bounding box `bbox` of the area of interest ("bottom latitude, bottom longitude, top latitude, top longitude")
 
 - the `origin` used in the conversion from latitude and longitude to Cartesian coordinates
 
 - the level of detail `LOD` (0, 1, 2, 3) of the meshes
+
+- the `altitude` of the ground 
 
 - the default height of the trees `default_height_range` (in meters) when the height is not available in the OpenStreetMap data
 
@@ -68,7 +72,7 @@ Use the configuration file `config.json` to specify:
 
 - the base name of the output file `output_file` saved in the `/output` directory
 
-Use the `trees.json` file to specify the genus and height of the trees to be used in the simulation.
+Use the `genus.json` file to specify the genus and height of the trees to be used in the simulation.
 
 - `known_genus` is a list of genus for which we have a base mesh
 - `cedrus_like` is a list of the genus for which the cedrus mesh model will be used
@@ -84,7 +88,7 @@ and move the result to the `tree_ref` directory. Then add the genus to the `know
 
 Finnaly run the program:
 ```bash
-./build/run
+./build/src/run
 ```
 
 The output mesh and some metrics will be saved in the `/output` directory (which is automatically created if needed).

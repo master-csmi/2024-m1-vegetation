@@ -11,6 +11,9 @@
 *.log
 *.out
 *.toc
+*.vrb
+.synctex
+*.synctex.gz
 
 # Project files
 build/
@@ -24,3 +27,5 @@ temp/
 
 # macOS
 .DS_Store
+
+query_result.json

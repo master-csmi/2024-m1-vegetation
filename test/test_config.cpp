@@ -13,6 +13,7 @@ TEST_CASE("Config class", "[config]") {
 
     REQUIRE(config.origin() == "48.583055227464364, 7.748664426560083");
     REQUIRE(config.LOD() == 0);
+    REQUIRE(config.altitude() == 0);
     REQUIRE(config.default_height() == "3, 40");
     REQUIRE(config.default_genus() == "Platanus");
     REQUIRE(config.input_building_mesh() == "mesh_lod1.stl");
