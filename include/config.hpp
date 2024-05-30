@@ -18,6 +18,7 @@ class Config {
     std::string M_origin;              ///< Origin of the coordinates
     std::string M_input_building_mesh; ///< Path to the input building mesh
     double M_altitude;                 ///< Altitude of the area of interest
+    bool M_merge;                      ///< Merge buildings and trees
 
   public:
     Config(std::string const &filename);
@@ -34,6 +35,7 @@ class Config {
     std::string origin() const { return M_origin; }
     std::string input_building_mesh() const { return M_input_building_mesh; }
     double altitude() const { return M_altitude; }
+    bool merge() const { return M_merge; }
 };
 
 std::ostream &operator<<(std::ostream &os, const Config &config);

@@ -70,6 +70,8 @@ Use the configuration file `config.json` to specify:
 
 - the `input_building_mesh` file for making the union of the building with the trees
 
+- if we merge the trees with the buildings or not with `merge_builtings_trees`
+
 - the base name of the output file `output_file` saved in the `/output` directory
 
 Use the `genus.json` file to specify the genus and height of the trees to be used in the simulation.

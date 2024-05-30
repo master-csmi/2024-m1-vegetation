@@ -16,6 +16,7 @@ Config::Config(std::string const &filename) {
         M_default_height = data["default_height_range"];
         M_origin = data["origin"];
         M_input_building_mesh = data["input_building_mesh"];
+        M_merge = data["merge_buildings_trees"];
     } else {
         std::cerr << "Error opening file: " << filename << std::endl;
     }
@@ -42,6 +43,8 @@ std::ostream &operator<<(std::ostream &os, const Config &config) {
     os << std::setprecision(10) << "Bounding box: " << config.bbox()
        << std::endl;
     os << "LOD: " << config.LOD() << std::endl;
+    os << "Merging buildings and trees: " << std::boolalpha << config.merge()
+       << std::endl;
     return os;
 }
 
