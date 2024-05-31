@@ -1,5 +1,5 @@
 name: Build LaTeX document
-on: [pull_request]
+on: [pull_request, push]
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -10,3 +10,8 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: report.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report.pdf
