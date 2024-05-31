@@ -6,10 +6,22 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+        with:
+          lfs: true # Enable Git LFS during checkout
+
+      - name: Install Git LFS
+        run: |
+          git lfs install
+
+      - name: Check LFS-tracked files
+        run: |
+          ls -l images  # Verify if LFS-tracked files are downloaded
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: report.tex
+
       - name: Upload PDF
         uses: actions/upload-artifact@v4
         with:

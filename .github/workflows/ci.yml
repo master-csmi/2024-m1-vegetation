@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+        with:
+          lfs: true # Enable Git LFS during checkout
+
+      - name: Install Git LFS
+        run: |
+          git lfs install
 
       - name: Display disk space and memory
         run: |
