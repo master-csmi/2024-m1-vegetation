@@ -26,20 +26,21 @@ sudo apt-get install -y build-essential cmake git libmpfr-dev libboost-dev libcu
 ```
 
 === Install CGAL
-CGAL is a header-only library, so you don't need to build it. You just need to install the package. For our project, we need the master branch of CGAL.
+For our project, we need the master branch of CGAL.
 ```bash
 git clone --branch master https://github.com/CGAL/cgal.git
 cd cgal
-mkdir cgal.install
-cd cgal.install
+mkdir cgal.build
+cd cgal.build
 cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install /path_to/cgal
 make install
 ```
 
 === Alternatively you can use the Docker container provided in the repository:
+This container can be used for developpement, when building the image the project is copied in the container without building the project.
 ```bash
 docker build -t 2024m1vegetation:latest .
-docker run -it 2024m1vegetation:latest`
+docker run -it 2024m1vegetation:latest
 ```
 
 You might want to remove the `build` directory before running (and closing) the container to avoid conflicts.
@@ -51,6 +52,7 @@ Configure and build the project using CMake:
 ```bash
 mkdir build
 cd build
+# path used for the Docker container
 cmake -DCMAKE_PREFIX_PATH=/workspace/cgal/cgal.install ..
 make
 
