@@ -3,7 +3,7 @@
   "origin": "48.583055227464364, 7.748664426560083",
   "altitude": 0,
   "LOD": 0,
-  "default_height_range": "3, 6",
+  "default_height_range": "3, 10",
   "default_genus": "Platanus",
   "input_building_mesh": "mesh_lod1.stl",
   "merge_buildings_trees": true,

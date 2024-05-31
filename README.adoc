@@ -32,7 +32,7 @@ git clone --branch master https://github.com/CGAL/cgal.git
 cd cgal
 mkdir cgal.build
 cd cgal.build
-cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install /path_to/cgal
+cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install ..
 make install
 ```
 
