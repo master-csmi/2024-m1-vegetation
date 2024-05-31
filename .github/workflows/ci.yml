@@ -11,11 +11,14 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
         with:
-          lfs: true # Enable Git LFS during checkout
+          lfs: true
 
       - name: Install Git LFS
         run: |
+          sudo apt-get update
+          sudo apt-get install -y git-lfs
           git lfs install
+          git lfs pull
 
       - name: Display disk space and memory
         run: |
