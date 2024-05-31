@@ -166,9 +166,18 @@ Strasbourg city center:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{images/stras_mesh.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model visualized in ParaView-5.12.0\cite{paraview}}
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/strasbourg-mesh-1.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Strasbourg 3D model (1)}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/strasbourg-mesh-2.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Strasbourg 3D model (2)}
+    \end{minipage}
 \end{figure}
 
 However, the software is designed to be easily adaptable to any area.
@@ -176,9 +185,18 @@ Here's an example of a 3D model of Manhattan, NYC:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{images/manhattan-mesh-1.png}
-    \captionsetup{font={scriptsize}}
-    \caption{Manhattan 3D model}
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/manhattan-mesh-1.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Manhattan 3D model (1)}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/manhattan-mesh-2.png}
+      \captionsetup{font={scriptsize}}
+      \caption{Manhattan 3D model (2)}
+    \end{minipage}
 \end{figure}
 
 \subsection{Main objectives}
@@ -364,7 +382,7 @@ Here is an example of the query result for one tree:
         "species": "Platanus acerifolia x",
         "species:wikidata": "Q24853030"
     }
-    }
+}
 \end{lstlisting}
 
 Sometimes, multiple \texttt{tags} are missing, as shown here:
@@ -385,8 +403,6 @@ We will primarily use the \texttt{position} of the tree (latitude and
 longitude), its \texttt{height}, and the \texttt{genus} (since this data is
 more abundant than the species) to generate the 3D tree models.
 
-\newpage
-
 \subsection{Tree library}
 We created a library of 13 tree models in \texttt{.stl} format sourced from
 the publicly accessible \texttt{SketchUp}\cite{sketchup} 3D Warehouse.
@@ -396,7 +412,7 @@ Here is an example of a Ginkgo model that we acquired from \texttt{SketchUp}:
 \begin{figure}[H]
     \centering
         \centering
-        \includegraphics[width=\textwidth]{images/ginkgo_sketchup.png}
+        \includegraphics[width=0.8\textwidth]{images/ginkgo_sketchup.png}
         \captionsetup{font={scriptsize}}
         \caption{Mesh of a Ginkgo tree on Sketchup 3D Warehouse}
 \end{figure}
@@ -461,6 +477,8 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
     \end{minipage}
 \end{figure}
 
+\newpage
+
 To ensure the program can handle trees not included in our library, we
 categorized an additional 28 genera by matching them to the most similar
 models among the 13 trees we have.
@@ -506,45 +524,48 @@ models among the 13 trees we have.
         \caption{Different LOD of the Alpha Wrapping of a bike}
 \end{figure}
 
-\textbf{Approach}\\
+\subsubsection{Approach}
 To enclose a 3D model within a volume, various methods balance runtime and
 approximation quality. Simple methods, like bounding boxes, have large errors.
 Convex hulls improve quality but remain crude, especially for complex models.
 Alpha shapes, a special case of the Delaunay triangulation, offer piecewise-linear
- approximations but struggle with complex input data.
+approximations but struggle with complex input data.
 
 Inspired by alpha shapes, it uses shrink-wrapping, constructing a 3D Delaunay
 triangulation and iteratively removing eligible boundary tetrahedra. This process
- refines the triangulation, avoiding inner structures and unnecessary
- computations. This method supports flexible input formats (triangle soups,
- polygon soups, point clouds) and allows trading tightness for mesh complexity.
+refines the triangulation, avoiding inner structures and unnecessary
+computations. This method supports flexible input formats (triangle soups,
+polygon soups, point clouds) and allows trading tightness for mesh complexity.
 
-\textbf{Algorithm Initialization}\\
+\subsubsection{Algorithm Initialization}
 The algorithm starts by inserting the vertices of a bounding box into a 3D
 Delaunay triangulation. In CGAL's 3D Delaunay triangulation, boundary facets
 are adjacent to infinite cells tagged as outside, while finite tetrahedra are
 tagged inside.
 
-\textbf{Shrink-wrapping}\\
+\subsubsection{Shrink-wrapping}
 The algorithm traverses from outside to inside cells, using a priority queue of
- Delaunay triangle facets (gates). A gate is alpha-traversable if its circumradius
-  exceeds a user-defined alpha. The priority queue, initialized with convex hull
-   gates, is sorted by decreasing circumradius. Traversal uses dual Voronoi edges.
+Delaunay triangle facets (gates). A gate is alpha-traversable if its circumradius
+exceeds a user-defined alpha. The priority queue, initialized with convex hull
+gates, is sorted by decreasing circumradius. Traversal uses dual Voronoi edges.
 
 When moving from an outside cell \( c_o \) to an inside cell \( c_i \) through
 an alpha-traversable facet \( f \):
 
-1. Check for intersections between \( f \)’s dual Voronoi edge and the offset
-surface. Insert the first intersection point as a Steiner point into the triangulation.
-2. If no intersection but \( c_i \) intersects the input, project \( c_i \)’s
-circumcenter onto the offset surface and insert it as a Steiner point.
+\begin{enumerate}
+    \item Check for intersections between \( f \)'s dual Voronoi edge and
+    the offset surface. Insert the first intersection point as a Steiner point
+    into the triangulation.
+    \item If no intersection but \( c_i \) intersects the input, project
+    \( c_i \)'s circumcenter onto the offset surface and insert it as a Steiner point.
+\end{enumerate}
 
 Newly alpha-traversable gates are added to the queue. If neither criterion is
 met, \( c_i \) is tagged outside, and its gates are pushed to the queue. The
 process terminates when the queue empties, producing a triangle surface mesh from
  the Delaunay triangulation.
 
-The figure below depicts the steps of the algorithm in 2D.
+The figure below depicts the steps of the algorithm in 2D:
 \begin{figure}[H]
     \centering
         \centering
@@ -560,7 +581,7 @@ The figure below depicts the steps of the algorithm in 2D.
         }
 \end{figure}
 
-\textbf{Guarantees} \\
+\subsubsection{Termination and Guarantees}
 The algorithm guarantees termination and produces a 2-manifold triangulated
 surface mesh that encloses the input data. By wrapping from outside to inside
 and refining the triangulation as needed, it ensures no intersecting cells are
@@ -764,9 +785,9 @@ Time to mesh: 155.965 seconds, (2.59942 minutes)
 \subsection{Config class}
 
 This class is designed to store the program's configuration. It will be used to
-store the \texttt{bounding box}, the \texttt{level of details}, the \texttt{output name},
-the \texttt{default genus}, the \texttt{default height}, the \texttt{origin}, the
-\texttt{input building mesh}, and the \texttt{altitude}.
+store the \texttt{bounding box}, the \texttt{level of details}, the
+\texttt{output name}, the \texttt{default genus}, the \texttt{default height},
+the \texttt{origin}, the \texttt{input building mesh}, and the \texttt{altitude}.
 
 \begin{lstlisting}[language=C++]
 class Config {
@@ -958,36 +979,36 @@ Here is an example of the tree mesh union of Place de la République in Strasbou
 using generic trees and LOD1:
 
 \begin{figure}[H]
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/republic_overpassturbo.png}
         \captionsetup{font={scriptsize}}
-        \caption{Top view of Place de la République, on the left the mesh generated from the data,
-        on the right the overpass data}
-\end{figure}
-
-\begin{figure}[H]
+        \caption{Overpass turbo query for Place de la République in Strasbourg}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/republic_lod3.png}
         \captionsetup{font={scriptsize}}
-        \caption{3D view of Place de la République}
+        \caption{Mesh we generated}
+    \end{minipage}
 \end{figure}
 
 The idea is to integrate the tree models into the terrain mesh.
-
 Here is an example of what this integration could look like:
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced1.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model with trees at LOD 0}
+    \caption{3D model with trees at LOD 0, city center of Strasbourg}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced2.png}
     \captionsetup{font={scriptsize}}
-    \caption{Strasbourg 3D model with trees at LOD 0}
+    \caption{3D model with trees at LOD 0, place de la République in Strasbourg}
 \end{figure}
 
 This 2 images are made of 2 distinct meshes, the tree mesh and the building mesh.
@@ -1112,6 +1133,25 @@ execution time to a linear relationship.
 
 \newpage
 
+\section{Prospects}
+
+\subsection{Account for seasonal changes and leaf fall}
+One of the developments of our project is to account for seasonal changes and
+leaf fall. Depending on the season, solar rays will penetrate foliage to
+varying degrees. To simulate this, we can group leaves into clusters of 5-10
+and label them, allowing us to add or remove these clusters in the
+configuration file based on the season. To simplify, we can categorize the
+seasons into two groups: more leaves for spring and summer, and fewer leaves
+for fall and winter.
+
+\subsection{Shading calculations}
+One other development is to simulating light and shade on 3D objects, such as
+buildings, using the \texttt{Feel++}\cite{feel++} library, which specializes in
+solving Partial Differential Equations (PDEs). This could help simulate ray
+tracing and shading effects on buildings.
+
+\newpage
+
 \section{Conclusion}
 
 The \texttt{ExaMA WP1 - Vegetation} project represents a significant stride towards 
@@ -1152,26 +1192,6 @@ environmental science, and computational geometry. As we move forward, the
 incorporation of seasonal changes, leaf fall, and advanced shading calculations 
 will further refine and expand the capabilities of our modeling approach, paving 
 the way for more sustainable and livable urban environments.
-
-\newpage
-
-\section{Prospects}
-
-\subsection{Account for seasonal changes and leaf fall}
-One of the developments of our project is to account for seasonal changes and
-leaf fall. Depending on the season, solar rays will penetrate foliage to
-varying degrees. To simulate this, we can group leaves into clusters of 5-10
-and label them, allowing us to add or remove these clusters in the
-configuration file based on the season. To simplify, we can categorize the
-seasons into two groups: more leaves for spring and summer, and fewer leaves
-for fall and winter.
-
-\subsection{Shading calculations}
-Using the \texttt{Feel++}\cite{feel++} library, which specializes in solving
-Partial Differential Equations (PDEs) essential for simulating light and shade
-on 3D objects, we will simulate ray tracing and shading effects on buildings.
-This will help us account for the presence of trees and their impact on urban
-microclimates.
 
 \newpage
 
