@@ -513,6 +513,53 @@ models among the 13 trees we have.
     \item etc.
 \end{itemize}
 
+\subsection{Dataset}
+
+The primary dataset we are working with is a 3D model of the Strasbourg city
+center, provided in the \texttt{.stl} file format. This file contains the
+geometric information of the terrain and buildings in the specified area,
+which serves as the base for our project. 
+
+The \texttt{.stl} (stereolithography) format is widely used for 3D printing
+and computer-aided design (CAD). It represents the surface geometry of a 3D
+object without any color, texture, or other attributes. The file comprises a
+collection of triangular facets, each defined by its vertices and normal vector.
+
+Here are some key details about the \texttt{.stl} file we are working with:
+\begin{itemize}
+    \item \textbf{File Name:} mesh\_lod1.stl
+    \item \textbf{Region Covered:} Strasbourg city center
+    \item \textbf{File Size:} 42,7 MB
+    \item \textbf{Number of Vertices:} Approximately 120,959
+    \item \textbf{Number of Facets:} Approximately 273,178
+\end{itemize}
+
+The 3D model includes various urban features such as buildings, streets, and
+other infrastructure. This detailed representation is crucial for accurately
+integrating tree models and conducting subsequent thermal and energy simulations.
+
+Below are visual representations of the 3D model from different angles:
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/strasbourg-mesh-1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Strasbourg 3D model (1)}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/strasbourg-mesh-2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Strasbourg 3D model (2)}
+    \end{minipage}
+\end{figure}
+
+This dataset is instrumental in allowing us to accurately position tree models
+within the urban landscape, ensuring that our simulations reflect realistic
+interactions between vegetation and urban structures.
+
 \newpage
 
 \subsection{Alpha Wrapping}
