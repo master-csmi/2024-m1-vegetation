@@ -6,6 +6,10 @@ WORKDIR /workspace
 # Set the timezone
 ENV TZ=Europe/Paris
 
+# Install Git LFS
+RUN apt-get update && apt-get install -y git-lfs \
+	&& git lfs install
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
 	build-essential \
@@ -25,4 +29,3 @@ RUN git clone https://github.com/CGAL/cgal.git /workspace/cgal \
 
 # Copy the project files into the container
 COPY . /workspace/2024-m1-vegetation
-
