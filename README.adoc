@@ -26,13 +26,12 @@ sudo apt-get install -y build-essential cmake git libmpfr-dev libboost-dev libcu
 ```
 
 === Install CGAL
-CGAL is a header-only library, so you don't need to build it. You just need to install the package. For our project, we need the master branch of CGAL.
+For our project, we need the master branch of CGAL:
 ```bash
 git clone --branch master https://github.com/CGAL/cgal.git
-cd cgal
-mkdir cgal.install
-cd cgal.install
-cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install /path_to/cgal
+mkdir cgal.build
+cd cgal.build
+cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install ../cgal
 make install
 ```
 
@@ -57,6 +56,8 @@ make
 # Run the tests
 ctest
 ```
+
+Note : this is the path used in the Docker container, you might need to change it to your own path.
 
 === Usage
 
