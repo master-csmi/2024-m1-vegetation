@@ -29,3 +29,7 @@ RUN git clone https://github.com/CGAL/cgal.git /workspace/cgal \
 
 # Copy the project files into the container
 COPY . /workspace/2024-m1-vegetation
+
+# Set the working directory to the project directory
+WORKDIR /workspace/2024-m1-vegetation
+
