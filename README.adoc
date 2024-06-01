@@ -111,4 +111,4 @@ You can visualize the output mesh with **Meshlab**, **Paraview** or any other me
 
 == References
 
-For detailed information on the project's context, objectives, methodology, and implemenation, please refer to the accompanying report
+For detailed information on the project's context, objectives, methodology, and implemenation, please refer to the accompanying report.
