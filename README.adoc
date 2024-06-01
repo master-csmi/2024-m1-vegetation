@@ -69,7 +69,7 @@ Use the configuration file `config.json` to specify:
 
 - `LOD`: The level of detail (0, 1, 2, 3) of the meshes
 
-- `altitude`: The of the ground 
+- `altitude`: The altitube of the area of interest (in meters)
 
 - `default_height_range`: The default height of the trees (in meters) when the height is not available in the OpenStreetMap data
 
