@@ -36,12 +36,15 @@ make install
 ```
 
 === Alternatively, using the Docker container:
+This container can be used for developpement, when building the image the project is copied in the container without building the project.
+
+
+You might want to remove the `build` directory before running (and closing) the container to avoid conflicts.
+
 ```bash
 docker build -t 2024m1vegetation:latest .
 docker run -it 2024m1vegetation:latest
 ```
-
-You might want to remove the `build` directory before running (and closing) the container to avoid conflicts.
 
 On VsCode you can use the Remote - Containers extension to reopen the project in a container.
 
