@@ -26,23 +26,25 @@ sudo apt-get install -y build-essential cmake git libmpfr-dev libboost-dev libcu
 ```
 
 === Install CGAL
-CGAL is a header-only library, so you don't need to build it. You just need to install the package. For our project, we need the master branch of CGAL.
+For our project, we need the master branch of CGAL:
 ```bash
 git clone --branch master https://github.com/CGAL/cgal.git
-cd cgal
-mkdir cgal.install
-cd cgal.install
-cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install /path_to/cgal
+mkdir cgal.build
+cd cgal.build
+cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install ../cgal
 make install
 ```
 
 === Alternatively, using the Docker container:
-```bash
-docker build -t 2024m1vegetation:latest .
-docker run -it 2024m1vegetation:latest`
-```
+This container can be used for developpement, when building the image the project is copied in the container without building the project.
+
 
 You might want to remove the `build` directory before running (and closing) the container to avoid conflicts.
+
+```bash
+docker build -t 2024m1vegetation:latest .
+docker run -it 2024m1vegetation:latest
+```
 
 On VsCode you can use the Remote - Containers extension to reopen the project in a container.
 
@@ -58,6 +60,8 @@ make
 ctest
 ```
 
+Note : this is the path used in the Docker container, you might need to change it to your own path.
+
 === Usage
 
 Use the configuration file `config.json` to specify:
@@ -68,7 +72,7 @@ Use the configuration file `config.json` to specify:
 
 - `LOD`: The level of detail (0, 1, 2, 3) of the meshes
 
-- `altitude`: The of the ground 
+- `altitude`: The altitube of the area of interest (in meters)
 
 - `default_height_range`: The default height of the trees (in meters) when the height is not available in the OpenStreetMap data
 
