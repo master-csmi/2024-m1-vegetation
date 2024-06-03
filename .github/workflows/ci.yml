@@ -1,6 +1,6 @@
 name: C/C++ CI
 
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
   build:
@@ -48,6 +48,11 @@ jobs:
         run: |
           cd build
           cmake --build . -- -j2  # Adjust the number of parallel jobs
+
+      - name: Run tests
+        run: |
+          cd build
+          ctest --output-on-failure
 
       - name: Display build directory contents
         run: ls -la build

@@ -2,15 +2,21 @@
 
 == Overview
 
-The goal of this project is to develop a tool that integrates vegetation (trees) into 3D urban models in order to improve the efficiency of thermal simulations.
+The goal of this project is to develop a tool that integrates trees into 3D urban models to improve the efficiency of thermal simulations. This project is part of the https://www.hidalgo2.eu[HiDALGO2] initiative, which aims to explore synergies between modeling, data acquisition, simulation, data analysis and visualization, with focus on improving building energy efficiency and indoor air quality.
 
 == Installation and Usage
 
 === Required Packages
 
-To build the project, you either need the following packages or you can use the Docker container provided in the repository:
+To build the project, you either need the following packages or you can use the provided Docker container:
 
-- https://www.cgal.org/[CGAL] (master), https://cmake.org/[CMake] (>= 3.15), https://git-scm.com/[Git], https://www.boost.org/[Boost], https://fmt.dev/[fmt], https://www.mpfr.org/[MPFR], https://curl.se/[libcurl]
+- https://www.cgal.org/[CGAL] (master)
+- https://cmake.org/[CMake] (>= 3.15)
+- https://git-scm.com/[Git]
+- https://www.boost.org/[Boost]
+- https://fmt.dev/[fmt]
+- https://www.mpfr.org/[MPFR]
+- https://curl.se/[libcurl]
 
 === Installating package on Ubuntu
 
@@ -20,23 +26,25 @@ sudo apt-get install -y build-essential cmake git libmpfr-dev libboost-dev libcu
 ```
 
 === Install CGAL
-CGAL is a header-only library, so you don't need to build it. You just need to install the package. For our project, we need the master branch of CGAL.
+For our project, we need the master branch of CGAL:
 ```bash
 git clone --branch master https://github.com/CGAL/cgal.git
-cd cgal
-mkdir cgal.install
-cd cgal.install
-cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install /path_to/cgal
+mkdir cgal.build
+cd cgal.build
+cmake -DCMAKE_INSTALL_PREFIX=path_to/cgal.install ../cgal
 make install
 ```
 
-=== Alternatively you can use a Docker container:
-```bash
-docker build -t 2024m1vegetation:latest .
-docker run -it 2024m1vegetation:latest`
-```
+=== Alternatively, using the Docker container:
+This container can be used for developpement, when building the image the project is copied in the container without building the project.
+
 
 You might want to remove the `build` directory before running (and closing) the container to avoid conflicts.
+
+```bash
+docker build -t 2024m1vegetation:latest .
+docker run -it 2024m1vegetation:latest
+```
 
 On VsCode you can use the Remote - Containers extension to reopen the project in a container.
 
@@ -52,41 +60,43 @@ make
 ctest
 ```
 
+Note : this is the path used in the Docker container, you might need to change it to your own path.
+
 === Usage
 
 Use the configuration file `config.json` to specify:
 
-- the bounding box `bbox` of the area of interest ("bottom latitude, bottom longitude, top latitude, top longitude")
+- `bbox`: The bounding box of the area of interest ("bottom latitude, bottom longitude, top latitude, top longitude")
 
-- the `origin` used in the conversion from latitude and longitude to Cartesian coordinates
+- `origin`: The origin used in the conversion from latitude and longitude to Cartesian coordinates
 
-- the level of detail `LOD` (0, 1, 2, 3) of the meshes
+- `LOD`: The level of detail (0, 1, 2, 3) of the meshes
 
-- the `altitude` of the ground 
+- `altitude`: The altitube of the area of interest (in meters)
 
-- the default height of the trees `default_height_range` (in meters) when the height is not available in the OpenStreetMap data
+- `default_height_range`: The default height of the trees (in meters) when the height is not available in the OpenStreetMap data
 
-- the default genus of the trees `default_genus` when the genus is not available in the OpenStreetMap data
+- `default_genus`: The default genus of the trees when the genus is not available in the OpenStreetMap data
 
-- the `input_building_mesh` file for making the union of the building with the trees
+- `input_building_mesh`: The input building mesh file for merging the buildings with the trees
 
-- if we merge the trees with the buildings or not with `merge_builtings_trees`
+- `merge_builtings_trees`: Boolean to merge the trees with the buildings or not
 
-- the base name of the output file `output_file` saved in the `/output` directory
+- `output_file`: The base name of the output file saved in the `/output` directory
 
 Use the `genus.json` file to specify the genus and height of the trees to be used in the simulation.
 
-- `known_genus` is a list of genus for which we have a base mesh
-- `cedrus_like` is a list of the genus for which the cedrus mesh model will be used
+- `known_genus`: A list of genera for which we have a base mesh
+- `cedrus_like`: A list of the genera for which the cedrus mesh model will be used
 - etc.
 
-If you wish you can mesh your own tree model using link:https://doc.cgal.org/latest/Alpha_wrap_3/index.html[CGAL Alpha Wrapper] by running:
+To mesh your own tree model using link:https://doc.cgal.org/latest/Alpha_wrap_3/index.html[CGAL Alpha Wrapper] run:
 
 ```bash
 ./build/wrap Genus.stl <alpha> <offset>
 ```
 
-and move the result to the `tree_ref` directory. Then add the genus to the `known_genus` in the `trees.json` file.
+Move the result to the `tree_ref` directory and add the genus to the `known_genus` in the `trees.json` file.
 
 Finnaly run the program:
 ```bash
@@ -95,10 +105,14 @@ Finnaly run the program:
 
 The output mesh and some metrics will be saved in the `/output` directory (which is automatically created if needed).
 
-You can visualize the output mesh with **Meshlab**, **Paraview** or any other mesh viewer. (Note: Meshlab does not work well with Wayland.)
+You can visualize the output mesh with **Meshlab**, **Paraview** or any other mesh viewer.
 
 
 == Contributors
 
 * https://github.com/GiulioCrp[GiulioCrp]
 * https://github.com/PA-Senger[PA-Senger]
+
+== References
+
+For detailed information on the project's context, objectives, methodology, and implemenation, please refer to the accompanying report.

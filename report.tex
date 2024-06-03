@@ -88,7 +88,7 @@
 
 \begin{titlepage}
 \centering
-\includegraphics[width=0.5\textwidth]{images/logo_ufr.png}\par\vspace{1cm}
+\includegraphics[width=0.5\textwidth]{images/logo-ufr.png}\par\vspace{1cm}
 \vspace{1.5cm}
 {\huge\bfseries ExaMA WP1 - Vegetation\par}
 \vspace{2cm}
@@ -139,13 +139,13 @@ reducing energy consumption, and enhancing overall livability\cite{TIR4sTREEt}.
 \begin{figure}[H]
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/TreeShade.png}
+        \includegraphics[width=1\textwidth]{images/tree-shade.png}
         \captionsetup{font={scriptsize}}
         \caption{Tree providing shade to a building \cite{img:TreeShade}}
     \end{minipage}
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/heat_street.png}
+        \includegraphics[width=1\textwidth]{images/heat-street.png}
         \captionsetup{font={scriptsize}}
         \caption{Thermal image of a street depicting heat distribution \cite{img:street_thermography}}
     \end{minipage}
@@ -187,13 +187,13 @@ Here's an example of a 3D model of Manhattan, NYC:
     \centering
     \begin{minipage}{0.45\textwidth}
       \centering
-      \includegraphics[width=1\textwidth]{images/manhattan-mesh-1.png}
+      \includegraphics[width=1\textwidth]{images/mesh-manhattan-1.png}
       \captionsetup{font={scriptsize}}
       \caption{Manhattan 3D model (1)}
     \end{minipage}
     \begin{minipage}{0.45\textwidth}
       \centering
-      \includegraphics[width=1\textwidth]{images/manhattan-mesh-2.png}
+      \includegraphics[width=1\textwidth]{images/mesh-manhattan-2.png}
       \captionsetup{font={scriptsize}}
       \caption{Manhattan 3D model (2)}
     \end{minipage}
@@ -336,6 +336,7 @@ interest and other parameters:
     "default_height_range": "3, 6",
     "default_genus": "Platanus",
     "input_building_mesh": "mesh_lod1.stl",
+    "merge_buildings_trees": true,
     "output_name": "grande_ile"
 }
 \end{lstlisting}
@@ -355,6 +356,8 @@ Where :
     predefined genus.
     \item \texttt{input\_building\_mesh}: is the name of the input file
     representing the terrain mesh.
+    \item \texttt{merge\_buildings\_trees}: is a boolean indicating whether the
+    buildings and trees should be merged into a single mesh or not.
     \item \texttt{output\_name}: is the base name of the output file
     representing the unions of the tree meshes.
 \end{itemize}
@@ -412,7 +415,7 @@ Here is an example of a Ginkgo model that we acquired from \texttt{SketchUp}:
 \begin{figure}[H]
     \centering
         \centering
-        \includegraphics[width=0.8\textwidth]{images/ginkgo_sketchup.png}
+        \includegraphics[width=0.8\textwidth]{images/ginkgo-sketchup.png}
         \captionsetup{font={scriptsize}}
         \caption{Mesh of a Ginkgo tree on Sketchup 3D Warehouse}
 \end{figure}
@@ -425,25 +428,25 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
     \centering
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/abies.png}
+        \includegraphics[width=\textwidth]{images/tree-abies.png}
         \captionsetup{font={scriptsize}}
         \caption{Abies}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/acer.png}
+        \includegraphics[width=\textwidth]{images/tree-acer.png}
         \captionsetup{font={scriptsize}}
         \caption{Acer}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/aesculus.png}
+        \includegraphics[width=\textwidth]{images/tree-aesculus.png}
         \captionsetup{font={scriptsize}}
         \caption{Aesculus}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/catalpa.png}
+        \includegraphics[width=\textwidth]{images/tree-catalpa.png}
         \captionsetup{font={scriptsize}}
         \caption{Catalpa}
     \end{minipage}
@@ -453,25 +456,25 @@ Below, some of these models visualized using MeshLab\cite{meshlab}:
     \centering
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/cedrus.png}
+        \includegraphics[width=\textwidth]{images/tree-cedrus.png}
         \captionsetup{font={scriptsize}}
         \caption{Cedrus}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/liquidanbar.png}
+        \includegraphics[width=\textwidth]{images/tree-liquidanbar.png}
         \captionsetup{font={scriptsize}}
         \caption{Liquidanbar}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/platanus.png}
+        \includegraphics[width=\textwidth]{images/tree-platanus.png}
         \captionsetup{font={scriptsize}}
         \caption{Platanus}
     \end{minipage}\hfill
     \begin{minipage}{0.24\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/quercus.png}
+        \includegraphics[width=\textwidth]{images/tree-quercus.png}
         \captionsetup{font={scriptsize}}
         \caption{Quercus}
     \end{minipage}
@@ -513,13 +516,60 @@ models among the 13 trees we have.
     \item etc.
 \end{itemize}
 
+\subsection{Dataset}
+
+The primary dataset we are working with is a 3D model of the Strasbourg city
+center, provided in the \texttt{.stl} file format. This file contains the
+geometric information of the terrain and buildings in the specified area,
+which serves as the base for our project.
+
+The \texttt{.stl} (stereolithography) format is widely used for 3D printing
+and computer-aided design (CAD). It represents the surface geometry of a 3D
+object without any color, texture, or other attributes. The file comprises a
+collection of triangular facets, each defined by its vertices and normal vector.
+
+Here are some key details about the \texttt{.stl} file we are working with:
+\begin{itemize}
+    \item \textbf{File Name:} mesh\_lod1.stl
+    \item \textbf{Region Covered:} Strasbourg city center
+    \item \textbf{File Size:} 42,7 MB
+    \item \textbf{Number of Vertices:} Approximately 120,959
+    \item \textbf{Number of Facets:} Approximately 273,178
+\end{itemize}
+
+The 3D model includes various urban features such as buildings, streets, and
+other infrastructure. This detailed representation is crucial for accurately
+integrating tree models and conducting subsequent thermal and energy simulations.
+
+Below are visual representations of the 3D model from different angles:
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/strasbourg-mesh-1.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Strasbourg 3D model (1)}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/strasbourg-mesh-2.png}
+        \captionsetup{font={scriptsize}}
+        \caption{Strasbourg 3D model (2)}
+    \end{minipage}
+\end{figure}
+
+This dataset is instrumental in allowing us to accurately position tree models
+within the urban landscape, ensuring that our simulations reflect realistic
+interactions between vegetation and urban structures.
+
 \newpage
 
 \subsection{Alpha Wrapping}
 \begin{figure}[H]
     \centering
         \centering
-        \includegraphics[width=\textwidth]{images/aw3_bike_lod.jpg}
+        \includegraphics[width=\textwidth]{images/alpha-wrapping-bike.jpg}
         \captionsetup{font={scriptsize}}
         \caption{Different LOD of the Alpha Wrapping of a bike}
 \end{figure}
@@ -569,7 +619,7 @@ The figure below depicts the steps of the algorithm in 2D:
 \begin{figure}[H]
     \centering
         \centering
-        \includegraphics[width=\textwidth]{images/aw3_steps.jpg}
+        \includegraphics[width=\textwidth]{images/alpha-wrapping-steps.jpg}
         \captionsetup{font={scriptsize}}
         \caption{Steps of the shrink-wrapping algorithm in 2D. The algorithm
         initializes by inserting the bounding box corners into a Delaunay
@@ -602,7 +652,7 @@ It can be used as follows:
 ./build/wrap tree_ref/raw_tree/Ginkgo.stl 50 600
 \end{lstlisting}
 
-Where 50 is the alpha value and 600 is the offset value.
+Where 50 is the \texttt{alpha} value and 600 is the \texttt{offset} value.
 
 Additionally, to wrap all the trees in a directory, the \textit{wrap\_all.sh}
 script can be used:
@@ -623,10 +673,9 @@ done
 \end{lstlisting}
 
 The reference meshes will be used to generate the tree models obtained from
-the Overpass query. Each tree model will be generated by scaling the reference
-mesh to match the tree's height and position in 3D space. This will be
-accomplished using the
-\texttt{CGAL Affine Transformation}\cite{cgal_affine_transformation},
+the \texttt{Overpass} query. Each tree model will be generated by scaling and
+translating the reference mesh to match the tree's height and position in 3D space.
+ This will be accomplished using the \texttt{CGAL Affine Transformation}\cite{cgal_affine_transformation},
 which has linear complexity in the number of vertices of the mesh.
 
 \newpage
@@ -667,7 +716,7 @@ Here's a table showing the number of faces per tree type and LOD:
     \label{tab:my_label}
 \end{table}
 
-The offset parameter for the CGAL wrapper was set as 600 for each LOD.
+The \texttt{offset} parameter for the CGAL wrapper was set as 600 for each LOD.
 
 Here are the results for a Ginkgo tree model at each LOD:
 
@@ -675,13 +724,13 @@ Here are the results for a Ginkgo tree model at each LOD:
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/gingko_lod0.png}
+        \includegraphics[width=1\textwidth]{images/gingko-lod0.png}
         \captionsetup{font={scriptsize}}
         \caption{Ginkgo lod0}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/gingko_lod1.png}
+        \includegraphics[width=1\textwidth]{images/gingko-lod1.png}
         \captionsetup{font={scriptsize}}
         \caption{Ginkgo lod1}
     \end{minipage}
@@ -691,13 +740,13 @@ Here are the results for a Ginkgo tree model at each LOD:
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/gingko_lod2.png}
+        \includegraphics[width=1\textwidth]{images/gingko-lod2.png}
         \captionsetup{font={scriptsize}}
         \caption{Ginkgo lod2}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/gingko_lod3.png}
+        \includegraphics[width=1\textwidth]{images/gingko-lod3.png}
         \captionsetup{font={scriptsize}}
         \caption{Ginkgo lod3}
     \end{minipage}
@@ -708,8 +757,8 @@ addressed. Initially, we considered using a k-nearest neighbors
 algorithm\cite{k-nn} to determine the tree's metadata (species, height,
 leaf density, etc.) based on surrounding trees. However, this approach is
 impractical because data is often missing for large areas, such as parks.
-Instead, we will assign a random height selected from the
-\texttt{default\_height\_range} and a genus specified by
+Instead, we will assign a random height selected from a normal distribution with
+a mean specified by \texttt{default\_height\_range} and a genus specified by
 \texttt{default\_genus} in the \textit{config.json} file.
 
 \subsection{Mercator projection}
@@ -787,7 +836,8 @@ Time to mesh: 155.965 seconds, (2.59942 minutes)
 This class is designed to store the program's configuration. It will be used to
 store the \texttt{bounding box}, the \texttt{level of details}, the
 \texttt{output name}, the \texttt{default genus}, the \texttt{default height},
-the \texttt{origin}, the \texttt{input building mesh}, and the \texttt{altitude}.
+the \texttt{origin}, the \texttt{input building mesh}, the \texttt{altitude} and 
+the \texttt{merge} boolean.
 
 \begin{lstlisting}[language=C++]
 class Config {
@@ -800,6 +850,7 @@ class Config {
         std::string M_origin;
         std::string M_input_building_mesh;
         double M_altitude;
+        bool M_merge;
 
     public:
         Config(std::string const &filename);
@@ -845,15 +896,15 @@ using Mesh = CGAL::Surface_mesh<Point_3>;
 
 class Tree {
     private:
-    long M_id;                    
-    double M_lat, M_lon, M_x, M_y; 
-    double M_height, M_altitude;   
-    double M_circumference, M_diameter_crown; 
-    std::string M_genus, M_species, M_season; 
+    long M_id;
+    double M_lat, M_lon, M_x, M_y;
+    double M_height, M_altitude;
+    double M_circumference, M_diameter_crown;
+    std::string M_genus, M_species, M_season;
     std::vector<std::string> M_known_genus, M_cedrus_like, M_acer_like,
         M_liquidambar_like, M_quercus_like;
-    Mesh M_wrap;                             
-    std::vector<Point_3> M_points;           
+    Mesh M_wrap;
+    std::vector<Point_3> M_points;
     std::vector<std::array<int, 3>> M_faces;
 
     public:
@@ -948,7 +999,7 @@ of its bounding box, scale it to the correct height, move it back to its origina
 (because scaling it was moving the tree around), and finally move it to the correct position in the 3D space.
 
 Note: To improve tree placement we could also compute the center of mass of a slice
-at the base of the tree and use it as its origin
+at the base of the tree and use it as its origin.
 
 \subsection{Doxygen documentation}
 
@@ -981,13 +1032,13 @@ using generic trees and LOD1:
 \begin{figure}[H]
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/republic_overpassturbo.png}
+        \includegraphics[width=\textwidth]{images/ovt-republic.png}
         \captionsetup{font={scriptsize}}
         \caption{Overpass turbo query for Place de la République in Strasbourg}
     \end{minipage}
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/republic_lod3.png}
+        \includegraphics[width=\textwidth]{images/mesh-republic-lod3.png}
         \captionsetup{font={scriptsize}}
         \caption{Mesh we generated}
     \end{minipage}
@@ -999,19 +1050,22 @@ Here is an example of what this integration could look like:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced1.png}
+    \includegraphics[width=0.8\textwidth]{images/mesh-strasbourg-enhanced1.png}
     \captionsetup{font={scriptsize}}
     \caption{3D model with trees at LOD 0, city center of Strasbourg}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced2.png}
+    \includegraphics[width=0.8\textwidth]{images/mesh-strasbourg-enhanced2.png}
     \captionsetup{font={scriptsize}}
     \caption{3D model with trees at LOD 0, place de la République in Strasbourg}
 \end{figure}
 
-This 2 images are made of 2 distinct meshes, the tree mesh and the building mesh.
+These two images consist of two distinct meshes: the tree mesh and the building
+mesh. For this particular model, we included only trees with a specified height
+in the \texttt{OpenStreetMap} database. Trees without a specified height do not
+appear in the model.
 
 \subsection{Complexity and performance analysis}
 
@@ -1025,22 +1079,25 @@ on the head node. Gaya offers 150 TB of storage for data and an extremely fast
 GB of RAM. Each compute node features two AMD EPYC 7713 64-Core Processors
 running at 2GHz, totaling 256 virtual cores, and 512 GB of RAM.
 The nodes are interconnected via Broadcom Adv. Dual 10GBASE-T Ethernet and
-Mellanox ConnectX-6 Dx Dual Port 100 GbE for MPI communication.
+Mellanox ConnectX-6 Dx Dual Port 100 GbE for MPI communication.\\
+For our benchmarks, we used a single exclusive node with 256 cores and 512 GB
+of RAM.
 
-We used four different bounding boxes Strasbourg city center as our test area, all centered at the same point but with
+We used four different bounding boxes Strasbourg city center as our test area, 
+all centered at the same point but with
 varying sizes:
 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/bbox1.png}
+        \includegraphics[width=\textwidth]{images/ovt-bbox1.png}
         \captionsetup{font={scriptsize}}
         \caption{153.7 m², 12 trees}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/bbox2.png}
+        \includegraphics[width=\textwidth]{images/ovt-bbox2.png}
         \captionsetup{font={scriptsize}}
         \caption{384.0 m², 71 trees}
     \end{minipage}
@@ -1050,13 +1107,13 @@ varying sizes:
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/bbox3.png}
+        \includegraphics[width=\textwidth]{images/ovt-bbox3.png}
         \captionsetup{font={scriptsize}}
         \caption{626.1 m², 254 trees}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/bbox4.png}
+        \includegraphics[width=\textwidth]{images/ovt-bbox4.png}
         \captionsetup{font={scriptsize}}
         \caption{808.4 m², 513 trees}
     \end{minipage}
@@ -1085,7 +1142,7 @@ linear relationship between the area and the number of trees.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/area_vs_trees.png}
+    \includegraphics[width=1\textwidth]{images/bench-area-vs-trees.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
 
@@ -1099,7 +1156,7 @@ are related to the number of faces produced in the meshes.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/bench_ntree_nfaces.png}
+    \includegraphics[width=1\textwidth]{images/bench-ntree-nfaces.png}
     \captionsetup{font={scriptsize}}
 \end{figure}
 
@@ -1113,7 +1170,7 @@ of Detail (LOD).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/bench_time_ntree_quad.png}
+    \includegraphics[width=1\textwidth]{images/bench-time-ntree-quad.png}
     \captionsetup{font={scriptsize}}
     \caption{Execution time, union of meshes}
 \end{figure}
@@ -1123,7 +1180,7 @@ greater precision, we would need more data.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/bench_time_ntree_linear.png}
+    \includegraphics[width=1\textwidth]{images/bench-time-ntree-linear.png}
     \captionsetup{font={scriptsize}}
     \caption{Execution time, union of triangle soup}
 \end{figure}
@@ -1154,11 +1211,11 @@ tracing and shading effects on buildings.
 
 \section{Conclusion}
 
-The \texttt{ExaMA WP1 - Vegetation} project represents a significant stride towards 
-enhancing urban modeling through the integration of vegetation, specifically 
-trees, into 3D models of urban environments. By focusing on the \texttt{Urban Building 
-Model} (UBM) use case within the \texttt{HiDALGO2} initiative, we aimed to improve the 
-accuracy and realism of thermal and energy simulations, contributing to better 
+The \texttt{ExaMA WP1 - Vegetation} project represents a significant stride towards
+enhancing urban modeling through the integration of vegetation, specifically
+trees, into 3D models of urban environments. By focusing on the \texttt{Urban Building
+Model} (UBM) use case within the \texttt{HiDALGO2} initiative, we aimed to improve the
+accuracy and realism of thermal and energy simulations, contributing to better
 building energy efficiency and indoor air quality.
 
 Through our efforts, we successfully extracted tree data from
@@ -1166,31 +1223,31 @@ Through our efforts, we successfully extracted tree data from
 tree models. We integrated these models into existing terrain meshes,
 specifically focusing on the Strasbourg city center. Our methodology, involving
 data acquisition via the \texttt{Overpass API}, tree model generation using
-\texttt{Alpha Wrapping}, and precise coordinate conversion through 
+\texttt{Alpha Wrapping}, and precise coordinate conversion through
 \texttt{Mercator projection}, ensured a robust and scalable approach to urban
 vegetation modeling.
 
-The use of different Levels of Detail (LOD) allowed for flexible and efficient 
-modeling, catering to various computational and visual requirements. Our 
-benchmarking on the HPC cluster \texttt{Gaya} confirmed the scalability and performance 
-of our approach, highlighting the quadratic relationship between execution time 
-and the number of trees when using union of meshes and a linear relationship 
+The use of different Levels of Detail (LOD) allowed for flexible and efficient
+modeling, catering to various computational and visual requirements. Our
+benchmarking on the HPC cluster \texttt{Gaya} confirmed the scalability and performance
+of our approach, highlighting the quadratic relationship between execution time
+and the number of trees when using union of meshes and a linear relationship
 when using triangle soup.
 
-Additionally, we addressed the challenge of missing data by implementing a 
-system to assign default values for tree height and genus, ensuring comprehensive 
-coverage even in the absence of complete metadata. Our categorization of tree 
-genera and the creation of a library of tree models further enhanced the 
+Additionally, we addressed the challenge of missing data by implementing a
+system to assign default values for tree height and genus, ensuring comprehensive
+coverage even in the absence of complete metadata. Our categorization of tree
+genera and the creation of a library of tree models further enhanced the
 versatility and applicability of our solution.
 
-Overall, the \texttt{ExaMA WP1 - Vegetation} project has laid a strong foundation for 
-future urban modeling endeavors, emphasizing the importance of integrating 
-natural elements into urban simulations. The project's outcomes not only 
-contribute to the specific goals of the \texttt{HiDALGO2} initiative but also provide 
-valuable insights and tools for broader applications in urban planning, 
-environmental science, and computational geometry. As we move forward, the 
-incorporation of seasonal changes, leaf fall, and advanced shading calculations 
-will further refine and expand the capabilities of our modeling approach, paving 
+Overall, the \texttt{ExaMA WP1 - Vegetation} project has laid a strong foundation for
+future urban modeling endeavors, emphasizing the importance of integrating
+natural elements into urban simulations. The project's outcomes not only
+contribute to the specific goals of the \texttt{HiDALGO2} initiative but also provide
+valuable insights and tools for broader applications in urban planning,
+environmental science, and computational geometry. As we move forward, the
+incorporation of seasonal changes, leaf fall, and advanced shading calculations
+will further refine and expand the capabilities of our modeling approach, paving
 the way for more sustainable and livable urban environments.
 
 \newpage

@@ -29,3 +29,6 @@ temp/
 .DS_Store
 
 query_result.json
+
+report.synctex(busy)
+presentation.synctex(busy)
