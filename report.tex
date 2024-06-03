@@ -139,7 +139,7 @@ reducing energy consumption, and enhancing overall livability\cite{TIR4sTREEt}.
 \begin{figure}[H]
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=1\textwidth]{images/TreeShade.png}
+        \includegraphics[width=1\textwidth]{images/tree-shade.png}
         \captionsetup{font={scriptsize}}
         \caption{Tree providing shade to a building \cite{img:TreeShade}}
     \end{minipage}
@@ -187,13 +187,13 @@ Here's an example of a 3D model of Manhattan, NYC:
     \centering
     \begin{minipage}{0.45\textwidth}
       \centering
-      \includegraphics[width=1\textwidth]{images/manhattan-mesh-1.png}
+      \includegraphics[width=1\textwidth]{images/mesh-manhattan-1.png}
       \captionsetup{font={scriptsize}}
       \caption{Manhattan 3D model (1)}
     \end{minipage}
     \begin{minipage}{0.45\textwidth}
       \centering
-      \includegraphics[width=1\textwidth]{images/manhattan-mesh-2.png}
+      \includegraphics[width=1\textwidth]{images/mesh-manhattan-2.png}
       \captionsetup{font={scriptsize}}
       \caption{Manhattan 3D model (2)}
     \end{minipage}
@@ -1050,19 +1050,22 @@ Here is an example of what this integration could look like:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced1.png}
+    \includegraphics[width=0.8\textwidth]{images/mesh-strasbourg-enhanced1.png}
     \captionsetup{font={scriptsize}}
     \caption{3D model with trees at LOD 0, city center of Strasbourg}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/strasbourg_mesh_enhanced2.png}
+    \includegraphics[width=0.8\textwidth]{images/mesh-strasbourg-enhanced2.png}
     \captionsetup{font={scriptsize}}
     \caption{3D model with trees at LOD 0, place de la République in Strasbourg}
 \end{figure}
 
-This 2 images are made of 2 distinct meshes, the tree mesh and the building mesh.
+These two images consist of two distinct meshes: the tree mesh and the building
+mesh. For this particular model, we included only trees with a specified height
+in the \texttt{OpenStreetMap} database. Trees without a specified height do not
+appear in the model.
 
 \subsection{Complexity and performance analysis}
 
