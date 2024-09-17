@@ -13,7 +13,7 @@ jobs:
           root_file: report.tex
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: report
           path: report.pdf
