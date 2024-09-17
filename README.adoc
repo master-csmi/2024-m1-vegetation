@@ -110,7 +110,7 @@ You can visualize the output mesh with **Meshlab**, **Paraview** or any other me
 
 == Contributors
 
-* https://github.com/GiulioCrp[GiulioCrp]
+* https://github.com/giuliocrp[giuliocrp]
 * https://github.com/PA-Senger[PA-Senger]
 
 == References
